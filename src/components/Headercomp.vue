@@ -36,6 +36,8 @@ export default {
 .header__title-box{
     margin-left: 59%;
     margin-bottom: 7%;
+    border-left: 10px solid #F16D7F;
+    padding-left: 10px;
 }
 .header__title{
     font-family: 'Lato';
