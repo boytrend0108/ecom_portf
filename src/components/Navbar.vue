@@ -1,8 +1,15 @@
 <template>
    <nav class="navbar">
     <div class="wrapper">
-        <div class="nav-block">left</div>
-       <div class="nav-block">right</div>
+        <div class="nav-block">
+            <img class="logo " @click="$router.push(`/`)" src="@/assets/logo.png" alt="">
+            <font-awesome-icon  class="font-aw" icon="fa-solid fa-magnifying-glass" />
+        </div>
+       <div class="nav-block">
+        <font-awesome-icon  class="font-aw " icon="fa-solid fa-bars" />
+        <font-awesome-icon  class="font-aw " icon="fa-regular fa-user" />  
+        <font-awesome-icon @click="$router.push(`/cart`)" class="font-aw " icon="fa-solid fa-cart-shopping" />
+       </div>
     </div>
        
    </nav>
@@ -14,7 +21,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .navbar{
     background: #222222;
     height: 70px;
@@ -27,9 +34,32 @@ export default {
    align-items: center;
    justify-content: space-between;
    margin: 0 auto;
-   border: 1px solid rgb(185, 17, 17);;
+  
 }
 .nav-block{
-background-color: aliceblue;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.font-aw{
+    color: white;
+    height: 25px;
+    width: 25px;
+    margin-left: 35px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.font-aw:hover{
+    color: #F16D7F;
+    transform: scale(1.3);
+}
+
+.logo{
+    cursor: pointer;
+    transition: 0.5s;
+}
+.logo:hover{
+    transform: scale(1.3);
 }
 </style>
