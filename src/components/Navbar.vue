@@ -2,7 +2,7 @@
    <nav class="navbar">
     <div class="wrapper">
         <div class="nav-block">
-            <img class="logo " @click="$router.push(`/`)" src="@/assets/logo.png" alt="">
+            <img class="logo " @click="$router.push(`/`)" src="@/assets/img/logo.png" alt="">
             <font-awesome-icon  class="font-aw" icon="fa-solid fa-magnifying-glass" />
         </div>
        <div class="nav-block">

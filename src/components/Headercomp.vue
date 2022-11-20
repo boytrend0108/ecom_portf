@@ -4,10 +4,8 @@
             <div class="header__title-box">
                 <h1 class="header__title">The brand</h1>
                 <h2 class="header__sub">OF LUXERIOUS <span class="header__sub_pink">FASHION</span></h2>
-            </div>
-           
-        </div>
-    
+            </div>           
+        </div>  
     </div>
 
 </template>
@@ -27,7 +25,7 @@ export default {
     /* background-image: url('@/assets/header__img.png') ; */
 }
 .wh{
-    background-image: url('@/assets/header__img.png');
+    background-image: url('@/assets/img/header__img.png');
     background-repeat: no-repeat;
     background-position-x: left;
     background-position-y: bottom;
