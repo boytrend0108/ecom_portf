@@ -1,6 +1,6 @@
 <template>
-    <div class="category">
-        <div class="categ__title" :style="{ backgroundImage: 'url(' + img + ')' }">
+    <div class="category" :style="{ backgroundImage: 'url(' + img + ')' }">
+        <div class="categ__title" >
             <img :src="item.category_img" alt="">
             <h3>{{item.category_desc}}</h3>
             <h2>{{item.category_title}}</h2>
