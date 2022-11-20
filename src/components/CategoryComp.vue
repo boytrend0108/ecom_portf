@@ -22,9 +22,9 @@ export default {
     data(){
         return{
           category:[
-             {id:1, category_title: "For men", category_desc: "30% off", category_img: "https://avatars.mds.yandex.net/i?id=a82cb20aa18c40b4f2deeabd440178b098a0afec-4900773-images-thumbs&n=13"},
-             {id: 2, category_title: "For women", category_desc: "Hot deal", category_img: "https://avatars.mds.yandex.net/i?id=106729997a29cb4f4d9d786f89e5095fd82ba815-5124559-images-thumbs&n=13"},
-             {id: 3, category_title: "For kids", category_desc: "New arrivals", category_img: "https://avatars.mds.yandex.net/i?id=a82cb20aa18c40b4f2deeabd440178b098a0afec-4900773-images-thumbs&n=13"}
+             {id:1, category_title: "For men", category_desc: "30% off", category_img: require("@/assets/img/for_men.png")},
+             {id: 2, category_title: "For women", category_desc: "Hot deal", category_img: require("@/assets/img/for_women.png")},
+             {id: 3, category_title: "For kids", category_desc: "New arrivals", category_img: require("@/assets/img/for_kids.png")}
       ]        
         }  
     }

@@ -1,7 +1,6 @@
 <template>
-    <div class="category" :style="{ backgroundImage: 'url(' + img + ')' }">
-        <div class="categ__title" >
-           
+    <div class="category" :style="{ backgroundImage: 'url(' + this.item.category_img  + ')' }">
+        <div class="categ__title" >    
             <h3>{{item.category_desc}}</h3>
             <h2>{{item.category_title}}</h2>
         </div>
@@ -22,7 +21,7 @@ export default {
 
     data(){
         return{  
-            img: this.item.category_img 
+            // img: this.item.category_img 
         }
     },
 
