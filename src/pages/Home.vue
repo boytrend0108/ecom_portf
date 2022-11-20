@@ -1,7 +1,7 @@
 <template>
   <div>
    <header-comp/>
-   <category-comp :category="category" />
+   <category-comp  />
 
    
   </div>
@@ -16,11 +16,11 @@ export default {
   },
   data(){
     return{
-      category:[
-       {id:1, category_title: "For men", category_desc: "30% off", category_img: "@/assets/img/category/for_men"},
-       {id: 2, category_title: "For women", category_desc: "Hot deal", category_img: "@/assets/img/category/for_women"},
-       {id: 3, category_title: "For kid", category_desc: "New arrivals", category_img: "@/assets/img/category/for_children"}
-      ]        
+      // category:[
+      //  {id:1, category_title: "For men", category_desc: "30% off", category_img: "../assets/img/category/for_men"},
+      //  {id: 2, category_title: "For women", category_desc: "Hot deal", category_img: "../assets/img/category/for_men"},
+      //  {id: 3, category_title: "For kids", category_desc: "New arrivals", category_img: "../assets/img/category/for_kids"}
+      // ]        
     }
   }
 

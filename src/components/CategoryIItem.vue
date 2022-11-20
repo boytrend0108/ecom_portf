@@ -1,8 +1,7 @@
 <template>
-
     <div class="category">
-        <div class="categ__title"  >
-            <img :src="img" alt="">
+        <div class="categ__title" :style="{ backgroundImage: 'url(' + img + ')' }">
+            <img :src="item.category_img" alt="">
             <h3>{{item.category_desc}}</h3>
             <h2>{{item.category_title}}</h2>
         </div>
@@ -13,6 +12,7 @@
 <script>
 
 export default {
+    
     props:{
         item:{
             type: Object,
@@ -21,32 +21,15 @@ export default {
     },
 
     data(){
-        return{
-           img: require(`@/assets/for_men.png`)
+        return{  
+            img: this.item.category_img 
         }
     },
-
-    computed:{
-        myStyle(){
-        return {
-            // backgroundImage: '@/assets/for_men.png'
-        }
-    }
-   
-    },
-    methods:{
-        setBackground(item){
-         return this.item.category_img
-       }
-    }
-    ,
 
     mounted(){
-        console.log(this.item.category_img)
-        console.log(this.setBackground(this.item))
+        
     }
 }
-
 
 </script>
 
