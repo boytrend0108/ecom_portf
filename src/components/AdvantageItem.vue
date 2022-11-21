@@ -1,5 +1,5 @@
 <template>
-    <div class="adv-box">
+    <div class="adv-box" :style="{backgroundImage:'url('+ item.adv__img + ')'}">
         <h2 class="adv__title">{{item.adv__title}}</h2>
         <p class="adv__descr">{{item.adv__descr}}</p>
     </div>
@@ -21,11 +21,12 @@ export default {
 .adv-box {
     width: 32%;
     height: 135px;
-    border: 1px solid rgb(216, 202, 202);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end
+    justify-content: flex-end;
+    background-repeat: no-repeat;
+    background-position-x: center;
 }
 .adv__title {
     font-weight: 400;
