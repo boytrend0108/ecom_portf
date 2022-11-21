@@ -1,5 +1,5 @@
 <template>
-    <button class="my_bnt">
+    <button class="my_bnt btn-transf">
         <slot></slot>
     </button>
 
@@ -27,8 +27,10 @@ export default {
     background-color: white ;
 }
 .my_bnt:hover{
-    transform: scale(1.05);
     background-color: #FF6A6A;
     color: white;
+}
+.btn-transf{
+    transform: scale(1.05);
 }
 </style>

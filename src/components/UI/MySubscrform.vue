@@ -1,8 +1,11 @@
 <template>
-<form action="#" class="form-subscr">
-    <h2 class="form-subscr__title">Subscribe</h2>
-    <h3 class="form-subscr__sub">SUBSCRIBE FOR OUR NEWLETTER AND PROMOTION</h3>
-</form>
+    <form action="#" class="form-subscr">
+        <div>
+            <h2 class="form-subscr__title">Subscribe</h2>
+            <h3 class="form-subscr__sub"> FOR OUR NEWLETTER AND PROMOTION</h3>
+        </div>
+        <my-input></my-input>
+    </form>
 </template>
 <script>
 export default {
@@ -14,10 +17,10 @@ export default {
 .form-subscr{
 width: 560px;
 height: 140px;
-border: 1px solid #000;
 display: flex;
 flex-direction: column;
 align-items: center;
+justify-content: center;
 }
 .form-subscr__title {
     font-weight: 700;
@@ -34,6 +37,7 @@ align-items: center;
     text-align: center;
     color: #222224;
     text-transform: uppercase;
+    margin: 0px 0 30px 0;
 }
 
 

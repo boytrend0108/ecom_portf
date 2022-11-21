@@ -23,6 +23,7 @@ export default {
     background-image: url(@/assets/img/review/review-bgd.png);
     background-repeat: no-repeat;
     background-position: center left;
+    background-size: cover;
    
 }
 .wrapper{
