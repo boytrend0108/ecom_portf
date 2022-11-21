@@ -3,6 +3,7 @@
    <header-comp/>
    <category-comp/>
    <catalog-comp/>
+   <advantage-comp/>
   </div>
 </template>
 
@@ -10,10 +11,11 @@
 import HeaderComp from '@/components/Headercomp.vue'
 import CategoryComp from '@/components/CategoryComp.vue'
 import CatalogComp from '@/components/CatalogComp,.vue'
+import AdvantageComp from '@/components/AdvantageComp.vue'
 
 export default {
   components:{
-    HeaderComp,CategoryComp, CatalogComp
+    HeaderComp,CategoryComp, CatalogComp, AdvantageComp
   },
   data(){
     return{
@@ -29,5 +31,6 @@ export default {
 * {
   font-family: 'Lato';
   font-style: normal;
+  box-sizing:border-box;
 }
 </style>

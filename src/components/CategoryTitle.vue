@@ -1,8 +1,11 @@
 <template>
-    <div class="categ__title">
-        <h3 class="cat__title_sub">{{ item.category_desc }}</h3>
-        <h2 class="cat__title">{{ item.category_title }}</h2>
+    <div>
+        <div class="categ__title">
+            <h3 class="cat__title_sub">{{ item.category_desc }}</h3>
+            <h2 class="cat__title">{{ item.category_title }}</h2>
+        </div>
     </div>
+   
 </template>
 
 <script>
@@ -17,6 +20,11 @@ export default {
 </script>
 
 <style scoped>
+.categ__title{
+    width: fit-content;
+    height: 50px;
+}
+
 .cat__title_sub {
     text-transform: uppercase;
     font-weight: 400;

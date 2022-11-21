@@ -7,6 +7,7 @@
     <div class="item-boX">
         <catalog-item v-for="item in catalogItems" :key="item.id" :item="item" />
     </div>
+    <my-button>Browse All Product</my-button>
     
 </div>
    
