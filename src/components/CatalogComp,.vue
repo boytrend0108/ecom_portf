@@ -63,8 +63,6 @@ export default {
     justify-content: center;
 }
 .catalog__title{
-    font-family: 'Lato';
-    font-style: normal;
     font-weight: 400;
     font-size: 30px;
     line-height: 36px;
@@ -72,16 +70,16 @@ export default {
     margin: 0 auto;  
 }
 .catalog__sub{
-    font-family: 'Lato';
-    font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
     color: #9F9F9F;
+    margin-top: 15px;
 }
 .item-boX {
     display: flex;
     gap: 30px;
     flex-wrap: wrap;
+    margin: 50px 0;
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
 <div class="item">
-    <div class="item__img" :style="{backgroundImage: 'url(' + this.item.itemImg + ')'}"></div>
+    <div class="item__img" alt="img"
+    :style="{backgroundImage: 'url(' + this.item.itemImg + ')'}"></div>
     <h2 class="item-title">{{ item.itemTitle }}</h2>
     <p class="item-sub">{{ item.itemSubtitle }}</p>
     <p class="item-price"> $ {{ item.itemPrice }}</p>
@@ -24,7 +25,7 @@ export default {
 .item{
     width: 360px;
     height: 580px;
-    border: 1px solid #000;
+    background: #F8F8F8;
 }
 .item__img{
     height: 420px;

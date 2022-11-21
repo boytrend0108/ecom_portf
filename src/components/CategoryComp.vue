@@ -8,15 +8,18 @@
               >
             </category-item>
         </div>
-        <div class="categ-bottom"></div>
+        <div class="categ-bottom">
+           <category-title :item="category"/> 
+        </div>
     </div>
 </template>
 
 <script>
-import CategoryItem from '@/components/CategoryIItem.vue'
+import CategoryItem from '@/components/CategoryItem.vue'
+import CategoryTitle from '@/components/CategoryTitle.vue';
 export default {
     components:{
-        CategoryItem
+        CategoryItem, CategoryTitle
     },
     data(){
         return{
@@ -42,12 +45,12 @@ export default {
 .categ-top{
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    gap: 30px;
     flex-wrap: wrap;
 }
 
 .categ-bottom{
-    background-image: url('@/assets/img/acces.png');
+    background-image: linear-gradient(rgba(33, 22, 22, 0.7), rgba(33, 22, 22, 0.7)),url('@/assets/img/acces.png');
     background-repeat: no-repeat;
     height: 470px;
     width: 100%;
