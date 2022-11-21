@@ -21,7 +21,7 @@ export default {
 
     data(){
         return{  
-            // img: this.item.category_img 
+           
         }
     },
 
@@ -40,8 +40,9 @@ export default {
     justify-content: center;
     height: 260px;
     width: 350px;
-    /* background-image: url(@/assets/img/category/for_men.png); */
-    /* background-color: blue; */
-    border: 1px solid rgb(233, 22, 22);
+    margin-top: 65px;
+    margin-bottom: 30px;
+  
+  
 }
 </style>

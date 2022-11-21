@@ -6,11 +6,10 @@
                :item="item"
                :key="item.id"
               >
-        </category-item>
+            </category-item>
         </div>
-        <div class="categ-bottom">bottom</div>
+        <div class="categ-bottom"></div>
     </div>
-
 </template>
 
 <script>
@@ -27,23 +26,14 @@ export default {
              {id: 3, category_title: "For kids", category_desc: "New arrivals", category_img: require("@/assets/img/for_kids.png")}
       ]        
         }  
-    }
-    // components: {
-    //     CategoryItem
-    // },
-    // props:{
-    //     category:{
-    //         type: Array,
-    //         required: true
-    //     }
-    // }
-}
+    }}
+    
 </script>
 
 <style scoped>
 .wrapper{
     height: 550px;
-    background-color: aquamarine;
+
 }
 .w_categ{
     display: flex;
@@ -54,6 +44,13 @@ export default {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+}
+
+.categ-bottom{
+    background-image: url('@/assets/img/acces.png');
+    background-repeat: no-repeat;
+    height: 470px;
+    width: 100%;
 }
 
 </style>

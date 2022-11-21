@@ -1,18 +1,19 @@
 <template>
   <div>
    <header-comp/>
-   <category-comp  />
-
-   
+   <category-comp/>
+   <catalog-comp/>
   </div>
 </template>
 
 <script>
 import HeaderComp from '@/components/Headercomp.vue'
 import CategoryComp from '@/components/CategoryComp.vue'
+import CatalogComp from '@/components/CatalogComp,.vue'
+
 export default {
   components:{
-    HeaderComp,CategoryComp
+    HeaderComp,CategoryComp, CatalogComp
   },
   data(){
     return{
@@ -24,6 +25,9 @@ export default {
 </script>
 
 
-<style scoped>
-
+<style >
+* {
+  font-family: 'Lato';
+  font-style: normal;
+}
 </style>
