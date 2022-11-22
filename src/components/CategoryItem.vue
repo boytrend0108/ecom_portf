@@ -31,6 +31,7 @@ export default {
     margin-top: 65px;
     margin-bottom: 30px;
     transition: 0.7s;
+    border-radius: 15px;
     
 }
 .category:hover{

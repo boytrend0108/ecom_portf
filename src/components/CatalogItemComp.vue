@@ -26,9 +26,14 @@ export default {
     width: 360px;
     height: 580px;
     background: #F8F8F8;
+    border-radius: 15px;
+
+   
 }
 .item__img{
     height: 420px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 }
 .item-title {
     margin: 25px 20px 0px 20px;

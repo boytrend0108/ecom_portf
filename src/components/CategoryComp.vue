@@ -67,6 +67,7 @@ export default {
     background-size: cover;
     transition: 0.7s;
     cursor: pointer;
+    border-radius: 15px;
 }
 .categ-bottom:hover{
     transform: scale(1.05);
