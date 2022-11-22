@@ -40,7 +40,7 @@ export default {
 }
 .form-btn:hover {
     color: #F16D7F;
-    background-color: white;
+    background-color: #E1E1E1;
     border-left-color: none;
 }
 </style>
