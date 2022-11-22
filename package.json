@@ -1,10 +1,13 @@
 {
-  "name": "vue_3_course",
+  "name": "ecom_portf",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "server":"json-server -w assets/json/db.json",
+    "start": "concurrently \"npm run server\" \"npm run serve\""
+  
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
@@ -25,7 +28,8 @@
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-vuex": "~5.0.0",
-    "@vue/cli-service": "~5.0.0"
+    "@vue/cli-service": "~5.0.0",
+    "concurrently": "^7.6.0"
   },
   "browserslist": [
     "> 1%",

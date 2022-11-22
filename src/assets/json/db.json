@@ -1,0 +1,8 @@
+{
+  "category": [
+      {"id": 1, "category_title": "For men", "category_desc": "30% off", "category_img": "for_men.png"},
+      {"id": 2, "category_title": "For women", "category_desc": "Hot deal", "category_img": "for_women.png"},
+      {"id": 3, "category_title": "For kids", "category_desc": "New arrivals", "category_img": "for_kids.png"}
+  ],
+  "catalog":[]
+}
