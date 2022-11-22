@@ -1,26 +1,27 @@
 <template>
   <div>
    <header-comp/>
-   <category-comp  />
-
-   
+   <category-comp/>
+   <catalog-comp/>
+   <advantage-comp/>
+   <subscribe-comp/>
   </div>
 </template>
 
 <script>
 import HeaderComp from '@/components/Headercomp.vue'
 import CategoryComp from '@/components/CategoryComp.vue'
+import CatalogComp from '@/components/CatalogComp,.vue'
+import AdvantageComp from '@/components/AdvantageComp.vue'
+import SubscribeComp from '@/components/SubscribeComp.vue';
+
 export default {
   components:{
-    HeaderComp,CategoryComp
+    HeaderComp,CategoryComp, CatalogComp, AdvantageComp, SubscribeComp
   },
   data(){
     return{
-      // category:[
-      //  {id:1, category_title: "For men", category_desc: "30% off", category_img: "../assets/img/category/for_men"},
-      //  {id: 2, category_title: "For women", category_desc: "Hot deal", category_img: "../assets/img/category/for_men"},
-      //  {id: 3, category_title: "For kids", category_desc: "New arrivals", category_img: "../assets/img/category/for_kids"}
-      // ]        
+     
     }
   }
 
@@ -28,6 +29,10 @@ export default {
 </script>
 
 
-<style scoped>
-
+<style >
+* {
+  font-family: 'Lato';
+  font-style: normal;
+  box-sizing:border-box;
+}
 </style>

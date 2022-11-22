@@ -6,44 +6,42 @@
                :item="item"
                :key="item.id"
               >
-        </category-item>
+            </category-item>
         </div>
-        <div class="categ-bottom">bottom</div>
+        <div class="categ-bottom">
+            <category-title :item="accsesCategory"></category-title>
+        </div>
+        
     </div>
-
 </template>
 
 <script>
-import CategoryItem from '@/components/CategoryIItem.vue'
+import CategoryItem from '@/components/CategoryItem.vue'
+import CategoryTitle from '@/components/CategoryTitle.vue';
 export default {
     components:{
-        CategoryItem
+        CategoryItem, CategoryTitle
     },
     data(){
         return{
           category:[
-             {id:1, category_title: "For men", category_desc: "30% off", category_img: "https://avatars.mds.yandex.net/i?id=a82cb20aa18c40b4f2deeabd440178b098a0afec-4900773-images-thumbs&n=13"},
-             {id: 2, category_title: "For women", category_desc: "Hot deal", category_img: "https://avatars.mds.yandex.net/i?id=106729997a29cb4f4d9d786f89e5095fd82ba815-5124559-images-thumbs&n=13"},
-             {id: 3, category_title: "For kids", category_desc: "New arrivals", category_img: "https://avatars.mds.yandex.net/i?id=a82cb20aa18c40b4f2deeabd440178b098a0afec-4900773-images-thumbs&n=13"}
-      ]        
+             {id:1, category_title: "For men", category_desc: "30% off", category_img: require("@/assets/img/category/for_men.png")},
+             {id: 2, category_title: "For women", category_desc: "Hot deal", category_img: require("@/assets/img/category/for_women.png")},
+             {id: 3, category_title: "For kids", category_desc: "New arrivals", category_img: require("@/assets/img/category/for_kids.png")}
+      ],
+        accsesCategory:{
+            id: 4, category_title: "Accesories", category_desc: "Trendy Accesories"
+        }
+
         }  
-    }
-    // components: {
-    //     CategoryItem
-    // },
-    // props:{
-    //     category:{
-    //         type: Array,
-    //         required: true
-    //     }
-    // }
-}
+    }}
+    
 </script>
 
 <style scoped>
 .wrapper{
     height: 550px;
-    background-color: aquamarine;
+
 }
 .w_categ{
     display: flex;
@@ -52,8 +50,26 @@ export default {
 .categ-top{
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    gap: 30px;
     flex-wrap: wrap;
+    cursor: pointer;
+    
+}
+.categ-bottom{
+    background-image: linear-gradient(rgba(33, 22, 22, 0.7), rgba(33, 22, 22, 0.7)),url('@/assets/img/category/acces.png');
+    background-repeat: no-repeat;
+    height: 470px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    transition: 0.7s;
+    cursor: pointer;
+}
+.categ-bottom:hover{
+    transform: scale(1.05);
 }
 
 </style>
