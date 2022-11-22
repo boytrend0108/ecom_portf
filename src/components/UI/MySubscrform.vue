@@ -39,8 +39,4 @@ justify-content: center;
     text-transform: uppercase;
     margin: 0px 0 30px 0;
 }
-
-
-
-
 </style>
