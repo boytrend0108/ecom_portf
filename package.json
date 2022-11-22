@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "server":"json-server -w db.json",
-    "dev": "concurrently \"npm run server\" \"npm run serve\""
+    "start": "concurrently \"npm run server\" \"npm run serve\""
   
   },
   "dependencies": {
