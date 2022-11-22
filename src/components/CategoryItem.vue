@@ -1,6 +1,6 @@
 <template>
     <div class="category" :style="{ background: 'linear-gradient(rgba(33, 22, 22, 0.7), rgba(33, 22, 22, 0.7))' }">
-        <img class="img" :src=" require('@/assets/img/category/' + item.category_img)" alt="img">
+        <img class="img" :src="require('@/assets/img/category/' + item.category_img)" alt="img">
         <div class="blackout"></div>
         <category-title class="title" :item="item"></category-title>
     </div> 

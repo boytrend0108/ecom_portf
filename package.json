@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "server":"json-server -w db.json",
+    "server":"json-server -w assets/json/db.json",
     "start": "concurrently \"npm run server\" \"npm run serve\""
   
   },
