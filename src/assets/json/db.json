@@ -62,5 +62,25 @@
       "itemSubtitle": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
       "itemPrice": 550
     }
+  ],
+  "advantages": [
+    {
+      "id": 0,
+      "adv__title": "'Free Delivery'",
+      "adv__descr": "'Worldwide delivery on all. Authorit tively morph next-generation innov tion with extensive models.'",
+      "adv__img": "adv_car.png"
+    },
+    {
+      "id": 0,
+      "adv__title": "'Sales & discounts'",
+      "adv__descr": "'Worldwide delivery on all. Authorit tively morph next-generation innov tion with extensive models.'",
+      "adv__img": "adv_perc.png"
+    },
+    {
+      "id": 0,
+      "adv__title": "'Quality assurance'",
+      "adv__descr": "'Worldwide delivery on all. Authorit tively morph next-generation innov tion with extensive models.'",
+      "adv__img": "adv_crown.png"
+    }
   ]
 }

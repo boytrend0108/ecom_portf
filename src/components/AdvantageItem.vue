@@ -1,5 +1,6 @@
 <template>
-    <div class="adv-box" :style="{backgroundImage:'url('+ item.adv__img + ')'}">
+    <div class="adv-box">
+        <img :src="require('@/assets/img/advantage/' + item.adv__img)" alt="">
         <h2 class="adv__title">{{item.adv__title}}</h2>
         <p class="adv__descr">{{item.adv__descr}}</p>
     </div>

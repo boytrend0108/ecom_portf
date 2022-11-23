@@ -2,7 +2,7 @@
     <div class="wrapper w_categ">
         <div class="categ-top">
             <category-item 
-               v-for="item in this.$store.state.category"
+               v-for="item in CATEGORY"
                :item="item"
                :key="item.id"
               >
@@ -18,27 +18,30 @@
 <script>
 import CategoryItem from '@/components/CategoryItem.vue'
 import CategoryTitle from '@/components/CategoryTitle.vue'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
     components: {
         CategoryItem, CategoryTitle
     },
     data() {
         return {
-
             accsesCategory: {
                 id: 4, category_title: "Accesories", category_desc: "Trendy Accesories"
             }
-
         }
     },
-    methods: {
-        ...mapActions([
-            'GET_CATEGORY'
+    computed:{
+        ...mapGetters([//using mapActions we refer to getters in store
+            'CATEGORY'
         ])
     },
+    methods: {
+        ...mapActions([//using mapActions we refer to actions in store
+            'GET_CATEGORY'
+        ]),
+    },
     mounted() {
-        this.GET_CATEGORY()
+        this.GET_CATEGORY()// run GET_CATEGORY
     }
 }
     
