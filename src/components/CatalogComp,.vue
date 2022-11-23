@@ -5,7 +5,7 @@
         <h3 class="catalog__sub">Shop for items based on what we featured in this week</h3>
     </div>
     <div class="item-box">
-        <catalog-item v-for="item in catalogItems" :key="item.id" :item="item" />
+        <catalog-item v-for="item in CATALOGITEMS" :key="item.id" :item="item" />
     </div>
     <my-button>Browse All Product</my-button>
 </div>
@@ -15,57 +15,28 @@
 
 <script>
 import CatalogItem from "@/components/CatalogItemComp.vue"
+import {mapActions, mapGetters} from "vuex"
 export default {
     components:{
         CatalogItem,
     },
-    data(){
-        return{
-            catalogItems: [
-                {
-                    id: 1,
-                    itemImg: require('@/assets/img/catalog/catalog-img-1.png'),
-                    itemTitle: "ELLERY X M'O CAPSULE",
-                    itemSubtitle: "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
-                    itemPrice: 50
-                },
-                {
-                    id: 1,
-                    itemImg:  require('@/assets/img/catalog/catalog-img-2.png'),
-                    itemTitle: "ELLERY X M'O CAPSULE",
-                    itemSubtitle: "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
-                    itemPrice: 50
-                },
-                {
-                    id: 1,
-                    itemImg:  require('@/assets/img/catalog/catalog-img-3.png'),
-                    itemTitle: "ELLERY X M'O CAPSULE",
-                    itemSubtitle: "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
-                    itemPrice: 50
-                },
-                {
-                    id: 1,
-                    itemImg: require('@/assets/img/catalog/catalog-img-4.png'),
-                    itemTitle: "ELLERY X M'O CAPSULE",
-                    itemSubtitle: "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
-                    itemPrice: 50
-                },
-                {
-                    id: 1,
-                    itemImg:  require('@/assets/img/catalog/catalog-img-5.png'),
-                    itemTitle: "ELLERY X M'O CAPSULE",
-                    itemSubtitle: "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
-                    itemPrice: 50
-                },
-                {
-                    id: 1,
-                    itemImg:  require('@/assets/img/catalog/catalog-img-6.png'),
-                    itemTitle: "ELLERY X M'O CAPSULE",
-                    itemSubtitle: "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
-                    itemPrice: 50
-                },
-            ]
+    data() {
+        return {
+
         }
+    },
+    computed: {
+        ...mapGetters([
+            'CATALOGITEMS'
+        ])
+    },
+    methods:{
+        ...mapActions([
+            'GET_CATALOG'
+        ])
+    },
+    mounted(){
+        this.GET_CATALOG();
     }
 
 }

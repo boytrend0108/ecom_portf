@@ -1,7 +1,8 @@
 <template>
 <div class="item">
-    <div class="item__img" alt="img"
-    :style="{backgroundImage: 'url(' + this.item.itemImg + ')'}"></div>
+    <div class="item__img">
+        <img :src="require('@/assets/img/catalog/' + item.itemImg)" alt="img">
+    </div>
     <h2 class="item-title">{{ item.itemTitle }}</h2>
     <p class="item-sub">{{ item.itemSubtitle }}</p>
     <p class="item-price"> $ {{ item.itemPrice }}</p>
