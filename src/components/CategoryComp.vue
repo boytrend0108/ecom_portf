@@ -48,7 +48,7 @@ export default {
     
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .w_categ{
     display: flex;
     flex-direction: column;
@@ -59,8 +59,8 @@ export default {
     gap: 30px;
     cursor: pointer;
 }
-.categ-bottom{
-    background-image: linear-gradient(rgba(33, 22, 22, 0.7), rgba(33, 22, 22, 0.7)),url('@/assets/img/category/acces.png');
+.categ-bottom {
+    background-image: linear-gradient(rgba(33, 22, 22, 0.7), rgba(33, 22, 22, 0.7)), url('@/assets/img/category/acces.png');
     background-repeat: no-repeat;
     height: 180px;
     width: 100%;
@@ -68,16 +68,23 @@ export default {
     transition: 0.7s;
     cursor: pointer;
     border-radius: 15px;
+
+    @media (max-width: 1170px) {
+        height: 140px;
+    }
 }
 .categ-bottom:hover{
     transform: scale(1.05);
 }
-.bottom-wr{
+.bottom-wr {
     height: 180px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
 
+    @media (max-width: 1170px) {
+        height: 140px;
+    }
+}
 </style>
