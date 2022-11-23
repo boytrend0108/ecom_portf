@@ -49,10 +49,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.w_categ{
+.w_categ {
     display: flex;
     flex-direction: column;
     margin-top: 65px;
+
+    @media(max-width: 1170px) {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
 }
 .categ-top{
     display: flex;
