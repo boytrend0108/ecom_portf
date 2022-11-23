@@ -29,6 +29,7 @@ export default {
     background-repeat: no-repeat;
     background-position-x: left;
     background-position-y: bottom;
+    height: 100%;
 }
 
 .header__title-box{
@@ -58,7 +59,5 @@ export default {
 .header__sub_pink{
     color: #F16D7F;
 }
-
-
 
 </style>

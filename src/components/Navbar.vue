@@ -19,22 +19,13 @@
 export default {
 
 }
-</script>
+</script >
 
-<style>
+<style scoped>
 .navbar{
     background: #222222;
     height: 70px;
     width: 100%;
-}
-.wrapper{
-   height: 100%;
-   max-width: 1140px;
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   margin: 0 auto;
-  
 }
 .nav-block{
     display:flex;

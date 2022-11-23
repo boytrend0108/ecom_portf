@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper w_categ">
+    <section class="wrapper w_categ">
         <div class="categ-top">
             <category-item 
                v-for="item in CATEGORY"
@@ -9,10 +9,11 @@
             </category-item>
         </div>
         <div class="categ-bottom">
-            <category-title :item="accsesCategory"></category-title>
+            <div class="bottom-wr">
+                <category-title :item="accsesCategory"></category-title>
+            </div>      
         </div>
-        
-    </div>
+    </section>
 </template>
 
 <script>
@@ -48,31 +49,21 @@ export default {
 </script>
 
 <style scoped>
-.wrapper{
-    height: 550px;
-
-}
 .w_categ{
     display: flex;
     flex-direction: column;
+    margin-top: 65px;
 }
 .categ-top{
-    width: 100%;
     display: flex;
     gap: 30px;
-    flex-wrap: wrap;
     cursor: pointer;
-    
 }
 .categ-bottom{
     background-image: linear-gradient(rgba(33, 22, 22, 0.7), rgba(33, 22, 22, 0.7)),url('@/assets/img/category/acces.png');
     background-repeat: no-repeat;
-    height: 470px;
+    height: 180px;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     background-size: cover;
     transition: 0.7s;
     cursor: pointer;
@@ -80,6 +71,13 @@ export default {
 }
 .categ-bottom:hover{
     transform: scale(1.05);
+}
+.bottom-wr{
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 </style>

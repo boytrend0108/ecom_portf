@@ -1,30 +1,38 @@
 <template>
-    <div class="category" :style="{ background: 'linear-gradient(rgba(33, 22, 22, 0.7), rgba(33, 22, 22, 0.7))' }">
-        <img class="img" :src="require('@/assets/img/category/' + item.category_img)" alt="img">
+    <div class="category" > 
+            <img class="img" :src="require('@/assets/img/category/' + item.category_img)" alt="------img----------">
+            <div class="img-err" v-show="ISIMG"></div>
         <div class="blackout"></div>
         <category-title class="title" :item="item"></category-title>
-    </div> 
+    </div>
 </template>
 
 <script>
 import CategoryTitle from '@/components/CategoryTitle.vue'
+import { mapGetters } from 'vuex';
 export default {
-    data(){
-        return{
-            img: ""
-        }
-    },
-    components:{
+    components: {
         CategoryTitle
     },
-    props:{
-        item:{
+    props: {
+        item: {
             type: Object,
             required: true
         }
+    },
+    data() {
+        return {
+            // isImg: false
+        }
+    },
+    computed:{
+        ...mapGetters([
+            'ISIMG'
+        ])
     }
-}
 
+
+}
 </script>
 
 <style scoped>
@@ -33,13 +41,13 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 260px;
-    width: 360px;
-    margin-top: 65px;
     margin-bottom: 30px;
     transition: 0.7s;
     border-radius: 15px;
-    
+    background: rgba(33, 22, 22, 0.7); 
+    max-width: 360px;
+    max-height: 260px;
+    position: relative;
 }
 .category:hover{
     transform: scale(1.05);
@@ -47,6 +55,7 @@ export default {
 .img{
     position: relative;
     border-radius: 15px;
+    width: 100%;
 }
 .title{
     position: absolute;
@@ -54,11 +63,15 @@ export default {
 .blackout{
     background: rgba(33, 22, 22, 0.7);
     opacity: 50%;
-    height: 260px;
-    width: 360px;
+    height: 100%;
+    width: 100%;
     position: absolute;
     border-radius: 15px;
-  
+}
+.img-err{
+    width: 300px;
+    height: 200px;
+    background-color: gray;
 }
 
 </style>

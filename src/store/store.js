@@ -5,7 +5,8 @@ export default createStore({
   state: {
     category: [],// this is our json array
     catalogItems: [],// this is our json array
-    advantages:[]
+    advantages:[],
+    isImg: false
   },
   getters: {// this is a commands for getting our json arrays
     CATEGORY(state) {
@@ -16,6 +17,9 @@ export default createStore({
     },
     ADVANTAGES(state) {
       return state.advantages
+    },
+    ISIMG(state){
+      return state.isImg
     }
   },
   actions: {// actuins are asinc(methods in Component)
@@ -28,6 +32,7 @@ export default createStore({
           return category;
         })
         .catch((err) => {
+          commit('ISIMG')
           console.log(err)
           return err;
         })
@@ -67,6 +72,9 @@ export default createStore({
     },
     SET_ADVANTAGES: (state, advantages) => {
       state.advantages = advantages
+    },
+    SET_ISIMG: (state) => {
+      state.isImg = !isImg
     }
   },
 

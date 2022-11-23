@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <main>
    <header-comp/>
    <category-comp/>
    <catalog-comp/>
    <advantage-comp/>
    <subscribe-comp/>
    <footer-comp/>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -32,9 +32,5 @@ export default {
 
 
 <style >
-* {
-  font-family: 'Lato';
-  font-style: normal;
-  box-sizing:border-box;
-}
+
 </style>
