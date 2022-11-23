@@ -3,11 +3,15 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    category:[]
+    category: [],
+    catalogItems: []
   },
   getters: {
-    CATEGORY(state){
+    CATEGORY(state) {
       return state.category;
+    },
+    CATALOGITEMS(state) {
+      return state.catalogItems
     }
   },
   actions: {// actuins are asinc
@@ -23,14 +27,30 @@ export default createStore({
           console.log(err)
           return err;
         })
+    },
+    GET_CATALOG({ commit }) {
+      return axios('http://localhost:3000/catalogItems', {
+        method: "GET"
+      })
+        .then((catalog) => {
+          commit('SET_CATALOG', catalog.data)
+          return catalog;
+        })
+        .catch((err) => {
+          console.log(err)
+          return err;
+        })
     }
   },
   mutations: {// to change data in state
-    SET_CATEGORY:(state, category)=>{
+    SET_CATEGORY: (state, category) => {
       state.category = category;
+    },
+    SET_CATALOG:(state, catalogItems)=>{
+      state.catalogItems =  catalogItems
     }
   },
-  
+
   modules: {
   }
 })
