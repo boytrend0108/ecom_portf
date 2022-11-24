@@ -39,7 +39,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/styles/variables.scss";
+// @import "@/assets/styles/variables.scss";
 .adv{
     width: 100%;
     min-height: 340px;
@@ -54,7 +54,7 @@ export default {
     justify-content: space-between;
     height: 100%;
 
-    @media(max-width: $tablet){
+    @media(max-width: $media-tablet){
         flex-direction: column;
     }
 }

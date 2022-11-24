@@ -35,7 +35,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/variables.scss';
 .category{
     display: flex;
     flex-direction: column;
@@ -48,11 +47,6 @@ export default {
     max-width: 360px;
     max-height: 260px;
     position: relative;
-
-    @media(max-width: $laptop ) {
-            max-width: 300px;
-            max-height: 200px;
-        }
 }
 .category:hover{
     transform: scale(1.05);
@@ -73,10 +67,5 @@ export default {
     width: 100%;
     position: absolute;
     border-radius: 15px;
-
-    @media(max-width: $laptop ) {
-            max-width: 100%;
-            max-height: 100%;
-        }
 }
 </style>

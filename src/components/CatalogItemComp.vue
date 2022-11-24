@@ -1,7 +1,7 @@
 <template>
 <div class="item">
     <div class="item__img">
-        <img :src="require('@/assets/img/catalog/' + item.itemImg)" alt="img">
+        <img  class="img" :src="require('@/assets/img/catalog/' + item.itemImg)" alt="img">
     </div>
     <h2 class="item-title">{{ item.itemTitle }}</h2>
     <p class="item-sub">{{ item.itemSubtitle }}</p>
@@ -23,20 +23,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/variables.scss';
+
 .item{
-    max-width: 360px;
+    max-width: 328px;
     max-height: 580px;
     background: #F8F8F8;
     border-radius: 15px; 
-    @media(max-width: $laptop){
-        margin-bottom: 20px;
-    }
 }
 .item__img{
     height: 420px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
+}
+.img{
+    max-width: 100%;
+    object-fit: cover;
 }
 .item-title {
     margin: 25px 20px 0px 20px;

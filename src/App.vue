@@ -19,11 +19,10 @@ export default{
 </script>
 
 <style lang="scss">
-@import '@/assets/styles/variables.scss';
+
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   font-family: 'Lato';
   font-style: normal;
   box-sizing: border-box;
@@ -33,21 +32,15 @@ export default{
 }
 .wrapper {
   height: 100%;
-  max-width: 1160px;
+  max-width: $wrapper-laptop;
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
+  padding: 0 20px;
 
-  @media(max-width: $laptop) {
-    margin-left: 40px;
-    margin-right: 40px;
-    max-width: 950px;
-  }
-  @media(max-width: $tablet) {
-    margin-left: 20px;
-    margin-right: 20px;
-    max-width: 735px;
+  @media(max-width: $media-tablet) {
+    max-width: $wrapper-tablet;
   }
 }
 </style>

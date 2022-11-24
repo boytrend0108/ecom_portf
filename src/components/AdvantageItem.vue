@@ -20,7 +20,7 @@ export default {
 
 <style lang="scss" scoped>
 .adv-box {
-    width: 32%;
+    width: 30%;
     height: 135px;
     display: flex;
     flex-direction: column;
@@ -30,7 +30,7 @@ export default {
     background-position-x: center;
     padding-bottom: 15px;
 
-    @media(max-width:850px){
+    @media(max-width:$media-tablet){
         width: 51%;
         padding-bottom: 0px;
         margin: 20px;

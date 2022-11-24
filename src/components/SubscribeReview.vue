@@ -13,7 +13,7 @@ export default {
 </script>
 
 <style scoped>
-@import '@/assets/styles/variables.scss';
+
 .review {
     width: 360px;
     height: 227px;

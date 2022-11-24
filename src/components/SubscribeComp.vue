@@ -1,6 +1,6 @@
 <template>
     <section class="subcr">
-        <div class="wrapper">
+        <div class="wrapper  wr-subscr ">
             <subscribe-review />
             <my-subscrform></my-subscrform>
         </div>
@@ -17,22 +17,25 @@ export default {
 }
 </script>
 
-<style scoped>
-@import '@/assets/styles/variables.scss';
+<style lang="scss" scoped>
 .subcr{
-    height: 450px;
+    min-height: 450px;
     background-image: url(@/assets/img/review/review-bgd.png);
     background-repeat: no-repeat;
     background-position: center left;
     background-size: cover;
-   
-}
-.wrapper{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    height: 100%;
-
+    @media(max-width:$media-tablet){
+      
+      
+    }
 }
-
+.wr-subscr {
+    width: 100%;
+    @media(max-width: $media-tablet) {
+        flex-direction: column;
+        justify-content: center;
+    }
+}
 </style>

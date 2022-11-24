@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style scoped>
-@import '@/assets/styles/variables.scss';
+
 .icon-box{
     width: 150px;
     display: flex;

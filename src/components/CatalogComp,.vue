@@ -42,12 +42,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/variables.scss';
-.wr-cat{
-    margin-top: 96px; 
+.wr-cat {
+    margin-top: 96px;
     margin-bottom: 96px;
     display: flex;
-    flex-direction: column;  
+    flex-direction: column;
+
+    @media (max-width: $media-tablet) {
+        margin-top: 46px;
+        margin-bottom: 46px;
+    }
 }
 .catalor_title-box{
     display: flex;
@@ -71,12 +75,12 @@ export default {
 }.item-box {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 20px;
     flex-wrap: wrap;
     margin: 50px 0;
 
-    @media(max-width: $laptop) {
-        gap: 20px;
+    @media(max-width: $media-tablet){
+        gap:8px
     }
 }
 </style>
