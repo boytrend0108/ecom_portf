@@ -69,12 +69,18 @@ export default {
     transition: 0.7s;
     cursor: pointer;
     border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media(max-width: $media-tablet){
+       height: 116px;
+    }
 }
 .categ-bottom:hover{
     transform: scale(1.05);
 }
 .bottom-wr {
-    height: 180px;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -17,11 +17,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .header{
     width: 100%;
     height: 765px;
     background-color: #F1E4E6;
+
+    @media(max-width: $media-tablet){
+        height: 370px;
+    }
 }
 .wh{
     max-width: $wrapper-laptop;
@@ -29,15 +32,25 @@ export default {
     background-repeat: no-repeat;
     background-position-x: left;
     background-position-y: bottom;
+
+    @media(max-width: $media-tablet){
+       background-size: contain;
+       background-position-x: 94px;
+    }
 }
 
-.header__title-box{
+.header__title-box {
     margin-left: 59%;
     margin-bottom: 7%;
     border-left: 10px solid #F16D7F;
     padding-left: 10px;
+
+    @media(max-width: $media-tablet) {
+        margin-left: 55%;
+        margin-bottom: 0%;
+    }
 }
-.header__title{
+.header__title {
     font-family: 'Lato';
     font-style: normal;
     font-weight: 900;
@@ -45,6 +58,11 @@ export default {
     line-height: 58px;
     color: #222222;
     text-transform: uppercase;
+
+    @media(max-width: $media-tablet) {
+            font-size: 44px;
+            line-height: 53px;
+        }
 }
 .header__sub{
     font-family: 'Lato';
@@ -54,9 +72,13 @@ export default {
     line-height: 38px;
     color: #222222;
     text-transform: uppercase;
+
+    @media(max-width: $media-tablet) {
+        font-size: 24px;
+        line-height: 29px;
+    }
 }
 .header__sub_pink{
     color: #F16D7F;
 }
-
 </style>
