@@ -12,8 +12,7 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
 .review {
     width: 360px;
     height: 227px;
@@ -22,6 +21,10 @@ export default {
     background-image: url(@/assets/img/review/review__img.png);
     background-repeat: no-repeat;
     background-position-x: center;
+
+    @media(max-width: $media-tablet) {
+        margin-bottom: 20px;
+    }
 }
 .review__descr {
     font-weight: 400;

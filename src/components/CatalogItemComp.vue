@@ -23,12 +23,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-.item{
+.item {
     max-width: 328px;
     max-height: 580px;
     background: #F8F8F8;
-    border-radius: 15px; 
+    border-radius: 15px;
+
+    @media(max-width: $media-laptop_s) {
+        max-width: 300px;
+        max-height: 540px;
+    }
 }
 .item__img{
     height: 420px;

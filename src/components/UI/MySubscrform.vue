@@ -16,7 +16,6 @@ export default {
 <style scoped>
 .form-subscr{
 width: 560px;
-height: 140px;
 display: flex;
 flex-direction: column;
 align-items: center;

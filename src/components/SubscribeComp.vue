@@ -26,9 +26,10 @@ export default {
     background-size: cover;
     display: flex;
     align-items: center;
+    padding-top: 35px;
+    padding-bottom: 35px;
     @media(max-width:$media-tablet){
-      
-      
+         
     }
 }
 .wr-subscr {

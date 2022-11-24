@@ -78,9 +78,6 @@ export default {
     gap: 20px;
     flex-wrap: wrap;
     margin: 50px 0;
-
-    @media(max-width: $media-tablet){
-        gap:8px
-    }
+ 
 }
 </style>
