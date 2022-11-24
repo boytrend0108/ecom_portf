@@ -20,6 +20,7 @@ export default {
 </script>
 
 <style scoped>
+@import '@/assets/styles/variables.scss';
 .categ__title{
     width: fit-content;
     height: 50px;

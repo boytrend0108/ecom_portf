@@ -22,6 +22,7 @@ export default {
 </script >
 
 <style scoped>
+@import '@/assets/styles/variables.scss';
 .navbar{
     background: #222222;
     height: 70px;

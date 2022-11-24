@@ -18,16 +18,23 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .adv-box {
     width: 32%;
     height: 135px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     background-repeat: no-repeat;
     background-position-x: center;
+    padding-bottom: 15px;
+
+    @media(max-width:850px){
+        width: 51%;
+        padding-bottom: 0px;
+        margin: 20px;
+    }
 }
 .adv__title {
     font-weight: 400;

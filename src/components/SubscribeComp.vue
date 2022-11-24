@@ -18,6 +18,7 @@ export default {
 </script>
 
 <style scoped>
+@import '@/assets/styles/variables.scss';
 .subcr{
     height: 450px;
     background-image: url(@/assets/img/review/review-bgd.png);

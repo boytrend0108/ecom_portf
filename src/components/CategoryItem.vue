@@ -1,7 +1,6 @@
 <template>
     <div class="category" > 
             <img class="img" :src="require('@/assets/img/category/' + item.category_img)" alt="------img----------">
-            <div class="img-err" v-show="ISIMG"></div>
         <div class="blackout"></div>
         <category-title class="title" :item="item"></category-title>
     </div>
@@ -35,7 +34,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '@/assets/styles/variables.scss';
 .category{
     display: flex;
     flex-direction: column;
@@ -48,6 +48,11 @@ export default {
     max-width: 360px;
     max-height: 260px;
     position: relative;
+
+    @media(max-width: $laptop ) {
+            max-width: 300px;
+            max-height: 200px;
+        }
 }
 .category:hover{
     transform: scale(1.05);
@@ -56,6 +61,7 @@ export default {
     position: relative;
     border-radius: 15px;
     width: 100%;
+    height: 100%;
 }
 .title{
     position: absolute;
@@ -67,11 +73,10 @@ export default {
     width: 100%;
     position: absolute;
     border-radius: 15px;
-}
-.img-err{
-    width: 300px;
-    height: 200px;
-    background-color: gray;
-}
 
+    @media(max-width: $laptop ) {
+            max-width: 100%;
+            max-height: 100%;
+        }
+}
 </style>

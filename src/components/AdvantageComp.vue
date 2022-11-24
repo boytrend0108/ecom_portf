@@ -38,15 +38,24 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/assets/styles/variables.scss";
 .adv{
     width: 100%;
-    height: 340px;
+    min-height: 340px;
     background: #222224;
+    display:flex ;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
 }
 .wr-adv{
     display: flex;
     justify-content: space-between;
     height: 100%;
+
+    @media(max-width: $tablet){
+        flex-direction: column;
+    }
 }
 </style>

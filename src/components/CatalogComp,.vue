@@ -38,13 +38,14 @@ export default {
     mounted(){
         this.GET_CATALOG();
     }
-
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '@/assets/styles/variables.scss';
 .wr-cat{
-    margin: 96px auto; 
+    margin-top: 96px; 
+    margin-bottom: 96px;
     display: flex;
     flex-direction: column;  
 }
@@ -67,12 +68,15 @@ export default {
     line-height: 17px;
     color: #9F9F9F;
     margin-top: 15px;
-}
-.item-box {
+}.item-box {
     display: flex;
+    justify-content: center;
     gap: 30px;
     flex-wrap: wrap;
     margin: 50px 0;
-    
+
+    @media(max-width: $laptop) {
+        gap: 20px;
+    }
 }
 </style>

@@ -49,20 +49,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/styles/variables.scss';
 .w_categ {
     display: flex;
     flex-direction: column;
     margin-top: 65px;
 
-    @media(max-width: 1170px) {
-        margin-left: 20px;
-        margin-right: 20px;
+    @media(max-width:$laptop ) {
+        margin-top: 20px;
     }
 }
-.categ-top{
+.categ-top {
     display: flex;
     gap: 30px;
     cursor: pointer;
+
+    @media(max-width: $laptop) {
+        gap: 20px;
+    }
 }
 .categ-bottom {
     background-image: linear-gradient(rgba(33, 22, 22, 0.7), rgba(33, 22, 22, 0.7)), url('@/assets/img/category/acces.png');
@@ -74,7 +78,7 @@ export default {
     cursor: pointer;
     border-radius: 15px;
 
-    @media (max-width: 1170px) {
+    @media (max-width: $laptop) {
         height: 140px;
     }
 }
@@ -88,7 +92,7 @@ export default {
     align-items: center;
     justify-content: center;
 
-    @media (max-width: 1170px) {
+    @media (max-width: $laptop) {
         height: 140px;
     }
 }

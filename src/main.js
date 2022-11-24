@@ -16,7 +16,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 /* add icons to the library */
 library.add(fas, far, fab)
 
-// globak registration of UI components
+// global registration of UI components
 import components from '@/components/UI'
 components.forEach(component  => {
     app.component(component.name, component)
