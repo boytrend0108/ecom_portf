@@ -1,21 +1,39 @@
 <template>
-<navbar></navbar>
-<div class="app">
- 
-  <router-view/>
-
-</div>
+  <navbar :isMobile="IS_MOBILE"></navbar>
+  <div class="app">
+    <router-view />
+  </div>
 </template>
 
 <script>
 import Navbar from '@/components/Navbar.vue'
+import { mapActions, mapGetters } from 'vuex'
 export default{
   components:{
     Navbar
   },
-  
-}
+  computed:{
+    ...mapGetters([
+      "IS_MOBILE"
+    ])
+  },
+  methods: {
+    ...mapActions([
+      "SWITCH_MOBILE","SWITCH_TABLET"
+    ])
+  },
 
+  mounted(){
+    const vm = this;
+    window.addEventListener('resize', ()=>{
+      if (window.innerWidth > 400 ){
+        vm.SWITCH_TABLET()
+      }else{
+        vm.SWITCH_MOBILE()
+      }
+    })
+  }
+}
 </script>
 
 <style lang="scss">

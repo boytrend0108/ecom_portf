@@ -29,13 +29,12 @@ export default {
     background: #F8F8F8;
     border-radius: 15px;
 
-    @media(max-width: $media-laptop_s) {
+    @media(max-width: $media-laptop) {
         max-width: 300px;
         max-height: 540px;
     }
 }
 .item__img{
-    height: 420px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
@@ -59,6 +58,7 @@ export default {
 }
 .item-price{
     padding-left: 20px;
+    padding-bottom: 20px;
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;

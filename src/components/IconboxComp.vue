@@ -21,12 +21,16 @@ export default {
 }
 </script>
 
-<style scoped>
+<style  lang="scss" scoped>
 
 .icon-box{
     width: 150px;
     display: flex;
     gap:10px;
+
+    @media(max-width: $media-phone){
+        margin-bottom: 20px;
+    }
 
 }
 

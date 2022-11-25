@@ -17,12 +17,21 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .footer{
-    height: 80px;
+    // height: 80px;
     background: #222224;
 }
+.wrapper {
+    padding-top: 20px;
+    padding-bottom: 20px;
 
+    @media (max-width:$media-phone) {
+        display: flex;
+        flex-direction: column-reverse;
+        min-height: fit-content;
+    }
+}
 .rights {
     font-weight: 400;
     font-size: 16px;

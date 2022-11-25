@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { TableLitePlugin } from 'bootstrap-vue';
 import { createStore } from 'vuex'
 
 export default createStore({
@@ -6,7 +7,7 @@ export default createStore({
     category: [],// this is our json array
     catalogItems: [],// this is our json array
     advantages:[],
-    isImg: false
+    isMobile: true // to show icons in navbar
   },
   getters: {// this is a commands for getting our json arrays
     CATEGORY(state) {
@@ -18,8 +19,8 @@ export default createStore({
     ADVANTAGES(state) {
       return state.advantages
     },
-    ISIMG(state){
-      return state.isImg
+    IS_MOBILE(state){
+      return state.isMobile;
     }
   },
   actions: {// actuins are asinc(methods in Component)
@@ -61,7 +62,14 @@ export default createStore({
         .catch((err) => {
           console.log(err)
         })
+    },
+    SWITCH_MOBILE({ commit }) {
+      commit("SET_MOBILE")
+    },
+    SWITCH_TABLET({commit}){
+      commit("SET_TABLET")
     }
+    
   },
   mutations: {// to change data in state
     SET_CATEGORY: (state, category) => {
@@ -73,8 +81,13 @@ export default createStore({
     SET_ADVANTAGES: (state, advantages) => {
       state.advantages = advantages
     },
-    SET_ISIMG: (state) => {
-      state.isImg = !isImg
+    SET_MOBILE: (state) => {
+      state.isMobile = false;
+      console.log('Mobile')
+    },
+    SET_TABLET: (state) => {
+      state.isMobile = true;
+      console.log('Tablet')
     }
   },
 

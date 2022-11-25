@@ -14,7 +14,6 @@ export default {
             requied: true
         }
     }
-
 }
 </script>
 
@@ -34,6 +33,9 @@ export default {
         width: 51%;
         padding-bottom: 0px;
         margin: 20px;
+    }
+    @media(max-width:$media-phone){
+        width: 100%;
     }
 }
 .adv__title {

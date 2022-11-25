@@ -26,19 +26,25 @@ export default {
         height: 370px;
     }
 }
-.wh{
+.wh {
     max-width: $wrapper-laptop;
     background-image: url('@/assets/img/header__img.png');
     background-repeat: no-repeat;
     background-position-x: left;
     background-position-y: bottom;
 
-    @media(max-width: $media-tablet){
-       background-size: contain;
-       background-position-x: 94px;
+    @media(max-width: $media-tablet) {
+        background-size: contain;
+        background-position-x: 94px;
+    }
+
+    @media(max-width: $media-phone) {
+        background-image: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
-
 .header__title-box {
     margin-left: 59%;
     margin-bottom: 7%;
@@ -49,6 +55,10 @@ export default {
         margin-left: 55%;
         margin-bottom: 0%;
     }
+    @media(max-width: $media-phone) {
+        margin-left: 0;
+        margin-bottom: 0;
+    }
 }
 .header__title {
     font-family: 'Lato';
@@ -58,11 +68,17 @@ export default {
     line-height: 58px;
     color: #222222;
     text-transform: uppercase;
+    margin: 0;
 
     @media(max-width: $media-tablet) {
-            font-size: 44px;
-            line-height: 53px;
-        }
+        font-size: 44px;
+        line-height: 53px;
+    }
+
+    @media(max-width: $media-phone) {
+        font-size: 38px;
+        line-height: 46px;
+    }
 }
 .header__sub{
     font-family: 'Lato';
@@ -76,6 +92,10 @@ export default {
     @media(max-width: $media-tablet) {
         font-size: 24px;
         line-height: 29px;
+    }
+    @media(max-width: $media-phone) {
+        font-size: 20px;
+        line-height: 24px;
     }
 }
 .header__sub_pink{

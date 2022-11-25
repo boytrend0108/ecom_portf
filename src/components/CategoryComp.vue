@@ -59,6 +59,12 @@ export default {
     display: flex;
     gap: 30px;
     cursor: pointer;
+
+    @media(max-width: $media-phone){
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0px;
+    }
 }
 .categ-bottom {
     background-image: linear-gradient(rgba(33, 22, 22, 0.7), rgba(33, 22, 22, 0.7)), url('@/assets/img/category/acces.png');

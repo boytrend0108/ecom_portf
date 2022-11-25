@@ -11,7 +11,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .input-wrap{
     display: flex;
     align-items: center;
@@ -28,6 +28,10 @@ export default {
     outline: none;
     padding:  0 15px;
     font-size: 20px;
+
+    @media(max-width:$media-phoneS){
+        width: 180px;
+    }
 }
 
 .form-btn{

@@ -7,16 +7,27 @@
         </div>
        <div class="nav-block">
         <font-awesome-icon  class="font-aw " icon="fa-solid fa-bars" />
-        <font-awesome-icon  class="font-aw " icon="fa-regular fa-user" />  
-        <font-awesome-icon @click="$router.push(`/cart`)" class="font-aw " icon="fa-solid fa-cart-shopping" />
+        <font-awesome-icon v-show="isMobile" class="font-aw " icon="fa-regular fa-user" />  
+        <font-awesome-icon v-show="isMobile" @click="$router.push(`/cart`)" class="font-aw " icon="fa-solid fa-cart-shopping" />
        </div>
     </div>
-       
    </nav>
 </template>
 
 <script>
 export default {
+    props: {
+        isMobile: {
+            type: Boolean,
+            default: true,
+            required: true
+        }
+    },
+    data(){
+        return{
+            
+        }
+    }
 
 }
 </script >

@@ -25,6 +25,14 @@ export default {
     @media(max-width: $media-tablet) {
         margin-bottom: 20px;
     }
+
+    @media(max-width: $media-phone) {
+        width: 340px;
+    }
+
+    @media(max-width:$media-phoneS){
+        width: 300px;
+    }
 }
 .review__descr {
     font-weight: 400;

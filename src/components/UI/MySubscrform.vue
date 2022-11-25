@@ -13,14 +13,23 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .form-subscr{
-width: 560px;
+width: 380px;
 display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
+
+@media(max-width: $media-phone) {
+        width: 340px;
+    }
+
+    @media(max-width: $media-phoneS) {
+        width: 300px;
+    }
 }
+
 .form-subscr__title {
     font-weight: 700;
     font-size: 24px;
