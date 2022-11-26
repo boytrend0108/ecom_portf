@@ -2,6 +2,7 @@
 <div class="item">
     <div class="item__img">
         <img  class="img" :src="require('@/assets/img/catalog/' + item.itemImg)" alt="img">
+        <div class="overlay"></div>
     </div>
     <h2 class="item-title">{{ item.itemTitle }}</h2>
     <p class="item-sub">{{ item.itemSubtitle }}</p>
@@ -37,6 +38,14 @@ export default {
 .item__img{
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
+    position: relative;
+    
+}
+
+.item__img:hover {
+    .overlay {
+    transform: scaleY(1);
+}
 }
 .img{
     max-width: 100%;
@@ -63,5 +72,19 @@ export default {
     font-size: 16px;
     line-height: 19px;
     color: #F16D7F;
+}
+
+.overlay{
+    background-color: #3A3838;
+    opacity: 80%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    right: 0;
+    transform: scaleY(0);
+    transform-origin: center top;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in;
 }
 </style>
