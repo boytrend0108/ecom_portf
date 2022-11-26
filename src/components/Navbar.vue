@@ -8,7 +8,11 @@
        <div class="nav-block">
         <font-awesome-icon  class="font-aw " icon="fa-solid fa-bars" />
         <font-awesome-icon v-show="isMobile" class="font-aw " icon="fa-regular fa-user" />  
-        <font-awesome-icon v-show="isMobile" @click="$router.push(`/cart`)" class="font-aw " icon="fa-solid fa-cart-shopping" />
+        <div class="icon-cart-wr">
+           <font-awesome-icon v-show="isMobile" @click="$router.push(`/cart`)" class="font-aw" icon="fa-solid fa-cart-shopping"/>
+          <span class="item-num">5</span>
+        </div>
+       
        </div>
     </div>
    </nav>
@@ -28,12 +32,10 @@ export default {
             
         }
     }
-
 }
 </script >
 
-<style scoped>
-
+<style lang="scss" scoped>
 .navbar{
     background: #222222;
     height: 70px;
@@ -55,7 +57,39 @@ export default {
 }
 .font-aw:hover{
     color: #F16D7F;
+    transform: scale(1.3);  
+}
+
+.icon-cart-wr{
+   position: relative;
+   cursor: pointer;
+}
+
+.icon-cart-wr:hover{
+    .item-num{
+    color: #F16D7F;
+    background-color: white;
     transform: scale(1.3);
+    .fa-cart-shopping{
+        color: #F16D7F;
+        transform: scale(1.3);
+    }
+}
+}
+.item-num{
+    background-color: #f16d7f;
+    border-radius: 50%;
+    width: 17px;
+    height: 17px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    position: absolute;
+    left: 50px;
+    bottom: 17px;
+    transition: 0.5s;
 }
 
 .logo{
