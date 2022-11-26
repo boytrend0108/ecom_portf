@@ -102,6 +102,11 @@ export default {
     width: 140px;
     height: 45px;
     cursor: pointer;
+    transition: 0.5s;
+}
+
+#catalog-img__btn:hover{
+    transform: scale(1.2);
 }
 
 .font-aw{
