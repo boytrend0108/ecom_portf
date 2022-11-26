@@ -7,7 +7,8 @@ export default createStore({
     category: [],// this is our json array
     catalogItems: [],// this is our json array
     advantages:[],
-    isMobile: true // to show icons in navbar
+    isMobile: true, // to show icons in navbar
+    showMenu: false, // to show menu on click
   },
   getters: {// this is a commands for getting our json arrays
     CATEGORY(state) {
@@ -21,6 +22,9 @@ export default createStore({
     },
     IS_MOBILE(state){
       return state.isMobile;
+    },
+    IS_SHOW_MENU(state){
+      return state.showMenu;
     }
   },
   actions: {// actuins are asinc(methods in Component)
@@ -68,6 +72,9 @@ export default createStore({
     },
     SWITCH_TABLET({commit}){
       commit("SET_TABLET")
+    },
+    SWITCH_SHOW_MENU({commit}){
+      commit("SET_SHOW_MENU")
     }
     
   },
@@ -83,11 +90,13 @@ export default createStore({
     },
     SET_MOBILE: (state) => {
       state.isMobile = false;
-      console.log('Mobile')
     },
     SET_TABLET: (state) => {
       state.isMobile = true;
-      console.log('Tablet')
+    },
+    SET_SHOW_MENU(state) {
+      state.showMenu = !state.showMenu
+      console.log(state.showMenu)
     }
   },
 

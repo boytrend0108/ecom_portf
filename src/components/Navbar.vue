@@ -1,24 +1,25 @@
 <template>
-   <nav class="navbar">
-    <div class="wrapper">
-        <div class="nav-block">
-            <img class="logo " @click="$router.push(`/`)" src="@/assets/img/logo.png" alt="">
-            <font-awesome-icon  class="font-aw" icon="fa-solid fa-magnifying-glass" />
+    <nav class="navbar">
+        <div class="wrapper">
+            <div class="nav-block">
+                <img class="logo " @click="$router.push(`/`)" src="@/assets/img/logo.png" alt="">
+                <font-awesome-icon class="font-aw" icon="fa-solid fa-magnifying-glass" />
+            </div>
+            <div class="nav-block">
+                <font-awesome-icon class="font-aw " icon="fa-solid fa-bars" @click="SWITCH_SHOW_MENU" />
+                <font-awesome-icon v-show="isMobile" class="font-aw " icon="fa-regular fa-user" />
+                <div class="icon-cart-wr">
+                    <font-awesome-icon v-show="isMobile" @click="$router.push(`/cart`)" class="font-aw"
+                        icon="fa-solid fa-cart-shopping" />
+                    <span class="item-num">5</span>
+                </div>
+            </div> 
         </div>
-       <div class="nav-block">
-        <font-awesome-icon  class="font-aw " icon="fa-solid fa-bars" />
-        <font-awesome-icon v-show="isMobile" class="font-aw " icon="fa-regular fa-user" />  
-        <div class="icon-cart-wr">
-           <font-awesome-icon v-show="isMobile" @click="$router.push(`/cart`)" class="font-aw" icon="fa-solid fa-cart-shopping"/>
-          <span class="item-num">5</span>
-        </div>
-       
-       </div>
-    </div>
-   </nav>
+    </nav>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 export default {
     props: {
         isMobile: {
@@ -29,8 +30,18 @@ export default {
     },
     data(){
         return{
-            
+            // showMenu:false,
         }
+    },
+    computed: {
+        ...mapGetters([
+            "IS_SHOW_MENU"
+        ])
+    },
+    methods:{
+        ...mapActions([
+            "SWITCH_SHOW_MENU"
+        ])
     }
 }
 </script >
