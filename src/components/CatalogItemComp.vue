@@ -1,8 +1,13 @@
 <template>
 <div class="item">
     <div class="item__img">
-        <img  class="img" :src="require('@/assets/img/catalog/' + item.itemImg)" alt="img">
-        <div class="overlay"></div>
+        <img class="img" :src="require('@/assets/img/catalog/' + item.itemImg)" alt="img">
+        <div class="overlay">
+            <my-button id="catalog-img__btn">
+                <font-awesome-icon class="font-aw" icon="fa-solid fa-cart-shopping"/>
+                Add to cart
+            </my-button>
+        </div>
     </div>
     <h2 class="item-title">{{ item.itemTitle }}</h2>
     <p class="item-sub">{{ item.itemSubtitle }}</p>
@@ -19,7 +24,6 @@ export default {
             requiren: true
         }
     }
-
 }
 </script>
 
@@ -86,5 +90,21 @@ export default {
     transform-origin: center top;
     transition-duration: 0.5s;
     transition-timing-function: ease-in;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#catalog-img__btn {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    width: 140px;
+    height: 45px;
+    cursor: pointer;
+}
+
+.font-aw{
+    margin-right: 10px;
 }
 </style>
