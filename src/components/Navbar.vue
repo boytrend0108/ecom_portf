@@ -3,7 +3,14 @@
         <nav class="navbar">
             <div class="wrapper">
                 <div class="nav-block">
-                    <img class="logo " @click="$router.push(`/`)" src="@/assets/img/logo.png" alt="">
+                    <div class="conteiner">
+                        <div class="welcome__planet">
+                            <img class="glow rotate-center" src="@/assets/img/glow_1.png" alt="1">
+                            <img class="track rotate-center2" src="@/assets/img/track_1.png" alt="2">
+                            <img class="planet" src="@/assets/img/planet_11.png" alt="1">
+                        </div>
+                    </div>
+                    <!-- <img class="logo " @click="$router.push(`/`)" src="@/assets/img/logo.png" alt=""> -->
                     <font-awesome-icon class="font-aw" icon="fa-solid fa-magnifying-glass" />
                 </div>
                 <div class="nav-block">
@@ -18,7 +25,7 @@
             </div>
         </nav>
         <my-menu class="menu" :class="SLIDE_MENU"></my-menu>
-</div>
+    </div>
 </template>
 
 <script>
@@ -50,7 +57,6 @@ export default {
 </script >
 
 <style lang="scss" scoped>
-
 .position{
     position: relative;
 }
@@ -67,7 +73,6 @@ export default {
     display:flex;
     justify-content: space-between;
     align-items: center;
-
 }
 .font-aw{
     color: white;
@@ -174,8 +179,55 @@ export default {
   100% {
     -webkit-transform: translateY(-1000px);
             transform: translateY(-1000px);
-  
   }
 }
 
+.conteiner{
+    height: 86px;
+    width: 100px;
+}
+.welcome__planet{
+    position: relative;
+    height: 100%;
+}
+.glow{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+.track{
+    position: absolute;
+    top: 1px;
+    height: 100%;
+}
+.planet{
+    position: absolute;
+    height: 100%;
+}
+.rotate-center{
+    animation: rotate-center 10s cubic-bezier(0.37, 0.35, 0.75, 0.72) infinite;
+}
+@keyframes rotate-center {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.rotate-center2{
+    animation: rotate-center 10s cubic-bezier(0.37, 0.35, 0.75, 0.72) infinite reverse;
+}
+@keyframes rotate-center {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
 </style>
