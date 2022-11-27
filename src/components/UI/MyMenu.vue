@@ -38,12 +38,20 @@ export default {
 <style lang="scss" scoped>
 .menu{
     height: auto;
-    width: auto;
+    width: 300px;
     background-color: #FFFFFF;
     padding: 20px;
     box-shadow: (0px 4px 4px rgba(0, 0, 0, 0.25));
     z-index: 1;
+
+    @media(max-width: $media-phone){
+        width: 370px;
+    }
+    @media(max-width: $media-phoneS){
+        width:320px;
+    }
 }
+
 .menu__title {
     font-weight: 700;
     font-size: 14px;

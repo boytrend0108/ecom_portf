@@ -1,5 +1,4 @@
 <template>
-
     <div class="position">
         <nav class="navbar">
             <div class="wrapper">
@@ -19,7 +18,6 @@
             </div>
         </nav>
         <my-menu class="menu" :class="SLIDE_MENU"></my-menu>
-    
 </div>
 </template>
 
@@ -126,6 +124,13 @@ export default {
     top: 70px;
     right: 0px;
     display: none;
+
+    @media(max-width: $media-phone){
+        right: 24px;
+    }
+    @media(max-width: 375px){
+        right: 3px;
+    }
 }
 .slide-left {
 	-webkit-animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
@@ -152,24 +157,24 @@ export default {
   0% {
     -webkit-transform: translateY(0);
             transform: translateY(0);
-    opacity: 1;
+    
   }
   100% {
     -webkit-transform: translateY(-1000px);
             transform: translateY(-1000px);
-    opacity: 0;
+   
   }
 }
 @keyframes slide-out-top {
   0% {
     -webkit-transform: translateY(0);
             transform: translateY(0);
-    opacity: 1;
+;
   }
   100% {
     -webkit-transform: translateY(-1000px);
             transform: translateY(-1000px);
-    opacity: 0;
+  
   }
 }
 

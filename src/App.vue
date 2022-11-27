@@ -26,7 +26,7 @@ export default{
   mounted(){
     const vm = this;
     window.addEventListener('resize', ()=>{
-      if (window.innerWidth > 400 ){
+      if (window.innerWidth > 425 ){
         vm.SWITCH_TABLET()
       }else{
         vm.SWITCH_MOBILE()
