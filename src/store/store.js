@@ -100,10 +100,11 @@ export default createStore({
     SET_SHOW_MENU(state) {
       state.showMenu = !state.showMenu;
       if (state.showMenu === true) {
+        document.querySelector(".menu").style.display = "block";
         state.slideMenu = "slide-left"
         console.log(state.slideMenu)
       } else {
-        state.slideMenu = "slide-out-top"
+        state.slideMenu = "scale-out-ver-top"
         console.log(state.slideMenu)
       }
     }
