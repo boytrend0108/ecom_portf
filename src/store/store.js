@@ -119,7 +119,7 @@ export default createStore({
         state.slideMenu = "slide-left"
         console.log(state.slideMenu)
       } else {
-        state.slideMenu = "scale-out-ver-top"
+        state.slideMenu = "slide-out-top"
         console.log(state.slideMenu)
       }
     },
