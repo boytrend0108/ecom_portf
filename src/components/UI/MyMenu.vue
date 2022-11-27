@@ -1,10 +1,10 @@
 <template>
     <nav class="menu">
-        <h2>Menu</h2>
-        <div class="ul">Man
+        <h2 class="menu__title">Menu</h2>
+        <div class="ul">
             <li class="li" v-for="li in MENU">{{ li.category }}
                 <div class="ul">
-                    <li class="li" v-for="item in li.items">{{ item }}</li>
+                    <li class="li_sub" v-for="item in li.items">{{ item }}</li>
                 </div>
             </li>
         </div>
@@ -39,14 +39,45 @@ export default {
 .menu{
     height: auto;
     width: auto;
-    background-color: palevioletred;
+    background-color: #FFFFFF;
     padding: 20px;
+    box-shadow: (0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+.menu__title {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+    text-transform: uppercase;
+    margin-bottom: 24px;
 }
 .ul{
     list-style: none;
 }
-.li{
+.li {
     padding-left: 20px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #F16D7F;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+.li_sub {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #6F6E6E;
+    text-transform: capitalize;
+    padding-left: 20px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: 0.5s;
 }
 
+.li_sub:hover{
+    color:#F16D7F;
+    transform: scale(1.2);
+}
 </style>
