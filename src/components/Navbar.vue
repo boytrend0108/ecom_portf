@@ -1,23 +1,26 @@
 <template>
-    <nav class="navbar">
-        <div class="wrapper">
-            <div class="nav-block">
-                <img class="logo " @click="$router.push(`/`)" src="@/assets/img/logo.png" alt="">
-                <font-awesome-icon class="font-aw" icon="fa-solid fa-magnifying-glass" />
-            </div>
-            <div class="nav-block">
-                <font-awesome-icon class="font-aw " icon="fa-solid fa-bars" @click="SWITCH_SHOW_MENU" />
-                <font-awesome-icon v-show="isMobile" class="font-aw " icon="fa-regular fa-user" />
-                <div class="icon-cart-wr">
-                    <font-awesome-icon v-show="isMobile" @click="$router.push(`/cart`)" class="font-aw"
-                        icon="fa-solid fa-cart-shopping" />
-                    <span class="item-num">5</span>
+
+    <div class="position">
+        <nav class="navbar">
+            <div class="wrapper">
+                <div class="nav-block">
+                    <img class="logo " @click="$router.push(`/`)" src="@/assets/img/logo.png" alt="">
+                    <font-awesome-icon class="font-aw" icon="fa-solid fa-magnifying-glass" />
                 </div>
-                <!-- <my-menu v-show="IS_SHOW_MENU" class="menu" :class="SLIDE_MENU"></my-menu> -->
-                <my-menu  class="menu" :class="SLIDE_MENU"></my-menu>
-            </div> 
-        </div>
-    </nav>
+                <div class="nav-block">
+                    <font-awesome-icon class="font-aw " icon="fa-solid fa-bars" @click="SWITCH_SHOW_MENU" />
+                    <font-awesome-icon v-show="isMobile" class="font-aw " icon="fa-regular fa-user" />
+                    <div class="icon-cart-wr">
+                        <font-awesome-icon v-show="isMobile" @click="$router.push(`/cart`)" class="font-aw"
+                            icon="fa-solid fa-cart-shopping" />
+                        <span class="item-num">5</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <my-menu class="menu" :class="SLIDE_MENU"></my-menu>
+    
+</div>
 </template>
 
 <script>
@@ -49,11 +52,19 @@ export default {
 </script >
 
 <style lang="scss" scoped>
+
+.position{
+    position: relative;
+}
 .navbar{
     background: #222222;
     height: 70px;
     width: 100%;
+    position: absolute;
+    z-index: 2;
 }
+
+
 .nav-block{
     display:flex;
     justify-content: space-between;

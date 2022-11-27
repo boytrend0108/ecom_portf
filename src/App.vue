@@ -46,7 +46,10 @@ export default{
   box-sizing: border-box;
 }
 .app {
-    width: 100%
+    width: 100%;
+    position: absolute;
+    top: 67px;
+   
 }
 .wrapper {
   height: 100%;
