@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { TableLitePlugin } from 'bootstrap-vue';
 import { createStore } from 'vuex'
 
 export default createStore({
@@ -7,6 +6,7 @@ export default createStore({
     category: [],// this is our json array
     catalogItems: [],// this is our json array
     advantages:[],
+    menu:[], // this is oue json menu array
     isMobile: true, // to show icons in navbar
     showMenu: false, // to show menu on click
     slideMenu:"",
@@ -29,6 +29,9 @@ export default createStore({
     },
     SLIDE_MENU(state){
        return state.slideMenu;
+    },
+    MENU(state){
+      return state.menu;
     }
   },
   actions: {// actuins are asinc(methods in Component)
@@ -71,6 +74,18 @@ export default createStore({
           console.log(err)
         })
     },
+    GET_MENU({commit}){
+      return axios('http://localhost:3000/menu',{
+        method: "GET"
+      })
+      .then((menu) => {
+        commit('SET_MENU', menu.data)
+        return menu;
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
+    },
     SWITCH_MOBILE({ commit }) {
       commit("SET_MOBILE")
     },
@@ -107,6 +122,9 @@ export default createStore({
         state.slideMenu = "scale-out-ver-top"
         console.log(state.slideMenu)
       }
+    },
+    SET_MENU(state, menu){
+      state.menu = menu;
     }
   },
 

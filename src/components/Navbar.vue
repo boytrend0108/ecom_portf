@@ -113,7 +113,7 @@ export default {
 .menu{
     position: absolute;
     top: 70px;
-    right: -40px;
+    right: 0px;
     display: none;
 }
 .slide-left {
