@@ -13,6 +13,7 @@
                         icon="fa-solid fa-cart-shopping" />
                     <span class="item-num">5</span>
                 </div>
+                <my-menu v-show="IS_SHOW_MENU" class="menu" :class="SLIDE_MENU"></my-menu>
             </div> 
         </div>
     </nav>
@@ -30,12 +31,12 @@ export default {
     },
     data(){
         return{
-            // showMenu:false,
+          
         }
     },
     computed: {
         ...mapGetters([
-            "IS_SHOW_MENU"
+            "IS_SHOW_MENU", "SLIDE_MENU"
         ])
     },
     methods:{
@@ -75,7 +76,6 @@ export default {
    position: relative;
    cursor: pointer;
 }
-
 .icon-cart-wr:hover{
     .item-num{
     color: #F16D7F;
@@ -102,7 +102,6 @@ export default {
     bottom: 17px;
     transition: 0.5s;
 }
-
 .logo{
     cursor: pointer;
     transition: 0.5s;
@@ -110,4 +109,69 @@ export default {
 .logo:hover{
     transform: scale(1.3);
 }
+.menu{
+    position: absolute;
+    top: 70px;
+    right: -100px;
+}
+.slide-left {
+	-webkit-animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+ @-webkit-keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(-100px);
+            transform: translateX(-100px);
+  }
+}
+@keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(-100px);
+            transform: translateX(-100px);
+  }
+}
+
+.slide-out-top {
+	-webkit-animation: slide-out-top 3s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	        animation: slide-out-top 3s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+ @-webkit-keyframes slide-out-top {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(-1000px);
+            transform: translateY(-1000px);
+    opacity: 0;
+  }
+}
+@keyframes slide-out-top {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(-1000px);
+            transform: translateY(-1000px);
+    opacity: 0;
+  }
+}
+
+ 
+
+
+
 </style>

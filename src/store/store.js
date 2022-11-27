@@ -9,6 +9,7 @@ export default createStore({
     advantages:[],
     isMobile: true, // to show icons in navbar
     showMenu: false, // to show menu on click
+    slideMenu:"",
   },
   getters: {// this is a commands for getting our json arrays
     CATEGORY(state) {
@@ -25,6 +26,9 @@ export default createStore({
     },
     IS_SHOW_MENU(state){
       return state.showMenu;
+    },
+    SLIDE_MENU(state){
+       return state.slideMenu;
     }
   },
   actions: {// actuins are asinc(methods in Component)
@@ -75,8 +79,7 @@ export default createStore({
     },
     SWITCH_SHOW_MENU({commit}){
       commit("SET_SHOW_MENU")
-    }
-    
+    },
   },
   mutations: {// to change data in state
     SET_CATEGORY: (state, category) => {
@@ -95,8 +98,14 @@ export default createStore({
       state.isMobile = true;
     },
     SET_SHOW_MENU(state) {
-      state.showMenu = !state.showMenu
-      console.log(state.showMenu)
+      state.showMenu = !state.showMenu;
+      if (state.showMenu === true) {
+        state.slideMenu = "slide-left"
+        console.log(state.slideMenu)
+      } else {
+        state.slideMenu = "slide-out-top"
+        console.log(state.slideMenu)
+      }
     }
   },
 
