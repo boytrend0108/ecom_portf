@@ -7,6 +7,7 @@ export default createStore({
     catalogItems: [],// this is our json array
     advantages:[],
     menu:[], // this is oue json menu array
+    userCart:[], // this is our cart
     isMobile: true, // to show icons in navbar
     showMenu: false, // to show menu on click
     slideMenu:"", // this change classes for menu animation
@@ -40,6 +41,9 @@ export default createStore({
     },
     SLIDE_CART(state){
       return state.slideCart
+    },
+    USER_CART(state){
+      return state.userCart;
     }
 
   },
@@ -106,6 +110,9 @@ export default createStore({
     },
     SWITCH_SHOW_CART({commit}){
       commit('SET_SHOW_CART')
+    },
+    ADD_TO_CART({commit}){
+         commit('ADD_TO_CART_M')
     }
   },
   mutations: {// to change data in state
@@ -138,7 +145,7 @@ export default createStore({
     SET_MENU(state, menu){
       state.menu = menu;
     },
-    SET_SHOW_CART(state, showCart) {
+    SET_SHOW_CART(state) {
       state.showCart = !state.showCart
       if (state.showCart === true) {
         document.querySelector(".menu").style.display = "none";
@@ -148,6 +155,9 @@ export default createStore({
       } else {
         state.slideCart = "slide-out-top"
       }
+    },
+    ADD_TO_CART_M(){
+      console.log('test')
     }
   },
 

@@ -3,7 +3,7 @@
     <div class="item__img">
         <img class="img" :src="require('@/assets/img/catalog/' + item.itemImg)" alt="img">
         <div class="overlay">
-            <my-button @click="test" id="catalog-img__btn">
+            <my-button @click="ADD_TO_CART" id="catalog-img__btn">
                 <font-awesome-icon class="font-aw" icon="fa-solid fa-cart-shopping"/>
                 Add to cart
             </my-button>
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 export default {
     props:{
         item:{
@@ -24,10 +25,13 @@ export default {
             requiren: true
         }
     },
+    computed:{
+
+    },
     methods:{
-        test(){
-            console.log(this.item.id)
-        }
+        ...mapActions([
+            "ADD_TO_CART"
+        ])
     }
 
 }
