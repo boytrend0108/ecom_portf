@@ -45,7 +45,6 @@ export default createStore({
     USER_CART(state){
       return state.userCart;
     }
-
   },
   actions: {// actuins are asinc(methods in Component)
     GET_CATEGORY({ commit }) {
@@ -111,8 +110,8 @@ export default createStore({
     SWITCH_SHOW_CART({commit}){
       commit('SET_SHOW_CART')
     },
-    ADD_TO_CART({commit}){
-         commit('ADD_TO_CART_M')
+    ADD_TO_CART({commit}, item ){
+         commit('ADD_TO_CART_M', item)
     }
   },
   mutations: {// to change data in state
@@ -156,8 +155,9 @@ export default createStore({
         state.slideCart = "slide-out-top"
       }
     },
-    ADD_TO_CART_M(){
-      console.log('test')
+    ADD_TO_CART_M(state,item){
+      state.userCart.push(item);
+      console.log(state.userCart)
     }
   },
 

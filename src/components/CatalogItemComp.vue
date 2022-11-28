@@ -3,7 +3,7 @@
     <div class="item__img">
         <img class="img" :src="require('@/assets/img/catalog/' + item.itemImg)" alt="img">
         <div class="overlay">
-            <my-button @click="ADD_TO_CART" id="catalog-img__btn">
+            <my-button @click="addToCart" id="catalog-img__btn">
                 <font-awesome-icon class="font-aw" icon="fa-solid fa-cart-shopping"/>
                 Add to cart
             </my-button>
@@ -31,7 +31,10 @@ export default {
     methods:{
         ...mapActions([
             "ADD_TO_CART"
-        ])
+        ]),
+        addToCart(){
+            this.ADD_TO_CART(this.item)
+        }
     }
 
 }
