@@ -3,7 +3,7 @@
     <div class="item__img">
         <img class="img" :src="require('@/assets/img/catalog/' + item.itemImg)" alt="img">
         <div class="overlay">
-            <my-button id="catalog-img__btn">
+            <my-button @click="test" id="catalog-img__btn">
                 <font-awesome-icon class="font-aw" icon="fa-solid fa-cart-shopping"/>
                 Add to cart
             </my-button>
@@ -23,7 +23,13 @@ export default {
             type: Object,
             requiren: true
         }
+    },
+    methods:{
+        test(){
+            console.log(this.item.id)
+        }
     }
+
 }
 </script>
 

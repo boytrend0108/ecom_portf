@@ -109,8 +109,8 @@ export default {
     justify-content: center;
     font-size: 10px;
     position: absolute;
-    left: 50px;
-    bottom: 17px;
+    left: 56px;
+    bottom: 24px;
     transition: 0.5s;
 }
 .logo{

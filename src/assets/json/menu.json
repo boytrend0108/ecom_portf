@@ -1,0 +1,17 @@
+[
+    {
+      "id": 1,
+      "category": "man",
+      "items": ["Accessories", "Bags", "Denim", "T-Shots"]
+    },
+    {
+      "id": 2,
+      "category": "woman",
+      "items": ["Accessories", "Jackets & Coats", "Polos", "T-Shots", "Shots" ]
+    },
+    {
+      "id": 3,
+      "category": "kids",
+      "items": ["Accessories", "Jackets & Coats", "Polos", "T-Shots", "Shots", "Bags" ]
+    }
+  ]

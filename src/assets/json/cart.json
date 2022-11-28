@@ -1,0 +1,14 @@
+{
+    "test": [
+        {
+            "id": 1,
+            "category": "man",
+            "items": [
+                "Accessories",
+                "Bags",
+                "Denim",
+                "T-Shots"
+            ]
+        }
+    ]
+}
