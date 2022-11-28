@@ -10,7 +10,7 @@
                     <font-awesome-icon class="font-aw " icon="fa-solid fa-bars" @click="SWITCH_SHOW_MENU" />
                     <font-awesome-icon v-show="isMobile" class="font-aw " icon="fa-regular fa-user" />
                     <div class="icon-cart-wr">
-                        <font-awesome-icon v-show="isMobile" @click="$router.push(`/cart`)" class="font-aw"
+                        <font-awesome-icon v-show="isMobile" @click="SWITCH_SHOW_CART" class="font-aw"
                             icon="fa-solid fa-cart-shopping" />
                         <span class="item-num">5</span>
                     </div>
@@ -18,12 +18,15 @@
             </div>
         </nav>
         <my-menu class="menu" :class="SLIDE_MENU"></my-menu>
+        <my-cart class="cart-box" :class="SLIDE_CART" ></my-cart>
 </div>
 </template>
 
 <script>
+import MyCart from '@/components/MyCart.vue';
 import { mapGetters, mapActions } from 'vuex';
 export default {
+    components: {MyCart},
     props: {
         isMobile: {
             type: Boolean,
@@ -38,12 +41,12 @@ export default {
     },
     computed: {
         ...mapGetters([
-            "IS_SHOW_MENU", "SLIDE_MENU"
+            "IS_SHOW_MENU", "SLIDE_MENU", "SHOW_CART", "SLIDE_CART"
         ])
     },
     methods:{
         ...mapActions([
-            "SWITCH_SHOW_MENU"
+            "SWITCH_SHOW_MENU", "SWITCH_SHOW_CART"
         ])
     }
 }
@@ -61,8 +64,6 @@ export default {
     position: absolute;
     z-index: 2;
 }
-
-
 .nav-block{
     display:flex;
     justify-content: space-between;
@@ -176,6 +177,10 @@ export default {
             transform: translateY(-1000px);
   
   }
+}
+
+.cart-box{
+    display: none;
 }
 
 </style>
