@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useRoute } from 'vue-router';
 import { createStore } from 'vuex'
 
 export default createStore({
@@ -8,10 +9,6 @@ export default createStore({
     advantages:[],
     menu:[], // this is oue json menu array
     userCart:[], // this is our cart
-    test:[
-     {x:5},
-     {x:15}
-    ],
     totalCartPrice: 0,
     isMobile: true, // to show icons in navbar
     showMenu: false, // to show menu on click
@@ -123,8 +120,12 @@ export default createStore({
     },
     GET_TOTAL_CART_PRICE({commit}){
       commit('SET_TOTAL_CART_PRICE')
+    },
+    ADD_USER_CART_TO_JSON({commit}){
+       commit("SET_USER_CART_TO_jSON")
     }
   },
+
   mutations: {// to change data in state
     SET_CATEGORY: (state, category) => {
       state.category = category;
@@ -166,27 +167,35 @@ export default createStore({
         state.slideCart = "slide-out-top"
       }
     },
-    ADD_TO_CART_M(state,item){
+    ADD_TO_CART_M(state, item) {
       const find = state.userCart.find(el => item.id === el.id);
-      if (find){
-      const index = state.userCart.findIndex(el => item.id === el.id)
-      state.userCart[index].quantity +=1;
-      state.userCart[index].totalPrice += item.itemPrice;
-      state.totalCartPrice = state.userCart.reduce((acc, {totalPrice}) =>
-      acc + totalPrice, 0);
-      }else
-      {item.quantity = 1;
-      item.totalPrice = item.itemPrice;
-      state.userCart.push(item);
-      state.totalCartPrice = state.userCart.reduce((acc, {totalPrice}) =>
-      acc + totalPrice, 0)
-    }
-     
+      if (find) {
+        const index = state.userCart.findIndex(el => item.id === el.id)
+        state.userCart[index].quantity += 1;
+        state.userCart[index].totalPrice += item.itemPrice;
+        state.totalCartPrice = state.userCart.reduce((acc, { totalPrice }) =>
+          acc + totalPrice, 0);
+      } else {
+        item.quantity = 1;
+        item.totalPrice = item.itemPrice;
+        state.userCart.push(item);
+        state.totalCartPrice = state.userCart.reduce((acc, { totalPrice }) =>
+          acc + totalPrice, 0)
+      }
     },
     SET_TOTAL_CART_PRICE(state){
       state.totalCartPrice = state.userCart.reduce((acc, {totalPrice}) =>
       acc + totalPrice, 0)
-      console.log(state.totalCartPrice)
+    },
+    SET_USER_CART_TO_jSON(state){
+     const userCart = state.userCart
+     axios.post('http://localhost:3000/userCart', userCart )
+      .then((response) =>{
+        console.log(response)
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
     }
   },
 

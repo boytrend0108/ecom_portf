@@ -5,7 +5,7 @@
     :key="item.id"
     :item="item"
     />
-    <h2>Total in cart {{TOTAL_CART_PRICE}} $</h2>
+    <p class="title">Total in cart: <span class="price"> {{TOTAL_CART_PRICE}}</span> $</p>
 </div>
 
 </template>
@@ -39,5 +39,14 @@ export default {
     padding: 20px;
    @include box-shadow;
 }
+
+.price{
+    @include text($pink-color, 16px)
+}
+.title{
+        @include item-title(16px);
+        margin: 0;
+       
+    }
 
 </style>

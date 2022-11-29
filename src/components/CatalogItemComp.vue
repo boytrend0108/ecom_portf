@@ -30,10 +30,11 @@ export default {
     },
     methods:{
         ...mapActions([
-            "ADD_TO_CART"
+            "ADD_TO_CART", "ADD_USER_CART_TO_JSON"
         ]),
         addToCart(){
-            this.ADD_TO_CART(this.item)
+            this.ADD_TO_CART(this.item);
+            this.ADD_USER_CART_TO_JSON();
         }
     }
 
@@ -70,12 +71,7 @@ export default {
     object-fit: cover;
 }
 .item-title {
-@include item-title;
-    // margin: 25px 20px 0px 20px;
-    // font-weight: 400;
-    // font-size: 13px;
-    // line-height: 16px;
-    // color: #000000;
+@include item-title(13px);
 }
 .item-sub{
     padding: 15px 20px;
