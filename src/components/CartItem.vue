@@ -5,22 +5,45 @@
             <h2>{{ item.itemTitle }}</h2>
             <p>Price {{item.itemPrice}} $</p>
             <p>Quantity: {{item.quantity}} </p>
+            <p>Total: {{culcTotalPrice}} $ </p>
         </div>
     </div>
-
-
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 export default {
+    data(){
+        return{
+           
+        }
+    },
     props: {
         item: {
             type: Object,
             required: true
         }
     },
-
-    mounted(){}
+    computed:{
+        ...mapGetters([
+            "USER_CART"
+        ]),
+        culcTotalPrice(){
+            const index =  this.USER_CART.indexOf(this.item);
+            const totalPrice = this.USER_CART[index].itemPrice * this.item.quantity;
+            this.USER_CART[index].totalPrice = totalPrice;
+            return totalPrice;   
+        }
+    },
+    methods:{
+        ...mapActions([
+            'GET_TOTAL_CART_PRICE'
+        ]),
+    },
+    
+    mounted(){  
+        // this. GET_TOTAL_CART_PRICE();
+    }
 }
 </script>
 

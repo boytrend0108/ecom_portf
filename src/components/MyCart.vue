@@ -5,7 +5,9 @@
     :key="item.id"
     :item="item"
     />
+    <h2>Total in cart {{TOTAL_CART_PRICE}} $</h2>
 </div>
+
 </template>
 
 <script>
@@ -17,7 +19,7 @@ export default {
     },
     computed:{
         ...mapGetters([
-            "USER_CART"
+            "USER_CART","TOTAL_CART_PRICE"
         ])
     }
 }
@@ -29,12 +31,13 @@ export default {
     width: 400px;
     height: auto;
     padding: 20px;
-    background-color: grey;
+    background-color: white;
     position: fixed;
     z-index: 1;
     right: 0px;
     top: 71px;
     padding: 20px;
+   @include box-shadow;
 }
 
 </style>

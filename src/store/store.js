@@ -8,6 +8,11 @@ export default createStore({
     advantages:[],
     menu:[], // this is oue json menu array
     userCart:[], // this is our cart
+    test:[
+     {x:5},
+     {x:15}
+    ],
+    totalCartPrice: 0,
     isMobile: true, // to show icons in navbar
     showMenu: false, // to show menu on click
     slideMenu:"", // this change classes for menu animation
@@ -44,6 +49,9 @@ export default createStore({
     },
     USER_CART(state){
       return state.userCart;
+    },
+    TOTAL_CART_PRICE(state){
+      return state.totalCartPrice;
     }
   },
   actions: {// actuins are asinc(methods in Component)
@@ -112,6 +120,9 @@ export default createStore({
     },
     ADD_TO_CART({commit}, item ){
          commit('ADD_TO_CART_M', item)
+    },
+    GET_TOTAL_CART_PRICE({commit}){
+      commit('SET_TOTAL_CART_PRICE')
     }
   },
   mutations: {// to change data in state
@@ -160,9 +171,22 @@ export default createStore({
       if (find){
       const index = state.userCart.findIndex(el => item.id === el.id)
       state.userCart[index].quantity +=1;
+      state.userCart[index].totalPrice += item.itemPrice;
+      state.totalCartPrice = state.userCart.reduce((acc, {totalPrice}) =>
+      acc + totalPrice, 0);
       }else
       {item.quantity = 1;
-      state.userCart.push(item)}
+      item.totalPrice = item.itemPrice;
+      state.userCart.push(item);
+      state.totalCartPrice = state.userCart.reduce((acc, {totalPrice}) =>
+      acc + totalPrice, 0)
+    }
+     
+    },
+    SET_TOTAL_CART_PRICE(state){
+      state.totalCartPrice = state.userCart.reduce((acc, {totalPrice}) =>
+      acc + totalPrice, 0)
+      console.log(state.totalCartPrice)
     }
   },
 

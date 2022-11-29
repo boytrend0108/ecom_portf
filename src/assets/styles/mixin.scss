@@ -5,3 +5,9 @@
     line-height: 16px;
     color: #000000;
 }
+
+@mixin box-shadow {
+    box-shadow: -10px 10px 31px -3px rgba(0,0,0,0.61);
+    -webkit-box-shadow: -10px 10px 31px -3px rgba(0,0,0,0.61);
+    -moz-box-shadow: -10px 10px 31px -3px rgba(0,0,0,0.61);
+}
