@@ -61,7 +61,7 @@ export default {
     background: #222222;
     height: 70px;
     width: 100%;
-    position: absolute;
+    position: fixed;
     z-index: 2;
 }
 .nav-block{
@@ -121,7 +121,7 @@ export default {
     transform: scale(1.3);
 }
 .menu{
-    position: absolute;
+    position: fixed;
     top: 70px;
     right: 0px;
     display: none;

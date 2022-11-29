@@ -156,8 +156,13 @@ export default createStore({
       }
     },
     ADD_TO_CART_M(state,item){
-      state.userCart.push(item);
-      console.log(state.userCart)
+      const find = state.userCart.find(el => item.id === el.id);
+      if (find){
+      const index = state.userCart.findIndex(el => item.id === el.id)
+      state.userCart[index].quantity +=1;
+      }else
+      {item.quantity = 1;
+      state.userCart.push(item)}
     }
   },
 

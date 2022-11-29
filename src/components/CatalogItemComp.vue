@@ -41,6 +41,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// @import '@/assets/styles/mixin.scss';
 .item {
     max-width: 328px;
     max-height: 580px;
@@ -69,11 +70,12 @@ export default {
     object-fit: cover;
 }
 .item-title {
-    margin: 25px 20px 0px 20px;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 16px;
-    color: #000000;
+@include item-title;
+    // margin: 25px 20px 0px 20px;
+    // font-weight: 400;
+    // font-size: 13px;
+    // line-height: 16px;
+    // color: #000000;
 }
 .item-sub{
     padding: 15px 20px;

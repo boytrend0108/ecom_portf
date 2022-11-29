@@ -3,6 +3,8 @@ import App from './App.vue'
 import router from '@/router'
 import store from '@/store/store'
 import "@/assets/styles/styles.scss"
+
+
 const app =  createApp(App)
 
 /* import the fontawesome core */
