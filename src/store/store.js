@@ -8,8 +8,12 @@ export default createStore({
     catalogItems: [],// this is our json array
     advantages:[],
     menu:[], // this is oue json menu array
-    userCart:[], // this is our cart
-    totalCartPrice: 0,
+    userCart:{// this is our cart
+      totalCartPrice: 0,
+      totalItems:0,
+      cartItems:[]
+    }, // this is our cart
+    
     isMobile: true, // to show icons in navbar
     showMenu: false, // to show menu on click
     slideMenu:"", // this change classes for menu animation
@@ -45,7 +49,7 @@ export default createStore({
       return state.slideCart
     },
     USER_CART(state){
-      return state.userCart;
+      return state.userCart.cartItems;
     },
     TOTAL_CART_PRICE(state){
       return state.totalCartPrice;
@@ -168,30 +172,32 @@ export default createStore({
       }
     },
     ADD_TO_CART_M(state, item) {
-      const find = state.userCart.find(el => item.id === el.id);
+     
+      const find = state.userCart.cartItems.find(el => item.id === el.id);
       if (find) {
-        const index = state.userCart.findIndex(el => item.id === el.id)
-        state.userCart[index].quantity += 1;
-        state.userCart[index].totalPrice += item.itemPrice;
-        state.totalCartPrice = state.userCart.reduce((acc, { totalPrice }) =>
+        const index = state.userCart.cartItems.findIndex(el => item.id === el.id)
+        state.userCart.cartItems[index].quantity += 1;
+        state.userCart.cartItems[index].totalPrice += item.itemPrice;
+        state.totalCartPrice = state.userCart.cartItems.reduce((acc, { totalPrice }) =>
           acc + totalPrice, 0);
       } else {
         item.quantity = 1;
         item.totalPrice = item.itemPrice;
-        state.userCart.push(item);
-        state.totalCartPrice = state.userCart.reduce((acc, { totalPrice }) =>
-          acc + totalPrice, 0)
+        state.userCart.cartItems.push(item);
+        state.totalCartPrice = state.userCart.cartItems.reduce((acc, { totalPrice }) =>
+          acc + totalPrice, 0);
+        
       }
     },
     SET_TOTAL_CART_PRICE(state){
-      state.totalCartPrice = state.userCart.reduce((acc, {totalPrice}) =>
+      state.totalCartPrice = state.userCart.cartItems.reduce((acc, {totalPrice}) =>
       acc + totalPrice, 0)
     },
     SET_USER_CART_TO_jSON(state){
-     const userCart = state.userCart
+     const userCart = state.userCart.cartItems
      axios.post('http://localhost:3000/userCart', userCart )
       .then((response) =>{
-        console.log(response)
+        // console.log(response)
       })
       .catch((err)=>{
         console.log(err)
