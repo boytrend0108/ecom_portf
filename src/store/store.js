@@ -52,7 +52,7 @@ export default createStore({
       return state.userCart.cartItems;
     },
     TOTAL_CART_PRICE(state){
-      return state.totalCartPrice;
+      return state.userCart.totalCartPrice;
     }
   },
   actions: {// actuins are asinc(methods in Component)
@@ -178,15 +178,15 @@ export default createStore({
         const index = state.userCart.cartItems.findIndex(el => item.id === el.id)
         state.userCart.cartItems[index].quantity += 1;
         state.userCart.cartItems[index].totalPrice += item.itemPrice;
-        state.totalCartPrice = state.userCart.cartItems.reduce((acc, { totalPrice }) =>
+        state.userCart.totalCartPrice = state.userCart.cartItems.reduce((acc, { totalPrice }) =>
           acc + totalPrice, 0);
       } else {
         item.quantity = 1;
         item.totalPrice = item.itemPrice;
         state.userCart.cartItems.push(item);
-        state.totalCartPrice = state.userCart.cartItems.reduce((acc, { totalPrice }) =>
-          acc + totalPrice, 0);
-        
+        state.userCart.totalCartPrice = state.userCart.cartItems.reduce((acc, { totalPrice }) =>
+          acc + totalPrice, 0);// after => don't set{}
+        console.log(state.userCart)
       }
     },
     SET_TOTAL_CART_PRICE(state){
@@ -194,7 +194,7 @@ export default createStore({
       acc + totalPrice, 0)
     },
     SET_USER_CART_TO_jSON(state){
-     const userCart = state.userCart.cartItems
+     const userCart = state.userCart
      axios.post('http://localhost:3000/userCart', userCart )
       .then((response) =>{
         // console.log(response)

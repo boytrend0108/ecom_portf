@@ -28,7 +28,7 @@ export default {
         ...mapGetters([
             "USER_CART"
         ]),
-        culcTotalPrice(){
+        culcTotalPrice(){  
             const index =  this.USER_CART.indexOf(this.item);
             const totalPrice = this.USER_CART[index].itemPrice * this.item.quantity;
             this.USER_CART[index].totalPrice = totalPrice;
