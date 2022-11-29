@@ -29,7 +29,8 @@ export default {
 
 .cart-box{
     width: 400px;
-    height: auto;
+    max-height: 500px;
+    overflow: auto;
     padding: 20px;
     background-color: white;
     position: fixed;
