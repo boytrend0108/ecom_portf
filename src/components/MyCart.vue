@@ -6,10 +6,12 @@
     :item="item"
     />
     <div class="cart-bottom">
-        <p class="title">Total in cart: <span class="price"> {{TOTAL_CART_PRICE}}</span> $</p>
+        <div>
+            <p class="title">Total in cart: <span class="price"> {{TOTAL_CART_PRICE}}</span> $</p>
+            <p class="title">Total items:   <span class="price"> {{TOTAL_CART_ITEMS}}</span> pcs</p>
+        </div>
         <my-button class="btn" @click="clearCart">Clear Cart</my-button>
     </div>
-    
 </div>
 
 </template>
@@ -23,7 +25,7 @@ export default {
     },
     computed:{
         ...mapGetters([
-            "USER_CART","TOTAL_CART_PRICE"
+            "USER_CART","TOTAL_CART_PRICE","TOTAL_CART_ITEMS"
         ])
     },
     methods:{

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { useRoute } from 'vue-router';
 import { createStore } from 'vuex'
 
 export default createStore({
@@ -52,6 +51,9 @@ export default createStore({
     },
     TOTAL_CART_PRICE(state){
       return state.userCart.totalCartPrice;
+    },
+    TOTAL_CART_ITEMS(state){
+      return state.userCart.totalItems
     }
   },
   actions: {// actuins are asinc(methods in Component)
@@ -132,6 +134,9 @@ export default createStore({
     GET_TOTAL_CART_PRICE({commit}){
       commit('SET_TOTAL_CART_PRICE')
     },
+    GET_TOTAL_CART_ITEMS({commit}){
+      commit("SET_TOTAL_CART_ITEMS")
+    }, 
     ADD_USER_CART_TO_JSON({commit}){
        commit("SET_USER_CART_TO_jSON")
     },
@@ -193,18 +198,18 @@ export default createStore({
         state.userCart.cartItems[index].totalPrice += item.itemPrice;
         state.userCart.totalCartPrice = state.userCart.cartItems.reduce((acc, { totalPrice }) =>
           acc + totalPrice, 0);
+          state.userCart.totalItems = state.userCart.cartItems.reduce((acc, { quantity }) =>
+          acc + quantity, 0);
       } else {
         item.quantity = 1;
         item.totalPrice = item.itemPrice;
         state.userCart.cartItems.push(item);
         state.userCart.totalCartPrice = state.userCart.cartItems.reduce((acc, { totalPrice }) =>
           acc + totalPrice, 0);// after => don't set{}
+          state.userCart.totalItems = state.userCart.cartItems.reduce((acc, { quantity }) =>
+          acc + quantity, 0);
       }
     },
-    // SET_TOTAL_CART_PRICE(state){
-    //   state.totalCartPrice = state.userCart.cartItems.reduce((acc, {totalPrice}) =>
-    //   acc + totalPrice, 0)
-    // },
     SET_USER_CART_TO_jSON(state){
      const userCart = state.userCart
      axios.put('http://localhost:3000/userCart', userCart )
