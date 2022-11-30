@@ -112,7 +112,6 @@ export default createStore({
       return axios.get('http://localhost:3000/userCart')
         .then((cart) => {
           commit("SET_USER_CART_FROM_JSON", cart)
-          console.log(cart)
         })
         .catch((err) => { console.log(err) })
     },
@@ -131,12 +130,6 @@ export default createStore({
     ADD_TO_CART({commit}, item ){
          commit('ADD_TO_CART_M', item)
     },
-    // GET_TOTAL_CART_PRICE({commit}){
-    //   commit('SET_TOTAL_CART_PRICE')
-    // },
-    // GET_TOTAL_CART_ITEMS({commit}){
-    //   commit("SET_TOTAL_CART_ITEMS")
-    // }, 
     ADD_USER_CART_TO_JSON({commit}){
        commit("SET_USER_CART_TO_jSON")
     },
