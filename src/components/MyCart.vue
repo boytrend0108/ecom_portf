@@ -10,7 +10,13 @@
             <p class="title">Total in cart: <span class="price"> {{TOTAL_CART_PRICE}}</span> $</p>
             <p class="title">Total items:   <span class="price1"> {{TOTAL_CART_ITEMS}}</span> pcs</p>
         </div>
-        <my-button class="btn" @click="clearCart">Clear Cart</my-button>
+        <my-button 
+           class="btn" 
+           @click="clearCart"
+           v-show="USER_CART.length"
+           >Clear Cart
+        </my-button>
+        <p class="price1" v-show="!USER_CART.length">Cart is empty</p>
     </div>
 </div>
 
