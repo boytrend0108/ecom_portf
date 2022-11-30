@@ -131,12 +131,12 @@ export default createStore({
     ADD_TO_CART({commit}, item ){
          commit('ADD_TO_CART_M', item)
     },
-    GET_TOTAL_CART_PRICE({commit}){
-      commit('SET_TOTAL_CART_PRICE')
-    },
-    GET_TOTAL_CART_ITEMS({commit}){
-      commit("SET_TOTAL_CART_ITEMS")
-    }, 
+    // GET_TOTAL_CART_PRICE({commit}){
+    //   commit('SET_TOTAL_CART_PRICE')
+    // },
+    // GET_TOTAL_CART_ITEMS({commit}){
+    //   commit("SET_TOTAL_CART_ITEMS")
+    // }, 
     ADD_USER_CART_TO_JSON({commit}){
        commit("SET_USER_CART_TO_jSON")
     },
@@ -212,7 +212,7 @@ export default createStore({
     },
     SET_USER_CART_TO_jSON(state){
      const userCart = state.userCart
-     axios.put('http://localhost:3000/userCart', userCart )
+     axios.post('http://localhost:3000/userCart', userCart )
       .then((response) =>{
         // console.log(response)
       })

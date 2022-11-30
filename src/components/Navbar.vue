@@ -12,7 +12,7 @@
                     <div class="icon-cart-wr">
                         <font-awesome-icon v-show="isMobile" @click="SWITCH_SHOW_CART" class="font-aw"
                             icon="fa-solid fa-cart-shopping" />
-                        <span class="item-num">5</span>
+                        <span class="item-num">{{TOTAL_CART_ITEMS}}</span>
                     </div>
                 </div>
             </div>
@@ -41,12 +41,12 @@ export default {
     },
     computed: {
         ...mapGetters([
-            "IS_SHOW_MENU", "SLIDE_MENU", "SHOW_CART", "SLIDE_CART"
+            "IS_SHOW_MENU", "SLIDE_MENU", "SHOW_CART", "SLIDE_CART","TOTAL_CART_ITEMS"
         ])
     },
     methods:{
         ...mapActions([
-            "SWITCH_SHOW_MENU", "SWITCH_SHOW_CART"
+            "SWITCH_SHOW_MENU", "SWITCH_SHOW_CART",
         ])
     }
 }

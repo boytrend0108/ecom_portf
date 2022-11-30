@@ -8,7 +8,7 @@
     <div class="cart-bottom">
         <div>
             <p class="title">Total in cart: <span class="price"> {{TOTAL_CART_PRICE}}</span> $</p>
-            <p class="title">Total items:   <span class="price"> {{TOTAL_CART_ITEMS}}</span> pcs</p>
+            <p class="title">Total items:   <span class="price1"> {{TOTAL_CART_ITEMS}}</span> pcs</p>
         </div>
         <my-button class="btn" @click="clearCart">Clear Cart</my-button>
     </div>
@@ -59,8 +59,12 @@ export default {
 }
 
 .price{
-    @include text($pink-color, 16px)
+    @include text($pink-color, 16px);
 }
+.price1{
+        @include text($pink-color, 16px);
+        margin-left: 5px;
+    }
 .title{
         @include item-title(16px);
         margin: 0;
