@@ -5,7 +5,11 @@
     :key="item.id"
     :item="item"
     />
-    <p class="title">Total in cart: <span class="price"> {{TOTAL_CART_PRICE}}</span> $</p>
+    <div class="cart-bottom">
+        <p class="title">Total in cart: <span class="price"> {{TOTAL_CART_PRICE}}</span> $</p>
+        <my-button class="btn" @click="CLEAR_CART">Clear Cart</my-button>
+    </div>
+    
 </div>
 
 </template>
@@ -21,12 +25,19 @@ export default {
         ...mapGetters([
             "USER_CART","TOTAL_CART_PRICE"
         ])
+    },
+    methods:{
+        ...mapActions([
+            'GET_USER_CART','CLEAR_CART'
+        ])
+    },
+    mounted(){
+        this.GET_USER_CART();
     }
 }
 </script>
 
 <style lang="scss" scoped>
-
 .cart-box{
     width: 400px;
     max-height: 500px;
@@ -47,7 +58,15 @@ export default {
 .title{
         @include item-title(16px);
         margin: 0;
-       
     }
+.cart-bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
+    .btn {
+            max-width: 195px;
+            height: 40px;
+        }
+}
 </style>

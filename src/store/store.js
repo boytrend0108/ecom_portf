@@ -12,8 +12,7 @@ export default createStore({
       totalCartPrice: 0,
       totalItems:0,
       cartItems:[]
-    }, // this is our cart
-    
+    }, // this is our carnull
     isMobile: true, // to show icons in navbar
     showMenu: false, // to show menu on click
     slideMenu:"", // this change classes for menu animation
@@ -107,6 +106,14 @@ export default createStore({
         console.log(err)
       })
     },
+    GET_USER_CART({ commit }) {
+      return axios.get('http://localhost:3000/userCart')
+        .then((cart) => {
+          commit("SET_USER_CART_FROM_JSON", cart)
+          console.log(cart)
+        })
+        .catch((err) => { console.log(err) })
+    },
     SWITCH_MOBILE({ commit }) {
       commit("SET_MOBILE")
     },
@@ -127,6 +134,9 @@ export default createStore({
     },
     ADD_USER_CART_TO_JSON({commit}){
        commit("SET_USER_CART_TO_jSON")
+    },
+    CLEAR_CART({commit}){
+      commit('SET_CLEAR_CART','SET_USER_CART_TO_jSON')
     }
   },
 
@@ -139,6 +149,10 @@ export default createStore({
     },
     SET_ADVANTAGES: (state, advantages) => {
       state.advantages = advantages
+    },
+    SET_USER_CART_FROM_JSON(state, cart){
+       state.userCart.cartItems = cart.data.cartItems;
+       state.userCart.totalCartPrice = cart.data.totalCartPrice;
     },
     SET_MOBILE: (state) => {
       state.isMobile = false;
@@ -186,13 +200,12 @@ export default createStore({
         state.userCart.cartItems.push(item);
         state.userCart.totalCartPrice = state.userCart.cartItems.reduce((acc, { totalPrice }) =>
           acc + totalPrice, 0);// after => don't set{}
-        console.log(state.userCart)
       }
     },
-    SET_TOTAL_CART_PRICE(state){
-      state.totalCartPrice = state.userCart.cartItems.reduce((acc, {totalPrice}) =>
-      acc + totalPrice, 0)
-    },
+    // SET_TOTAL_CART_PRICE(state){
+    //   state.totalCartPrice = state.userCart.cartItems.reduce((acc, {totalPrice}) =>
+    //   acc + totalPrice, 0)
+    // },
     SET_USER_CART_TO_jSON(state){
      const userCart = state.userCart
      axios.post('http://localhost:3000/userCart', userCart )
@@ -202,6 +215,9 @@ export default createStore({
       .catch((err)=>{
         console.log(err)
       })
+    },
+    SET_CLEAR_CART(state){
+      state.userCart.cartItems = []
     }
   },
 
