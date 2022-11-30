@@ -7,7 +7,7 @@
     />
     <div class="cart-bottom">
         <p class="title">Total in cart: <span class="price"> {{TOTAL_CART_PRICE}}</span> $</p>
-        <my-button class="btn" @click="CLEAR_CART">Clear Cart</my-button>
+        <my-button class="btn" @click="clearCart">Clear Cart</my-button>
     </div>
     
 </div>
@@ -28,8 +28,12 @@ export default {
     },
     methods:{
         ...mapActions([
-            'GET_USER_CART','CLEAR_CART'
-        ])
+            'GET_USER_CART','CLEAR_CART','ADD_USER_CART_TO_JSON'
+        ]),
+        clearCart(){
+            this.CLEAR_CART();
+            this.ADD_USER_CART_TO_JSON();
+        }
     },
     mounted(){
         this.GET_USER_CART();

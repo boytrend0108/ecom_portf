@@ -136,7 +136,7 @@ export default createStore({
        commit("SET_USER_CART_TO_jSON")
     },
     CLEAR_CART({commit}){
-      commit('SET_CLEAR_CART','SET_USER_CART_TO_jSON')
+      commit('SET_CLEAR_CART')
     }
   },
 
@@ -186,7 +186,6 @@ export default createStore({
       }
     },
     ADD_TO_CART_M(state, item) {
-     
       const find = state.userCart.cartItems.find(el => item.id === el.id);
       if (find) {
         const index = state.userCart.cartItems.findIndex(el => item.id === el.id)
@@ -208,7 +207,7 @@ export default createStore({
     // },
     SET_USER_CART_TO_jSON(state){
      const userCart = state.userCart
-     axios.post('http://localhost:3000/userCart', userCart )
+     axios.put('http://localhost:3000/userCart', userCart )
       .then((response) =>{
         // console.log(response)
       })
@@ -217,7 +216,9 @@ export default createStore({
       })
     },
     SET_CLEAR_CART(state){
-      state.userCart.cartItems = []
+      state.userCart.cartItems = [];
+      state.userCart.totalCartPrice = 0;
+      state.userCart.totalItems = 0;
     }
   },
 
