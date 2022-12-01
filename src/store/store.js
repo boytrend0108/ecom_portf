@@ -7,11 +7,7 @@ export default createStore({
     catalogItems: [],// this is our json array
     advantages:[],
     menu:[], // this is oue json menu array
-    userCart:{// this is our cart
-      totalCartPrice: 0,
-      totalItems:0,
-      cartItems:[]
-    }, // this is our carnull
+    userCart:[],// this is our cart
     isMobile: true, // to show icons in navbar
     showMenu: false, // to show menu on click
     slideMenu:"", // this change classes for menu animation
@@ -47,16 +43,16 @@ export default createStore({
       return state.slideCart
     },
     USER_CART(state){
-      return state.userCart.cartItems;
+      return state.userCart;
     },
     TOTAL_CART_PRICE(state){
-      return state.userCart.totalCartPrice;
+      // return state.userCart.totalCartPrice;
     },
     TOTAL_CART_ITEMS(state){
-      return state.userCart.totalItems
+      // return state.userCart.totalItems
     }
   },
-  actions: {// actuins are asinc(methods in Component)
+  actions: {// actions are asinc(methods in Component)
     GET_CATEGORY({ commit }) {
       return axios('http://localhost:3000/category', {
         method: "GET"
@@ -111,7 +107,7 @@ export default createStore({
     GET_USER_CART({ commit }) {
       return axios.get('http://localhost:3000/userCart')
         .then((cart) => {
-          commit("SET_USER_CART_FROM_JSON", cart)
+          commit("SET_USER_CART", cart.data)
         })
         .catch((err) => { console.log(err) })
     },
@@ -127,11 +123,31 @@ export default createStore({
     SWITCH_SHOW_CART({commit}){
       commit('SET_SHOW_CART')
     },
-    ADD_TO_CART({commit}, item ){
-         commit('ADD_TO_CART_M', item)
+    ADD_TO_CART({commit,state},item){
+      const find = state.userCart.find((el)=> el.id === item.id)
+      if(find){console.log('find')
+        axios.put('http://localhost:3000/userCart/:id', item)
+        .then((response) => {
+          commit("CHANGE_USER_CART")
+        })
+        .catch((err) => {
+          console.log(err)
+        }
+        )
+      }else{console.log('not find')
+        axios.post('http://localhost:3000/userCart', item)
+        .then((item) => {
+          commit("CHANGE_USER_CART", item.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      }
+     
     },
-    ADD_USER_CART_TO_JSON({commit}){
-       commit("SET_USER_CART_TO_jSON")
+    ADD_USER_CART_TO_JSON({item,state }) {
+      const userCart = state.userCart
+     
     },
     CLEAR_CART({commit}){
       commit('SET_CLEAR_CART')
@@ -148,9 +164,11 @@ export default createStore({
     SET_ADVANTAGES: (state, advantages) => {
       state.advantages = advantages
     },
-    SET_USER_CART_FROM_JSON(state, cart){
-       state.userCart.cartItems = cart.data.cartItems;
-       state.userCart.totalCartPrice = cart.data.totalCartPrice;
+    SET_USER_CART(state, cart){
+      state.userCart = cart;
+   },
+    CHANGE_USER_CART(state, item){
+       state.userCart.push(item);
     },
     SET_MOBILE: (state) => {
       state.isMobile = false;
@@ -204,14 +222,14 @@ export default createStore({
       }
     },
     SET_USER_CART_TO_jSON(state){
-     const userCart = state.userCart
-     axios.post('http://localhost:3000/userCart', userCart )
-      .then((response) =>{
-        // console.log(response)
-      })
-      .catch((err)=>{
-        console.log(err)
-      })
+    //  const userCart = state.userCart
+    //  axios.post('http://localhost:3000/userCart', userCart )
+    //   .then((response) =>{
+    //     console.log(response)
+    //   })
+    //   .catch((err)=>{
+    //     console.log(err)
+    //   })
     },
     SET_CLEAR_CART(state){
       state.userCart.cartItems = [];
