@@ -40,7 +40,6 @@ export default {
         ]),
         clearCart(){
             this.CLEAR_CART();
-            this.ADD_USER_CART_TO_JSON();
         }
     },
     mounted(){
