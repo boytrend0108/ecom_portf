@@ -125,19 +125,27 @@ export default createStore({
     },
     ADD_TO_CART({commit,state},item){
       const find = state.userCart.find((el)=> el.id === item.id)
-      if(find){console.log('find')
-        axios.put('http://localhost:3000/userCart/:id', item)
-        .then((response) => {
-          commit("CHANGE_USER_CART")
+      if(find){
+        axios.get(`http://localhost:3000/userCart/`+item.id)
+        .then((res)=> {
+          res.data.quantity +=1;
+          return res
+        })
+        .then((item)=>{
+           return axios.put(`http://localhost:3000/userCart/`+item.data.id, item.data)
+        })
+        .then((item)=>{
+          commit('CHANGE_QUANTITY_OF_ITEMS',item.data)
         })
         .catch((err) => {
           console.log(err)
         }
         )
-      }else{console.log('not find')
+      }else{
+        item.quantity = 1;
         axios.post('http://localhost:3000/userCart', item)
         .then((item) => {
-          commit("CHANGE_USER_CART", item.data)
+          commit("ADD_NEW_ITEM_TO_CART", item.data)
         })
         .catch((err) => {
           console.log(err)
@@ -167,8 +175,12 @@ export default createStore({
     SET_USER_CART(state, cart){
       state.userCart = cart;
    },
-    CHANGE_USER_CART(state, item){
+   ADD_NEW_ITEM_TO_CART(state, item){
        state.userCart.push(item);
+    },
+    CHANGE_QUANTITY_OF_ITEMS(state,item){
+      const index = state.userCart.findIndex(el => el.id === item.id)
+      state.userCart[index].quantity +=1;
     },
     SET_MOBILE: (state) => {
       state.isMobile = false;
