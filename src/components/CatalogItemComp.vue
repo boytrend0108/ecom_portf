@@ -34,7 +34,7 @@ export default {
         ]),
         addToCart(){
             this.ADD_TO_CART(this.item);
-            this.ADD_USER_CART_TO_JSON();
+            // this.ADD_USER_CART_TO_JSON();
         }
     }
 

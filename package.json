@@ -5,8 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "server": "json-server -w src/assets/json/index.js",
-    "start": "concurrently \"npm run server\" \"npm run serve\""
+    "server": "json-server --watch src/assets/json/db.json",
+    "start": "concurrently \"npm run serve\" \"npm run server\""
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
