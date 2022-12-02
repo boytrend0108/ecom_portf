@@ -9,6 +9,8 @@ export default createStore({
     advantages:[],
     menu:[], // this is oue json menu array
     userCart:[],// this is our cart
+    totalCartPrice:0,
+    totalItems:0,
     isMobile: true, // to show icons in navbar
     showMenu: false, // to show menu on click
     slideMenu:"", // this change classes for menu animation
@@ -47,10 +49,10 @@ export default createStore({
       return state.userCart;
     },
     TOTAL_CART_PRICE(state){
-      // return state.userCart.totalCartPrice;
+      return state.totalCartPrice;
     },
     TOTAL_CART_ITEMS(state){
-      // return state.userCart.totalItems
+      return state.totalItems
     }
   },
   actions: {// actions are asinc(methods in Component)
@@ -154,19 +156,14 @@ export default createStore({
       }
      
     },
-    ADD_USER_CART_TO_JSON({item,state }) {
-      const userCart = state.userCart
-     
-    },
     CLEAR_CART({ commit }) {
       return axios.get(`http://localhost:3000/userCart`)
         .then((cart) => {
-          cart.data.forEach(element => {
-            console.log(element.id)
-            return axios.delete(`http://localhost:3000/userCart/` + element.id)
-          })
-        }).
-        then(() => {
+          for (let el of cart.data) {
+            console.log(el.id)
+            return axios.delete(`http://localhost:3000/userCart/` + el.id)
+          }})
+        .then(() => {
           commit('SET_CLEAR_CART')
         })
     }
