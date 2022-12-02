@@ -163,8 +163,7 @@ export default createStore({
       return axios.get(`http://localhost:3000/userCart`)
         .then((cart) => {
           for (let el of cart.data) {
-            console.log(el.id)
-            return axios.delete(`http://localhost:3000/userCart/` + el.id)
+            axios.delete(`http://localhost:3000/userCart/`+ el.id)
           }})
         .then(() => {
           commit('SET_CLEAR_CART')
@@ -230,10 +229,6 @@ export default createStore({
           acc + totalPrice, 0);
         state.totalItems = state.userCart.reduce((acc, { quantity }) =>
           acc + quantity, 0);
-     console.log(state.totalCartPrice, state.totalItems)
-    },
-    SET_USER_CART_TO_jSON(state) {
-      
     },
     SET_CLEAR_CART(state) {
       state.userCart = [];
