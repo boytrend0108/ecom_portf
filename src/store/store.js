@@ -139,6 +139,7 @@ export default createStore({
         })
         .then((item)=>{
           commit('CHANGE_QUANTITY_OF_ITEMS',item.data)
+          commit('ADD_TO_CART_M')
         })
         .catch((err) => {
           console.log(err)
@@ -146,9 +147,11 @@ export default createStore({
         )
       }else{
         item.quantity = 1;
+        item.totalPrice = item.itemPrice * item.quantity
         axios.post('http://localhost:3000/userCart', item)
         .then((item) => {
           commit("ADD_NEW_ITEM_TO_CART", item.data)
+          commit('ADD_TO_CART_M')
         })
         .catch((err) => {
           console.log(err)
@@ -188,6 +191,8 @@ export default createStore({
     CHANGE_QUANTITY_OF_ITEMS(state, item) {
       const index = state.userCart.findIndex(el => el.id === item.id)
       state.userCart[index].quantity += 1;
+      state.userCart[index].totalPrice =
+       state.userCart[index].quantity * state.userCart[index].itemPrice
     },
     SET_MOBILE: (state) => {
       state.isMobile = false;
@@ -220,31 +225,20 @@ export default createStore({
         state.slideCart = "slide-out-top"
       }
     },
-    ADD_TO_CART_M(state, item) {
-      const find = state.userCart.cartItems.find(el => item.id === el.id);
-      if (find) {
-        const index = state.userCart.cartItems.findIndex(el => item.id === el.id)
-        state.userCart.cartItems[index].quantity += 1;
-        state.userCart.cartItems[index].totalPrice += item.itemPrice;
-        state.userCart.totalCartPrice = state.userCart.cartItems.reduce((acc, { totalPrice }) =>
+    ADD_TO_CART_M(state) {  
+        state.totalCartPrice = state.userCart.reduce((acc, { totalPrice }) =>
           acc + totalPrice, 0);
-        state.userCart.totalItems = state.userCart.cartItems.reduce((acc, { quantity }) =>
+        state.totalItems = state.userCart.reduce((acc, { quantity }) =>
           acc + quantity, 0);
-      } else {
-        item.quantity = 1;
-        item.totalPrice = item.itemPrice;
-        state.userCart.cartItems.push(item);
-        state.userCart.totalCartPrice = state.userCart.cartItems.reduce((acc, { totalPrice }) =>
-          acc + totalPrice, 0);// after => don't set{}
-        state.userCart.totalItems = state.userCart.cartItems.reduce((acc, { quantity }) =>
-          acc + quantity, 0);
-      }
+     console.log(state.totalCartPrice, state.totalItems)
     },
     SET_USER_CART_TO_jSON(state) {
       
     },
     SET_CLEAR_CART(state) {
       state.userCart = [];
+      state.totalCartPrice = 0;
+      state.totalItems = 0;
     }
   },
 
