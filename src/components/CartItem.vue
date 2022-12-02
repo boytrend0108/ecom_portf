@@ -1,5 +1,5 @@
 <template>
-    <div class="cart-item__box">
+    <div class="cart-item__box slide-in-blurred-right"  >
         <img :src="require('@/assets/img/catalog/' + item.itemImg)" alt="img" class="cart-img">
         <div class="cart-item__descr">
             <h2 class="title">{{ item.itemTitle }}</h2>
@@ -80,6 +80,10 @@ export default {
             font-weight: 300;
             font-size: 14px;
             line-height: 17px;
-        }
+        }     
 }
+
+.slide-in-blurred-right {
+	@include slide-in-blurred-right
+}      
 </style>

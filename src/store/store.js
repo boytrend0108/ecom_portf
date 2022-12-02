@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Carousel } from 'bootstrap';
 import { createStore } from 'vuex'
 
 export default createStore({
@@ -7,11 +8,9 @@ export default createStore({
     catalogItems: [],// this is our json array
     advantages:[],
     menu:[], // this is oue json menu array
-    userCart:{// this is our cart
-      totalCartPrice: 0,
-      totalItems:0,
-      cartItems:[]
-    }, // this is our carnull
+    userCart:[],// this is our cart
+    totalCartPrice:0,
+    totalItems:0,
     isMobile: true, // to show icons in navbar
     showMenu: false, // to show menu on click
     slideMenu:"", // this change classes for menu animation
@@ -47,16 +46,16 @@ export default createStore({
       return state.slideCart
     },
     USER_CART(state){
-      return state.userCart.cartItems;
+      return state.userCart;
     },
     TOTAL_CART_PRICE(state){
-      return state.userCart.totalCartPrice;
+      return state.totalCartPrice;
     },
     TOTAL_CART_ITEMS(state){
-      return state.userCart.totalItems
+      return state.totalItems
     }
   },
-  actions: {// actuins are asinc(methods in Component)
+  actions: {// actions are asinc(methods in Component)
     GET_CATEGORY({ commit }) {
       return axios('http://localhost:3000/category', {
         method: "GET"
@@ -111,7 +110,7 @@ export default createStore({
     GET_USER_CART({ commit }) {
       return axios.get('http://localhost:3000/userCart')
         .then((cart) => {
-          commit("SET_USER_CART_FROM_JSON", cart)
+          commit("SET_USER_CART", cart.data)
         })
         .catch((err) => { console.log(err) })
     },
@@ -127,14 +126,49 @@ export default createStore({
     SWITCH_SHOW_CART({commit}){
       commit('SET_SHOW_CART')
     },
-    ADD_TO_CART({commit}, item ){
-         commit('ADD_TO_CART_M', item)
+    ADD_TO_CART({commit,state},item){
+      const find = state.userCart.find((el)=> el.id === item.id)
+      if(find){
+        axios.get(`http://localhost:3000/userCart/`+item.id)
+        .then((res)=> {
+          res.data.quantity +=1;
+          return res
+        })
+        .then((item)=>{
+           return axios.put(`http://localhost:3000/userCart/`+item.data.id, item.data)
+        })
+        .then((item)=>{
+          commit('CHANGE_QUANTITY_OF_ITEMS',item.data)
+          commit('ADD_TO_CART_M')
+        })
+        .catch((err) => {
+          console.log(err)
+        }
+        )
+      }else{
+        item.quantity = 1;
+        item.totalPrice = item.itemPrice * item.quantity
+        axios.post('http://localhost:3000/userCart', item)
+        .then((item) => {
+          commit("ADD_NEW_ITEM_TO_CART", item.data)
+          commit('ADD_TO_CART_M')
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      }
+     
     },
-    ADD_USER_CART_TO_JSON({commit}){
-       commit("SET_USER_CART_TO_jSON")
-    },
-    CLEAR_CART({commit}){
-      commit('SET_CLEAR_CART')
+    CLEAR_CART({ commit }) {
+      return axios.get(`http://localhost:3000/userCart`)
+        .then((cart) => {
+          for (let el of cart.data) {
+            console.log(el.id)
+            return axios.delete(`http://localhost:3000/userCart/` + el.id)
+          }})
+        .then(() => {
+          commit('SET_CLEAR_CART')
+        })
     }
   },
 
@@ -148,9 +182,17 @@ export default createStore({
     SET_ADVANTAGES: (state, advantages) => {
       state.advantages = advantages
     },
-    SET_USER_CART_FROM_JSON(state, cart){
-       state.userCart.cartItems = cart.data.cartItems;
-       state.userCart.totalCartPrice = cart.data.totalCartPrice;
+    SET_USER_CART(state, cart) {
+      state.userCart = cart;
+    },
+    ADD_NEW_ITEM_TO_CART(state, item) {
+      state.userCart.push(item);
+    },
+    CHANGE_QUANTITY_OF_ITEMS(state, item) {
+      const index = state.userCart.findIndex(el => el.id === item.id)
+      state.userCart[index].quantity += 1;
+      state.userCart[index].totalPrice =
+       state.userCart[index].quantity * state.userCart[index].itemPrice
     },
     SET_MOBILE: (state) => {
       state.isMobile = false;
@@ -169,7 +211,7 @@ export default createStore({
         state.slideMenu = "slide-out-top"
       }
     },
-    SET_MENU(state, menu){
+    SET_MENU(state, menu) {
       state.menu = menu;
     },
     SET_SHOW_CART(state) {
@@ -183,40 +225,20 @@ export default createStore({
         state.slideCart = "slide-out-top"
       }
     },
-    ADD_TO_CART_M(state, item) {
-      const find = state.userCart.cartItems.find(el => item.id === el.id);
-      if (find) {
-        const index = state.userCart.cartItems.findIndex(el => item.id === el.id)
-        state.userCart.cartItems[index].quantity += 1;
-        state.userCart.cartItems[index].totalPrice += item.itemPrice;
-        state.userCart.totalCartPrice = state.userCart.cartItems.reduce((acc, { totalPrice }) =>
+    ADD_TO_CART_M(state) {  
+        state.totalCartPrice = state.userCart.reduce((acc, { totalPrice }) =>
           acc + totalPrice, 0);
-          state.userCart.totalItems = state.userCart.cartItems.reduce((acc, { quantity }) =>
+        state.totalItems = state.userCart.reduce((acc, { quantity }) =>
           acc + quantity, 0);
-      } else {
-        item.quantity = 1;
-        item.totalPrice = item.itemPrice;
-        state.userCart.cartItems.push(item);
-        state.userCart.totalCartPrice = state.userCart.cartItems.reduce((acc, { totalPrice }) =>
-          acc + totalPrice, 0);// after => don't set{}
-          state.userCart.totalItems = state.userCart.cartItems.reduce((acc, { quantity }) =>
-          acc + quantity, 0);
-      }
+     console.log(state.totalCartPrice, state.totalItems)
     },
-    SET_USER_CART_TO_jSON(state){
-     const userCart = state.userCart
-     axios.post('http://localhost:3000/userCart', userCart )
-      .then((response) =>{
-        // console.log(response)
-      })
-      .catch((err)=>{
-        console.log(err)
-      })
+    SET_USER_CART_TO_jSON(state) {
+      
     },
-    SET_CLEAR_CART(state){
-      state.userCart.cartItems = [];
-      state.userCart.totalCartPrice = 0;
-      state.userCart.totalItems = 0;
+    SET_CLEAR_CART(state) {
+      state.userCart = [];
+      state.totalCartPrice = 0;
+      state.totalItems = 0;
     }
   },
 

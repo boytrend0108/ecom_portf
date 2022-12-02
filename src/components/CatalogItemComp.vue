@@ -28,14 +28,18 @@ export default {
     computed:{
 
     },
-    methods:{
+    methods: {
         ...mapActions([
             "ADD_TO_CART", "ADD_USER_CART_TO_JSON"
         ]),
-        addToCart(){
-            this.ADD_TO_CART(this.item);
-            this.ADD_USER_CART_TO_JSON();
+
+        addToCart() {
+                this.ADD_TO_CART(this.item);
         }
+    },
+
+    mounted(){
+        // console.log(this.item)
     }
 
 }
