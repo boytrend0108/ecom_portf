@@ -159,6 +159,13 @@ export default createStore({
       }
      
     },
+    DELETE_ITEM({commit},id){
+      axios.delete(`http://localhost:3000/userCart/`+ id)
+      .then((item)=>{
+        commit('SET_DELETE_ITEM',id)
+      })
+    
+    },
     CLEAR_CART({ commit }) {
       return axios.get(`http://localhost:3000/userCart`)
         .then((cart) => {
@@ -229,6 +236,14 @@ export default createStore({
           acc + totalPrice, 0);
         state.totalItems = state.userCart.reduce((acc, { quantity }) =>
           acc + quantity, 0);
+    },
+    SET_DELETE_ITEM(state,id){
+      const index = state.userCart.findIndex(el => el.id === id)
+      state.userCart.splice(index, 1)
+      state.totalCartPrice = state.userCart.reduce((acc, { totalPrice }) =>
+      acc + totalPrice, 0);
+      state.totalItems = state.userCart.reduce((acc, { quantity }) =>
+      acc + quantity, 0);
     },
     SET_CLEAR_CART(state) {
       state.userCart = [];

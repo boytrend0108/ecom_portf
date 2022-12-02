@@ -7,7 +7,7 @@
             <div class="quantity">
                 <p class="text">Quantity: {{item.quantity}} </p>
                 <button class="quantity-bnt" @click="addToCart" >&plus;</button>
-                <button class="quantity-bnt" >&times;</button>
+                <button class="quantity-bnt" @click="deleteItem" >&times;</button>
             </div>
             <p class="text">Quantity: {{item.quantity}} </p>
             <p class="price">Total: {{culcTotalPrice}} $ </p>
@@ -42,10 +42,13 @@ export default {
     },
     methods:{
         ...mapActions([
-            'GET_TOTAL_CART_PRICE', 'ADD_TO_CART'
+            'GET_TOTAL_CART_PRICE', 'ADD_TO_CART', 'DELETE_ITEM'
         ]),
         addToCart(){
             this.ADD_TO_CART(this.item)
+        },
+        deleteItem(){
+            this.DELETE_ITEM(this.item.id)
         }
     },
     
