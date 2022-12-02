@@ -160,11 +160,16 @@ export default createStore({
      
     },
     DELETE_ITEM({commit},id){
-      axios.delete(`http://localhost:3000/userCart/`+ id)
+      axios.get(`http://localhost:3000/userCart/`+ id)
       .then((item)=>{
+        if (item.data.quantity === 1 ){
+          axios.delete(`http://localhost:3000/userCart/`+ id)
+        }else{
+          item.data.quantity -= 1;
+          axios.put(`http://localhost:3000/userCart/`+ id, item.data)
+        }
         commit('SET_DELETE_ITEM',id)
-      })
-    
+      }) 
     },
     CLEAR_CART({ commit }) {
       return axios.get(`http://localhost:3000/userCart`)
@@ -237,13 +242,18 @@ export default createStore({
         state.totalItems = state.userCart.reduce((acc, { quantity }) =>
           acc + quantity, 0);
     },
-    SET_DELETE_ITEM(state,id){
-      const index = state.userCart.findIndex(el => el.id === id)
-      state.userCart.splice(index, 1)
+    SET_DELETE_ITEM(state, id) {
+      const findEl = state.userCart.find(el => el.id === id)
+      if (findEl.quantity === 1) {
+        const index = state.userCart.findIndex(el => el.id === id)
+        state.userCart.splice(index, 1)
+      } else {
+        findEl.quantity -= 1;
+      }
       state.totalCartPrice = state.userCart.reduce((acc, { totalPrice }) =>
-      acc + totalPrice, 0);
+        acc + totalPrice, 0);
       state.totalItems = state.userCart.reduce((acc, { quantity }) =>
-      acc + quantity, 0);
+        acc + quantity, 0);
     },
     SET_CLEAR_CART(state) {
       state.userCart = [];
