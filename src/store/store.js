@@ -1,14 +1,14 @@
 import axios from 'axios';
-import { Carousel } from 'bootstrap';
 import { createStore } from 'vuex'
 
 export default createStore({
   state: {
     category: [],// this is our json array
-    catalogItems: [],// this is our json array
+    // catalogItems: [],// this is our json array
     advantages: [],
     menu: [], // this is oue json menu array
     userCart: [],// this is our cart
+    filteredCart: [],//this is our filtered array
     totalCartPrice: 0,
     totalItems: 0,
     isMobile: true, // to show icons in navbar
@@ -55,8 +55,8 @@ export default createStore({
     TOTAL_CART_ITEMS(state){
       return state.totalItems
     },
-    SEARCH_INPUT(state){
-      return state.searchInput;
+    FILTERED_CART(state){
+      return state.filteredCart;
     }
   },
   actions: {// actions are asinc(methods in Component)
@@ -195,7 +195,10 @@ export default createStore({
       state.category = category;
     },
     SET_CATALOG: (state, catalogItems) => {
-      state.catalogItems = catalogItems
+      // state.catalogItems = catalogItems;
+      state.filteredCart =  catalogItems;
+      console.log(state.filteredCart)
+      
     },
     SET_ADVANTAGES: (state, advantages) => {
       state.advantages = advantages
@@ -268,9 +271,9 @@ export default createStore({
       state.totalItems = 0;
     },
     SET_SEARCH_INPUT(state, searchInput){
-      const filtered =state.catalogItems.filter((el)=>
+      const filtered = state.catalogItems.filter((el)=>
       el.itemTitle.toLowerCase().includes(searchInput.toLowerCase()))
-      state.catalogItems = filtered;   
+      state.filteredCart = filtered;
     }
   },
 

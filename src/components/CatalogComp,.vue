@@ -5,7 +5,7 @@
         <h3 class="catalog__sub">Shop for items based on what we featured in this week</h3>
     </div>
     <div class="item-box">
-        <catalog-item v-for="item in CATALOGITEMS" :key="item.id" :item="item" />
+        <catalog-item v-for="item in FILTERED_CART" :key="item.id" :item="item" />
     </div>
     <my-button>Browse All Product</my-button>
 </div>
@@ -27,7 +27,8 @@ export default {
     },
     computed: {
         ...mapGetters([
-            'CATALOGITEMS'
+            'CATALOGITEMS',
+            'FILTERED_CART'
         ])
     },
     methods:{
