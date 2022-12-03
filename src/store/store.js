@@ -16,6 +16,7 @@ export default createStore({
     slideMenu:"", // this change classes for menu animation
     slideCart:"", // this change classes for cart animation
     showCart: false, 
+    searchInput:''
   },
   getters: {// this is a commands for getting our json arrays
     CATEGORY(state) {
@@ -53,6 +54,9 @@ export default createStore({
     },
     TOTAL_CART_ITEMS(state){
       return state.totalItems
+    },
+    SEARCH_INPUT(state){
+      return state.searchInput;
     }
   },
   actions: {// actions are asinc(methods in Component)

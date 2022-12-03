@@ -5,6 +5,7 @@
                 <div class="nav-block">
                     <img class="logo " @click="$router.push(`/`)" src="@/assets/img/logo.png" alt="">
                     <font-awesome-icon class="font-aw" icon="fa-solid fa-magnifying-glass" />
+                    <input type="text" class="search-input" name="search">
                 </div>
                 <div class="nav-block">
                     <font-awesome-icon class="font-aw " icon="fa-solid fa-bars" @click="SWITCH_SHOW_MENU" />
@@ -119,6 +120,18 @@ export default {
 }
 .logo:hover{
     transform: scale(1.3);
+}
+.search-input{
+    background-color: transparent;
+    border:none;
+    border-bottom: 1px solid white;
+    padding: 0 10px;
+    outline: none;
+    color: white;
+    font-weight: 400;
+    font-size: 19.96px;
+    line-height: 24px;
+    margin-left: 10px;
 }
 .menu{
     position: fixed;
