@@ -6,17 +6,17 @@ export default createStore({
   state: {
     category: [],// this is our json array
     catalogItems: [],// this is our json array
-    advantages:[],
-    menu:[], // this is oue json menu array
-    userCart:[],// this is our cart
-    totalCartPrice:0,
-    totalItems:0,
+    advantages: [],
+    menu: [], // this is oue json menu array
+    userCart: [],// this is our cart
+    totalCartPrice: 0,
+    totalItems: 0,
     isMobile: true, // to show icons in navbar
     showMenu: false, // to show menu on click
-    slideMenu:"", // this change classes for menu animation
-    slideCart:"", // this change classes for cart animation
-    showCart: false, 
-    searchInput:''
+    slideMenu: "", // this change classes for menu animation
+    slideCart: "", // this change classes for cart animation
+    showCart: false,
+    searchInput: ''
   },
   getters: {// this is a commands for getting our json arrays
     CATEGORY(state) {
@@ -184,6 +184,9 @@ export default createStore({
         .then(() => {
           commit('SET_CLEAR_CART')
         })
+    },
+    GET_SEARCH_INPUT({commit},searchInput){
+      commit('SET_SEARCH_INPUT',searchInput)
     }
   },
 
@@ -263,6 +266,11 @@ export default createStore({
       state.userCart = [];
       state.totalCartPrice = 0;
       state.totalItems = 0;
+    },
+    SET_SEARCH_INPUT(state, searchInput){
+      const filtered =state.catalogItems.filter((el)=>
+      el.itemTitle.toLowerCase().includes(searchInput.toLowerCase()))
+      state.catalogItems = filtered;   
     }
   },
 

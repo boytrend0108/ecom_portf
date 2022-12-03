@@ -5,7 +5,14 @@
                 <div class="nav-block">
                     <img class="logo " @click="$router.push(`/`)" src="@/assets/img/logo.png" alt="">
                     <font-awesome-icon class="font-aw" icon="fa-solid fa-magnifying-glass" />
-                    <input type="text" class="search-input" name="search">
+                    <input 
+                       type="text" 
+                       class="search-input" 
+                       name="search" 
+                       v-model="searchInput"
+                       @input="sendSearchInput"
+                       >
+                       
                 </div>
                 <div class="nav-block">
                     <font-awesome-icon class="font-aw " icon="fa-solid fa-bars" @click="SWITCH_SHOW_MENU" />
@@ -37,18 +44,26 @@ export default {
     },
     data(){
         return{
-          
+          searchInput:''
         }
     },
     computed: {
         ...mapGetters([
-            "IS_SHOW_MENU", "SLIDE_MENU", "SHOW_CART", "SLIDE_CART","TOTAL_CART_ITEMS"
+            "IS_SHOW_MENU",
+            "SLIDE_MENU",
+            "SHOW_CART",
+            "SLIDE_CART",
+            "TOTAL_CART_ITEMS",
+            "SEARCH_INPUT"
         ])
     },
     methods:{
         ...mapActions([
-            "SWITCH_SHOW_MENU", "SWITCH_SHOW_CART",
-        ])
+            "SWITCH_SHOW_MENU", "SWITCH_SHOW_CART","GET_SEARCH_INPUT"
+        ]),
+        sendSearchInput(){
+           this.GET_SEARCH_INPUT(this.searchInput)
+        }
     }
 }
 </script >
