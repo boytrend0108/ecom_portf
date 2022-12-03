@@ -4,7 +4,7 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     category: [],// this is our json array
-    // catalogItems: [],// this is our json array
+    catalogItems: [],// this is our json array
     advantages: [],
     menu: [], // this is oue json menu array
     userCart: [],// this is our cart
@@ -195,7 +195,7 @@ export default createStore({
       state.category = category;
     },
     SET_CATALOG: (state, catalogItems) => {
-      // state.catalogItems = catalogItems;
+      state.catalogItems = catalogItems;
       state.filteredCart =  catalogItems;
       console.log(state.filteredCart)
       
