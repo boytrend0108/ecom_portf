@@ -17,7 +17,6 @@ app.get('/api/catalobItems', (req, res)=>{});
 app.get('/api/category', (req, res)=>{});
 app.get('/api/menu', (req, res)=>{});
 app.get('/api/userCart', (req, res)=>{});
-
 app.post('/api/userCart', (req, res)=>{});
 app.put('/api/userCart/:id', (req, res)=>{})
 
