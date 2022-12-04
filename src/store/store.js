@@ -188,6 +188,7 @@ export default createStore({
     GET_SEARCH_INPUT({commit},searchInput){
       commit('SET_SEARCH_INPUT',searchInput)
     }
+
   },
 
   mutations: {// to change data in state
@@ -196,15 +197,17 @@ export default createStore({
     },
     SET_CATALOG: (state, catalogItems) => {
       state.catalogItems = catalogItems;
-      state.filteredCart =  catalogItems;
-      console.log(state.filteredCart)
-      
+      state.filteredCart =  catalogItems;  
     },
     SET_ADVANTAGES: (state, advantages) => {
       state.advantages = advantages
     },
     SET_USER_CART(state, cart) {
       state.userCart = cart;
+      state.totalCartPrice = state.userCart.reduce((acc, { totalPrice }) =>
+        acc + totalPrice, 0);
+      state.totalItems = state.userCart.reduce((acc, { quantity }) =>
+        acc + quantity, 0);
     },
     ADD_NEW_ITEM_TO_CART(state, item) {
       state.userCart.push(item);

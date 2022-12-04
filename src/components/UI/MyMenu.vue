@@ -2,7 +2,7 @@
     <nav class="menu">
         <h2 class="menu__title">Menu</h2>
         <div class="ul">
-            <li class="li" v-for="li in MENU">{{ li.category }}
+            <li class="li" v-for="li in MENU"  @click="$router.push(`/catalog`)">{{ li.category }}
                 <div class="ul">
                     <li class="li_sub" v-for="item in li.items">{{ item }}</li>
                 </div>
