@@ -33,10 +33,11 @@ export default {
     ]),
 
    async sendForm(event){
-        event.preventDefault()
+   event.preventDefault();
        console.log(this.USER_CART)
        this.formData.cartItem = this.USER_CART;
-      await axios.post(`http://localhost:3000/form`, this.formData )  
+      await axios.post(`http://localhost:3000/form`, this.formData )
+      .catch((err)=>{alert("Data don't send")})  
     }
    }
 }
