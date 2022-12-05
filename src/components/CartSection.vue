@@ -54,29 +54,27 @@ export default {
         ]),
         clearCart() {
             this.CLEAR_CART();
-            this.getBtnDisabled()
-           
+            this.getBtnDisabled()         
         }
 
     },
 
-    // watch:{
-    //     localStorage(){
-    //         if(this.localStorage.length > 0){
-    //             this.showBnt = true
-    //         console.log(this.showBnt)}else{
-    //             this.showBnt = false;
-    //             console.log(this.showBnt)
-    //         }         
-    //     }
-    // },
+    watch:{
+        localStorage(){
+            if(this.localStorage.length > 0){
+                this.showBnt = true
+            console.log(this.showBnt)}else{
+                this.showBnt = false;
+                console.log(this.showBnt)
+            }         
+        }
+    },
 
     mounted() {
         if (this.localStorage.length === 0){
            this.GET_BTN_DISABLED();
         }
-        console.log(this.localStorage.length)
-       
+        console.log(this.localStorage.length)    
     },
   
 }
@@ -124,8 +122,16 @@ export default {
     .text{
     color:$pink-color;
     font-size: 30px;
+    
 }
 
+}
+
+.disabled{
+    cursor: not-allowed !important;
+    background-color: gray !important;
+    border: none !important;
+    color: aliceblue !important;
 }
 
 .summary{
