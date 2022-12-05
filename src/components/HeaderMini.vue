@@ -27,7 +27,6 @@ export default {
 }
 
 .wrapper{
-    border: 1px solid #000;
     display: flex;
     justify-content: space-between;
     align-items: center;

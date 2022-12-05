@@ -11,8 +11,11 @@
                            >Clear Cart</my-button>
                         <my-button class="btn " @click="$router.push(`/`)">Continue Shopping</my-button>
                     </div>
+                    
                 </div>
-                <div class="form-box"></div>
+                <div class="form-box">
+                    <my-form></my-form>
+                </div>
             </div>
         </div>
 </template>

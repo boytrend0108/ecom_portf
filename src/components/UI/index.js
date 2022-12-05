@@ -4,6 +4,7 @@ import MyInput from '@/components/UI/MyInput'
 import MyIcon from "@/components/UI/MyIcon"
 import MyMenu from "@/components/UI/MyMenu"
 import MyTitle from "@/components/UI/MyTitle"
+import MyForm from '@/components/UI/MyForm'
 
 export default [
     MyButton,
@@ -11,5 +12,6 @@ export default [
     MyInput,
     MyIcon,
     MyMenu,
-    MyTitle
+    MyTitle,
+    MyForm
 ]
