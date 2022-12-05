@@ -49,6 +49,9 @@ export default createStore({
     USER_CART(state){
       return state.userCart;
     },
+    SHOW_BTN(state){
+      return state.showBtn;
+    },
     TOTAL_CART_PRICE(state){
       return state.totalCartPrice;
     },
@@ -187,8 +190,12 @@ export default createStore({
     },
     GET_SEARCH_INPUT({commit},searchInput){
       commit('SET_SEARCH_INPUT',searchInput)
+    },
+    GET_BTN_DISABLED(){
+      document.querySelector(".clear-btn").setAttribute("disabled", "disabled")
+      document.querySelector(".clear-btn").classList.add("disabled");
+      document.querySelector(".clear-btn").textContent = "Cart is empty";
     }
-
   },
 
   mutations: {// to change data in state
@@ -213,6 +220,7 @@ export default createStore({
       state.userCart.push(item);
       const b = JSON.stringify(state.userCart, null, 4)
       localStorage.setItem('cart', b)
+      if (state.userCart.length > 0){state.showBtn = true}
     },
     CHANGE_QUANTITY_OF_ITEMS(state, item) {
       const index = state.userCart.findIndex(el => el.id === item.id)
@@ -221,6 +229,7 @@ export default createStore({
        state.userCart[index].quantity * state.userCart[index].itemPrice
        const b = JSON.stringify(state.userCart, null, 4)
        localStorage.setItem('cart', b)
+       if (state.userCart.length > 0){state.showBtn = true}
     },
     SET_MOBILE: (state) => {
       state.isMobile = false;
@@ -265,7 +274,13 @@ export default createStore({
         const index = state.userCart.findIndex(el => el.id === id)
         state.userCart.splice(index, 1)
         const b = JSON.stringify(state.userCart, null, 4)
-        localStorage.setItem('cart', b)
+        localStorage.setItem('cart', b);
+        console.log(state.userCart.length)
+        if (state.userCart.length === 0) {
+          document.querySelector(".clear-btn").setAttribute("disabled", "disabled")
+          document.querySelector(".clear-btn").classList.add("disabled");
+          document.querySelector(".clear-btn").textContent = "Cart is empty"
+        }
       } else {
         findEl.quantity -= 1;
         const b = JSON.stringify(state.userCart, null, 4)
@@ -282,11 +297,17 @@ export default createStore({
       state.totalItems = 0;
       const b = JSON.stringify(state.userCart, null, 4)
       localStorage.setItem('cart', b)
+      
     },
     SET_SEARCH_INPUT(state, searchInput){
       const filtered = state.catalogItems.filter((el)=>
       el.itemTitle.toLowerCase().includes(searchInput.toLowerCase()))
       state.filteredCart = filtered;
+    },
+    SET_BTN_DISABLED(){
+      document.querySelector(".clear-btn").setAttribute("disabled", "disabled")
+      document.querySelector(".clear-btn").classList.add("disabled");
+      document.querySelector(".clear-btn").textContent = "Cart is empty";
     }
   },
 

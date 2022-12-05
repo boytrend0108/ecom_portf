@@ -41,10 +41,11 @@ export default {
     },
     methods:{
         ...mapActions([
-            'GET_USER_CART','CLEAR_CART','ADD_USER_CART_TO_JSON'
+            'GET_USER_CART','CLEAR_CART','ADD_USER_CART_TO_JSON','GET_BTN_DISABLED'
         ]),
         clearCart(){
             this.CLEAR_CART();
+            this.GET_BTN_DISABLED();
         },
       
     },

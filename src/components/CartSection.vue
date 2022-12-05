@@ -7,7 +7,7 @@
                     <div class="btn-box">
                         <my-button 
                            class="btn clear-btn" 
-                           @click="clearCart"
+                           @click="clearCart()"
                            >Clear Cart</my-button>
                         <my-button class="btn " @click="$router.push(`/`)">Continue Shopping</my-button>
                     </div>
@@ -24,7 +24,8 @@ import { mapGetters, mapActions} from "vuex";
 export default {
     data() {
         return {
-          
+          localStorage: JSON.parse(localStorage.getItem('cart')),
+          showBnt: false
         }
     },
 
@@ -34,7 +35,7 @@ export default {
 
     computed: {
         ...mapGetters([
-            'USER_CART'
+            'USER_CART', 'SHOW_BTN'
         ]),
         getUserCart() {
             //  console.log(this.USER_CART)
@@ -43,27 +44,40 @@ export default {
 
     methods: {
         ...mapActions([
-            'CLEAR_CART', 'GET_USER_CART'
+            'CLEAR_CART', 'GET_USER_CART', 'GET_BTN_DISABLED'
         ]),
         clearCart() {
             this.CLEAR_CART();
+            this.getBtnDisabled()
+           
         },
+        // getBtnDisabled(){
+        //     document.querySelector(".clear-btn").setAttribute("disabled", "disabled")
+        //     document.querySelector(".clear-btn").classList.add("disabled");
+        //     document.querySelector(".clear-btn").textContent = "Cart is empty";
+        // }
+    },
 
+    watch:{
+        localStorage(){
+            if(this.localStorage.length > 0){
+                this.showBnt = true
+            console.log(this.showBnt)}else{
+                this.showBnt = false;
+                console.log(this.showBnt)
+            }
+            
+        }
     },
 
     mounted() {
-        this.getUserCart;
-        const a = JSON.parse(localStorage.getItem('cart'))
-        console.log(a.length);
-        if (a.length > 0){ console.log('true')}
-        else{console.log('false')}
+        if (this.localStorage.length === 0){
+           this.GET_BTN_DISABLED();
+        }
+        console.log(this.localStorage.length)
+       
     },
   
-
-    watch: {
-    
-    }
-
 }
 </script>
 
@@ -111,6 +125,13 @@ export default {
 .text{
     color:$pink-color;
     font-size: 30px;
+}
+
+.disabled{
+    background-color: gray !important;
+    cursor: no-drop !important;
+    color: aliceblue !important;
+    border: none !important;
 }
 
 
