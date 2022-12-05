@@ -44,16 +44,20 @@ export default {
         ...mapActions([
             'GET_TOTAL_CART_PRICE', 'ADD_TO_CART', 'DELETE_ITEM'
         ]),
-        addToCart(){
-            this.ADD_TO_CART(this.item)
+       async addToCart() {
+             await this.ADD_TO_CART(this.item)
+            const b = JSON.stringify(this.USER_CART, null, 4)
+            localStorage.setItem('cart', b)
         },
         deleteItem(){
             this.DELETE_ITEM(this.item.id)
+           
         }
     },
     
-    mounted(){  
-        // this. GET_TOTAL_CART_PRICE();
+    mounted(){ 
+        const b = JSON.stringify(this.USER_CART,null, 4)
+        localStorage.setItem('cart', b)
     }
 }
 </script>

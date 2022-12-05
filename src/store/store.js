@@ -211,12 +211,16 @@ export default createStore({
     },
     ADD_NEW_ITEM_TO_CART(state, item) {
       state.userCart.push(item);
+      const b = JSON.stringify(state.userCart, null, 4)
+      localStorage.setItem('cart', b)
     },
     CHANGE_QUANTITY_OF_ITEMS(state, item) {
       const index = state.userCart.findIndex(el => el.id === item.id)
       state.userCart[index].quantity += 1;
       state.userCart[index].totalPrice =
        state.userCart[index].quantity * state.userCart[index].itemPrice
+       const b = JSON.stringify(state.userCart, null, 4)
+       localStorage.setItem('cart', b)
     },
     SET_MOBILE: (state) => {
       state.isMobile = false;
@@ -260,8 +264,12 @@ export default createStore({
       if (findEl.quantity === 1) {
         const index = state.userCart.findIndex(el => el.id === id)
         state.userCart.splice(index, 1)
+        const b = JSON.stringify(state.userCart, null, 4)
+        localStorage.setItem('cart', b)
       } else {
         findEl.quantity -= 1;
+        const b = JSON.stringify(state.userCart, null, 4)
+        localStorage.setItem('cart', b)
       }
       state.totalCartPrice = state.userCart.reduce((acc, { totalPrice }) =>
         acc + totalPrice, 0);
@@ -272,6 +280,8 @@ export default createStore({
       state.userCart = [];
       state.totalCartPrice = 0;
       state.totalItems = 0;
+      const b = JSON.stringify(state.userCart, null, 4)
+      localStorage.setItem('cart', b)
     },
     SET_SEARCH_INPUT(state, searchInput){
       const filtered = state.catalogItems.filter((el)=>

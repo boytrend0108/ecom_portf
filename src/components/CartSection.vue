@@ -12,7 +12,7 @@
                         <my-button class="btn " @click="$router.push(`/`)">Continue Shopping</my-button>
                     </div>
                 </div>
-                <div class="form-box"></div>i
+                <div class="form-box"></div>
             </div>
         </div>
 </template>
@@ -32,28 +32,33 @@ export default {
         CartItem
     },
 
-    computed:{
+    computed: {
         ...mapGetters([
             'USER_CART'
-        ])
+        ]),
+        getUserCart() {
+            //  console.log(this.USER_CART)
+        },
     },
 
     methods: {
         ...mapActions([
-            'CLEAR_CART'
+            'CLEAR_CART', 'GET_USER_CART'
         ]),
-
         clearCart() {
             this.CLEAR_CART();
         },
 
-        setBtnDisable(){
-            console.log(this.USER_CART.length)
-        }
     },
-    mounted(){
-        this.setBtnDisable();
+
+    mounted() {
+        this.getUserCart;
+        const a = JSON.parse(localStorage.getItem('cart'))
+        console.log(a.length);
+        if (a.length > 0){ console.log('true')}
+        else{console.log('false')}
     },
+  
 
     watch: {
     

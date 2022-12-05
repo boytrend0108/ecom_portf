@@ -26,13 +26,18 @@
 import CartItem from '@/components/CartItem.vue';
 import { mapGetters, mapActions } from 'vuex';
 export default {
+    data(){
+        return{
+           cart: []
+        }
+    },
     components:{
         CartItem
     },
     computed:{
         ...mapGetters([
             "USER_CART","TOTAL_CART_PRICE","TOTAL_CART_ITEMS"
-        ])
+        ]),
     },
     methods:{
         ...mapActions([
@@ -40,7 +45,8 @@ export default {
         ]),
         clearCart(){
             this.CLEAR_CART();
-        }
+        },
+      
     },
     mounted(){
         this.GET_USER_CART();
