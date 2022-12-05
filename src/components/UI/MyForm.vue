@@ -3,13 +3,15 @@
     <input type="text" class="form-input" placeholder="Your name" required v-model="formData.name">
     <input type="text" class="form-input" placeholder="Your phone" required v-model="formData.phone">
     <input type="email" class="form-input" placeholder="Your email" required v-model="formData.email">
-    <my-button class="btn" type="submit" @click="sendForm ">GET A QUOTE</my-button>
+    <my-button class="btn" type="submit" @click="sendForm ">Send an order</my-button>
 </form>
 </template>
 
 <script>
 import axios from 'axios';
+import { mapActions, mapGetters } from 'vuex';
 export default {
+    name: 'my-form',
     data(){
         return {
             formData: {
@@ -19,11 +21,22 @@ export default {
             }
         }
     },
-   name: 'my-form',
+   
+    computed:{
+        ...mapGetters([
+            'USER_CART'
+        ])
+    },
+
    methods:{
-    sendForm(event){
-        // event.preventDefault();
-        axios.post(`http://localhost:3000/form`, this.formData )  
+    ...mapActions([
+    ]),
+
+   async sendForm(event){
+        event.preventDefault()
+       console.log(this.USER_CART)
+       this.formData.cartItem = this.USER_CART;
+      await axios.post(`http://localhost:3000/form`, this.formData )  
     }
    }
 }
@@ -46,5 +59,6 @@ export default {
 
 .btn{
     margin: 20px 6px;
+    text-transform: uppercase;
 }
 </style>

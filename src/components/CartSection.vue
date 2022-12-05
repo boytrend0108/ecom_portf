@@ -15,6 +15,9 @@
                 </div>
                 <div class="form-box">
                     <my-form></my-form>
+                    <div class="summary">
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -53,25 +56,20 @@ export default {
             this.CLEAR_CART();
             this.getBtnDisabled()
            
-        },
-        // getBtnDisabled(){
-        //     document.querySelector(".clear-btn").setAttribute("disabled", "disabled")
-        //     document.querySelector(".clear-btn").classList.add("disabled");
-        //     document.querySelector(".clear-btn").textContent = "Cart is empty";
-        // }
+        }
+
     },
 
-    watch:{
-        localStorage(){
-            if(this.localStorage.length > 0){
-                this.showBnt = true
-            console.log(this.showBnt)}else{
-                this.showBnt = false;
-                console.log(this.showBnt)
-            }
-            
-        }
-    },
+    // watch:{
+    //     localStorage(){
+    //         if(this.localStorage.length > 0){
+    //             this.showBnt = true
+    //         console.log(this.showBnt)}else{
+    //             this.showBnt = false;
+    //             console.log(this.showBnt)
+    //         }         
+    //     }
+    // },
 
     mounted() {
         if (this.localStorage.length === 0){
@@ -96,14 +94,15 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+   
 
     .item-box, .form-box{
     
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-between;;
         align-items: center;
-        min-height: 200px;
+        min-height: 310px;
         min-width: 400px;
         padding: 20px;
     }
@@ -118,23 +117,21 @@ export default {
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
-}
-
-.btn {
+    .btn {
         max-width: 160px;
         margin: 0 10px;
     }
-
-.text{
+    .text{
     color:$pink-color;
     font-size: 30px;
 }
 
-.disabled{
-    background-color: gray !important;
-    cursor: no-drop !important;
-    color: aliceblue !important;
-    border: none !important;
+}
+
+.summary{
+    width: 360px;
+    min-height: 200px;
+    background-color: #F5F3F3;
 }
 
 
