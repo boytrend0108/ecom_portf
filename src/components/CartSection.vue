@@ -1,28 +1,26 @@
 <template>
-     <div class="cart-box">
-            <div class="wrapper">
-                <div class="item-box">
-                    <cart-item v-for="item in USER_CART" :key="item.id" :item="item" class="cart-item" />
-                    <h3 v-show="!USER_CART.length" class="text">Cart is empty</h3>
-                    <div class="btn-box">
-                        <my-button 
-                           class="btn clear-btn2" 
-                           @click="clearCart()"
-                           >Clear Cart</my-button>
-                        <my-button class="btn " @click="$router.push(`/`)">Continue Shopping</my-button>
-                    </div>
-                    
+    <div class="cart-box">
+        <div class="wrapper">
+            <div class="item-box">
+                <cart-item v-for="item in USER_CART" :key="item.id" :item="item" class="cart-item" />
+                <h3 v-show="!USER_CART.length" class="text">Cart is empty</h3>
+                <div class="btn-box">
+                    <my-button class="btn clear-btn2" @click="clearCart()">Clear Cart</my-button>
+                    <a href="http://localhost:8080/#ctl">
+                        <my-button class="btn ">Continue Shopping</my-button>
+                    </a>
                 </div>
-                <div class="form-box">
-                    <my-form></my-form>
-                    <notification-comp></notification-comp>
+            </div>
+            <div class="form-box">
+                <my-form></my-form>
+                <notification-comp></notification-comp>
 
-                    <div class="summary">
+                <div class="summary">
 
-                    </div>
                 </div>
             </div>
         </div>
+    </div>
 </template>
 
 <script>
@@ -97,8 +95,7 @@ export default {
    
 
     .item-box, .form-box{
-    
-        display: flex;
+         display: flex;
         flex-direction: column;
         justify-content: space-between;;
         align-items: center;

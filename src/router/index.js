@@ -4,7 +4,6 @@ import Home  from '@/pages/Home'
 import Catalog from '@/pages/Catalog'
 import Cart from '@/pages/Cart'
 
-
 const routes = [
   {
     path: '/',
@@ -18,7 +17,9 @@ const routes = [
   {
     path: '/cart',
    component: Cart
-  }
+  },
+  
+
 ]
 
 const router = createRouter({

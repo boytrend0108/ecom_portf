@@ -193,11 +193,8 @@ export default createStore({
     GET_SEARCH_INPUT({commit},searchInput){
       commit('SET_SEARCH_INPUT',searchInput)
     },
-    GET_BTN_DISABLED(){
-      console.log(document.querySelector(".clear-btn2"))
-      document.querySelector(".clear-btn2").setAttribute("disabled", "disabled")
-      document.querySelector(".clear-btn2").classList.add("disabled");
-      document.querySelector(".clear-btn2").textContent = "Cart is empty";
+    GET_BTN_DISABLED({commit}){  
+       commit('SET_BTN_DISABLED')
     },
     GET_SHOW_NOTIF({commit}){
      commit('SET_SHOW_NOTIF')
@@ -289,9 +286,9 @@ export default createStore({
         localStorage.setItem('cart', b);
         console.log(state.userCart.length)
         if (state.userCart.length === 0) {
-          document.querySelector(".clear-btn").setAttribute("disabled", "disabled")
-          document.querySelector(".clear-btn").classList.add("disabled");
-          document.querySelector(".clear-btn").textContent = "Cart is empty"
+          document.querySelector(".clear-btn2").setAttribute("disabled", "disabled")
+          document.querySelector(".clear-btn2").classList.add("disabled");
+          document.querySelector(".clear-btn2").textContent = "Cart is empty"
         }
       } else {
         findEl.quantity -= 1;
@@ -309,8 +306,7 @@ export default createStore({
       state.totalItems = 0;
       const b = JSON.stringify(state.userCart, null, 4)
       console.log(b)
-      localStorage.setItem('cart', b)
-      
+      localStorage.setItem('cart', b) 
     },
     SET_SEARCH_INPUT(state, searchInput){
       const filtered = state.catalogItems.filter((el)=>
@@ -318,9 +314,12 @@ export default createStore({
       state.filteredCart = filtered;
     },
     SET_BTN_DISABLED(){
-      document.querySelector(".clear-btn").setAttribute("disabled", "disabled")
-      document.querySelector(".clear-btn").classList.add("disabled");
-      document.querySelector(".clear-btn").textContent = "Cart is empty";
+      document.querySelector(".clear-btn2").setAttribute("disabled", "disabled")
+      document.querySelector(".clear-btn2").classList.add("disabled");
+      document.querySelector(".clear-btn2").textContent = "Cart is empty";
+      document.querySelector(".form-btn2").setAttribute("disabled", "disabled")
+      document.querySelector(".form-btn2").classList.add("disabled");
+      document.querySelector(".form-btn2").textContent = "Cart is empty";
     },
     SET_SHOW_NOTIF() {
       document.querySelector('.hidden').style.display = "block"
