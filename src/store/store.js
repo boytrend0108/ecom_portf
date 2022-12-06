@@ -168,7 +168,7 @@ export default createStore({
       }
      
     },
-    DELETE_ITEM({commit},id){
+    DELETE_ITEM({commit,state},id){
       axios.get(`http://localhost:3000/userCart/`+ id)
       .then((item)=>{
         if (item.data.quantity === 1 ){
@@ -176,6 +176,21 @@ export default createStore({
         }else{
           item.data.quantity -= 1;
           axios.put(`http://localhost:3000/userCart/`+ id, item.data)
+        }
+        const findEl = state.userCart.find(el => el.id === id)
+        if (findEl.quantity === 1) {
+          const index = state.userCart.findIndex(el => el.id === id)
+          state.userCart.splice(index, 1)
+          const b = JSON.stringify(state.userCart, null, 4)
+          localStorage.setItem('cart', b);
+          console.log(state.userCart.length)
+          if (state.userCart.length === 0) {
+           commit('SET_BTN_DISABLED')      
+          }
+        } else {
+          findEl.quantity -= 1;
+          const b = JSON.stringify(state.userCart, null, 4)
+          localStorage.setItem('cart', b)
         }
         commit('SET_DELETE_ITEM',id)
       }) 
@@ -278,26 +293,7 @@ export default createStore({
           acc + quantity, 0);
     },
     SET_DELETE_ITEM(state, id) {
-      const findEl = state.userCart.find(el => el.id === id)
-      if (findEl.quantity === 1) {
-        const index = state.userCart.findIndex(el => el.id === id)
-        state.userCart.splice(index, 1)
-        const b = JSON.stringify(state.userCart, null, 4)
-        localStorage.setItem('cart', b);
-        console.log(state.userCart.length)
-        if (state.userCart.length === 0) {
-          document.querySelector(".clear-btn2").setAttribute("disabled", "disabled")
-          document.querySelector(".clear-btn2").classList.add("disabled");
-          document.querySelector(".clear-btn2").textContent = "Cart is empty";
-          document.querySelector(".form-btn2").setAttribute("disabled", "disabled")
-          document.querySelector(".form-btn2").classList.add("disabled");
-          document.querySelector(".form-btn2").textContent = "Cart is empty";
-        }
-      } else {
-        findEl.quantity -= 1;
-        const b = JSON.stringify(state.userCart, null, 4)
-        localStorage.setItem('cart', b)
-      }
+     
       state.totalCartPrice = state.userCart.reduce((acc, { totalPrice }) =>
         acc + totalPrice, 0);
       state.totalItems = state.userCart.reduce((acc, { quantity }) =>
