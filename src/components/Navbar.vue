@@ -11,16 +11,15 @@
                        name="search" 
                        v-model="searchInput"
                        @input="sendSearchInput"
-                       >
-                       
+                       >     
                 </div>
                 <div class="nav-block">
                     <font-awesome-icon class="font-aw " icon="fa-solid fa-bars" @click="SWITCH_SHOW_MENU" />
-                    <font-awesome-icon v-show="isMobile" class="font-aw "  @click="$router.push(`/cart`)" icon="fa-regular fa-user" />
+                    <font-awesome-icon v-show="isMobile" class="font-aw " @click="$router.push('/cart')" icon="fa-regular fa-user" />
                     <div class="icon-cart-wr">
                         <font-awesome-icon v-show="isMobile" @click="SWITCH_SHOW_CART" class="font-aw"
                             icon="fa-solid fa-cart-shopping" />
-                        <span class="item-num">{{TOTAL_CART_ITEMS}}</span>
+                        <span class="item-num">{{TOTAL_CART_ITEMS}} </span>
                     </div>
                 </div>
             </div>

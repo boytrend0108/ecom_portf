@@ -288,7 +288,10 @@ export default createStore({
         if (state.userCart.length === 0) {
           document.querySelector(".clear-btn2").setAttribute("disabled", "disabled")
           document.querySelector(".clear-btn2").classList.add("disabled");
-          document.querySelector(".clear-btn2").textContent = "Cart is empty"
+          document.querySelector(".clear-btn2").textContent = "Cart is empty";
+          document.querySelector(".form-btn2").setAttribute("disabled", "disabled")
+          document.querySelector(".form-btn2").classList.add("disabled");
+          document.querySelector(".form-btn2").textContent = "Cart is empty";
         }
       } else {
         findEl.quantity -= 1;
