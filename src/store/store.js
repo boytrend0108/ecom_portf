@@ -1,3 +1,4 @@
+import { faCommentsDollar } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { createStore } from 'vuex'
 
@@ -184,7 +185,7 @@ export default createStore({
           for (let el of cart.data) {
             axios.delete(`http://localhost:3000/userCart/`+ el.id)
           }})
-        .then(() => {
+        .then(() => {   
           commit('SET_CLEAR_CART')
         })
     },
@@ -296,6 +297,7 @@ export default createStore({
       state.totalCartPrice = 0;
       state.totalItems = 0;
       const b = JSON.stringify(state.userCart, null, 4)
+      console.log(b)
       localStorage.setItem('cart', b)
       
     },

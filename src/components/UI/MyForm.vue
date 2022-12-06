@@ -30,14 +30,18 @@ export default {
 
    methods:{
     ...mapActions([
+        "CLEAR_CART"
     ]),
 
    async sendForm(event){
-   event.preventDefault();
-       console.log(this.USER_CART)
+       event.preventDefault();
        this.formData.cartItem = this.USER_CART;
       await axios.post(`http://localhost:3000/form`, this.formData )
-      .catch((err)=>{alert("Data don't send")})  
+      .catch((err)=>{alert("Data don't send")}) 
+      await this.CLEAR_CART();
+      this.formData.name = '';
+      this.formData.phone = '';
+      this.formData.email = '';
     }
    }
 }
