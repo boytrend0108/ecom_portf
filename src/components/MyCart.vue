@@ -1,4 +1,5 @@
 <template>
+   
 <div class="cart-box">
     <cart-item 
     v-for="item in USER_CART" 
@@ -19,20 +20,26 @@
         <p class="price1" v-show="!USER_CART.length">Cart is empty</p>
     </div>
 </div>
-
+<notification-comp
+     :messages="messages"
+     />
 </template>
 
 <script>
 import CartItem from '@/components/CartItem.vue';
+import NotificationComp from '@/components/notifications/NotificationComp.vue';
 import { mapGetters, mapActions } from 'vuex';
 export default {
-    data(){
-        return{
-           cart: []
+    data() {
+        return {
+            cart: [],
+            messages: [
+                { name: 'notification', id: Date.now().toLocaleString() }
+            ]
         }
     },
     components:{
-        CartItem
+        CartItem, NotificationComp
     },
     computed:{
         ...mapGetters([
@@ -57,6 +64,7 @@ export default {
 
 <style lang="scss" scoped>
 .cart-box{
+    position: absolute;
     width: 400px;
     max-height: 500px;
     overflow: auto;
