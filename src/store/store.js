@@ -332,12 +332,15 @@ export default createStore({
         div.style.display = "block"    
     },
     SET_HIDE_NOTIF(state){
-      document.querySelector('.notification').classList.remove('scale-in-center')
-      document.querySelector('.notification').classList.add('slide-out-elliptic-top-bck')
-      const a = new Promise(res,rej)
-      setTimeout(() => {
-        document.querySelector('.hidden').style.display = "none"
-      }, 500);
+      const a = new Promise((res,rej)=>{
+        document.querySelector('.notification').classList.remove('scale-in-center')
+        document.querySelector('.notification').classList.add('slide-out-elliptic-top-bck')
+       return
+      })
+       
+     
+        
+      //  document.querySelector('.hidden').style.display = "none
        
   }
 
