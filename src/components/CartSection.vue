@@ -6,7 +6,7 @@
                     <h3 v-show="!USER_CART.length" class="text">Cart is empty</h3>
                     <div class="btn-box">
                         <my-button 
-                           class="btn clear-btn" 
+                           class="btn clear-btn2" 
                            @click="clearCart()"
                            >Clear Cart</my-button>
                         <my-button class="btn " @click="$router.push(`/`)">Continue Shopping</my-button>
@@ -57,7 +57,7 @@ export default {
         ]),
         clearCart() {
             this.CLEAR_CART();
-            this.getBtnDisabled()         
+            this.GET_BTN_DISABLED()         
         }
 
     },

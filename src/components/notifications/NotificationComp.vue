@@ -19,7 +19,6 @@ export default {
 
    computed:{
        ...mapGetters([
-        'SHOW_NOTIF'
        ])
    },
 
@@ -62,8 +61,8 @@ export default {
 }
 
 .scale-in-center {
-	-webkit-animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	-webkit-animation: scale-in-center 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: scale-in-center 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 
 @-webkit-keyframes scale-in-center {
   0% {

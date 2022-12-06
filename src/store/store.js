@@ -18,7 +18,6 @@ export default createStore({
     slideCart: "", // this change classes for cart animation
     showCart: false,
     searchInput: '',
-    showNotif: ''
   },
   getters: {// this is a commands for getting our json arrays
     CATEGORY(state) {
@@ -62,10 +61,7 @@ export default createStore({
     },
     FILTERED_CART(state){
       return state.filteredCart;
-    },
-      SHOW_NOTIF(state){
-        return state.showNotif;
-      }
+    }
   },
 
   actions: {// actions are asinc(methods in Component)
@@ -198,9 +194,10 @@ export default createStore({
       commit('SET_SEARCH_INPUT',searchInput)
     },
     GET_BTN_DISABLED(){
-      document.querySelector(".clear-btn").setAttribute("disabled", "disabled")
-      document.querySelector(".clear-btn").classList.add("disabled");
-      document.querySelector(".clear-btn").textContent = "Cart is empty";
+      console.log(document.querySelector(".clear-btn2"))
+      document.querySelector(".clear-btn2").setAttribute("disabled", "disabled")
+      document.querySelector(".clear-btn2").classList.add("disabled");
+      document.querySelector(".clear-btn2").textContent = "Cart is empty";
     },
     GET_SHOW_NOTIF({commit}){
      commit('SET_SHOW_NOTIF')
@@ -325,23 +322,14 @@ export default createStore({
       document.querySelector(".clear-btn").classList.add("disabled");
       document.querySelector(".clear-btn").textContent = "Cart is empty";
     },
-    SET_SHOW_NOTIF(state){
-        const div = document.querySelector('.hidden')
-        document.querySelector('.notification').classList.remove('slide-out-elliptic-top-bck')
-        document.querySelector('.notification').classList.add('scale-in-center')
-        div.style.display = "block"    
+    SET_SHOW_NOTIF() {
+      document.querySelector('.hidden').style.display = "block"
+      document.querySelector('.notification').classList.remove('slide-out-elliptic-top-bck')
+      document.querySelector('.notification').classList.add('scale-in-center')
     },
-    SET_HIDE_NOTIF(state){
-      const a = new Promise((res,rej)=>{
-        document.querySelector('.notification').classList.remove('scale-in-center')
-        document.querySelector('.notification').classList.add('slide-out-elliptic-top-bck')
-       return
-      })
-       
-     
-        
-      //  document.querySelector('.hidden').style.display = "none
-       
+    SET_HIDE_NOTIF(){
+      document.querySelector('.notification').classList.remove('scale-in-center')
+      document.querySelector('.notification').classList.add('slide-out-elliptic-top-bck')
   }
 
   },
