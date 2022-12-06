@@ -15,6 +15,8 @@
                 </div>
                 <div class="form-box">
                     <my-form></my-form>
+                    <notification-comp></notification-comp>
+
                     <div class="summary">
 
                     </div>
@@ -25,6 +27,7 @@
 
 <script>
 import CartItem from '@/components/CartItem.vue'
+import NotificationComp from '@/components/notifications/NotificationComp.vue';
 import { mapGetters, mapActions} from "vuex";
 
 export default {
@@ -36,7 +39,7 @@ export default {
     },
 
     components:{
-        CartItem
+        CartItem, NotificationComp
     },
 
     computed: {
@@ -74,7 +77,6 @@ export default {
         if (this.localStorage.length === 0){
            this.GET_BTN_DISABLED();
         }
-        console.log(this.localStorage.length)    
     },
   
 }

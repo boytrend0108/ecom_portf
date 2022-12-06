@@ -5,6 +5,7 @@
     <input type="email" class="form-input" placeholder="Your email" required v-model="formData.email">
     <my-button class="btn" type="submit" @click="sendForm ">Send an order</my-button>
 </form>
+
 </template>
 
 <script>
@@ -28,22 +29,23 @@ export default {
         ])
     },
 
-   methods:{
-    ...mapActions([
-        "CLEAR_CART"
-    ]),
+    methods: {
+        ...mapActions([
+            "CLEAR_CART","GET_SHOW_NOTIF"
+        ]),
 
-   async sendForm(event){
-       event.preventDefault();
-       this.formData.cartItem = this.USER_CART;
-      await axios.post(`http://localhost:3000/form`, this.formData )
-      .catch((err)=>{alert("Data don't send")}) 
-      await this.CLEAR_CART();
-      this.formData.name = '';
-      this.formData.phone = '';
-      this.formData.email = '';
+        async sendForm(event) {
+            // event.preventDefault();
+            this.formData.cartItem = this.USER_CART;
+            await axios.post(`http://localhost:3000/form`, this.formData)
+                .catch((err) => { alert("Data don't send") })
+            await this.CLEAR_CART();
+            this.GET_SHOW_NOTIF();
+            this.formData.name = '';
+            this.formData.phone = '';
+            this.formData.email = '';
+        }
     }
-   }
 }
 </script>
 

@@ -17,7 +17,8 @@ export default createStore({
     slideMenu: "", // this change classes for menu animation
     slideCart: "", // this change classes for cart animation
     showCart: false,
-    searchInput: ''
+    searchInput: '',
+    showNotif: ''
   },
   getters: {// this is a commands for getting our json arrays
     CATEGORY(state) {
@@ -61,8 +62,12 @@ export default createStore({
     },
     FILTERED_CART(state){
       return state.filteredCart;
-    }
+    },
+      SHOW_NOTIF(state){
+        return state.showNotif;
+      }
   },
+
   actions: {// actions are asinc(methods in Component)
     GET_CATEGORY({ commit }) {
       return axios('http://localhost:3000/category', {
@@ -196,7 +201,16 @@ export default createStore({
       document.querySelector(".clear-btn").setAttribute("disabled", "disabled")
       document.querySelector(".clear-btn").classList.add("disabled");
       document.querySelector(".clear-btn").textContent = "Cart is empty";
+    },
+    GET_SHOW_NOTIF({commit}){
+     commit('SET_SHOW_NOTIF')
+    },
+     HIDE_SHOW_NOTIF({ commit, state }) {
+        
+        commit('SET_HIDE_NOTIF')
     }
+  
+  
   },
 
   mutations: {// to change data in state
@@ -310,7 +324,23 @@ export default createStore({
       document.querySelector(".clear-btn").setAttribute("disabled", "disabled")
       document.querySelector(".clear-btn").classList.add("disabled");
       document.querySelector(".clear-btn").textContent = "Cart is empty";
-    }
+    },
+    SET_SHOW_NOTIF(state){
+        const div = document.querySelector('.hidden')
+        document.querySelector('.notification').classList.remove('slide-out-elliptic-top-bck')
+        document.querySelector('.notification').classList.add('scale-in-center')
+        div.style.display = "block"    
+    },
+    SET_HIDE_NOTIF(state){
+      document.querySelector('.notification').classList.remove('scale-in-center')
+      document.querySelector('.notification').classList.add('slide-out-elliptic-top-bck')
+      const a = new Promise(res,rej)
+      setTimeout(() => {
+        document.querySelector('.hidden').style.display = "none"
+      }, 500);
+       
+  }
+
   },
 
   modules: {
