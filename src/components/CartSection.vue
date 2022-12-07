@@ -63,9 +63,9 @@ export default {
         localStorage(){
             if(this.localStorage.length > 0){
                 this.showBnt = true
-            console.log(this.showBnt)}else{
+         }else{
                 this.showBnt = false;
-                console.log(this.showBnt)
+           
             }         
         }
     },

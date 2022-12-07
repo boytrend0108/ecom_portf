@@ -1,6 +1,12 @@
 <template>
 <form id="formId" action="#" class="cart-form">SHIPPING ADRESS
-    <input type="text" class="form-input" placeholder="Your name"  v-model="formData.name" required>
+    <input 
+    type="text" 
+    class="form-input" 
+    placeholder="Your name"  
+    v-model="formData.name"
+    @input="validator"
+    required>
     <input type="text" class="form-input" placeholder="Your phone"  v-model="formData.phone" required>
     <input type="email" class="form-input" placeholder="Your email"  v-model="formData.email" required>
     <my-button class="btn form-btn2" type="submit" @click="sendForm ">Send an order</my-button>
@@ -20,10 +26,10 @@ export default {
                 phone: "",
                 email: ""
             },
-            paterns:{
-                name: /^[a-zа-яё]+$/i,  // Имя содержит только буквы.
-                phone:/^\+7\(\d{3}\)\d{3}-\d{4}$/,
-                email: /^[\w._-]+@\w+\.[a-z]{2,4}$/i // E-mail выглядит как mymail@mail.ru, или my.mail@mail.ru, или my-mail@mail.ru // Телефон имеет вид +7(000)000-0000.
+            reg:{
+                name: new RegExp("^[a-zа-яё]+$"),  // Имя содержит только буквы.
+                phone: new RegExp(/^\+7\(\d{3}\)\d{3}-\d{4}$/),
+                email: new RegExp(/^[\w._-]+@\w+\.[a-z]{2,4}$/i) // E-mail выглядит как mymail@mail.ru, или my.mail@mail.ru, или my-mail@mail.ru // Телефон имеет вид +7(000)000-0000.
             },
             errors:{
                 name:'Введите имя правильно',
@@ -46,24 +52,19 @@ export default {
         ]),
 
         validator() {
-            if (this.formData.name === "" || this.formData.name !== this.paterns.name) {
-                this.A_CHANGE_NOTIF_MDG(this.errors.name);
-                this.GET_SHOW_NOTIF();
-                return false
+            console.log(this.formData.name)
+            if (this.reg.name.test(this.formData.name)) {
+              console.log('true')
+            } else if
+                (this.reg.phone.test(this.phone)) {
+                    console.log('false')
+            } else if
+                (this.reg.email.test(this.email)) {
+                    console.log('false')
+            } else {
+                console.log('false')
             }
-            if (this.formData.phone === "" || this.formData.phone !== this.paterns.phone) {
-                this.A_CHANGE_NOTIF_MDG(this.errors.phone);
-                this.GET_SHOW_NOTIF();
-                return false
-            }
-            if (this.formData.email === "" || this.formData.email !== this.paterns.email) {
-                this.A_CHANGE_NOTIF_MDG(this.errors.email);
-                this.GET_SHOW_NOTIF();
-                return false
-            }else{
-                return true
-            }
-           
+
         },
 
         async sendForm(event) {
@@ -80,6 +81,10 @@ export default {
                 this.formData.email = '';
             } return
         }
+    },
+
+    mounted(){
+   
     }
 }
 </script>
