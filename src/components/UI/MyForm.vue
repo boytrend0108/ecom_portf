@@ -90,20 +90,24 @@ export default {
             } else {
                 document.querySelector("#email").style.border = '3px solid #FF6A6A'
             }
-            
-            if(this.reg.name.test(this.formData.name) &&
-               this.reg.phone.test(this.formData.phone) &&
-               this.reg.email.test(this.formData.email) === true){
-               console.log("Form is valide")
-               document.querySelector(".form-btn2").removeAttribute("disabled", "disabled")
-               document.querySelector(".form-btn2").classList.remove("disabled");
-               document.querySelector(".form-btn2").textContent = "Send an order";
-               return true
+
+            if (this.reg.name.test(this.formData.name) &&
+                this.reg.phone.test(this.formData.phone) &&
+                this.reg.email.test(this.formData.email) === true) {
+                console.log("Form is valide")
+                if (this.USER_CART.length > 0) {
+                    document.querySelector(".form-btn2").removeAttribute("disabled", "disabled")
+                    document.querySelector(".form-btn2").classList.remove("disabled");
+                    document.querySelector(".form-btn2").textContent = "Send an order";
+                }else{
+                    document.querySelector(".form-btn2").textContent = "Cart is empty"
+                }
+                return true
             } console.log('form is ivalide')
-               document.querySelector('.form-btn2').setAttribute("disabled", "disabled")
-               document.querySelector(".form-btn2").classList.add("disabled");
-               document.querySelector(".form-btn2").textContent = "Invalide input";
-                return false
+            document.querySelector('.form-btn2').setAttribute("disabled", "disabled")
+            document.querySelector(".form-btn2").classList.add("disabled");
+            document.querySelector(".form-btn2").textContent = "Invalide input";
+            return false
         },
 
         async sendForm(event) {
