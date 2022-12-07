@@ -1,20 +1,41 @@
 <template>
 <form id="formId" action="#" class="cart-form">SHIPPING ADRESS
     <input 
+    id="name"
     type="text" 
     class="form-input" 
     placeholder="Your name"  
     v-model="formData.name"
     @input="validator"
     required>
-    <input type="text" class="form-input" placeholder="Your phone"  v-model="formData.phone" required>
-    <input type="email" class="form-input" placeholder="Your email"  v-model="formData.email" required>
+    <p class="lable">Only letters</p>
+    <input 
+    id="phone"
+    type="text" 
+    class="form-input" 
+    placeholder="Your phone"  
+    v-model="formData.phone" 
+    required
+    @input="validator"
+    >
+    <p class="lable">+7(000)000-0000</p>
+    <input 
+    id="email"
+    type="email" 
+    class="form-input" 
+    placeholder="Your email"  
+    v-model="formData.email" 
+    required
+    @input="validator"
+    >
+    <p class="lable">mymail@mail.ru</p>
     <my-button class="btn form-btn2" type="submit" @click="sendForm ">Send an order</my-button>
 </form>
 
 </template>
 
 <script>
+import { faL } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { mapActions, mapGetters } from 'vuex';
 export default {
@@ -27,9 +48,9 @@ export default {
                 email: ""
             },
             reg:{
-                name: new RegExp("^[a-zа-яё]+$"),  // Имя содержит только буквы.
-                phone: new RegExp(/^\+7\(\d{3}\)\d{3}-\d{4}$/),
-                email: new RegExp(/^[\w._-]+@\w+\.[a-z]{2,4}$/i) // E-mail выглядит как mymail@mail.ru, или my.mail@mail.ru, или my-mail@mail.ru // Телефон имеет вид +7(000)000-0000.
+                name: /^[a-zа-яё]+$/i,
+                phone: /^\+7\(\d{3}\)\d{3}-\d{4}$/,
+                email: /^[\w._-]+@\w+\.[a-z]{2,4}$/i // E-mail выглядит как mymail@mail.ru, или my.mail@mail.ru, или my-mail@mail.ru // Телефон имеет вид +7(000)000-0000.
             },
             errors:{
                 name:'Введите имя правильно',
@@ -52,19 +73,31 @@ export default {
         ]),
 
         validator() {
-            console.log(this.formData.name)
             if (this.reg.name.test(this.formData.name)) {
-              console.log('true')
-            } else if
-                (this.reg.phone.test(this.phone)) {
-                    console.log('false')
-            } else if
-                (this.reg.email.test(this.email)) {
-                    console.log('false')
+                document.querySelector("#name").style.border = '3px solid green'
             } else {
-                console.log('false')
-            }
+                document.querySelector("#name").style.border = '3px solid #FF6A6A'
+            };
 
+            if (this.reg.phone.test(this.formData.phone)) {
+                document.querySelector("#phone").style.border = '3px solid green'
+            } else {
+                document.querySelector("#phone").style.border = '3px solid #FF6A6A'
+            };
+
+            if (this.reg.email.test(this.formData.email)) {
+                document.querySelector("#email").style.border = '3px solid green'
+            } else {
+                document.querySelector("#email").style.border = '3px solid #FF6A6A'
+            }
+            
+            if(this.reg.name.test(this.formData.name) &&
+               this.reg.phone.test(this.formData.phone) &&
+               this.reg.email.test(this.formData.email) === true){
+               console.log("true")
+               return true
+            } console.log('false')
+                return false
         },
 
         async sendForm(event) {
@@ -102,6 +135,7 @@ export default {
     padding: 0 10px;
     height: 45px;
     width: 360px;
+    outline:none;
 }
 
 .btn{
@@ -114,5 +148,8 @@ export default {
     background-color: gray !important;
     border: none !important;
     color: aliceblue !important;
+}
+.lable{
+    color: gray;
 }
 </style>
