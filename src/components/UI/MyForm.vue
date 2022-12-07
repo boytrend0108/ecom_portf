@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { faL } from '@fortawesome/free-solid-svg-icons';
+
 import axios from 'axios';
 import { mapActions, mapGetters } from 'vuex';
 export default {
@@ -94,9 +94,15 @@ export default {
             if(this.reg.name.test(this.formData.name) &&
                this.reg.phone.test(this.formData.phone) &&
                this.reg.email.test(this.formData.email) === true){
-               console.log("true")
+               console.log("Form is valide")
+               document.querySelector(".form-btn2").removeAttribute("disabled", "disabled")
+               document.querySelector(".form-btn2").classList.remove("disabled");
+               document.querySelector(".form-btn2").textContent = "Send an order";
                return true
-            } console.log('false')
+            } console.log('form is ivalide')
+               document.querySelector('.form-btn2').setAttribute("disabled", "disabled")
+               document.querySelector(".form-btn2").classList.add("disabled");
+               document.querySelector(".form-btn2").textContent = "Invalide input";
                 return false
         },
 
