@@ -27,7 +27,7 @@ import { mapGetters, mapActions} from "vuex";
 export default {
     data() {
         return {
-          localStorage: JSON.parse(localStorage.getItem('cart')),
+        localStorage: [],
           showBnt: false
         }
     },
@@ -47,11 +47,14 @@ export default {
 
     methods: {
         ...mapActions([
-            'CLEAR_CART', 'GET_USER_CART', 'GET_BTN_DISABLED'
+            'CLEAR_CART', 'GET_USER_CART', 'GET_BTN_DISABLED','A_SET_BTN_ABLED'
         ]),
         clearCart() {
             this.CLEAR_CART();
             this.GET_BTN_DISABLED()         
+        },
+        getLocalStorage(){
+            this.localStorage = JSON.parse(localStorage.getItem('cart'))
         }
 
     },
@@ -67,11 +70,23 @@ export default {
         }
     },
 
+    updated(){
+        this.getLocalStorage();
+        if (this.localStorage.length === 0){
+           this.GET_BTN_DISABLED();
+        }else{
+            this.A_SET_BTN_ABLED()
+        }
+
+    },
+
     mounted() {
-        console.log(this.USER_CART)
-        // if (this.localStorage.length === 0){
-        //    this.GET_BTN_DISABLED();
-        // }
+        this.getLocalStorage();     
+        if (this.localStorage.length === 0){
+           this.GET_BTN_DISABLED();
+        }else{
+            this.A_SET_BTN_ABLED()
+        }
     },
   
 }

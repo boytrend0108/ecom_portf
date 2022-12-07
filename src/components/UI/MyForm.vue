@@ -26,7 +26,7 @@ export default {
                 email: /^[\w._-]+@\w+\.[a-z]{2,4}$/i // E-mail выглядит как mymail@mail.ru, или my.mail@mail.ru, или my-mail@mail.ru // Телефон имеет вид +7(000)000-0000.
             },
             errors:{
-                name:'Имя содержит только буквы',
+                name:'Введите имя правильно',
                 phone:'Телефон подчиняется шаблону +7(000)000-0000',
                 email: 'E-mail выглядит как mymail@mail.ru, или my.mail@mail.ru, или my-mail@mail.ru'
             }
@@ -36,29 +36,49 @@ export default {
    
     computed:{
         ...mapGetters([
-            'USER_CART'
+            'USER_CART','NOTIF_MDG'
         ])
     },
 
     methods: {
         ...mapActions([
-            "CLEAR_CART","GET_SHOW_NOTIF",'GET_BTN_DISABLED'
+            "CLEAR_CART","GET_SHOW_NOTIF",'GET_BTN_DISABLED','A_CHANGE_NOTIF_MDG'
         ]),
 
-        async sendForm(event) {
-            if (this.formData.name !== this.paterns.name){
-                console.log(this.errors.name)
+        validator() {
+            if (this.formData.name === "" || this.formData.name !== this.paterns.name) {
+                this.A_CHANGE_NOTIF_MDG(this.errors.name);
+                this.GET_SHOW_NOTIF();
+                return false
             }
-            event.preventDefault();
-            this.formData.cartItem = this.USER_CART;
-            await axios.post(`http://localhost:3000/form`, this.formData)
-                .catch((err) => { alert("Data don't send") })
-            await this.CLEAR_CART();
-            this.GET_SHOW_NOTIF();
-            this.GET_BTN_DISABLED()
-            this.formData.name = '';
-            this.formData.phone = '';
-            this.formData.email = '';
+            if (this.formData.phone === "" || this.formData.phone !== this.paterns.phone) {
+                this.A_CHANGE_NOTIF_MDG(this.errors.phone);
+                this.GET_SHOW_NOTIF();
+                return false
+            }
+            if (this.formData.email === "" || this.formData.email !== this.paterns.email) {
+                this.A_CHANGE_NOTIF_MDG(this.errors.email);
+                this.GET_SHOW_NOTIF();
+                return false
+            }else{
+                return true
+            }
+           
+        },
+
+        async sendForm(event) {
+            if (this.validator()) {
+                event.preventDefault();
+                this.formData.cartItem = this.USER_CART;
+                await axios.post(`http://localhost:3000/form`, this.formData)
+                    .catch((err) => { alert("Data don't send") })
+                await this.CLEAR_CART();
+                this.GET_SHOW_NOTIF();
+                this.GET_BTN_DISABLED()
+                this.formData.name = '';
+                this.formData.phone = '';
+                this.formData.email = '';
+            } return
         }
     }
 }

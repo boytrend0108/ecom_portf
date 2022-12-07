@@ -2,7 +2,7 @@
     <div class="hidden">
         <div class="notification">
             <font-awesome-icon icon="fa-regular fa-circle-xmark" @click="HIDE_SHOW_NOTIF" />
-            <h2 class="notif-title">Order had been sent</h2>
+            <h2 class="notif-title">{{NOTIF_MSG}}</h2>
         </div>
     </div>
 </template>
@@ -19,6 +19,7 @@ export default {
 
    computed:{
        ...mapGetters([
+        'NOTIF_MSG'
        ])
    },
 
