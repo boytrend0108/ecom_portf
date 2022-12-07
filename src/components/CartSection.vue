@@ -114,6 +114,7 @@ export default {
         min-height: 310px;
         min-width: 400px;
         padding: 20px;
+        position: relative;
     }
 
     .cart-item{

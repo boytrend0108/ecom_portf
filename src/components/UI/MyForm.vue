@@ -50,14 +50,8 @@ export default {
             reg:{
                 name: /^[a-zа-яё]+$/i,
                 phone: /^\+7\(\d{3}\)\d{3}-\d{4}$/,
-                email: /^[\w._-]+@\w+\.[a-z]{2,4}$/i // E-mail выглядит как mymail@mail.ru, или my.mail@mail.ru, или my-mail@mail.ru // Телефон имеет вид +7(000)000-0000.
+                email: /^[\w._-]+@\w+\.[a-z]{2,4}$/i 
             },
-            errors:{
-                name:'Введите имя правильно',
-                phone:'Телефон подчиняется шаблону +7(000)000-0000',
-                email: 'E-mail выглядит как mymail@mail.ru, или my.mail@mail.ru, или my-mail@mail.ru'
-            }
-
         }
     },
    
@@ -69,7 +63,8 @@ export default {
 
     methods: {
         ...mapActions([
-            "CLEAR_CART","GET_SHOW_NOTIF",'GET_BTN_DISABLED','A_CHANGE_NOTIF_MDG'
+            "CLEAR_CART","GET_SHOW_NOTIF",'GET_BTN_DISABLED',
+            'A_CHANGE_NOTIF_MDG','A_RESET_INPUT_COLOR'
         ]),
 
         validator() {
@@ -118,7 +113,8 @@ export default {
                     .catch((err) => { alert("Data don't send") })
                 await this.CLEAR_CART();
                 this.GET_SHOW_NOTIF();
-                this.GET_BTN_DISABLED()
+                this.GET_BTN_DISABLED();
+                this.A_RESET_INPUT_COLOR();
                 this.formData.name = '';
                 this.formData.phone = '';
                 this.formData.email = '';
@@ -137,6 +133,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: left;
+   
 
 }
 

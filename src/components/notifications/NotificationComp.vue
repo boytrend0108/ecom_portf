@@ -35,13 +35,13 @@ export default {
 .notification {
     // display: none;
     position: absolute;
-    top: 228px;
-    right: 60px;
+    top: 43px;
+    right: 19px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 4px;
-    height: 176px;
+    height: 220px;
     width: 362px;
     background-color: #F16D7F;
     .notif-title {
@@ -49,7 +49,7 @@ export default {
     }
         .fa-circle-xmark {
             position: relative;
-            top: -64px;
+            top: -80px;
             right: -260px;
             font-size: 30px;
             cursor: pointer;

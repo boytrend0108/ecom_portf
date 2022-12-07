@@ -236,6 +236,11 @@ export default createStore({
     },
     A_GET_LOCAL_STORAGE({commit}){
       commit('M_GET_LOCAL_STORAGE')
+  },
+   A_RESET_INPUT_COLOR(){
+    document.querySelector("#name").style.border = '1px solid gray';
+    document.querySelector("#phone").style.border = '1px solid gray';
+    document.querySelector("#email").style.border = '1px solid gray';
   }
   
   
