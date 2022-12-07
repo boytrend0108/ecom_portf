@@ -1,5 +1,4 @@
 <template>
-    <a name="ctl"></a>
 <div  class="wrapper wr-cat">
     <div class="catalor_title-box">
         <h2 class="catalog__title">Fetured Items</h2>

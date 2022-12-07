@@ -68,9 +68,10 @@ export default {
     },
 
     mounted() {
-        if (this.localStorage.length === 0){
-           this.GET_BTN_DISABLED();
-        }
+        console.log(this.USER_CART)
+        // if (this.localStorage.length === 0){
+        //    this.GET_BTN_DISABLED();
+        // }
     },
   
 }

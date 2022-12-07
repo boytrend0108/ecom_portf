@@ -19,11 +19,12 @@ export default{
   },
   methods: {
     ...mapActions([
-      "SWITCH_MOBILE","SWITCH_TABLET"
+      "SWITCH_MOBILE","SWITCH_TABLET","A_POST_USER_CART_TO_LOCALSTORAGE"
     ])
   },
 
   mounted(){
+    this.A_POST_USER_CART_TO_LOCALSTORAGE()
     const vm = this;
     window.addEventListener('resize', ()=>{
       if (window.innerWidth > 425 ){

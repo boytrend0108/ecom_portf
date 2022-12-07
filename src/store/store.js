@@ -217,6 +217,9 @@ export default createStore({
      HIDE_SHOW_NOTIF({ commit, state }) {
         
         commit('SET_HIDE_NOTIF')
+    },
+    A_POST_USER_CART_TO_LOCALSTORAGE({commit}){
+     commit('M_POST_USER_CART_TO_LOCALSTORAGE') 
     }
   
   
@@ -328,6 +331,10 @@ export default createStore({
     SET_HIDE_NOTIF(){
       document.querySelector('.notification').classList.remove('scale-in-center')
       document.querySelector('.notification').classList.add('slide-out-elliptic-top-bck')
+  },
+  M_POST_USER_CART_TO_LOCALSTORAGE(state){
+    const b = JSON.stringify(state.userCart, null, 4)
+    localStorage.setItem('cart', b)
   }
 
   },
