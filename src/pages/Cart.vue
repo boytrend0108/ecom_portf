@@ -1,11 +1,11 @@
 <template>
-    <main>
-        <header-mini class="cart-header"></header-mini>
-        <cart-section/>
-        <advantage-comp/>
-        <subscribe-comp/>
-        <footer-comp/>
-    </main>
+  <main>
+    <header-mini class="cart-header"></header-mini>
+    <cart-section />
+    <advantage-comp />
+    <subscribe-comp />
+    <footer-comp />
+  </main>
 </template>
 
 <script>
@@ -16,15 +16,14 @@ import FooterComp from "@/components/FooterComp.vue"
 import CartSection from "@/components/CartSection.vue"
 
 export default {
-    components:{
-        HeaderMini, AdvantageComp, SubscribeComp, FooterComp, CartSection
-    },
-   
+  components: {
+    HeaderMini, AdvantageComp, SubscribeComp, FooterComp, CartSection
+  },
+
 
 }
 </script>
 
 <style lang="scss" scoped>
-
 
 </style>

@@ -5,7 +5,6 @@ import store from '@/store/store'
 import axios from 'axios'
 import "@/assets/styles/styles.scss"
 
-
 const app =  createApp(App)
 
 /* import the fontawesome core */
