@@ -1,6 +1,6 @@
 <template>
     <div class="cart-item__box slide-in-blurred-right"  >
-        <img :src="require('@/assets/img/catalog/' + item.itemImg)" alt="img" class="cart-img">
+        <img :src="require ('@/assets/img/catalog/' + item.itemImg)" alt="img" class="cart-img">
         <div class="cart-item__descr">
             <h2 class="title">{{ item.itemTitle }} </h2>
             <p class="text">Price {{item.itemPrice}} $</p>

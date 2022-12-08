@@ -1,42 +1,39 @@
 <template>
-     <div class="cart-box">
-            <div class="wrapper">
-                <div class="item-box">
-                    <cart-item v-for="item in USER_CART" :key="item.id" :item="item" class="cart-item" />
-                    <h3 v-show="!USER_CART.length" class="text">Cart is empty</h3>
-                    <div class="btn-box">
-                        <my-button 
-                           class="btn clear-btn" 
-                           @click="clearCart()"
-                           >Clear Cart</my-button>
-                        <my-button class="btn " @click="$router.push(`/`)">Continue Shopping</my-button>
-                    </div>
-                    
+    <div class="cart-box">
+        <div class="wrapper">
+            <div class="item-box">
+                <cart-item v-for="item in USER_CART" :key="item.id" :item="item" class="cart-item" />
+                <h3 v-show="!USER_CART.length" class="text">Cart is empty</h3>
+                <div class="btn-box">
+                    <my-button class="btn clear-btn2" @click="clearCart">Clear Cart</my-button>
+                    <my-button class="btn" @click="$router.push('/')">Continue Shopping</my-button>
                 </div>
-                <div class="form-box">
-                    <my-form></my-form>
-                    <div class="summary">
-
-                    </div>
+            </div>
+            <div class="form-box">
+                <my-form></my-form>
+                <notification-comp></notification-comp>
+                <div class="summary">
                 </div>
             </div>
         </div>
+    </div>
 </template>
 
 <script>
 import CartItem from '@/components/CartItem.vue'
+import NotificationComp from '@/components/notifications/NotificationComp.vue';
 import { mapGetters, mapActions} from "vuex";
 
 export default {
     data() {
         return {
-          localStorage: JSON.parse(localStorage.getItem('cart')),
+        localStorage: [],
           showBnt: false
         }
     },
 
     components:{
-        CartItem
+        CartItem, NotificationComp
     },
 
     computed: {
@@ -50,11 +47,14 @@ export default {
 
     methods: {
         ...mapActions([
-            'CLEAR_CART', 'GET_USER_CART', 'GET_BTN_DISABLED'
+            'CLEAR_CART', 'GET_USER_CART', 'GET_BTN_DISABLED','A_SET_BTN_ABLED'
         ]),
         clearCart() {
             this.CLEAR_CART();
-            this.getBtnDisabled()         
+            this.GET_BTN_DISABLED()         
+        },
+        getLocalStorage(){
+            this.localStorage = JSON.parse(localStorage.getItem('cart'))
         }
 
     },
@@ -63,18 +63,30 @@ export default {
         localStorage(){
             if(this.localStorage.length > 0){
                 this.showBnt = true
-            console.log(this.showBnt)}else{
+         }else{
                 this.showBnt = false;
-                console.log(this.showBnt)
+           
             }         
         }
     },
 
-    mounted() {
+    updated(){
+        this.getLocalStorage();
         if (this.localStorage.length === 0){
            this.GET_BTN_DISABLED();
+        }else{
+            this.A_SET_BTN_ABLED()
         }
-        console.log(this.localStorage.length)    
+
+    },
+
+    mounted() {
+        this.getLocalStorage();     
+        if (this.localStorage.length === 0){
+           this.GET_BTN_DISABLED();
+        }else{
+            this.A_SET_BTN_ABLED()
+        }
     },
   
 }
@@ -95,14 +107,14 @@ export default {
    
 
     .item-box, .form-box{
-    
-        display: flex;
+         display: flex;
         flex-direction: column;
         justify-content: space-between;;
         align-items: center;
         min-height: 310px;
         min-width: 400px;
         padding: 20px;
+        position: relative;
     }
 
     .cart-item{

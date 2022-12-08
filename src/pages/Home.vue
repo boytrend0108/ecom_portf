@@ -2,7 +2,7 @@
   <main>
    <header-comp/>
    <category-comp/>
-   <catalog-comp/>
+   <catalog-comp id="ctl" />
    <advantage-comp/>
    <subscribe-comp/>
    <footer-comp/>

@@ -4,7 +4,6 @@ import Home  from '@/pages/Home'
 import Catalog from '@/pages/Catalog'
 import Cart from '@/pages/Cart'
 
-
 const routes = [
   {
     path: '/',
@@ -18,12 +17,21 @@ const routes = [
   {
     path: '/cart',
    component: Cart
-  }
+  },
+  
+
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
+    }
+  }
 })
 
 export default router

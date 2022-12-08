@@ -17,7 +17,9 @@ export default createStore({
     slideMenu: "", // this change classes for menu animation
     slideCart: "", // this change classes for cart animation
     showCart: false,
-    searchInput: ''
+    searchInput: '',
+    notif_msg:'',
+    localStorage:[]
   },
   getters: {// this is a commands for getting our json arrays
     CATEGORY(state) {
@@ -61,8 +63,14 @@ export default createStore({
     },
     FILTERED_CART(state){
       return state.filteredCart;
-    }
+    },
+    NOTIF_MSG(state){
+      return state.notif_msg;
+    },
+   
+
   },
+
   actions: {// actions are asinc(methods in Component)
     GET_CATEGORY({ commit }) {
       return axios('http://localhost:3000/category', {
@@ -167,7 +175,7 @@ export default createStore({
       }
      
     },
-    DELETE_ITEM({commit},id){
+    DELETE_ITEM({commit,state},id){
       axios.get(`http://localhost:3000/userCart/`+ id)
       .then((item)=>{
         if (item.data.quantity === 1 ){
@@ -175,6 +183,21 @@ export default createStore({
         }else{
           item.data.quantity -= 1;
           axios.put(`http://localhost:3000/userCart/`+ id, item.data)
+        }
+        const findEl = state.userCart.find(el => el.id === id)
+        if (findEl.quantity === 1) {
+          const index = state.userCart.findIndex(el => el.id === id)
+          state.userCart.splice(index, 1)
+          const b = JSON.stringify(state.userCart, null, 4)
+          localStorage.setItem('cart', b);
+          console.log(state.userCart.length)
+          if (state.userCart.length === 0) {
+           commit('SET_BTN_DISABLED')      
+          }
+        } else {
+          findEl.quantity -= 1;
+          const b = JSON.stringify(state.userCart, null, 4)
+          localStorage.setItem('cart', b)
         }
         commit('SET_DELETE_ITEM',id)
       }) 
@@ -192,11 +215,35 @@ export default createStore({
     GET_SEARCH_INPUT({commit},searchInput){
       commit('SET_SEARCH_INPUT',searchInput)
     },
-    GET_BTN_DISABLED(){
-      document.querySelector(".clear-btn").setAttribute("disabled", "disabled")
-      document.querySelector(".clear-btn").classList.add("disabled");
-      document.querySelector(".clear-btn").textContent = "Cart is empty";
-    }
+    GET_BTN_DISABLED({commit}){  
+       commit('SET_BTN_DISABLED')
+    },
+    A_SET_BTN_ABLED({commit}){  
+      commit('M_SET_BTN_ABLED')
+   },
+    GET_SHOW_NOTIF({commit}){
+     commit('SET_SHOW_NOTIF')
+    },
+    HIDE_SHOW_NOTIF({ commit, state }) {
+        
+        commit('SET_HIDE_NOTIF')
+    },
+    A_POST_USER_CART_TO_LOCALSTORAGE({commit}){
+     commit('M_POST_USER_CART_TO_LOCALSTORAGE') 
+    },
+    A_CHANGE_NOTIF_MDG({commit}, msg){
+      commit('M_CHANGE_NOTIF_MSG', msg)
+    },
+    A_GET_LOCAL_STORAGE({commit}){
+      commit('M_GET_LOCAL_STORAGE')
+  },
+   A_RESET_INPUT_COLOR(){
+    document.querySelector("#name").style.border = '1px solid gray';
+    document.querySelector("#phone").style.border = '1px solid gray';
+    document.querySelector("#email").style.border = '1px solid gray';
+  }
+  
+  
   },
 
   mutations: {// to change data in state
@@ -205,7 +252,7 @@ export default createStore({
     },
     SET_CATALOG: (state, catalogItems) => {
       state.catalogItems = catalogItems;
-      state.filteredCart =  catalogItems;  
+      state.filteredCart = catalogItems;
     },
     SET_ADVANTAGES: (state, advantages) => {
       state.advantages = advantages
@@ -221,16 +268,16 @@ export default createStore({
       state.userCart.push(item);
       const b = JSON.stringify(state.userCart, null, 4)
       localStorage.setItem('cart', b)
-      if (state.userCart.length > 0){state.showBtn = true}
+      if (state.userCart.length > 0) { state.showBtn = true }
     },
     CHANGE_QUANTITY_OF_ITEMS(state, item) {
       const index = state.userCart.findIndex(el => el.id === item.id)
       state.userCart[index].quantity += 1;
       state.userCart[index].totalPrice =
-       state.userCart[index].quantity * state.userCart[index].itemPrice
-       const b = JSON.stringify(state.userCart, null, 4)
-       localStorage.setItem('cart', b)
-       if (state.userCart.length > 0){state.showBtn = true}
+        state.userCart[index].quantity * state.userCart[index].itemPrice
+      const b = JSON.stringify(state.userCart, null, 4)
+      localStorage.setItem('cart', b)
+      if (state.userCart.length > 0) { state.showBtn = true }
     },
     SET_MOBILE: (state) => {
       state.isMobile = false;
@@ -263,30 +310,14 @@ export default createStore({
         state.slideCart = "slide-out-top"
       }
     },
-    ADD_TO_CART_M(state) {  
-        state.totalCartPrice = state.userCart.reduce((acc, { totalPrice }) =>
-          acc + totalPrice, 0);
-        state.totalItems = state.userCart.reduce((acc, { quantity }) =>
-          acc + quantity, 0);
+    ADD_TO_CART_M(state) {
+      state.totalCartPrice = state.userCart.reduce((acc, { totalPrice }) =>
+        acc + totalPrice, 0);
+      state.totalItems = state.userCart.reduce((acc, { quantity }) =>
+        acc + quantity, 0);
     },
     SET_DELETE_ITEM(state, id) {
-      const findEl = state.userCart.find(el => el.id === id)
-      if (findEl.quantity === 1) {
-        const index = state.userCart.findIndex(el => el.id === id)
-        state.userCart.splice(index, 1)
-        const b = JSON.stringify(state.userCart, null, 4)
-        localStorage.setItem('cart', b);
-        console.log(state.userCart.length)
-        if (state.userCart.length === 0) {
-          document.querySelector(".clear-btn").setAttribute("disabled", "disabled")
-          document.querySelector(".clear-btn").classList.add("disabled");
-          document.querySelector(".clear-btn").textContent = "Cart is empty"
-        }
-      } else {
-        findEl.quantity -= 1;
-        const b = JSON.stringify(state.userCart, null, 4)
-        localStorage.setItem('cart', b)
-      }
+
       state.totalCartPrice = state.userCart.reduce((acc, { totalPrice }) =>
         acc + totalPrice, 0);
       state.totalItems = state.userCart.reduce((acc, { quantity }) =>
@@ -297,20 +328,52 @@ export default createStore({
       state.totalCartPrice = 0;
       state.totalItems = 0;
       const b = JSON.stringify(state.userCart, null, 4)
-      console.log(b)
       localStorage.setItem('cart', b)
-      
     },
-    SET_SEARCH_INPUT(state, searchInput){
-      const filtered = state.catalogItems.filter((el)=>
-      el.itemTitle.toLowerCase().includes(searchInput.toLowerCase()))
+    SET_SEARCH_INPUT(state, searchInput) {
+      const filtered = state.catalogItems.filter((el) =>
+        el.itemTitle.toLowerCase().includes(searchInput.toLowerCase()))
       state.filteredCart = filtered;
     },
-    SET_BTN_DISABLED(){
-      document.querySelector(".clear-btn").setAttribute("disabled", "disabled")
-      document.querySelector(".clear-btn").classList.add("disabled");
-      document.querySelector(".clear-btn").textContent = "Cart is empty";
+    SET_BTN_DISABLED() {
+      document.querySelector(".clear-btn2").setAttribute("disabled", "disabled")
+      document.querySelector(".clear-btn2").classList.add("disabled");
+      document.querySelector(".clear-btn2").textContent = "Cart is empty";
+      document.querySelector(".form-btn2").setAttribute("disabled", "disabled")
+      document.querySelector(".form-btn2").classList.add("disabled");
+      document.querySelector(".form-btn2").textContent = "Cart is empty";
+    },
+    M_SET_BTN_ABLED(){
+      document.querySelector(".clear-btn2").removeAttribute("disabled")
+      document.querySelector(".clear-btn2").classList.remove("disabled");
+      document.querySelector(".clear-btn2").textContent = "Clear Cart";
+      document.querySelector(".form-btn2").removeAttribute("disabled", "disabled")
+      document.querySelector(".form-btn2").classList.remove("disabled");
+      document.querySelector(".form-btn2").textContent = "Send an order";
+    },
+    SET_SHOW_NOTIF() {
+      document.querySelector('.hidden').style.display = "block"
+      document.querySelector('.notification').classList.remove('slide-out-elliptic-top-bck')
+      document.querySelector('.notification').classList.add('scale-in-center')
+    },
+    SET_HIDE_NOTIF() {
+      document.querySelector('.notification').classList.remove('scale-in-center')
+      document.querySelector('.notification').classList.add('slide-out-elliptic-top-bck')
+    },
+    M_POST_USER_CART_TO_LOCALSTORAGE(state) {
+      const b = JSON.stringify(state.userCart, null, 4)
+      localStorage.setItem('cart', b);
+    },
+    M_GET_LOCAL_STORAGE(state){
+      const ls =  localStorage.getItem('cart');
+      console.log(ls)
+      state.localStorage = JSON.parse(ls)
+      console.log(state.localStorage)
+  },
+    M_CHANGE_NOTIF_MSG(state, msg) {
+      state.notif_msg = msg
     }
+
   },
 
   modules: {

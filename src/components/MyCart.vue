@@ -1,38 +1,35 @@
 <template>
-<div class="cart-box">
-    <cart-item 
-    v-for="item in USER_CART" 
-    :key="item.id"
-    :item="item"
-    />
-    <div class="cart-bottom">
-        <div>
-            <p class="title">Total in cart: <span class="price"> {{TOTAL_CART_PRICE}}</span> $</p>
-            <p class="title">Total items:   <span class="price1"> {{TOTAL_CART_ITEMS}}</span> pcs</p>
+    <div class="cart-box">
+        <cart-item v-for="item in USER_CART" :key="item.id" :item="item" />
+        <div class="cart-bottom">
+            <div>
+                <p class="title">Total in cart: <span class="price"> {{ TOTAL_CART_PRICE }} </span> $</p>
+                <p class="title">Total items: <span class="price1"> {{ TOTAL_CART_ITEMS }} </span> pcs</p>
+            </div>
+            <my-button class="btn clear-btn" @click="clearCart" v-show="USER_CART.length">Clear Cart
+            </my-button>
+            <p class="price1" v-show="!USER_CART.length">Cart is empty</p>
+           
         </div>
-        <my-button 
-           class="btn" 
-           @click="clearCart"
-           v-show="USER_CART.length"
-           >Clear Cart
-        </my-button>
-        <p class="price1" v-show="!USER_CART.length">Cart is empty</p>
     </div>
-</div>
-
+   
 </template>
 
 <script>
 import CartItem from '@/components/CartItem.vue';
+import NotificationComp from '@/components/notifications/NotificationComp.vue';
 import { mapGetters, mapActions } from 'vuex';
 export default {
-    data(){
-        return{
-           cart: []
+    data() {
+        return {
+            cart: [],
+            messages: [
+                { name: 'notification', id: Date.now().toLocaleString() }
+            ]
         }
     },
     components:{
-        CartItem
+        CartItem, NotificationComp
     },
     computed:{
         ...mapGetters([
@@ -57,6 +54,7 @@ export default {
 
 <style lang="scss" scoped>
 .cart-box{
+    position: absolute;
     width: 400px;
     max-height: 500px;
     overflow: auto;

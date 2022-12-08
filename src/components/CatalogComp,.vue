@@ -1,5 +1,5 @@
 <template>
-<div class="wrapper wr-cat">
+<div  class="wrapper wr-cat">
     <div class="catalor_title-box">
         <h2 class="catalog__title">Fetured Items</h2>
         <h3 class="catalog__sub">Shop for items based on what we featured in this week</h3>
