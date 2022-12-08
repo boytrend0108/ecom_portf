@@ -17,16 +17,16 @@ export default {
   components: {
     Navbar,EmptyLayout,MainLayout,CartLayout
   },
+
   computed: {
     ...mapGetters([
       "IS_MOBILE"
     ]),
-
     layout() {
-      console.log(this.$route.meta.layout)
       return (this.$route.meta.layout || "main-layout") 
     }
   },
+
   methods: {
     ...mapActions([
       "SWITCH_MOBILE", "SWITCH_TABLET", "A_POST_USER_CART_TO_LOCALSTORAGE"

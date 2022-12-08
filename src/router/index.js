@@ -1,6 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import EmptyLayout from '@/layouts/EmptyLayout.vue'
-import MainLayout from '@/layouts/MainLayout.vue'
 
 const routes = [
   {
@@ -15,7 +13,6 @@ const routes = [
     name: 'catalog',
     meta: {layout:'main-layout'},// which layout we use
     component: () => import ('@/pages/Catalog.vue')// lazy load
-
   },
   {
     path: '/cart',
