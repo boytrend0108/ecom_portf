@@ -1,25 +1,41 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
-import Home  from '@/pages/Home'
-import Catalog from '@/pages/Catalog'
-import Cart from '@/pages/Cart'
+import EmptyLayout from '@/layouts/EmptyLayout.vue'
+import MainLayout from '@/layouts/MainLayout.vue'
 
 const routes = [
   {
     path: '/',
-    component: Home
+    name: 'home',
+    meta: {layout:'main-layout'},// обязательно добавляем -layout!!!
+    component: () => import ('@/pages/Home.vue')// lazy load
   },
+  
   {
     path: '/catalog',
-   component: Catalog
-   
+    name: 'catalog',
+    meta: {layout:'main-layout'},// which layout we use
+    component: () => import ('@/pages/Catalog.vue')// lazy load
+
   },
   {
     path: '/cart',
-   component: Cart
+    name: 'cart',
+    meta: {layout:'cart-layout'},
+    component: () => import ('@/pages/Cart.vue')
   },
-  
-
+  {
+    path: '/product',
+    name: 'product',
+    meta: {layout:'cart-layout'},
+    component: () => import ('@/pages/Product.vue')
+  },
+  {
+    path: '/login',
+    name: 'login',
+    meta: {layout:'empty-layout'},
+    component: () => import ('@/pages/Login.vue')
+  },
+ 
 ]
 
 const router = createRouter({

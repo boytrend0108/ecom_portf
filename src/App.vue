@@ -1,35 +1,45 @@
 <template>
   <navbar :isMobile="IS_MOBILE"></navbar>
   <div class="app">
-    <router-view />
+    <component :is="layout">
+      <router-view />
+    </component>
   </div>
 </template>
 
 <script>
+import EmptyLayout from '@/layouts/EmptyLayout.vue'
+import MainLayout from '@/layouts/MainLayout.vue'
+import CartLayout from '@/layouts/CartLayout.vue'
 import Navbar from '@/components/Navbar.vue'
 import { mapActions, mapGetters } from 'vuex'
-export default{
-  components:{
-    Navbar
+export default {
+  components: {
+    Navbar,EmptyLayout,MainLayout,CartLayout
   },
-  computed:{
+  computed: {
     ...mapGetters([
       "IS_MOBILE"
-    ])
+    ]),
+
+    layout() {
+      console.log(this.$route.meta.layout)
+      return (this.$route.meta.layout || "main-layout") 
+    }
   },
   methods: {
     ...mapActions([
-      "SWITCH_MOBILE","SWITCH_TABLET","A_POST_USER_CART_TO_LOCALSTORAGE"
+      "SWITCH_MOBILE", "SWITCH_TABLET", "A_POST_USER_CART_TO_LOCALSTORAGE"
     ])
   },
 
-  mounted(){
+  mounted() {
     this.A_POST_USER_CART_TO_LOCALSTORAGE()
     const vm = this;
-    window.addEventListener('resize', ()=>{
-      if (window.innerWidth > 425 ){
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 425) {
         vm.SWITCH_TABLET()
-      }else{
+      } else {
         vm.SWITCH_MOBILE()
       }
     })
@@ -38,7 +48,6 @@ export default{
 </script>
 
 <style lang="scss">
-
 * {
   margin: 0;
   padding: 0;
@@ -46,12 +55,13 @@ export default{
   font-style: normal;
   box-sizing: border-box;
 }
+
 .app {
-    width: 100%;
-    position: absolute;
-    top: 67px;
-   
+  width: 100%;
+  position: absolute;
+  top: 67px;
 }
+
 .wrapper {
   height: 100%;
   max-width: $wrapper-laptop;
