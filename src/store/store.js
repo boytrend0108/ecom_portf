@@ -242,8 +242,6 @@ export default createStore({
     document.querySelector("#phone").style.border = '1px solid gray';
     document.querySelector("#email").style.border = '1px solid gray';
   }
-  
-  
   },
 
   mutations: {// to change data in state
