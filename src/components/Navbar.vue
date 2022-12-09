@@ -9,7 +9,7 @@
 				</div>
 				<div class="nav-block">
 					<font-awesome-icon class="font-aw " icon="fa-solid fa-bars" @click="SWITCH_SHOW_MENU" />
-					<font-awesome-icon v-show="isMobile" class="font-aw " @click="$router.push('/cart')"
+					<font-awesome-icon v-show="isMobile" class="font-aw " @click="goToCartPage"
 						icon="fa-regular fa-user" />
 					<div class="icon-cart-wr">
 						<font-awesome-icon v-show="isMobile" @click="SWITCH_SHOW_CART" class="font-aw"
@@ -59,11 +59,17 @@ export default {
 		sendSearchInput() {
 			this.GET_SEARCH_INPUT(this.searchInput)
 		},
+
 		goToHomePage(){
 			this.$router.push(`/`);
 			this.GET_PAGE_PATH('/')
+		},
 
+		goToCartPage(){
+			this.$router.push(`/cart`);
+			this.GET_PAGE_PATH('/cart');
 		}
+
 	}
 }
 </script >
