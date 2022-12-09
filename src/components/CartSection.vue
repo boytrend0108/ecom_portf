@@ -1,156 +1,165 @@
 <template>
-    <div class="cart-box">
-        <div class="wrapper">
-            <div class="item-box">
-                <cart-item v-for="item in USER_CART" :key="item.id" :item="item" class="cart-item" />
-                <h3 v-show="!USER_CART.length" class="text">Cart is empty</h3>
-                <div class="btn-box">
-                    <my-button class="btn clear-btn2" @click="clearCart">Clear Cart</my-button>
-                    <my-button class="btn" @click="$router.push('/')">Continue Shopping</my-button>
-                </div>
-            </div>
-            <div class="form-box">
-                <my-form></my-form>
-                <notification-comp></notification-comp>
-                <div class="summary">
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="cart-box">
+		<div class="wrapper">
+			<div class="item-box">
+				<cart-item v-for="item in USER_CART" :key="item.id" :item="item" class="cart-item" />
+				<h3 v-show="!USER_CART.length" class="text">Cart is empty</h3>
+				<div class="btn-box">
+					<my-button class="btn clear-btn2" @click="clearCart">Clear Cart</my-button>
+					<my-button class="btn" @click="$router.push('/')">Continue Shopping</my-button>
+				</div>
+			</div>
+			<div class="form-box">
+				<my-form></my-form>
+				<notification-comp></notification-comp>
+				<div class="summary">
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
 import CartItem from '@/components/CartItem.vue'
 import NotificationComp from '@/components/notifications/NotificationComp.vue';
-import { mapGetters, mapActions} from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
-    data() {
-        return {
-        localStorage: [],
-          showBnt: false
-        }
-    },
+	data() {
+		return {
+			localStorage: [],
+			showBnt: false,
+			pagePath: this.PAGE_PATH
+		}
+	},
 
-    components:{
-        CartItem, NotificationComp
-    },
+	components: {
+		CartItem, NotificationComp
+	},
 
-    computed: {
-        ...mapGetters([
-            'USER_CART', 'SHOW_BTN'
-        ]),
-        getUserCart() {
-            //  console.log(this.USER_CART)
-        },
-    },
+	computed: {
+		...mapGetters([
+			'USER_CART', 'SHOW_BTN', 'PAGE_PATH'
+		]),
+		getUserCart() {
+			//  console.log(this.USER_CART)
+		},
+	},
 
-    methods: {
-        ...mapActions([
-            'CLEAR_CART', 'GET_USER_CART', 'GET_BTN_DISABLED','A_SET_BTN_ABLED'
-        ]),
-        clearCart() {
-            this.CLEAR_CART();
-            this.GET_BTN_DISABLED()         
-        },
-        getLocalStorage(){
-            this.localStorage = JSON.parse(localStorage.getItem('cart'))
-        }
+	methods: {
+		...mapActions([
+			'CLEAR_CART', 'GET_USER_CART', 'GET_BTN_DISABLED', 'A_SET_BTN_ABLED'
+		]),
+		clearCart() {
+			this.CLEAR_CART();
+			this.GET_BTN_DISABLED()
+		},
+		getLocalStorage() {
+			this.localStorage = JSON.parse(localStorage.getItem('cart'))
+		},
 
-    },
+		makeCartBntDisable() {
+			document.querySelector('.icon-cart-wr').setAttribute("disabled", "disabled")
+		}
 
-    watch:{
-        localStorage(){
-            if(this.localStorage.length > 0){
-                this.showBnt = true
-         }else{
-                this.showBnt = false;
-           
-            }         
-        }
-    },
+	},
 
-    updated(){
-        this.getLocalStorage();
-        if (this.localStorage.length === 0){
-           this.GET_BTN_DISABLED();
-        }else{
-            this.A_SET_BTN_ABLED()
-        }
+	watch: {
+		localStorage() {
+			if (this.localStorage.length > 0) {
+				this.showBnt = true
+			} else {
+				this.showBnt = false;
+			}
+		}
+	},
 
-    },
+	updated() {
+		this.getLocalStorage();
+		if (this.localStorage.length === 0) {
+			this.GET_BTN_DISABLED();
+		} else {
+			this.A_SET_BTN_ABLED()
+		}
 
-    mounted() {
-        this.getLocalStorage();     
-        if (this.localStorage.length === 0){
-           this.GET_BTN_DISABLED();
-        }else{
-            this.A_SET_BTN_ABLED()
-        }
-    },
-  
+	},
+
+	mounted() {
+		this.makeCartBntDisable();
+		this.getLocalStorage();
+		if (this.localStorage.length === 0) {
+			this.GET_BTN_DISABLED();
+		} else {
+			this.A_SET_BTN_ABLED()
+		}
+	},
+
 }
 </script>
 
 <style lang="scss" scoped>
-.cart-header .wh{
-    background-image: none;
-}
-.wrapper{
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-.cart-box{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-   
-
-    .item-box, .form-box{
-         display: flex;
-        flex-direction: column;
-        justify-content: space-between;;
-        align-items: center;
-        min-height: 310px;
-        min-width: 400px;
-        padding: 20px;
-        position: relative;
-    }
-
-    .cart-item{
-        margin-bottom: 0px;
-    }
+.cart-header .wh {
+	background-image: none;
 }
 
-.btn-box{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-    .btn {
-        max-width: 160px;
-        margin: 0 10px;
-    }
-    .text{
-    color:$pink-color;
-    font-size: 30px;
-    
+.wrapper {
+	margin-top: 30px;
+	margin-bottom: 30px;
 }
 
+.cart-box {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+
+	.item-box,
+	.form-box {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		;
+		align-items: center;
+		min-height: 310px;
+		min-width: 400px;
+		padding: 20px;
+		position: relative;
+	}
+
+	.cart-item {
+		margin-bottom: 0px;
+	}
 }
 
-.disabled{
-    cursor: not-allowed !important;
-    background-color: gray !important;
-    border: none !important;
-    color: aliceblue !important;
+.btn-box {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 20px;
+
+	.btn {
+		max-width: 160px;
+		margin: 0 10px;
+	}
+
+	.text {
+		color: $pink-color;
+		font-size: 30px;
+
+	}
+
 }
 
-.summary{
-    width: 360px;
-    min-height: 200px;
-    background-color: #F5F3F3;
+.disabled {
+	cursor: not-allowed !important;
+	background-color: gray !important;
+	border: none !important;
+	color: aliceblue !important;
 }
 
-
+.summary {
+	width: 360px;
+	min-height: 200px;
+	background-color: #F5F3F3;
+}
 </style>

@@ -73,3 +73,10 @@
         }
     }
 }
+
+@mixin disabled ($color) {
+    cursor: not-allowed !important;
+	background-color: $color !important;
+	border: none !important;
+	color: aliceblue !important;
+}
