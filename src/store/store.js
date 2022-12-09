@@ -240,7 +240,7 @@ export default createStore({
     A_GET_LOCAL_STORAGE({commit}){
       commit('M_GET_LOCAL_STORAGE')
     },
-     A_RESET_INPUT_COLOR(){
+    A_RESET_INPUT_COLOR(){
     document.querySelector("#name").style.border = '1px solid gray';
     document.querySelector("#phone").style.border = '1px solid gray';
     document.querySelector("#email").style.border = '1px solid gray';
@@ -304,15 +304,6 @@ export default createStore({
       state.menu = menu;
     },
     SET_SHOW_CART(state){
-      if(state.pagePath === '/cart'){
-        console.log(state.pagePath)
-        document.querySelector('.icon-cart-wr').setAttribute("disabled", "disabled")
-        document.querySelector('.icon-cart-wr').classList.add('disabled')
-        document.querySelector('.font-aw').classList.add('disabled')
-
-      }else{console.log(state.pagePath)}
-        
-        // document.querySelector('.icon-cart-wr').removeAttribute("disabled")
         state.showCart = !state.showCart
         if (state.showCart === true) {
           document.querySelector(".menu").style.display = "none";

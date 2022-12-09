@@ -9,13 +9,26 @@
 				</div>
 				<div class="nav-block">
 					<font-awesome-icon class="font-aw " icon="fa-solid fa-bars" @click="SWITCH_SHOW_MENU" />
-					<font-awesome-icon v-show="isMobile" class="font-aw " @click="goToCartPage"
+					<font-awesome-icon 
+					  v-show="isMobile" 
+					  class="font-aw " 
+					  @click="goToCartPage"
 						icon="fa-regular fa-user" />
-					<div class="icon-cart-wr">
-						<font-awesome-icon v-show="isMobile" @click="SWITCH_SHOW_CART" class="font-aw"
-							icon="fa-solid fa-cart-shopping" />
-						<span class="item-num">{{ TOTAL_CART_ITEMS }} </span>
-					</div>
+					<button 
+					  :class="isDisabled"
+					  class="icon-cart-wr" 
+						>
+						<font-awesome-icon 
+						  v-show="isMobile" 
+						  @click="SWITCH_SHOW_CART" 
+						  class="font-aw"
+							icon="fa-solid fa-cart-shopping "
+							:class="isDisabled" />
+						<span 
+						  class="item-num" 
+						  :class="isDisabled"
+							>{{ TOTAL_CART_ITEMS }} </span>
+					</button>
 				</div>
 			</div>
 		</nav>
@@ -38,7 +51,8 @@ export default {
 	},
 	data() {
 		return {
-			searchInput: ''
+			searchInput: '',
+			isDisabled: "",
 		}
 	},
 	computed: {
@@ -62,13 +76,15 @@ export default {
 
 		goToHomePage(){
 			this.$router.push(`/`);
-			this.GET_PAGE_PATH('/')
+			this.GET_PAGE_PATH('/');
+			this.isDisable = ''
 		},
 
 		goToCartPage(){
 			this.$router.push(`/cart`);
 			this.GET_PAGE_PATH('/cart');
-		}
+			this.isDisabled = 'disabled'
+		},
 
 	}
 }
@@ -101,6 +117,8 @@ export default {
 	margin-left: 35px;
 	cursor: pointer;
 	transition: 0.5s;
+	background: transparent;
+
 }
 
 .font-aw:hover {
@@ -110,6 +128,8 @@ export default {
 
 .icon-cart-wr {
 	position: relative;
+	background-color: transparent;
+  border: none;
 }
 
 .icon-cart-wr:hover {
@@ -117,11 +137,17 @@ export default {
 		color: #F16D7F;
 		background-color: white;
 		transform: scale(1.3);
-
+	}
 		.fa-cart-shopping {
 			color: #F16D7F;
 			transform: scale(1.3);
+			color:aliceblue;
 		}
+}
+.disabled{
+	@include disabled("transparent");
+	.disabled:hover{
+		transform: none;
 	}
 }
 
@@ -231,7 +257,6 @@ export default {
 	display: none;
 }
 
-.disabled{
-	@include disabled(transparent);
-}
+
+
 </style>

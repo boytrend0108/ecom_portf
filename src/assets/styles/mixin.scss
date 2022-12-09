@@ -75,8 +75,9 @@
 }
 
 @mixin disabled ($color) {
-    cursor: not-allowed !important;
-	background-color: $color !important;
-	border: none !important;
-	color: aliceblue !important;
+    cursor: not-allowed ;
+	background-color: $color ;
+	border: none ;
+	color: aliceblue ;
+    opacity: 50%;
 }
