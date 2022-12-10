@@ -304,12 +304,9 @@ export default createStore({
       state.menu = menu;
     },
     SET_SHOW_CART(state){
-      console.log(state.pagePath)
       if(state.pagePath === '/cart'){
-        // console.log(state.pagePath)
         return
       }else{
-        // connsole.log(state.pagePath)
         state.showCart = !state.showCart
         if (state.showCart === true) {
           document.querySelector(".menu").style.display = "none";
@@ -347,15 +344,21 @@ export default createStore({
         el.itemTitle.toLowerCase().includes(searchInput.toLowerCase()))
       state.filteredCart = filtered;
     },
-    SET_BTN_DISABLED() {
-      document.querySelector(".clear-btn2").setAttribute("disabled", "disabled")
-      document.querySelector(".clear-btn2").classList.add("disabled");
-      document.querySelector(".clear-btn2").textContent = "Cart is empty";
-      document.querySelector(".form-btn2").setAttribute("disabled", "disabled")
-      document.querySelector(".form-btn2").classList.add("disabled");
-      document.querySelector(".form-btn2").textContent = "Cart is empty";
+    SET_BTN_DISABLED(state) {
+      console.log(state.pagePath)
+      if(state.pagePath !== '/cart'){
+        return
+      }else{
+        document.querySelector(".clear-btn2").setAttribute("disabled", "disabled")
+        document.querySelector(".clear-btn2").classList.add("disabled");
+        document.querySelector(".clear-btn2").textContent = "Cart is empty";
+        document.querySelector(".form-btn2").setAttribute("disabled", "disabled")
+        document.querySelector(".form-btn2").classList.add("disabled");
+        document.querySelector(".form-btn2").textContent = "Cart is empty";
+      }     
     },
-    M_SET_BTN_ABLED(){
+    M_SET_BTN_ABLED(state){
+      console.log(state.pagePath)
       document.querySelector(".clear-btn2").removeAttribute("disabled")
       document.querySelector(".clear-btn2").classList.remove("disabled");
       document.querySelector(".clear-btn2").textContent = "Clear Cart";
