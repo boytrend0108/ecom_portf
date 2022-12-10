@@ -41,9 +41,6 @@ export default {
 		...mapGetters([
 			'USER_CART', 'SHOW_BTN', 'PAGE_PATH'
 		]),
-		getUserCart() {
-			//  console.log(this.USER_CART)
-		},
 	},
 
 	methods: {

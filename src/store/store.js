@@ -143,8 +143,8 @@ export default createStore({
     SWITCH_SHOW_MENU({commit}){
       commit("SET_SHOW_MENU")
     },
-    SWITCH_SHOW_CART({commit},path){
-      commit('SET_SHOW_CART', path)
+    SWITCH_SHOW_CART({commit}){
+      commit('SET_SHOW_CART')
     },
     ADD_TO_CART({commit,state},item){
       const find = state.userCart.find((el)=> el.id === item.id)
@@ -234,9 +234,6 @@ export default createStore({
     A_POST_USER_CART_TO_LOCALSTORAGE({commit}){
      commit('M_POST_USER_CART_TO_LOCALSTORAGE') 
     },
-    A_CHANGE_NOTIF_MDG({commit}, msg){
-      commit('M_CHANGE_NOTIF_MSG', msg)
-    },
     A_GET_LOCAL_STORAGE({commit}){
       commit('M_GET_LOCAL_STORAGE')
     },
@@ -247,6 +244,9 @@ export default createStore({
     },
     GET_PAGE_PATH({commit}, pagePath){
       commit('SET_PAGE_PATH', pagePath)
+    },
+    GET_NAVCART_BTN_ABLED({commit}){
+      commit('SET_NAVCART_BTN_ABLED');
     }
   },
 
@@ -304,6 +304,12 @@ export default createStore({
       state.menu = menu;
     },
     SET_SHOW_CART(state){
+      console.log(state.pagePath)
+      if(state.pagePath === '/cart'){
+        // console.log(state.pagePath)
+        return
+      }else{
+        // connsole.log(state.pagePath)
         state.showCart = !state.showCart
         if (state.showCart === true) {
           document.querySelector(".menu").style.display = "none";
@@ -313,6 +319,8 @@ export default createStore({
         } else {
           state.slideCart = "slide-out-top"
         }  
+      }
+        
     },
     ADD_TO_CART_M(state) {
       state.totalCartPrice = state.userCart.reduce((acc, { totalPrice }) =>
@@ -374,12 +382,18 @@ export default createStore({
       state.localStorage = JSON.parse(ls)
       console.log(state.localStorage)
     },
-    M_CHANGE_NOTIF_MSG(state, msg) {
-      state.notif_msg = msg
-    },
     SET_PAGE_PATH(state,pagePath){
       state.pagePath = pagePath;
+    },
+    SET_NAVCART_BTN_ABLED(state){
+        if(state.pagePath !== '/cart'){
+          document.querySelector('.icon-cart-wr').removeAttribute("disabled");
+          document.querySelector('.fa-cart-shopping').classList.remove('disabled')
+          document.querySelector('.icon-cart-wr').classList.remove('disabled')
+          document.querySelector('.item-num').classList.remove('disabled')
+        }
     }
+
 
   },
 

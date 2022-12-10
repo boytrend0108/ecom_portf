@@ -3,7 +3,11 @@
 		<nav class="navbar">
 			<div class="wrapper">
 				<div class="nav-block">
-					<img class="logo" @click="goToHomePage" src="@/assets/img/logo.png" alt="">
+					<img 
+					  class="logo" 
+					  @click="goToHomePage" 
+					  src="@/assets/img/logo.png" 
+					  alt="logo">
 					<font-awesome-icon class="font-aw" icon="fa-solid fa-magnifying-glass" />
 					<input type="text" class="search-input" name="search" v-model="searchInput" @input="sendSearchInput">
 				</div>
@@ -14,11 +18,12 @@
 					  class="font-aw " 
 					  @click="goToCartPage"
 						icon="fa-regular fa-user" />
-					<button 
+					<button
+					  disabled 					
 					  :class="isDisabled"
-					  class="icon-cart-wr" 
+					  class="icon-cart-wr"
 						>
-						<font-awesome-icon 
+						<font-awesome-icon
 						  v-show="isMobile" 
 						  @click="SWITCH_SHOW_CART" 
 						  class="font-aw"
@@ -132,18 +137,17 @@ export default {
   border: none;
 }
 
-.icon-cart-wr:hover {
-	.item-num {
+	.item-num:hover {
 		color: #F16D7F;
 		background-color: white;
 		transform: scale(1.3);
 	}
-		.fa-cart-shopping {
+		.fa-cart-shopping:hover {
 			color: #F16D7F;
 			transform: scale(1.3);
 			color:aliceblue;
 		}
-}
+
 .disabled{
 	@include disabled("transparent");
 	.disabled:hover{

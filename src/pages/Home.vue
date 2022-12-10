@@ -9,6 +9,7 @@
 import HeaderComp from '@/components/Headercomp.vue'
 import CategoryComp from '@/components/CategoryComp.vue'
 import CatalogComp from '@/components/CatalogComp,.vue'
+import { mapActions } from 'vuex'
 
 export default {
   name:"home",
@@ -20,12 +21,16 @@ export default {
      
     }
   },
-  mounted(){
-       
-  }
-  
+  methods:{
+    ...mapActions([
+      'GET_NAVCART_BTN_ABLED'
+    ])
+  },
 
+  mounted(){
+    this.GET_NAVCART_BTN_ABLED();
   }
+}
 </script>
 
 <style >
