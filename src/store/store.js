@@ -250,6 +250,9 @@ export default createStore({
     },
     GET_NAVCART_BTN_ABLED({commit}){
       commit('SET_NAVCART_BTN_ABLED');
+    },
+    GET_NAVCART_BTN_DISABLED({commit}){
+      commit('SET_NAVCART_BTN_DISABLED')
     }
   },
 
@@ -401,8 +404,15 @@ export default createStore({
           document.querySelector('.fa-cart-shopping').classList.remove('disabled')
           document.querySelector('.icon-cart-wr').classList.remove('disabled')
           document.querySelector('.item-num').classList.remove('disabled')
-        }
-    }
+        }       
+    },
+    SET_NAVCART_BTN_DISABLED(){
+        document.querySelector('.icon-cart-wr').setAttribute("disabled","disabled");
+        document.querySelector('.fa-cart-shopping').classList.add('disabled')
+        document.querySelector('.item-num').classList.add('disabled')          
+  },
+
+
 
 
   },

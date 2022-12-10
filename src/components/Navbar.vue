@@ -33,8 +33,8 @@
 							icon="fa-solid fa-cart-shopping "
 							:class="isDisabled" />
 						<span 
-						  class="item-num" 
 						  :class="isDisabled"
+						  class="item-num" 
 							>{{ TOTAL_CART_ITEMS }} </span>
 					</button>
 				</div>
@@ -76,7 +76,7 @@ export default {
 	methods: {
 		...mapActions([
 			"SWITCH_SHOW_MENU", "SWITCH_SHOW_CART", "GET_SEARCH_INPUT",
-			"GET_PAGE_PATH","GET_HIDE_CART"
+			"GET_PAGE_PATH","GET_HIDE_CART","GET_NAVCART_BTN_DISABLED"
 
 		]),
 		sendSearchInput() {
@@ -92,8 +92,8 @@ export default {
 		goToCartPage(){
 			this.$router.push(`/cart`);
 			this.GET_PAGE_PATH('/cart');
-			this.isDisabled = 'disabled'
 			this.GET_HIDE_CART();
+			this.GET_NAVCART_BTN_DISABLED();
 		},
 
 	}
