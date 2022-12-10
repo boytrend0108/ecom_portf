@@ -18,12 +18,14 @@ export default {
   
   methods:{
     ...mapActions([
-    'GET_PAGE_PATH'
+    'GET_PAGE_PATH','GET_NAVCART_BTN_DISABLED','GET_BTN_DISABLED'
     ])
   },
 
   mounted(){
-    this.GET_PAGE_PATH('/cart')
+    this.GET_PAGE_PATH('/cart');
+    this.GET_NAVCART_BTN_DISABLED();
+    this.GET_BTN_DISABLED();
   }
 }
 </script>
