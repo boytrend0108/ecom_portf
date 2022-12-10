@@ -1,6 +1,5 @@
 <template>
     <form 
-    type="submit" 
     class="form"
     @submit="subminHandler"
     >
@@ -19,7 +18,7 @@
       >
       <p>test123456</p>
       <my-button class="btnSignup">Sign In</my-button>
-      <p>No Account? <button @click="this.$router.push('/registration')">REGISTRATION</button></p>
+      <p>No Account? <button @click="goToRegistrationPage">REGISTRATION</button></p>
     </form>
 </template>
 
@@ -37,6 +36,7 @@ export default {
 
   methods: {
     async subminHandler(event) {
+      console.log('submit')
       event.preventDefault();
       const formData = {
         loginEmail: this.loginEmail,
@@ -49,6 +49,11 @@ export default {
       }
       catch(err){console.log(err)}
       
+    },
+    goToRegistrationPage(event){
+      event.preventDefault();
+      console.log("goTo...");
+      this.$router.push('/registration');
     }
   }
 }
