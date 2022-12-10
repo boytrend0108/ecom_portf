@@ -1,5 +1,5 @@
 
-import { faDoorClosed } from '@fortawesome/free-solid-svg-icons';
+import auth from '@/store/auth'
 import axios from 'axios';
 import { createStore } from 'vuex'
 
@@ -21,8 +21,6 @@ export default createStore({
     searchInput: '',
     pagePath:'/',
     localStorage:[],
-    
-   
   },
   getters: {// this is a commands for getting our json arrays
     CATEGORY(state) {
@@ -412,11 +410,9 @@ export default createStore({
         document.querySelector('.item-num').classList.add('disabled')          
   },
 
-
-
-
   },
 
   modules: {
+    auth
   }
 })
