@@ -12,7 +12,10 @@
 					<input type="text" class="search-input" name="search" v-model="searchInput" @input="sendSearchInput">
 				</div>
 				<div class="nav-block">
-					<font-awesome-icon class="font-aw " icon="fa-solid fa-bars" @click="SWITCH_SHOW_MENU" />
+					<font-awesome-icon 
+					  class="font-aw " 
+					  icon="fa-solid fa-bars" 
+					  @click="SWITCH_SHOW_MENU" />
 					<font-awesome-icon 
 					  v-show="isMobile" 
 					  class="font-aw " 
