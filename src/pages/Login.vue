@@ -1,4 +1,5 @@
 <template>
+  <div class="wrapper">
     <form 
     class="form"
     @submit="subminHandler"
@@ -20,6 +21,8 @@
       <my-button class="btnSignup">Sign In</my-button>
       <p>No Account? <button @click="goToRegistrationPage">REGISTRATION</button></p>
     </form>
+  </div>
+   
 </template>
 
 <script>
@@ -60,6 +63,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 button{
   background-color: transparent;
   border: none;
@@ -69,7 +78,6 @@ button{
   margin: 0 11px;
 }
 .form{
-  position: fixed;
   top: 218px;
   right: 235px;
   display: flex;
@@ -92,6 +100,7 @@ button{
 }
 
 .btnSignup{
-  margin:16px;  
+  margin:16px; 
+  text-transform: uppercase; 
 }
 </style>
