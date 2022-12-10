@@ -23,6 +23,16 @@ export default {
       }catch(err){
         throw err
       }
+    },
+
+    async registration({dispatch, commit},{loginEmail, loginPassword}){
+      try {
+         await createUserWithEmailAndPassword(auth, loginEmail, loginPassword);
+      }catch(err){
+        throw err
+      }
     }
   }
+
+  
 }

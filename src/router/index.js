@@ -32,6 +32,12 @@ const routes = [
     meta: {layout:'empty-layout'},
     component: () => import ('@/pages/Login.vue')
   },
+  {
+    path: '/registration',
+    name: 'registration',
+    meta: {layout:'empty-layout'},
+    component: () => import ('@/pages/Registration.vue')
+  },
  
 ]
 

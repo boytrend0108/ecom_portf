@@ -19,15 +19,15 @@
       >
       <p>test123456</p>
       <my-button class="btnSignup">Sign In</my-button>
-      <p>No Account? <button @click="this.$router.push('/registration')">REGISTRATION</button></p>
-    </form>
+      <p>Already have an account? <button @click="this.$router.push('/login')" >SIGN IN</button></p>
+    </form> 
 </template>
 
 <script>
 import MyButton from '@/components/UI/MyButton.vue'
 export default {
   components: { MyButton },
-  name:"login",
+  name:"registration",
   data(){
     return{
       loginEmail:'',
@@ -44,7 +44,7 @@ export default {
       }
       
       try{
-        await this.$store.dispatch('login', formData);
+        await this.$store.dispatch('registration', formData);
         this.$router.push('/');
       }
       catch(err){console.log(err)}
