@@ -6,7 +6,7 @@
 				<h3 v-show="!USER_CART.length" class="text">Cart is empty</h3>
 				<div class="btn-box">
 					<my-button class="btn clear-btn2" @click="clearCart">Clear Cart</my-button>
-					<my-button class="btn" @click="$router.push('/')">Continue Shopping</my-button>
+					<my-button class="btn" @click="goToHomePage">Continue Shopping</my-button>
 				</div>
 			</div>
 			<div class="form-box">
@@ -45,8 +45,10 @@ export default {
 
 	methods: {
 		...mapActions([
-			'CLEAR_CART', 'GET_USER_CART', 'GET_BTN_DISABLED', 'A_SET_BTN_ABLED'
+			'CLEAR_CART', 'GET_USER_CART', 'GET_BTN_DISABLED', 'A_SET_BTN_ABLED',
+			'GET_PAGE_PATH'
 		]),
+		
 		clearCart() {
 			this.CLEAR_CART();
 			this.GET_BTN_DISABLED()
@@ -57,7 +59,13 @@ export default {
 
 		makeCartBntDisable() {
 			document.querySelector('.icon-cart-wr').setAttribute("disabled", "disabled")
-		}
+		},
+
+		goToHomePage(){
+			this.$router.push(`/`);
+			this.GET_PAGE_PATH('/');
+			// this.isDisable = ''
+		},
 
 	},
 
