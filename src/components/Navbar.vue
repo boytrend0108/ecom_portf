@@ -76,7 +76,8 @@ export default {
 	methods: {
 		...mapActions([
 			"SWITCH_SHOW_MENU", "SWITCH_SHOW_CART", "GET_SEARCH_INPUT",
-			"GET_PAGE_PATH"
+			"GET_PAGE_PATH","GET_HIDE_CART"
+
 		]),
 		sendSearchInput() {
 			this.GET_SEARCH_INPUT(this.searchInput)
@@ -92,6 +93,7 @@ export default {
 			this.$router.push(`/cart`);
 			this.GET_PAGE_PATH('/cart');
 			this.isDisabled = 'disabled'
+			this.GET_HIDE_CART();
 		},
 
 	}

@@ -146,6 +146,9 @@ export default createStore({
     SWITCH_SHOW_CART({commit}){
       commit('SET_SHOW_CART')
     },
+    GET_HIDE_CART({commit}){
+      commit('SET_HIDE_CART')
+    },
     ADD_TO_CART({commit,state},item){
       const find = state.userCart.find((el)=> el.id === item.id)
       if(find){
@@ -318,6 +321,10 @@ export default createStore({
         }  
       }
         
+    },
+    SET_HIDE_CART(state){
+      state.slideCart = "slide-out-top"
+      // document.querySelector(".cart-box").style.display = "none";
     },
     ADD_TO_CART_M(state) {
       state.totalCartPrice = state.userCart.reduce((acc, { totalPrice }) =>

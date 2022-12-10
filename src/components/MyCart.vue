@@ -9,10 +9,8 @@
             <my-button class="btn clear-btn" @click="clearCart" v-show="USER_CART.length">Clear Cart
             </my-button>
             <p class="price1" v-show="!USER_CART.length">Cart is empty</p>
-           
         </div>
     </div>
-   
 </template>
 
 <script>
