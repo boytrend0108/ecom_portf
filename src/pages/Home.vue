@@ -1,37 +1,36 @@
 <template>
-  <main>
    <header-comp/>
    <category-comp/>
-   <catalog-comp id="ctl" />
-   <advantage-comp/>
-   <subscribe-comp/>
-   <footer-comp/>
-  </main>
+   <catalog-comp />
+    <router-view />  
 </template>
 
 <script>
 import HeaderComp from '@/components/Headercomp.vue'
 import CategoryComp from '@/components/CategoryComp.vue'
 import CatalogComp from '@/components/CatalogComp,.vue'
-import AdvantageComp from '@/components/AdvantageComp.vue'
-import SubscribeComp from '@/components/SubscribeComp.vue'
-import FooterComp from "@/components/FooterComp.vue"
+import { mapActions } from 'vuex'
 
 export default {
+  name:"home",
   components:{
-    HeaderComp,CategoryComp, CatalogComp, AdvantageComp, SubscribeComp, FooterComp
+    HeaderComp,CategoryComp, CatalogComp
   },
   data(){
     return{
      
     }
   },
-  mounted(){
-       
-  }
-  
+  methods:{
+    ...mapActions([
+      'GET_NAVCART_BTN_ABLED'
+    ])
+  },
 
+  mounted(){
+    this.GET_NAVCART_BTN_ABLED();
   }
+}
 </script>
 
 <style >

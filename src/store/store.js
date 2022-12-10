@@ -1,4 +1,5 @@
-import { faCommentsDollar } from '@fortawesome/free-solid-svg-icons';
+
+import { faDoorClosed } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { createStore } from 'vuex'
 
@@ -18,8 +19,10 @@ export default createStore({
     slideCart: "", // this change classes for cart animation
     showCart: false,
     searchInput: '',
-    notif_msg:'',
-    localStorage:[]
+    pagePath:'/',
+    localStorage:[],
+    
+   
   },
   getters: {// this is a commands for getting our json arrays
     CATEGORY(state) {
@@ -67,8 +70,9 @@ export default createStore({
     NOTIF_MSG(state){
       return state.notif_msg;
     },
-   
-
+    PAGE_PATH(state){
+      return state.pagePath;
+    }
   },
 
   actions: {// actions are asinc(methods in Component)
@@ -141,6 +145,9 @@ export default createStore({
     },
     SWITCH_SHOW_CART({commit}){
       commit('SET_SHOW_CART')
+    },
+    GET_HIDE_CART({commit}){
+      commit('SET_HIDE_CART')
     },
     ADD_TO_CART({commit,state},item){
       const find = state.userCart.find((el)=> el.id === item.id)
@@ -220,28 +227,33 @@ export default createStore({
     },
     A_SET_BTN_ABLED({commit}){  
       commit('M_SET_BTN_ABLED')
-   },
+    },
     GET_SHOW_NOTIF({commit}){
      commit('SET_SHOW_NOTIF')
     },
-    HIDE_SHOW_NOTIF({ commit, state }) {
-        
+    HIDE_SHOW_NOTIF({ commit }) { 
         commit('SET_HIDE_NOTIF')
     },
     A_POST_USER_CART_TO_LOCALSTORAGE({commit}){
      commit('M_POST_USER_CART_TO_LOCALSTORAGE') 
     },
-    A_CHANGE_NOTIF_MDG({commit}, msg){
-      commit('M_CHANGE_NOTIF_MSG', msg)
-    },
     A_GET_LOCAL_STORAGE({commit}){
       commit('M_GET_LOCAL_STORAGE')
-  },
-   A_RESET_INPUT_COLOR(){
+    },
+    A_RESET_INPUT_COLOR(){
     document.querySelector("#name").style.border = '1px solid gray';
     document.querySelector("#phone").style.border = '1px solid gray';
     document.querySelector("#email").style.border = '1px solid gray';
-  }
+    },
+    GET_PAGE_PATH({commit}, pagePath){
+      commit('SET_PAGE_PATH', pagePath)
+    },
+    GET_NAVCART_BTN_ABLED({commit}){
+      commit('SET_NAVCART_BTN_ABLED');
+    },
+    GET_NAVCART_BTN_DISABLED({commit}){
+      commit('SET_NAVCART_BTN_DISABLED')
+    }
   },
 
   mutations: {// to change data in state
@@ -297,16 +309,25 @@ export default createStore({
     SET_MENU(state, menu) {
       state.menu = menu;
     },
-    SET_SHOW_CART(state) {
-      state.showCart = !state.showCart
-      if (state.showCart === true) {
-        document.querySelector(".menu").style.display = "none";
-        state.showMenu = false;
-        document.querySelector(".cart-box").style.display = "block";
-        state.slideCart = "slide-left"
-      } else {
-        state.slideCart = "slide-out-top"
+    SET_SHOW_CART(state){
+      if(state.pagePath === '/cart'){
+        return
+      }else{
+        state.showCart = !state.showCart
+        if (state.showCart === true) {
+          document.querySelector(".menu").style.display = "none";
+          state.showMenu = false;
+          document.querySelector(".cart-box").style.display = "block";
+          state.slideCart = "slide-left"
+        } else {
+          state.slideCart = "slide-out-top"
+        }  
       }
+        
+    },
+    SET_HIDE_CART(state){
+      state.slideCart = "slide-out-top"
+      // document.querySelector(".cart-box").style.display = "none";
     },
     ADD_TO_CART_M(state) {
       state.totalCartPrice = state.userCart.reduce((acc, { totalPrice }) =>
@@ -333,15 +354,21 @@ export default createStore({
         el.itemTitle.toLowerCase().includes(searchInput.toLowerCase()))
       state.filteredCart = filtered;
     },
-    SET_BTN_DISABLED() {
-      document.querySelector(".clear-btn2").setAttribute("disabled", "disabled")
-      document.querySelector(".clear-btn2").classList.add("disabled");
-      document.querySelector(".clear-btn2").textContent = "Cart is empty";
-      document.querySelector(".form-btn2").setAttribute("disabled", "disabled")
-      document.querySelector(".form-btn2").classList.add("disabled");
-      document.querySelector(".form-btn2").textContent = "Cart is empty";
+    SET_BTN_DISABLED(state) {
+      console.log(state.pagePath)
+      if(state.pagePath !== '/cart'){
+        return
+      }else{
+        document.querySelector(".clear-btn2").setAttribute("disabled", "disabled")
+        document.querySelector(".clear-btn2").classList.add("disabled");
+        document.querySelector(".clear-btn2").textContent = "Cart is empty";
+        document.querySelector(".form-btn2").setAttribute("disabled", "disabled")
+        document.querySelector(".form-btn2").classList.add("disabled");
+        document.querySelector(".form-btn2").textContent = "Cart is empty";
+      }     
     },
-    M_SET_BTN_ABLED(){
+    M_SET_BTN_ABLED(state){
+      console.log(state.pagePath)
       document.querySelector(".clear-btn2").removeAttribute("disabled")
       document.querySelector(".clear-btn2").classList.remove("disabled");
       document.querySelector(".clear-btn2").textContent = "Clear Cart";
@@ -367,10 +394,26 @@ export default createStore({
       console.log(ls)
       state.localStorage = JSON.parse(ls)
       console.log(state.localStorage)
+    },
+    SET_PAGE_PATH(state,pagePath){
+      state.pagePath = pagePath;
+    },
+    SET_NAVCART_BTN_ABLED(state){
+        if(state.pagePath !== '/cart'){
+          document.querySelector('.icon-cart-wr').removeAttribute("disabled");
+          document.querySelector('.fa-cart-shopping').classList.remove('disabled')
+          document.querySelector('.icon-cart-wr').classList.remove('disabled')
+          document.querySelector('.item-num').classList.remove('disabled')
+        }       
+    },
+    SET_NAVCART_BTN_DISABLED(){
+        document.querySelector('.icon-cart-wr').setAttribute("disabled","disabled");
+        document.querySelector('.fa-cart-shopping').classList.add('disabled')
+        document.querySelector('.item-num').classList.add('disabled')          
   },
-    M_CHANGE_NOTIF_MSG(state, msg) {
-      state.notif_msg = msg
-    }
+
+
+
 
   },
 

@@ -2,25 +2,31 @@
   <main>
     <header-mini class="cart-header"></header-mini>
     <cart-section />
-    <advantage-comp />
-    <subscribe-comp />
-    <footer-comp />
   </main>
 </template>
 
 <script>
 import HeaderMini from "@/components/HeaderMini.vue"
-import AdvantageComp from '@/components/AdvantageComp.vue'
-import SubscribeComp from '@/components/SubscribeComp.vue'
-import FooterComp from "@/components/FooterComp.vue"
 import CartSection from "@/components/CartSection.vue"
+import { mapActions } from "vuex"
 
 export default {
+  name:"cart",
   components: {
-    HeaderMini, AdvantageComp, SubscribeComp, FooterComp, CartSection
+    HeaderMini, CartSection
+  },
+  
+  methods:{
+    ...mapActions([
+    'GET_PAGE_PATH','GET_NAVCART_BTN_DISABLED','GET_BTN_DISABLED'
+    ])
   },
 
-
+  mounted(){
+    this.GET_PAGE_PATH('/cart');
+    this.GET_NAVCART_BTN_DISABLED();
+    this.GET_BTN_DISABLED();
+  }
 }
 </script>
 

@@ -2,10 +2,9 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from '@/router'
 import store from '@/store/store'
-import axios from 'axios'
 import "@/assets/styles/styles.scss"
 
-const app =  createApp(App)
+const app = createApp(App)
 
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -20,13 +19,12 @@ library.add(fas, far, fab)
 
 // global registration of UI components
 import components from '@/components/UI'
-components.forEach(component  => {
-    app.component(component.name, component)
+components.forEach(component => {
+  app.component(component.name, component)
 });
 
-
 app
-    .use(store)
-    .use(router)
-    .component('font-awesome-icon', FontAwesomeIcon)
-    .mount('#app')
+  .use(store)
+  .use(router)
+  .component('font-awesome-icon', FontAwesomeIcon)
+  .mount('#app')
