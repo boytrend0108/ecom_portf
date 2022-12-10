@@ -67,7 +67,6 @@ button{
   position: fixed;
   top: 218px;
   right: 235px;
-  border: 1px solid #000;
   display: flex;
   flex-direction: column;
   align-items: center;

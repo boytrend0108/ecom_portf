@@ -18,7 +18,7 @@
       placeholder="password"
       >
       <p>test123456</p>
-      <my-button class="btnSignup">Sign In</my-button>
+      <my-button class="btnSignup">REGISTER</my-button>
       <p>Already have an account? <button @click="this.$router.push('/login')" >SIGN IN</button></p>
     </form> 
 </template>
@@ -46,6 +46,7 @@ export default {
       try{
         await this.$store.dispatch('registration', formData);
         this.$router.push('/');
+        console.log(formData)
       }
       catch(err){console.log(err)}
       
@@ -67,7 +68,6 @@ button{
   position: fixed;
   top: 218px;
   right: 235px;
-  border: 1px solid #000;
   display: flex;
   flex-direction: column;
   align-items: center;
