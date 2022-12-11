@@ -1,3 +1,5 @@
+// this ia a module "auth" in store
+
 import { initializeApp } from "firebase/app";
 import{ getAuth,
   signInWithEmailAndPassword,
@@ -33,6 +35,4 @@ export default {
       }
     }
   }
-
-  
 }

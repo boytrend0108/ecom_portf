@@ -27,55 +27,6 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 /* add icons to the library */
 library.add(fas, far, fab)
 
-// -----------------------------------------------------------------------------
-
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import{ getAuth,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword
-} from 'firebase/auth'
-import 'firebase/database'
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-const configFB = {
-  apiKey: "AIzaSyCAJJiKHL-U0cIJe4Ka9ICLHVPclu66fVk",
-  authDomain: "internet-shop-589b5.firebaseapp.com",
-  projectId: "internet-shop-589b5",
-  storageBucket: "internet-shop-589b5.appspot.com",
-  messagingSenderId: "738423709491",
-  appId: "1:738423709491:web:d72812d1a60b8c57db6846",
-  measurementId: "G-0715SLECSH"
-};
-// Initialize Firebase
-const appFB = initializeApp(configFB);
-const auth = getAuth(appFB);
-
-const loginEmailPassword = async () => {
-  const loginEmail = txtEmail.value;
-  const loginPassword = txtPassword.value;
-  try {
-    const userCredential = await createUserWithEmailAndPassword(auth, loginEmail, loginPassword);
-    console.log(userCredential.user);
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-const createAccount = async ()=>{
-  const loginEmail = txtEmail.value;
-  const loginPassword = txtPassword.value;
-  try {
-    const userCredential = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
-    console.log(userCredential.user);
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-//------------------------------------------------------------------------------
   const app = createApp(App)
 
   // global registration of UI components
@@ -93,8 +44,6 @@ const createAccount = async ()=>{
     .component('InputText', InputText )
     .component('Toast',Toast )
     .mount('#app')
-  
-
 ;
 
 // -----------------------------------------------------------------------------

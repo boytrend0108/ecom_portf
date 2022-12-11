@@ -1,34 +1,34 @@
 <template>
   <div class="wrapper">
-    <form 
-    class="form"
-    
-    >
+    <form  class="form">
       <span class="p-float-label">
-	    <InputText 
-        id="email" 
-        v-model="loginEmail"
-        class="input"
-      />
-	    <label class="lable" for="email">email</label>
+	      <InputText 
+          id="email" 
+          v-model="loginEmail"
+          class="input"
+          @input="validator('email')"
+       />
+	      <label class="lable" for="email">email</label>
       </span>
-      <p>eur-usd@bk.ru</p>
+      <p>mymail@mail.ru</p>
+
       <span class="p-float-label">
-	    <InputText 
-        id="password" 
-        v-model="loginPassword"
-        class="input"
-      />
-	    <label class="lable" for="password">Password</label>
+	      <InputText 
+          id="password" 
+          v-model="loginPassword"
+          class="input"
+          @input="validator('password')"
+        />
+	      <label class="lable" for="password">Password</label>
       </span>
-        <p>test123456</p>
+      <p>tesT123456</p>
         
         <Button 
-        label="REGISTER" 
-        icon="pi pi-user" 
-        iconPos="right" 
-        class="p-button-secondary"
-        @click="subminHandler" />
+          label="REGISTER" 
+          icon="pi pi-user" 
+          iconPos="right" 
+          class="p-button-secondary"
+          @click="subminHandler" />
         <p>Already have an account? <button @click="goToLoginPage" >SIGN IN</button></p>
     </form> 
   </div>
@@ -36,8 +36,6 @@
 </template>
 
 <script>
-// import MyButton from '@/components/UI/MyButton.vue'
-import { useToast } from "primevue/usetoast";
 
 export default {
   // components: { MyButton },
@@ -45,11 +43,32 @@ export default {
   data(){
     return{
       loginEmail:'',
-      loginPassword:''
+      loginPassword:'',
+      reg_email: /^[\w._-]+@\w+\.[a-z]{2,4}$/i,
+      reg_password: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm
     }
   },
    
   methods: {
+    validator(){
+      if(this.reg_email.test(this.loginEmail)){
+        document.getElementById("email").style.border = '3px solid green'
+      }else{
+        document.getElementById("email").style.border = '3px solid red'
+      }
+
+      if(this.reg_password.test(this.loginPassword)){
+        document.getElementById("password").style.border = '3px solid green'
+      }else{
+        document.getElementById("password").style.border = '3px solid red'
+      }
+
+      if(this.reg_email.test(this.loginEmail) &&
+         this.reg_password.test(this.loginPassword) === true)
+         console.log('valid form')
+         return true
+    },
+
     async showInfo() {
             this.$toast.add({severity:'success', summary: 'Well done!', detail:'Your registration is complete', life: 3000});
         },
