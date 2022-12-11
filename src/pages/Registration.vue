@@ -6,7 +6,7 @@
           id="email" 
           v-model="loginEmail"
           class="input"
-          @input="validator('email')"
+          @input="validator"
        />
 	      <label class="lable" for="email">email</label>
       </span>
@@ -17,17 +17,18 @@
           id="password" 
           v-model="loginPassword"
           class="input"
-          @input="validator('password')"
+          @input="validator"
         />
 	      <label class="lable" for="password">Password</label>
       </span>
-      <p>tesT123456</p>
+      <p>ssfsH5_f</p>
         
         <Button 
           label="REGISTER" 
           icon="pi pi-user" 
           iconPos="right" 
-          class="p-button-secondary"
+          class="p-button-secondary disabled"
+          disabled
           @click="subminHandler" />
         <p>Already have an account? <button @click="goToLoginPage" >SIGN IN</button></p>
     </form> 
@@ -45,28 +46,37 @@ export default {
       loginEmail:'',
       loginPassword:'',
       reg_email: /^[\w._-]+@\w+\.[a-z]{2,4}$/i,
-      reg_password: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm
+      reg_password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$/
     }
   },
    
   methods: {
     validator(){
+      const btn = document.querySelector('.disabled');
       if(this.reg_email.test(this.loginEmail)){
         document.getElementById("email").style.border = '3px solid green'
       }else{
         document.getElementById("email").style.border = '3px solid red'
       }
-
+    
       if(this.reg_password.test(this.loginPassword)){
+        console.log(this.reg_password.test(this.loginPassword))
         document.getElementById("password").style.border = '3px solid green'
       }else{
         document.getElementById("password").style.border = '3px solid red'
       }
 
       if(this.reg_email.test(this.loginEmail) &&
-         this.reg_password.test(this.loginPassword) === true)
-         console.log('valid form')
-         return true
+      this.reg_password.test(this.loginPassword) === true
+      ){
+       btn.classList.remove('disabled');
+       btn.removeAttribute('disabled')
+      }
+
+
+      
+
+     
     },
 
     async showInfo() {
@@ -152,5 +162,10 @@ button{
 
 .btnSignup{
   margin:16px;  
+}
+
+.disabled{
+   @include disabled(grey);
+    color: aliceblue ;
 }
 </style>
