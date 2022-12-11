@@ -1,4 +1,5 @@
 <template>
+   <Toast />
   <navbar :isMobile="IS_MOBILE"></navbar>
   <div class="app">
     <component :is="layout">

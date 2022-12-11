@@ -37,6 +37,8 @@
 
 <script>
 // import MyButton from '@/components/UI/MyButton.vue'
+import { useToast } from "primevue/usetoast";
+
 export default {
   // components: { MyButton },
   name:"registration",
@@ -46,8 +48,12 @@ export default {
       loginPassword:''
     }
   },
-
+   
   methods: {
+    async showInfo() {
+            this.$toast.add({severity:'success', summary: 'Well done!', detail:'Your registration is complete', life: 3000});
+        },
+
     async subminHandler(event) {
       console.log('submit');
       event.preventDefault();
@@ -55,22 +61,25 @@ export default {
         loginEmail: this.loginEmail,
         loginPassword: this.loginPassword
       }
-      
-      try{
+
+      try {
         await this.$store.dispatch('registration', formData);
-        this.$router.push('/');
-        console.log(formData)
+        try {
+          await this.showInfo();
+          this.$router.push('/');
+          console.log(formData);
+        } catch (err) { console.log(err) }
       }
-      catch(err){console.log(err)}
-      
+      catch (err) { console.log(err) }
     },
 
-    goToLoginPage(event){
+    goToLoginPage(event) {
       event.preventDefault();
       console.log("goTo...")
       this.$router.push('/login')
     }
   }
+
 }
 </script>
 
