@@ -89,6 +89,14 @@ button{
   color: white;
   margin: 0 11px;
 }
+.p-button-secondary{
+  background-color:aliceblue;
+  color: gray;
+  width:300px;
+  margin:10px 0;
+
+
+}
 .form{
   top: 218px;
   right: 235px;
