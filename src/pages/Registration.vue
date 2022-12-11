@@ -2,33 +2,43 @@
   <div class="wrapper">
     <form 
     class="form"
-    @submit="subminHandler"
+    
     >
-      <input 
-      v-model="loginEmail"
-      type="email" 
-      class="input"
-      placeholder="email"
-      >
+      <span class="p-float-label">
+	    <InputText 
+        id="email" 
+        v-model="loginEmail"
+        class="input"
+      />
+	    <label class="lable" for="email">email</label>
+      </span>
       <p>eur-usd@bk.ru</p>
-      <input 
-      v-model="loginPassword"
-      type="password" 
-      class="input"
-      placeholder="password"
-      >
-      <p>test123456</p>
-      <my-button class="btnSignup">REGISTER</my-button>
-      <p>Already have an account? <button @click="goToLoginPage" >SIGN IN</button></p>
+      <span class="p-float-label">
+	    <InputText 
+        id="password" 
+        v-model="loginPassword"
+        class="input"
+      />
+	    <label class="lable" for="password">Password</label>
+      </span>
+        <p>test123456</p>
+        
+        <Button 
+        label="REGISTER" 
+        icon="pi pi-user" 
+        iconPos="right" 
+        class="p-button-secondary"
+        @click="subminHandler" />
+        <p>Already have an account? <button @click="goToLoginPage" >SIGN IN</button></p>
     </form> 
   </div>
     
 </template>
 
 <script>
-import MyButton from '@/components/UI/MyButton.vue'
+// import MyButton from '@/components/UI/MyButton.vue'
 export default {
-  components: { MyButton },
+  // components: { MyButton },
   name:"registration",
   data(){
     return{
@@ -99,6 +109,9 @@ button{
   margin: 10px;
   padding: 0 10px;
   font-size: 16px;
+}
+.lable{
+  padding: 0 10px;
 }
 
 .btnSignup{
