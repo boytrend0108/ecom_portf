@@ -10,6 +10,7 @@ import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import Toast from 'primevue/toast';
 import ToastService from 'primevue/toastservice';
+import Checkbox from 'primevue/checkbox';
 
 import 'primevue/resources/themes/lara-light-purple/theme.css';
 import 'primevue/resources/primevue.min.css';
@@ -43,6 +44,8 @@ library.add(fas, far, fab)
     .component('Button',Button )
     .component('InputText', InputText )
     .component('Toast',Toast )
+    .component('Toast',Toast )
+    .component('Checkbox', Checkbox)
     .mount('#app')
 ;
 

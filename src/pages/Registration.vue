@@ -32,7 +32,17 @@
         />
 	      <label class="lable" for="name">Name</label>
       </span>
-        
+
+      <div class="reg-checkbox" >
+        <label for="regId">Remember Me</label>
+        <Checkbox 
+          v-model="checked" 
+          :binary="true" 
+          inputId="regId"
+          @click="click"
+        />
+      </div>
+     
         <Button 
           label="REGISTER" 
           icon="pi pi-user" 
@@ -49,7 +59,6 @@
 <script>
 
 export default {
-  // components: { MyButton },
   name:"registration",
   data(){
     return{
@@ -58,13 +67,31 @@ export default {
       loginName:'',
       reg_email: /^[\w._-]+@\w+\.[a-z]{2,4}$/i,
       reg_password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,15}$/,
-      reg_name: /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/
+      reg_name: /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/,
+      checked: false
     }
   },
    
   methods: {
+    click(){
+      const btn = document.querySelector('.p-button-secondary');
+      this.checked = !this.checked;
+      if(this.checked){       
+      if (this.reg_email.test(this.loginEmail) &&
+        this.reg_password.test(this.loginPassword) &&
+        this.reg_name.test(this.loginName) === true
+      ) {
+        btn.classList.remove('disabled');
+        btn.removeAttribute('disabled')
+      }
+      }else{
+        btn.classList.add('disabled');
+        btn.setAttribute('disabled', 'disabled')
+      }      
+    },
+
     validator(){
-      const btn = document.querySelector('.disabled');
+     
       if(this.reg_email.test(this.loginEmail)){
         document.getElementById("email").style.border = '3px solid green'
       }else{
@@ -82,15 +109,7 @@ export default {
       }else{
         document.getElementById("name").style.border = '3px solid red'
       }
-
-      if(this.reg_email.test(this.loginEmail) &&
-         this.reg_password.test(this.loginPassword &&
-         this.reg_name.test(this.loginName)
-        ) === true
-      ){
-       btn.classList.remove('disabled');
-       btn.removeAttribute('disabled')
-      }
+     
     },
 
     async showInfo() {
@@ -121,8 +140,16 @@ export default {
       console.log("goTo...")
       this.$router.push('/login')
     }
-  }
+  },
 
+  isCheck(){
+    console.log('54')
+  },
+
+  mounted(){
+    // console.log(this.checked);
+  }
+  
 }
 </script>
 
@@ -146,8 +173,6 @@ button{
   color: gray;
   width:300px;
   margin:10px 0;
-
-
 }
 .form{
   top: 218px;
@@ -161,7 +186,6 @@ button{
   padding: 20px;
   @include box-shadow;
 }
-
 .input{
   width: 300px;
   height: 40px;
@@ -173,13 +197,21 @@ button{
 .lable{
   padding: 0 10px;
 }
-
-.btnSignup{
-  margin:16px;  
-}
-
 .disabled{
    @include disabled(grey);
     color: aliceblue ;
 }
+.reg-checkbox{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+  .p-checkbox{
+  margin-left: 10px;
+  border-color:gray;
+  background: gray;
+}
+}
+
+
 </style>
