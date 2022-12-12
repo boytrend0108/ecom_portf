@@ -88,7 +88,7 @@ export default {
       
       try{
         await this.$store.dispatch('login', formData);
-        this.$router.push('/');
+        this.$router.push('/cart');
       }
       catch(err){console.log(err)}
       
