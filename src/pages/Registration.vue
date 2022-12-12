@@ -120,7 +120,8 @@ export default {
       event.preventDefault();
       const formData = {
         loginEmail: this.loginEmail,
-        loginPassword: this.loginPassword
+        loginPassword: this.loginPassword,
+        loginName: this. loginName
       }
 
       try {

@@ -27,9 +27,9 @@ export default {
       }
     },
 
-    async registration({dispatch, commit},{loginEmail, loginPassword}){
+    async registration({dispatch, commit},{loginEmail, loginPassword, loginName}){
       try {
-         await createUserWithEmailAndPassword(auth, loginEmail, loginPassword);
+         await createUserWithEmailAndPassword(auth, loginEmail, loginPassword, loginName);
       }catch(err){
         throw err
       }
