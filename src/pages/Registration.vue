@@ -6,7 +6,7 @@
           id="email" 
           v-model="loginEmail"
           class="input"
-          @input="validator"
+          @input="inputValidator"
        />
 	      <label class="lable" for="email">email</label>
       </span>
@@ -17,7 +17,7 @@
           id="password" 
           v-model="loginPassword"
           class="input"
-          @input="validator"
+          @input="inputValidator"
         />
 	      <label class="lable" for="password">Password</label>
       </span>
@@ -28,18 +28,18 @@
           id="name" 
           v-model="loginName"
           class="input"
-          @input="validator"
+          @input="inputValidator"
         />
 	      <label class="lable" for="name">Name</label>
       </span>
 
       <div class="reg-checkbox" >
-        <label for="regId">Remember Me</label>
+        <label for="regId">Agree with terms</label>
         <Checkbox 
           v-model="checked" 
           :binary="true" 
           inputId="regId"
-          @click="click"
+          @click="termsValidator"
         />
       </div>
      
@@ -73,7 +73,8 @@ export default {
   },
    
   methods: {
-    click(){
+    termsValidator(){
+      this.inputValidator();
       const btn = document.querySelector('.p-button-secondary');
       this.checked = !this.checked;
       if(this.checked){       
@@ -90,7 +91,7 @@ export default {
       }      
     },
 
-    validator(){
+    inputValidator(){
      
       if(this.reg_email.test(this.loginEmail)){
         document.getElementById("email").style.border = '3px solid green'
@@ -109,7 +110,6 @@ export default {
       }else{
         document.getElementById("name").style.border = '3px solid red'
       }
-     
     },
 
     async showInfo() {
@@ -117,7 +117,6 @@ export default {
         },
 
     async subminHandler(event) {
-      console.log('submit');
       event.preventDefault();
       const formData = {
         loginEmail: this.loginEmail,
@@ -137,7 +136,6 @@ export default {
 
     goToLoginPage(event) {
       event.preventDefault();
-      console.log("goTo...")
       this.$router.push('/login')
     }
   },

@@ -80,7 +80,6 @@ export default {
         },
 
     async subminHandler(event) {
-      console.log('submit')
       event.preventDefault();
       const formData = {
         loginEmail: this.loginEmail,
@@ -96,7 +95,6 @@ export default {
     },
     goToRegistrationPage(event){
       event.preventDefault();
-      console.log("goTo...");
       this.$router.push('/registration');
     }
   }
