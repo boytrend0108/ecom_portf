@@ -29,28 +29,44 @@ import { far } from '@fortawesome/free-regular-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 /* add icons to the library */
 library.add(fas, far, fab)
-
-  const app = createApp(App)
-
+// -----------------------------------------------------------------------------
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+let app;
+const auth = getAuth();
+onAuthStateChanged(auth, (user) => {
+  const uid = user.uid;
+  if (user) {
+    if(!app){
+      app = createApp(App)
+      components.forEach(component => {
+        app.component(component.name, component)
+      });  
+      
+      app
+        .use(store)
+        .use(router)
+        .use(PrimeVue)
+        .use(ToastService)  
+        .component('font-awesome-icon', FontAwesomeIcon)
+        .component('Button',Button )
+        .component('InputText', InputText )
+        .component('Toast',Toast )
+        .component('Checkbox', Checkbox)
+        .component('Dialog',Dialog)
+        .component('SplitButton', SplitButton)
+        .mount('#app')
+    }
+ 
   // global registration of UI components
-  components.forEach(component => {
-    app.component(component.name, component)
-  });  
+  } else {
+   console.log("user not found")
+  }
+});
+
+// -----------------------------------------------------------------------------
+
+
   
-  app
-    .use(store)
-    .use(router)
-    .use(PrimeVue)
-    .use(ToastService)  
-    .component('font-awesome-icon', FontAwesomeIcon)
-    .component('Button',Button )
-    .component('InputText', InputText )
-    .component('Toast',Toast )
-    .component('Checkbox', Checkbox)
-    .component('Dialog',Dialog)
-    .component('SplitButton', SplitButton)
-    .mount('#app')
-;
 
 // -----------------------------------------------------------------------------
 
