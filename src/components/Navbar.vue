@@ -11,7 +11,14 @@
 					<font-awesome-icon class="font-aw" icon="fa-solid fa-magnifying-glass" />
 					<input type="text" class="search-input" name="search" v-model="searchInput" @input="sendSearchInput">
 				</div>
+
 				<div class="nav-block">
+					<SplitButton 
+				    label="User name" 
+				    icon="pi pi-user" 
+				    :model="items"
+				    class="splitBtn"
+				></SplitButton>
 					<font-awesome-icon 
 					  class="font-aw " 
 					  icon="fa-solid fa-bars" 
@@ -61,6 +68,22 @@ export default {
 		return {
 			searchInput: '',
 			isDisabled: "",
+			items: [
+				{
+					label: 'Profile',
+					icon: 'pi pi-external-link',
+					command: () => {
+						 this.$router.push(`/`)
+					}
+				},
+				{
+					label: 'Exit',
+					icon: 'pi pi-external-link',
+					command: () => {
+					 this.$router.push(`/login`)
+					}
+				},
+			]
 		}
 	},
 	computed: {
@@ -261,11 +284,24 @@ export default {
 	}
 }
 }
-
 .cart-box {
 	display: none;
 }
 
+::v-deep(.splitBtn) {
+	.p-splitbutton-defaultbutton {
+		background-color: $pink-color;
+		border: $pink-color;
+	}
+	.p-splitbutton-menubutton{
+		background-color: $pink-color;
+		border: $pink-color;
+	}
+	.p-button:enabled:hover {
+    background: gray;
+    color: #ffffff;
+    border-color: gray;
+	}
 
-
+}
 </style>

@@ -68,7 +68,7 @@ export default {
       reg_email: /^[\w._-]+@\w+\.[a-z]{2,4}$/i,
       reg_password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,15}$/,
       reg_name: /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/,
-      checked: false
+      checked: false,
     }
   },
    

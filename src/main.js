@@ -11,6 +11,8 @@ import InputText from 'primevue/inputtext';
 import Toast from 'primevue/toast';
 import ToastService from 'primevue/toastservice';
 import Checkbox from 'primevue/checkbox';
+import Dialog from 'primevue/dialog';
+import SplitButton from 'primevue/splitbutton';
 
 import 'primevue/resources/themes/lara-light-purple/theme.css';
 import 'primevue/resources/primevue.min.css';
@@ -44,8 +46,9 @@ library.add(fas, far, fab)
     .component('Button',Button )
     .component('InputText', InputText )
     .component('Toast',Toast )
-    .component('Toast',Toast )
     .component('Checkbox', Checkbox)
+    .component('Dialog',Dialog)
+    .component('SplitButton', SplitButton)
     .mount('#app')
 ;
 
