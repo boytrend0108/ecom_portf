@@ -22,6 +22,8 @@
     "firebase": "^9.15.0",
     "normalize-scss": "^7.0.1",
     "normalize.css": "^8.0.1",
+    "primeicons": "^6.0.1",
+    "primevue": "^3.21.0",
     "sass": "^1.56.1",
     "sass-loader": "^13.2.0",
     "vue": "^3.2.44",

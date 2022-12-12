@@ -1,5 +1,5 @@
 
-import { faDoorClosed } from '@fortawesome/free-solid-svg-icons';
+import auth from '@/store/auth'
 import axios from 'axios';
 import { createStore } from 'vuex'
 
@@ -21,8 +21,6 @@ export default createStore({
     searchInput: '',
     pagePath:'/',
     localStorage:[],
-    
-   
   },
   getters: {// this is a commands for getting our json arrays
     CATEGORY(state) {
@@ -355,7 +353,6 @@ export default createStore({
       state.filteredCart = filtered;
     },
     SET_BTN_DISABLED(state) {
-      console.log(state.pagePath)
       if(state.pagePath !== '/cart'){
         return
       }else{
@@ -367,8 +364,8 @@ export default createStore({
         document.querySelector(".form-btn2").textContent = "Cart is empty";
       }     
     },
-    M_SET_BTN_ABLED(state){
-      console.log(state.pagePath)
+    M_SET_BTN_ABLED(){
+      console.log('able store')
       document.querySelector(".clear-btn2").removeAttribute("disabled")
       document.querySelector(".clear-btn2").classList.remove("disabled");
       document.querySelector(".clear-btn2").textContent = "Clear Cart";
@@ -412,11 +409,9 @@ export default createStore({
         document.querySelector('.item-num').classList.add('disabled')          
   },
 
-
-
-
   },
 
   modules: {
+    auth
   }
 })

@@ -25,7 +25,9 @@ export default {
   mounted(){
     this.GET_PAGE_PATH('/cart');
     this.GET_NAVCART_BTN_DISABLED();
-    this.GET_BTN_DISABLED();
+    if(JSON.parse(localStorage.getItem('cart')).length === 0){
+      this.GET_BTN_DISABLED();
+    }  
   }
 }
 </script>

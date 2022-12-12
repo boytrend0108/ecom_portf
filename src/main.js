@@ -1,30 +1,73 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from '@/router'
-import store from '@/store/store'
-import "@/assets/styles/styles.scss"
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from '@/router';
+import store from '@/store/store';
+import "@/assets/styles/styles.scss";
+import components from '@/components/UI';
+// -----------------------------------------------------------------------------
+import PrimeVue from 'primevue/config';
+import Button from 'primevue/button';
+import InputText from 'primevue/inputtext';
+import Toast from 'primevue/toast';
+import ToastService from 'primevue/toastservice';
+import Checkbox from 'primevue/checkbox';
+import Dialog from 'primevue/dialog';
+import SplitButton from 'primevue/splitbutton';
 
-const app = createApp(App)
+import 'primevue/resources/themes/lara-light-purple/theme.css';
+import 'primevue/resources/primevue.min.css';
+import 'primeicons/primeicons.css';
+// -----------------------------------------------------------------------------
 
 /* import the fontawesome core */
-import { library } from '@fortawesome/fontawesome-svg-core'
+import { library } from '@fortawesome/fontawesome-svg-core';
 /* import font awesome icon component */
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 /* import specific icons */
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 /* add icons to the library */
 library.add(fas, far, fab)
-
-// global registration of UI components
-import components from '@/components/UI'
-components.forEach(component => {
-  app.component(component.name, component)
+// -----------------------------------------------------------------------------
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+let app;
+const auth = getAuth();
+onAuthStateChanged(auth, (user) => {
+  const uid = user.uid;
+  if (user) {
+    if(!app){
+      app = createApp(App)
+      components.forEach(component => {
+        app.component(component.name, component)
+      });  
+      
+      app
+        .use(store)
+        .use(router)
+        .use(PrimeVue)
+        .use(ToastService)  
+        .component('font-awesome-icon', FontAwesomeIcon)
+        .component('Button',Button )
+        .component('InputText', InputText )
+        .component('Toast',Toast )
+        .component('Checkbox', Checkbox)
+        .component('Dialog',Dialog)
+        .component('SplitButton', SplitButton)
+        .mount('#app')
+    }
+ 
+  // global registration of UI components
+  } else {
+   console.log("user not found")
+  }
 });
 
-app
-  .use(store)
-  .use(router)
-  .component('font-awesome-icon', FontAwesomeIcon)
-  .mount('#app')
+// -----------------------------------------------------------------------------
+
+
+  
+
+// -----------------------------------------------------------------------------
+
+

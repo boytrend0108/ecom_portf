@@ -2,8 +2,16 @@
 	<div class="cart-box">
 		<div class="wrapper">
 			<div class="item-box">
-				<cart-item v-for="item in USER_CART" :key="item.id" :item="item" class="cart-item" />
-				<h3 v-show="!USER_CART.length" class="text">Cart is empty</h3>
+				<cart-item 
+				  v-for="item in USER_CART" 
+				  :key="item.id" 
+				  :item="item" 
+				  class="cart-item" 
+				/>
+				<h3 
+				  v-show="!USER_CART.length" 
+				  class="text">Cart is empty
+				</h3>
 				<div class="btn-box">
 					<my-button class="btn clear-btn2" @click="clearCart">Clear Cart</my-button>
 					<my-button class="btn" @click="goToHomePage">Continue Shopping</my-button>
@@ -53,8 +61,9 @@ export default {
 			this.CLEAR_CART();
 			this.GET_BTN_DISABLED()
 		},
+
 		getLocalStorage() {
-			this.localStorage = JSON.parse(localStorage.getItem('cart'))
+		this.localStorage = JSON.parse(localStorage.getItem('cart'))
 		},
 
 		makeCartBntDisable() {
