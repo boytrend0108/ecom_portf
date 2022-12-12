@@ -4,21 +4,33 @@
     class="form"
     @submit="subminHandler"
     >
-      <input 
-      v-model="loginEmail"
-      type="email" 
-      class="input"
-      placeholder="email"
-      >
+    <span class="p-float-label">
+	      <InputText 
+          id="email" 
+          v-model="loginEmail"
+          class="input"
+          @input="validator"
+       />
+	      <label class="lable" for="email">email</label>
+      </span>
       <p>eur-usd@bk.ru</p>
-      <input 
-      v-model="loginPassword"
-      type="password" 
-      class="input"
-      placeholder="password"
-      >
-      <p>test123456</p>
-      <my-button class="btnSignup">Sign In</my-button>
+      <span class="p-float-label">
+	      <InputText 
+          id="password" 
+          v-model="loginPassword"
+          class="input"
+          @input="validator"
+        />
+	      <label class="lable" for="password">Password</label>
+      </span>
+      <p>lkj_kjn265</p>
+      <Button 
+          label="SIGN IN" 
+          icon="pi pi-user" 
+          iconPos="right" 
+          class="p-button-secondary disabled"
+          disabled
+          @click="subminHandler" />
       <p>No Account? <button @click="goToRegistrationPage">REGISTRATION</button></p>
     </form>
   </div>
@@ -33,11 +45,40 @@ export default {
   data(){
     return{
       loginEmail:'',
-      loginPassword:''
+      loginPassword:'',
+      reg_email: /^[\w._-]+@\w+\.[a-z]{2,4}$/i,
+      reg_password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,15}$/
     }
   },
 
   methods: {
+    validator(){
+      const btn = document.querySelector('.disabled');
+      if(this.reg_email.test(this.loginEmail)){
+        document.getElementById("email").style.border = '3px solid green'
+      }else{
+        document.getElementById("email").style.border = '3px solid red'
+      }
+    
+      if(this.reg_password.test(this.loginPassword)){
+        console.log(this.reg_password.test(this.loginPassword))
+        document.getElementById("password").style.border = '3px solid green'
+      }else{
+        document.getElementById("password").style.border = '3px solid red'
+      }
+
+      if(this.reg_email.test(this.loginEmail) &&
+      this.reg_password.test(this.loginPassword) === true
+      ){
+       btn.classList.remove('disabled');
+       btn.removeAttribute('disabled')
+      }
+    },
+
+    async showInfo() {
+            this.$toast.add({severity:'success', summary: 'Well done!', detail:'Your registration is complete', life: 3000});
+        },
+
     async subminHandler(event) {
       console.log('submit')
       event.preventDefault();
@@ -77,6 +118,11 @@ button{
   color: white;
   margin: 0 11px;
 }
+.p-button-secondary{
+  background-color:aliceblue;
+  color: gray;
+  width:300px;
+  margin:10px 0;}
 .form{
   top: 218px;
   right: 235px;
@@ -102,5 +148,14 @@ button{
 .btnSignup{
   margin:16px; 
   text-transform: uppercase; 
+}
+
+.disabled{
+   @include disabled(grey);
+    color: aliceblue ;
+}
+
+.lable{
+  padding: 0 10px;
 }
 </style>

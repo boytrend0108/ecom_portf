@@ -22,6 +22,16 @@
 	      <label class="lable" for="password">Password</label>
       </span>
       <p>ssfsH5_f</p>
+
+      <span class="p-float-label">
+	      <InputText 
+          id="name" 
+          v-model="loginName"
+          class="input"
+          @input="validator"
+        />
+	      <label class="lable" for="name">Name</label>
+      </span>
         
         <Button 
           label="REGISTER" 
@@ -45,8 +55,10 @@ export default {
     return{
       loginEmail:'',
       loginPassword:'',
+      loginName:'',
       reg_email: /^[\w._-]+@\w+\.[a-z]{2,4}$/i,
-      reg_password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$/
+      reg_password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,15}$/,
+      reg_name: /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/
     }
   },
    
@@ -60,23 +72,25 @@ export default {
       }
     
       if(this.reg_password.test(this.loginPassword)){
-        console.log(this.reg_password.test(this.loginPassword))
         document.getElementById("password").style.border = '3px solid green'
       }else{
         document.getElementById("password").style.border = '3px solid red'
       }
 
+      if(this.reg_name.test(this.loginName)){
+        document.getElementById("name").style.border = '3px solid green'
+      }else{
+        document.getElementById("name").style.border = '3px solid red'
+      }
+
       if(this.reg_email.test(this.loginEmail) &&
-      this.reg_password.test(this.loginPassword) === true
+         this.reg_password.test(this.loginPassword &&
+         this.reg_name.test(this.loginName)
+        ) === true
       ){
        btn.classList.remove('disabled');
        btn.removeAttribute('disabled')
       }
-
-
-      
-
-     
     },
 
     async showInfo() {
