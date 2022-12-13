@@ -18,25 +18,25 @@ const auth = getAuth(appFB);
 const database = getDatabase(appFB);
 
 export default {
-  actions:{
-    async login({dispatch, commit},{loginEmail, loginPassword}){
+  actions: {
+    // login via FareBase
+    async login({ dispatch, commit }, { loginEmail, loginPassword }) {
       try {
-         await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
-         .then((userCredential) => {
-          const user = userCredential.user;
-          console.log(userCredential)
-        })
-      }catch(error){
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode,errorMessage)
+        await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+      } catch (error) {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode, errorMessage)
+          throw error
       }
     },
 
+    // logout via FireBase
     async logout() {
       await signOut(auth)
     },
-// registration via FireBase
+
+    // registration via FireBase
     async registration({ dispatch, commit }, { loginEmail, loginPassword, loginName }) {
       try {
         await createUserWithEmailAndPassword(auth, loginEmail, loginPassword)
@@ -50,9 +50,10 @@ export default {
             });
           })
       } catch (error) {
+        commit("SET_ERROR", error)
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode,errorMessage)
+        console.log(errorCode, errorMessage)
       }
     },
 

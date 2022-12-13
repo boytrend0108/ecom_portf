@@ -5,7 +5,23 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
+  computed:{
+    ...mapGetters([
+      'ERROR'
+    ]),
+
+    error(){
+      return this.ERROR
+    }
+  },
+
+  watch:{
+    error(fbError){
+      console.log(fbError)
+    }
+  }
 
 }
 </script>

@@ -87,10 +87,9 @@ export default {
       }
       
       try{
-        await this.$store.dispatch('login', formData);
-        this.$router.push('/');
-      }
-      catch(err){console.log(err)}
+        await this.$store.dispatch('login', formData)
+        this.$router.push('/')
+         } catch(err){}
       
     },
     goToRegistrationPage(event){

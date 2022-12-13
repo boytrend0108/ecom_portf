@@ -21,6 +21,7 @@ export default createStore({
     searchInput: '',
     pagePath:'/',
     localStorage:[],
+    error: null //errors for login and registration
   },
   getters: {// this is a commands for getting our json arrays
     CATEGORY(state) {
@@ -70,7 +71,11 @@ export default createStore({
     },
     PAGE_PATH(state){
       return state.pagePath;
+    },
+    ERROR(state){
+     return state.error
     }
+    
   },
 
   actions: {// actions are asinc(methods in Component)
@@ -407,7 +412,13 @@ export default createStore({
         document.querySelector('.icon-cart-wr').setAttribute("disabled","disabled");
         document.querySelector('.fa-cart-shopping').classList.add('disabled')
         document.querySelector('.item-num').classList.add('disabled')          
-  },
+    },
+    SET_ERROR(state,error){
+      state.error = error
+    },
+    CLEAR_ERROR(state){
+      state.error = null
+    }
 
   },
 
