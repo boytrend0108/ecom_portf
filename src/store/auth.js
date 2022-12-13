@@ -2,6 +2,7 @@
 
 import { initializeApp } from "firebase/app";
 import{getAuth,signInWithEmailAndPassword,createUserWithEmailAndPassword, signOut} from 'firebase/auth'
+import { getDatabase, ref, set } from "firebase/database";
 const configFB = {
   apiKey: "AIzaSyCAJJiKHL-U0cIJe4Ka9ICLHVPclu66fVk",
   authDomain: "internet-shop-589b5.firebaseapp.com",
@@ -9,10 +10,12 @@ const configFB = {
   storageBucket: "internet-shop-589b5.appspot.com",
   messagingSenderId: "738423709491",
   appId: "1:738423709491:web:d72812d1a60b8c57db6846",
-  measurementId: "G-0715SLECSH"
+  measurementId: "G-0715SLECSH",
+  databaseURL: "https://internet-shop-589b5-default-rtdb.firebaseio.com/"
 };
 const appFB = initializeApp(configFB);
 const auth = getAuth(appFB);
+const database = getDatabase(appFB);
 
 export default {
   actions:{
@@ -33,13 +36,18 @@ export default {
     async logout() {
       await signOut(auth)
     },
-
+// registration 
     async registration({ dispatch, commit }, { loginEmail, loginPassword, loginName }) {
       try {
         await createUserWithEmailAndPassword(auth, loginEmail, loginPassword)
           .then((userCredential) => {
-            const user = userCredential.user;
-            console.log(userCredential)
+            const user = auth.currentUser;
+            const uid = user.uid;
+            console.log(user)
+            set(ref(database, `users/${uid}/info`), {
+              username: loginName,
+              email: loginEmail
+            });
           })
       } catch (error) {
         const errorCode = error.code;

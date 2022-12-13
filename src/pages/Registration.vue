@@ -121,13 +121,13 @@ export default {
       const formData = {
         loginEmail: this.loginEmail,
         loginPassword: this.loginPassword,
-        loginName: this. loginName
+        loginName: this.loginName
       }
-
+ 
       try {
-        await this.$store.dispatch('registration', formData);
+        await this.$store.dispatch('registration', formData);// go to auth.jf
         try {
-          await this.showInfo();
+          await this.showInfo(); // this is for toast el from PrimeVue
           this.$router.push('/');
           console.log(formData);
         } catch (err) { console.log(err) }
