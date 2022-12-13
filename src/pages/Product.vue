@@ -6,6 +6,18 @@
 
 
 <script>
+// -----------------------------------------------------------------------------
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+const auth = getAuth();
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const uid = user.uid;
+    console.log("user is sign in")
+  } else {
+    console.log("user is sign out")
+  }
+});
+// -----------------------------------------------------------------------------
 export default {
   name:"product",
 }

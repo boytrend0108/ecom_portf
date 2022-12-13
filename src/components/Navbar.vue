@@ -18,6 +18,7 @@
 				    icon="pi pi-user" 
 				    :model="items"
 				    class="splitBtn"
+						@click=" this.$router.push(`/login`)"
 				></SplitButton>
 					<font-awesome-icon 
 					  class="font-aw " 
@@ -70,17 +71,17 @@ export default {
 			isDisabled: "",
 			items: [
 				{
-					label: 'Profile',
+					label: 'Cart',
 					icon: 'pi pi-external-link',
 					command: () => {
-						 this.$router.push(`/`)
+						 this.$router.push(`/cart`)
 					}
 				},
 				{
 					label: 'Exit',
 					icon: 'pi pi-external-link',
 					command: () => {
-					 this.$router.push(`/login`)
+					 	this.logout()
 					}
 				},
 			]
@@ -118,6 +119,11 @@ export default {
 			this.GET_HIDE_CART();
 			this.GET_NAVCART_BTN_DISABLED();
 		},
+
+		async logout(){
+		await	this.$store.dispatch('logout')
+			this.$router.push(`/login?message=logout`)
+		}
 
 	}
 }
