@@ -129,8 +129,7 @@ export default {
         try {
           await this.showInfo(); // this is for toast el from PrimeVue
           this.$router.push('/');
-          console.log(formData);
-        } catch (err) { console.log(err) }
+            } catch (err) { console.log(err) }
       }
       catch (err) { console.log(err) }
     },
@@ -140,14 +139,6 @@ export default {
       this.$router.push('/login')
     }
   },
-
-  isCheck(){
-    console.log('54')
-  },
-
-  mounted(){
-    // console.log(this.checked);
-  }
   
 }
 </script>
