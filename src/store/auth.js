@@ -40,7 +40,7 @@ export default {
     async registration({ dispatch, commit }, { loginEmail, loginPassword, loginName }) {
       try {
         await createUserWithEmailAndPassword(auth, loginEmail, loginPassword)
-          .then((userCredential) => {
+          .then(() => {
             const user = auth.currentUser;
             const uid = user.uid;
             console.log(user)
