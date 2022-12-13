@@ -36,7 +36,7 @@ export default {
     async logout() {
       await signOut(auth)
     },
-// registration 
+// registration via FireBase
     async registration({ dispatch, commit }, { loginEmail, loginPassword, loginName }) {
       try {
         await createUserWithEmailAndPassword(auth, loginEmail, loginPassword)
@@ -44,7 +44,7 @@ export default {
             const user = auth.currentUser;
             const uid = user.uid;
             console.log(user)
-            set(ref(database, `users/${uid}/info`), {
+            set(ref(database, `users/${uid}/info`), {// post ro FB store
               username: loginName,
               email: loginEmail
             });
@@ -56,6 +56,5 @@ export default {
       }
     },
 
-    getUid(){}
   }
 }
