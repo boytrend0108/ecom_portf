@@ -43,7 +43,7 @@
 						<span 
 						  :class="isDisabled"
 						  class="item-num" 
-							>{{ TOTAL_CART_ITEMS }} </span>
+							> {{ TOTAL_CART_ITEMS }} </span>
 					</button>
 				</div>
 			</div>

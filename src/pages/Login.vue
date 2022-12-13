@@ -32,6 +32,7 @@
           disabled
           @click="subminHandler" />
       <p>No Account? <button @click="goToRegistrationPage">REGISTRATION</button></p>
+     
     </form>
   </div>
    
@@ -76,7 +77,7 @@ export default {
     },
 
     async showInfo() {
-            this.$toast.add({severity:'success', summary: 'Well done!', detail:'Your registration is complete', life: 3000});
+            this.$toast.add({severity:'success', summary: 'Well done!', detail:'Your registration is complete', });
         },
 
     async subminHandler(event) {
@@ -96,11 +97,15 @@ export default {
       event.preventDefault();
       this.$router.push('/registration');
     }
+  },
+
+  mounted(){
+    this.$toast.add({severity:'success', summary: 'Well done!', detail:'Your registration is complete', });
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .wrapper{
   display: flex;
   align-items: center;
@@ -155,4 +160,5 @@ button{
 .lable{
   padding: 0 10px;
 }
+
 </style>
