@@ -29,42 +29,46 @@ import { far } from '@fortawesome/free-regular-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 /* add icons to the library */
 library.add(fas, far, fab)
+
 // -----------------------------------------------------------------------------
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-let app;
-const auth = getAuth();
-onAuthStateChanged(auth, (user) => {
-  const uid = user.uid;
-  if (user) {
-    if(!app){
-      app = createApp(App)
-      components.forEach(component => {
-        app.component(component.name, component)
-      });  
-      
-      app
-        .use(store)
-        .use(router)
-        .use(PrimeVue)
-        .use(ToastService)  
-        .component('font-awesome-icon', FontAwesomeIcon)
-        .component('Button',Button )
-        .component('InputText', InputText )
-        .component('Toast',Toast )
-        .component('Checkbox', Checkbox)
-        .component('Dialog',Dialog)
-        .component('SplitButton', SplitButton)
-        .mount('#app')
-    }
+// import { initializeApp } from "firebase/app";
+//   let app = initializeApp(firebaseConfig);
+  // const auth = getAuth(app);
+
+// let app;
+// const auth = getAuth();
+// onAuthStateChanged(auth, (user) => {
+//   const uid = user.uid;
+//   if (user) {
+//     if(!app){
+     
+//     }
  
-  // global registration of UI components
-  } else {
-   console.log("user not found")
-  }
-});
+//   // global registration of UI components
+//   } else {
+//    console.log("user not found")
+//   }
+// });
 
 // -----------------------------------------------------------------------------
+ let app = createApp(App)
+components.forEach(component => {
+  app.component(component.name, component)
+});  
 
+app
+  .use(store)
+  .use(router)
+  .use(PrimeVue)
+  .use(ToastService)  
+  .component('font-awesome-icon', FontAwesomeIcon)
+  .component('Button',Button )
+  .component('InputText', InputText )
+  .component('Toast',Toast )
+  .component('Checkbox', Checkbox)
+  .component('Dialog',Dialog)
+  .component('SplitButton', SplitButton)
+  .mount('#app')
 
   
 

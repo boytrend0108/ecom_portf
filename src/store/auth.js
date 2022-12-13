@@ -1,10 +1,7 @@
 // this ia a module "auth" in store
 
 import { initializeApp } from "firebase/app";
-import{ getAuth,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword
-} from 'firebase/auth'
+import{getAuth,signInWithEmailAndPassword,createUserWithEmailAndPassword, signOut} from 'firebase/auth'
 const configFB = {
   apiKey: "AIzaSyCAJJiKHL-U0cIJe4Ka9ICLHVPclu66fVk",
   authDomain: "internet-shop-589b5.firebaseapp.com",
@@ -21,19 +18,36 @@ export default {
   actions:{
     async login({dispatch, commit},{loginEmail, loginPassword}){
       try {
-         await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
-      }catch(err){
-        throw err
+         await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+         .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(userCredential)
+        })
+      }catch(error){
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode,errorMessage)
       }
     },
 
-    async registration({dispatch, commit},{loginEmail, loginPassword, loginName}){
+    async logout() {
+      await signOut(auth)
+    },
+
+    async registration({ dispatch, commit }, { loginEmail, loginPassword, loginName }) {
       try {
-         await createUserWithEmailAndPassword(auth, loginEmail, loginPassword, loginName)
-               
-      }catch(err){
-        throw err
+        await createUserWithEmailAndPassword(auth, loginEmail, loginPassword)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            console.log(userCredential)
+          })
+      } catch (error) {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode,errorMessage)
       }
-    }
+    },
+
+    getUid(){}
   }
 }
