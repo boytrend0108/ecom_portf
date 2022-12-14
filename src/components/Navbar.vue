@@ -18,7 +18,7 @@
 				    icon="pi pi-user" 
 				    :model="items"
 				    class="splitBtn"
-						@click=" this.$router.push(`/login`)"
+						@click="goToLoginPage"
 				></SplitButton>
 					<font-awesome-icon 
 					  class="font-aw " 
@@ -120,11 +120,22 @@ export default {
 			this.GET_NAVCART_BTN_DISABLED();
 		},
 
+		goToLoginPage(){
+			this.$router.push(`/login`)
+		},
+
 		async logout(){
-		await	this.$store.dispatch('logout')
+		  await	this.$store.dispatch('logout')
 			this.$router.push(`/login?message=logout`)
+			// this.$message(messages.logout.summary, messages.logout.details)// show message
 		}
 
+	},
+	mounted(){
+		// get rid of parent click-event 
+		document.querySelector('.p-splitbutton-menubutton').addEventListener('click', (event)=>{
+			event.stopPropagation()
+		})
 	}
 }
 </script >

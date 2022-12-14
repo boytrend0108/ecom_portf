@@ -11,5 +11,13 @@ export default {
   "auth/user-not-found": {
     summary: "Error",
     details: 'User non found'
+  },
+  "auth/too-many-requests": {
+    summary: "Error",
+    details: 'Too many requests. Try again later'
+  },
+  "auth/email-already-in-use": {
+    summary: "Error",
+    details: 'Email already in use'
   }
 }

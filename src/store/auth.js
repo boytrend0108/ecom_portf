@@ -1,7 +1,7 @@
-// this ia a module "auth" in store
+// this is a module "auth" in store
 
 import { initializeApp } from "firebase/app";
-import{getAuth,signInWithEmailAndPassword,createUserWithEmailAndPassword, signOut} from 'firebase/auth'
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth'
 import { getDatabase, ref, set } from "firebase/database";
 const configFB = {
   apiKey: "AIzaSyCAJJiKHL-U0cIJe4Ka9ICLHVPclu66fVk",
@@ -26,13 +26,14 @@ export default {
       } catch (error) {
         commit('SET_ERROR', error)// we can get error.code and error.message
         console.log(error.code)
-          throw error
+        throw error
       }
     },
 
     // logout via FireBase
-    async logout() {
+    async logout({commit}) {
       await signOut(auth)
+      commit('clearInfo')
     },
 
     // registration via FireBase
@@ -49,13 +50,18 @@ export default {
             });
           })
       } catch (error) {
-        commit("SET_ERROR", error)
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        // console.log(errorCode, errorMessage)
+        commit('SET_ERROR', error)// we can get error.code and error.message
+        console.log(error.code)
         throw error
       }
     },
 
+    getUid(){
+      const user = auth.currentUser;
+      // const uid = user.uid;
+      // console.log(auth.currentUser.uid)
+      return user ? user.uid : null
+    }
   }
 }
+// don't forget to import this module in store.js!!!!!

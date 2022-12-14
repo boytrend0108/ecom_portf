@@ -11,7 +11,12 @@ export default {
     }
 
     app.config.globalProperties.$error = function(summaryErr,detailErr){
-      this.$toast.add({severity:'error', summary: summaryErr, detail:detailErr, life: 3000}); 
+      this.$toast.add({
+        severity:'error', 
+        summary: summaryErr, 
+        detail:detailErr, 
+        // life: 3000
+      }); 
     }
   }
 }

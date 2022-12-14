@@ -23,14 +23,15 @@
         />
 	      <label class="lable" for="password">Password</label>
       </span>
-      <p>qqqW_1236</p>
+      <p>ssfsH5_f</p>
       <Button 
           label="SIGN IN" 
           icon="pi pi-user" 
           iconPos="right" 
           class="p-button-secondary disabled"
           disabled
-          @click="subminHandler" />
+          @click="subminHandler" 
+      />
       <p>No Account? <button @click="goToRegistrationPage">REGISTRATION</button></p>
      
     </form>
