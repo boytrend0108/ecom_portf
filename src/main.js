@@ -4,6 +4,7 @@ import router from '@/router';
 import store from '@/store/store';
 import "@/assets/styles/styles.scss";
 import components from '@/components/UI';
+import messagePlagin from "@/utils/message.plagin"
 // -----------------------------------------------------------------------------
 import PrimeVue from 'primevue/config';
 import Button from 'primevue/button';
@@ -60,7 +61,8 @@ app
   .use(store)
   .use(router)
   .use(PrimeVue)
-  .use(ToastService)  
+  .use(ToastService)
+  .use(messagePlagin)
   .component('font-awesome-icon', FontAwesomeIcon)
   .component('Button',Button )
   .component('InputText', InputText )

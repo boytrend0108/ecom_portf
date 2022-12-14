@@ -32,6 +32,7 @@
           disabled
           @click="subminHandler" />
       <p>No Account? <button @click="goToRegistrationPage">REGISTRATION</button></p>
+     
     </form>
   </div>
    
@@ -39,6 +40,7 @@
 
 <script>
 import MyButton from '@/components/UI/MyButton.vue'
+import messages from '@/utils/messages';
 export default {
   components: { MyButton },
   name:"login",
@@ -76,7 +78,7 @@ export default {
     },
 
     async showInfo() {
-            this.$toast.add({severity:'success', summary: 'Well done!', detail:'Your registration is complete', life: 3000});
+            this.$toast.add({severity:'success', summary: 'Well done!', detail:'Your registration is complete', });
         },
 
     async subminHandler(event) {
@@ -96,11 +98,17 @@ export default {
       event.preventDefault();
       this.$router.push('/registration');
     }
+  },
+
+  mounted(){
+      if (messages[this.$route.query.message]){ // if route contain message 'logout'
+        this.$message(messages.logout.summary, messages.logout.details)// show message
+      }
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .wrapper{
   display: flex;
   align-items: center;
@@ -155,4 +163,5 @@ button{
 .lable{
   padding: 0 10px;
 }
+
 </style>
