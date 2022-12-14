@@ -40,6 +40,7 @@
 
 <script>
 import MyButton from '@/components/UI/MyButton.vue'
+import messages from '@/utils/messages';
 export default {
   components: { MyButton },
   name:"login",
@@ -100,7 +101,9 @@ export default {
   },
 
   mounted(){
-    this.$toast.add({severity:'success', summary: 'Well done!', detail:'Your registration is complete', });
+      if (messages[this.$route.query.message]){ // if route contain message 'logout'
+        this.$message(messages.logout.summary, messages.logout.details)// show message
+      }
   }
 }
 </script>
