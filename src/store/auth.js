@@ -24,9 +24,8 @@ export default {
       try {
         await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
       } catch (error) {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode, errorMessage)
+        commit('SET_ERROR', error)// we can get error.code and error.message
+        console.log(error.code)
           throw error
       }
     },
@@ -51,9 +50,9 @@ export default {
           })
       } catch (error) {
         commit("SET_ERROR", error)
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage)
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+        // console.log(errorCode, errorMessage)
         throw error
       }
     },

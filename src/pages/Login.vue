@@ -7,7 +7,7 @@
     <span class="p-float-label">
 	      <InputText 
           id="email" 
-          v-model="loginEmail"
+          v-model.trim="loginEmail"
           class="input"
           @input="validator"
        />
@@ -17,7 +17,7 @@
       <span class="p-float-label">
 	      <InputText 
           id="password" 
-          v-model="loginPassword"
+          v-model.trim="loginPassword"
           class="input"
           @input="validator"
         />

@@ -1,4 +1,4 @@
-export default{
+export default {
   //create plagin
   install(app, options){
     app.config.globalProperties.$message = function(summary,detail){
