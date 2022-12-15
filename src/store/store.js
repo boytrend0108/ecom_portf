@@ -1,5 +1,6 @@
 
 import auth from '@/store/auth'
+import info from "@/store/info"
 import axios from 'axios';
 import { createStore } from 'vuex'
 
@@ -423,6 +424,6 @@ export default createStore({
   },
 
   modules: {
-    auth
+    auth, info
   }
 })

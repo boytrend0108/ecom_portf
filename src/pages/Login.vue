@@ -7,7 +7,7 @@
     <span class="p-float-label">
 	      <InputText 
           id="email" 
-          v-model="loginEmail"
+          v-model.trim="loginEmail"
           class="input"
           @input="validator"
        />
@@ -17,20 +17,21 @@
       <span class="p-float-label">
 	      <InputText 
           id="password" 
-          v-model="loginPassword"
+          v-model.trim="loginPassword"
           class="input"
           @input="validator"
         />
 	      <label class="lable" for="password">Password</label>
       </span>
-      <p>qqqW_1236</p>
+      <p>ssfsH5_f </p>
       <Button 
           label="SIGN IN" 
           icon="pi pi-user" 
           iconPos="right" 
           class="p-button-secondary disabled"
           disabled
-          @click="subminHandler" />
+          @click="subminHandler" 
+      />
       <p>No Account? <button @click="goToRegistrationPage">REGISTRATION</button></p>
      
     </form>
@@ -63,7 +64,6 @@ export default {
       }
     
       if(this.reg_password.test(this.loginPassword)){
-        console.log(this.reg_password.test(this.loginPassword))
         document.getElementById("password").style.border = '3px solid green'
       }else{
         document.getElementById("password").style.border = '3px solid red'

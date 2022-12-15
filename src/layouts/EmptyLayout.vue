@@ -5,23 +5,23 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import messages from '@/utils/messages';
 export default {
   computed:{
-    ...mapGetters([
-      'ERROR'
-    ]),
-
     error(){
-      return this.ERROR
+      return this.$store.getters.ERROR
     }
   },
 
   watch:{
-    error(fbError){
-      console.log(fbError)
+    error(fbError){ // watch the error
+      // if getters ERROR chanded - go to message.plugin and show message
+      if(messages[fbError.code]){
+        this.$error(messages[fbError.code].summary, messages[fbError.code].details)
+      }
+      this.$error('Ups!!', 'Something went wrong...' )
     }
-  }
+  },
 
 }
 </script>

@@ -14,12 +14,12 @@
 
 				<div class="nav-block">
 					<SplitButton 
-				    label="User name" 
+				    :label="name" 
 				    icon="pi pi-user" 
 				    :model="items"
 				    class="splitBtn"
-						@click=" this.$router.push(`/login`)"
-				></SplitButton>
+						@click="goToLoginPage"
+				  ></SplitButton>
 					<font-awesome-icon 
 					  class="font-aw " 
 					  icon="fa-solid fa-bars" 
@@ -43,8 +43,8 @@
 						<span 
 						  :class="isDisabled"
 						  class="item-num" 
-							> {{ TOTAL_CART_ITEMS }} </span>
-					</button>
+							> {{TOTAL_CART_ITEMS}} </span>
+					 </button>
 				</div>
 			</div>
 		</nav>
@@ -69,6 +69,7 @@ export default {
 		return {
 			searchInput: '',
 			isDisabled: "",
+			// name: "",
 			items: [
 				{
 					label: 'Cart',
@@ -87,6 +88,7 @@ export default {
 			]
 		}
 	},
+
 	computed: {
 		...mapGetters([
 			"IS_SHOW_MENU",
@@ -94,13 +96,19 @@ export default {
 			"SHOW_CART",
 			"SLIDE_CART",
 			"TOTAL_CART_ITEMS",
-			"SEARCH_INPUT"
-		])
-	},
+			"SEARCH_INPUT",
+			"INFO"
+		]),
+
+		name(){ // this name in computed rpoperty on 'name' in data
+       return this.$store.getters.INFO.username	? this.$store.getters.INFO.username : "Sign in"
+			}	
+		},
+
 	methods: {
 		...mapActions([
 			"SWITCH_SHOW_MENU", "SWITCH_SHOW_CART", "GET_SEARCH_INPUT",
-			"GET_PAGE_PATH","GET_HIDE_CART","GET_NAVCART_BTN_DISABLED"
+			"GET_PAGE_PATH","GET_HIDE_CART","GET_NAVCART_BTN_DISABLED","CLEAR_CART"
 
 		]),
 		sendSearchInput() {
@@ -111,6 +119,7 @@ export default {
 			this.$router.push(`/`);
 			this.GET_PAGE_PATH('/');
 			this.isDisable = ''
+		
 		},
 
 		goToCartPage(){
@@ -120,11 +129,23 @@ export default {
 			this.GET_NAVCART_BTN_DISABLED();
 		},
 
+		goToLoginPage(){
+			this.$router.push(`/login`)
+		},
+
 		async logout(){
-		await	this.$store.dispatch('logout')
+		  await	this.$store.dispatch('logout')
 			this.$router.push(`/login?message=logout`)
+			this.CLEAR_CART();
 		}
 
+	},
+
+	 mounted() {
+		// get rid of parent click-event 
+		document.querySelector('.p-splitbutton-menubutton').addEventListener('click', (event) => {
+			event.stopPropagation()
+		})
 	}
 }
 </script >

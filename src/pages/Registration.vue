@@ -1,6 +1,5 @@
 <template>
   <div class="wrapper">
-    <Toast position="center"/>
     <form  class="form">
       <span class="p-float-label">
 	      <InputText 

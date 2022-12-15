@@ -11,10 +11,21 @@
 import FooterComp from '@/components/FooterComp.vue';
 import SubscribeComp from '@/components/SubscribeComp.vue';
 import AdvantageComp from '@/components/AdvantageComp.vue';
+
+// import info from "@/store/info"
 export default {
-  components:{
-    FooterComp,SubscribeComp,AdvantageComp
-  }
+  components: {
+    FooterComp, SubscribeComp, AdvantageComp
+  },
+
+ async mounted() {
+        try{
+          Object.keys(this.$store.getters.info).length // ecли объекс пустой будет ошибка.
+        }catch(e){
+          await this.$store.dispatch('fetchInfo')
+        }
+    }
+   
 }
 </script>
 

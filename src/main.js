@@ -32,28 +32,10 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 library.add(fas, far, fab)
 
 // -----------------------------------------------------------------------------
-// import { initializeApp } from "firebase/app";
-//   let app = initializeApp(firebaseConfig);
-  // const auth = getAuth(app);
-
-// let app;
-// const auth = getAuth();
-// onAuthStateChanged(auth, (user) => {
-//   const uid = user.uid;
-//   if (user) {
-//     if(!app){
-     
-//     }
- 
-//   // global registration of UI components
-//   } else {
-//    console.log("user not found")
-//   }
-// });
 
 // -----------------------------------------------------------------------------
  let app = createApp(App)
-components.forEach(component => {
+  components.forEach(component => {
   app.component(component.name, component)
 });  
 
@@ -71,9 +53,6 @@ app
   .component('Dialog',Dialog)
   .component('SplitButton', SplitButton)
   .mount('#app')
-
-  
-
 // -----------------------------------------------------------------------------
 
 
