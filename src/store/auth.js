@@ -36,7 +36,7 @@ export default {
     // logout via FireBase
     async logout({commit}) {
       await signOut(auth)
-      localStorage.setItem('firebase', "")
+      localStorage.setItem('firebase', "")// clear localStorage
       commit('clearInfo')
     },
 

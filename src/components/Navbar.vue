@@ -69,7 +69,7 @@ export default {
 		return {
 			searchInput: '',
 			isDisabled: "",
-			name: "",
+			// name: "",
 			items: [
 				{
 					label: 'Cart',
@@ -101,14 +101,14 @@ export default {
 		]),
 
 		name(){ // this name in computed rpoperty on 'name' in data
-       return this.$store.getters.INFO.username	? this.$store.getters.INFO.username : "Username"
+       return this.$store.getters.INFO.username	? this.$store.getters.INFO.username : "Sign in"
 			}	
 		},
 
 	methods: {
 		...mapActions([
 			"SWITCH_SHOW_MENU", "SWITCH_SHOW_CART", "GET_SEARCH_INPUT",
-			"GET_PAGE_PATH","GET_HIDE_CART","GET_NAVCART_BTN_DISABLED"
+			"GET_PAGE_PATH","GET_HIDE_CART","GET_NAVCART_BTN_DISABLED","CLEAR_CART"
 
 		]),
 		sendSearchInput() {
@@ -136,7 +136,7 @@ export default {
 		async logout(){
 		  await	this.$store.dispatch('logout')
 			this.$router.push(`/login?message=logout`)
-			// this.$message(messages.logout.summary, messages.logout.details)// show message
+			this.CLEAR_CART();
 		}
 
 	},

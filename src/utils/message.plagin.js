@@ -15,7 +15,7 @@ export default {
         severity:'error', 
         summary: summaryErr, 
         detail:detailErr, 
-        // life: 3000
+        life: 3000
       }); 
     }
   }

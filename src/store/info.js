@@ -13,7 +13,7 @@ export default {
       return state.info
     }
   },
-
+  
   actions:{
     async fetchInfo({ dispatch, commit }) {
       try {
