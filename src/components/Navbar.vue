@@ -100,13 +100,11 @@ export default {
 			"INFO"
 		]),
 
-		name(){
+		name(){ // this name in computed rpoperty on 'name' in data
        return this.$store.getters.INFO.username	? this.$store.getters.INFO.username : "Username"
-			}
-			
+			}	
 		},
 
-	
 	methods: {
 		...mapActions([
 			"SWITCH_SHOW_MENU", "SWITCH_SHOW_CART", "GET_SEARCH_INPUT",
