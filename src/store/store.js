@@ -7,12 +7,7 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    // category: [],// this is our json array
-    catalogItems: [],// this is our json array
-    advantages: [],
-    menu: [], // this is oue json menu array
     userCart: [],// this is our cart
-    filteredCart: [],//this is our filtered array
     totalCartPrice: 0,
     totalItems: 0,
     isMobile: true, // to show icons in navbar
@@ -26,15 +21,7 @@ export default createStore({
     error: null //errors for login and registration
   },
   getters: {// this is a commands for getting our json arrays
-    // CATEGORY(state) {
-    //   return state.category;
-    // },
-    CATALOGITEMS(state) {
-      return state.catalogItems
-    },
-    ADVANTAGES(state) {
-      return state.advantages
-    },
+    
     IS_MOBILE(state){
       return state.isMobile;
     },
@@ -43,9 +30,6 @@ export default createStore({
     },
     SLIDE_MENU(state){
        return state.slideMenu;
-    },
-    MENU(state){
-      return state.menu;
     },
     SHOW_CART(state){
       return state.showCart;
@@ -65,9 +49,6 @@ export default createStore({
     TOTAL_CART_ITEMS(state){
       return state.totalItems
     },
-    FILTERED_CART(state){
-      return state.filteredCart;
-    },
     NOTIF_MSG(state){
       return state.notif_msg;
     },
@@ -80,57 +61,7 @@ export default createStore({
   },
 
   actions: {// actions are asinc(methods in Component)
-    // GET_CATEGORY({ commit }) {
-    //   return axios('http://localhost:3000/category', {
-    //     method: "GET"
-    //   })
-    //     .then((category) => {
-    //       commit('SET_CATEGORY', category.data)
-    //       return category;
-    //     })
-    //     .catch((err) => {
-    //       commit('ISIMG')
-    //       console.log(err)
-    //       return err;
-    //     })
-    // },
-    GET_CATALOG({ commit }) {
-      return axios('http://localhost:3000/catalogItems', {
-        method: "GET"
-      })
-        .then((catalog) => {
-          commit('SET_CATALOG', catalog.data)
-          return catalog;
-        })
-        .catch((err) => {
-          console.log(err)
-          return err;
-        })
-    },
-    GET_ADVANTAGES({ commit }) {
-      return axios('http://localhost:3000/advantages', {
-        method: 'GET'
-      })
-        .then((advantages) => {
-          commit('SET_ADVANTAGES', advantages.data)
-          return advantages;
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    },
-    GET_MENU({commit}){
-      return axios('http://localhost:3000/menu',{
-        method: "GET"
-      })
-      .then((menu) => {
-        commit('SET_MENU', menu.data)
-        return menu;
-      })
-      .catch((err)=>{
-        console.log(err)
-      })
-    },
+   
     GET_USER_CART({ commit }) {
       return axios.get('http://localhost:3000/userCart')
         .then((cart) => {
@@ -261,16 +192,7 @@ export default createStore({
   },
 
   mutations: {// to change data in state
-    // SET_CATEGORY: (state, category) => {
-    //   state.category = category;
-    // },
-    SET_CATALOG: (state, catalogItems) => {
-      state.catalogItems = catalogItems;
-      state.filteredCart = catalogItems;
-    },
-    SET_ADVANTAGES: (state, advantages) => {
-      state.advantages = advantages
-    },
+   
     SET_USER_CART(state, cart) {
       state.userCart = cart;
       state.totalCartPrice = state.userCart.reduce((acc, { totalPrice }) =>
@@ -309,9 +231,6 @@ export default createStore({
       } else {
         state.slideMenu = "slide-out-top"
       }
-    },
-    SET_MENU(state, menu) {
-      state.menu = menu;
     },
     SET_SHOW_CART(state){
       if(state.pagePath === '/cart'){
@@ -420,7 +339,6 @@ export default createStore({
     CLEAR_ERROR(state){
       state.error = null
     }
-
   },
 
   modules: {

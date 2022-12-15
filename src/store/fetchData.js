@@ -2,10 +2,26 @@ import axios from "axios";
 export default{
   state: {
     category: [],// this is our json array
+    catalogItems: [],// this is our json array
+    advantages: [],
+    menu: [], // this is oue json menu array
+    filteredCart: [],//this is our filtered array
   },
   getters: {
     CATEGORY(state) {
       return state.category;
+    },
+    CATALOGITEMS(state) {
+      return state.catalogItems
+    },
+    ADVANTAGES(state) {
+      return state.advantages
+    },
+    MENU(state){
+      return state.menu;
+    },
+    FILTERED_CART(state){
+      return state.filteredCart;
     },
   },
   actions: {
@@ -23,11 +39,58 @@ export default{
           return err;
         })
     },
+    GET_CATALOG({ commit }) {
+      return axios('http://localhost:3000/catalogItems', {
+        method: "GET"
+      })
+        .then((catalog) => {
+          commit('SET_CATALOG', catalog.data)
+          return catalog;
+        })
+        .catch((err) => {
+          console.log(err)
+          return err;
+        })
+    },
+    GET_ADVANTAGES({ commit }) {
+      return axios('http://localhost:3000/advantages', {
+        method: 'GET'
+      })
+        .then((advantages) => {
+          commit('SET_ADVANTAGES', advantages.data)
+          return advantages;
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    GET_MENU({commit}){
+      return axios('http://localhost:3000/menu',{
+        method: "GET"
+      })
+      .then((menu) => {
+        commit('SET_MENU', menu.data)
+        return menu;
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
+    },
 
   },
   mutations: {
     SET_CATEGORY: (state, category) => {
       state.category = category;
-    }
+    },
+    SET_CATALOG: (state, catalogItems) => {
+      state.catalogItems = catalogItems;
+      state.filteredCart = catalogItems;
+    },
+    SET_ADVANTAGES: (state, advantages) => {
+      state.advantages = advantages
+    },
+    SET_MENU(state, menu) {
+      state.menu = menu;
+    },
   }
 }
