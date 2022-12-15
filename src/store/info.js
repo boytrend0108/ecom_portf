@@ -1,7 +1,6 @@
 import { getDatabase, ref, onValue } from "firebase/database";
-// import { getAuth } from "firebase/auth";
+
 const database = getDatabase();
-// const auth = getAuth();
 
 export default {
   state:{ 
@@ -13,7 +12,7 @@ export default {
       return state.info
     }
   },
-  
+
   actions:{
     async fetchInfo({ dispatch, commit }) {
       try {

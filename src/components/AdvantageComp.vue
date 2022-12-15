@@ -1,7 +1,7 @@
 <template>
     <div class="adv">
     <div class="wrapper wr-adv">
-        <advantage-item v-for="item in ADVANTAGES" :key="item.id" :item="item"/>
+        <advantage-item v-for="item in ADVANTAGES" :key="item.id" :item="item" />
     </div>
 </div>
 </template>

@@ -118,6 +118,16 @@
       ]
     }
   ],
-  "userCart": [],
+  "userCart": [
+    {
+      "id": 1,
+      "itemImg": "catalog-img-1.png",
+      "itemTitle": "JACKET FOR MAN BLUE",
+      "itemSubtitle": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
+      "itemPrice": 50,
+      "quantity": 1,
+      "totalPrice": 50
+    }
+  ],
   "form": []
 }

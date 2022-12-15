@@ -142,8 +142,6 @@ export default {
 	},
 
 	 mounted() {
-	//  console.log(this.INFO.username)
-	//  this.name = this.INFO.username
 		// get rid of parent click-event 
 		document.querySelector('.p-splitbutton-menubutton').addEventListener('click', (event) => {
 			event.stopPropagation()
