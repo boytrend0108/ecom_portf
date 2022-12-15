@@ -14,12 +14,12 @@
 
 				<div class="nav-block">
 					<SplitButton 
-				    label="User name" 
+				    :label="name" 
 				    icon="pi pi-user" 
 				    :model="items"
 				    class="splitBtn"
 						@click="goToLoginPage"
-				></SplitButton>
+				  ></SplitButton>
 					<font-awesome-icon 
 					  class="font-aw " 
 					  icon="fa-solid fa-bars" 
@@ -43,8 +43,8 @@
 						<span 
 						  :class="isDisabled"
 						  class="item-num" 
-							> {{ TOTAL_CART_ITEMS }} </span>
-					</button>
+							> {{TOTAL_CART_ITEMS}} </span>
+					 </button>
 				</div>
 			</div>
 		</nav>
@@ -69,6 +69,7 @@ export default {
 		return {
 			searchInput: '',
 			isDisabled: "",
+			name: "",
 			items: [
 				{
 					label: 'Cart',
@@ -87,6 +88,7 @@ export default {
 			]
 		}
 	},
+
 	computed: {
 		...mapGetters([
 			"IS_SHOW_MENU",
@@ -94,9 +96,17 @@ export default {
 			"SHOW_CART",
 			"SLIDE_CART",
 			"TOTAL_CART_ITEMS",
-			"SEARCH_INPUT"
-		])
-	},
+			"SEARCH_INPUT",
+			"INFO"
+		]),
+
+		name(){
+       return this.$store.getters.INFO.username	? this.$store.getters.INFO.username : "Username"
+			}
+			
+		},
+
+	
 	methods: {
 		...mapActions([
 			"SWITCH_SHOW_MENU", "SWITCH_SHOW_CART", "GET_SEARCH_INPUT",
@@ -111,6 +121,7 @@ export default {
 			this.$router.push(`/`);
 			this.GET_PAGE_PATH('/');
 			this.isDisable = ''
+		
 		},
 
 		goToCartPage(){
@@ -131,9 +142,12 @@ export default {
 		}
 
 	},
-	mounted(){
+
+	 mounted() {
+	//  console.log(this.INFO.username)
+	//  this.name = this.INFO.username
 		// get rid of parent click-event 
-		document.querySelector('.p-splitbutton-menubutton').addEventListener('click', (event)=>{
+		document.querySelector('.p-splitbutton-menubutton').addEventListener('click', (event) => {
 			event.stopPropagation()
 		})
 	}

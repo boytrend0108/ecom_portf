@@ -11,6 +11,7 @@
 import FooterComp from '@/components/FooterComp.vue';
 import SubscribeComp from '@/components/SubscribeComp.vue';
 import AdvantageComp from '@/components/AdvantageComp.vue';
+
 // import info from "@/store/info"
 export default {
   components: {
@@ -18,12 +19,13 @@ export default {
   },
 
  async mounted() {
-    // if (!Object.keys(this.$store.getters.info).length) { // if state.info is empty- fetch info from FireBase
-      await this.$store.dispatch('fetchInfo')
-      // commit('setInfo', info)
+        try{
+          Object.keys(this.$store.getters.info).length // ecли объекс пустой будет ошибка.
+        }catch(e){
+          await this.$store.dispatch('fetchInfo')
+        }
     }
-  // }
-
+   
 }
 </script>
 

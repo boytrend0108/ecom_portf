@@ -9,38 +9,33 @@ export default {
   },
 
   getters:{
-    info: s => s.info
+    INFO(state){
+      return state.info
+    }
   },
 
   actions:{
     async fetchInfo({ dispatch, commit }) {
       try {
-        const uid = await dispatch('getUid')
+        const uid = JSON.parse(localStorage.getItem("firebase"))
         const data = ref(database, `users/${uid}/info`)
-        console.log('uid: ' + uid, 'data: ' + data)
-        try {
+        try { // не получалось достать переменную info без дополнительного try cathc????
           let info
           onValue(data, (snapshot) => {
             info = snapshot.val()
-            // console.log(info)
             commit('setInfo', info)
           })
-         
         } catch (e) {
           console.log(e)
         }
       } catch (e) {
         console.log(e)
       }
-
     }
-
-   
   },
 
   mutations:{
     setInfo(state, info){
-      console.log(info)
       state.info = info
     },
 

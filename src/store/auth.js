@@ -23,6 +23,9 @@ export default {
     async login({ dispatch, commit }, { loginEmail, loginPassword }) {
       try {
         await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+            const user = auth.currentUser;
+            const uid = user.uid;
+            localStorage.setItem("firebase", JSON.stringify(uid))// write uid to localStorage)
       } catch (error) {
         commit('SET_ERROR', error)// we can get error.code and error.message
         console.log(error.code)
@@ -33,6 +36,7 @@ export default {
     // logout via FireBase
     async logout({commit}) {
       await signOut(auth)
+      localStorage.setItem('firebase', "")
       commit('clearInfo')
     },
 
@@ -43,7 +47,7 @@ export default {
           .then(() => {
             const user = auth.currentUser;
             const uid = user.uid;
-            console.log(user)
+            localStorage.setItem("firebase", JSON.stringify(uid)) // write uid to localStorage
             set(ref(database, `users/${uid}/info`), {// post ro FB store
               username: loginName,
               email: loginEmail
@@ -55,13 +59,6 @@ export default {
         throw error
       }
     },
-
-    getUid(){
-      const user = auth.currentUser;
-      // const uid = user.uid;
-      // console.log(auth.currentUser.uid)
-      return user ? user.uid : null
-    }
   }
 }
 // don't forget to import this module in store.js!!!!!
