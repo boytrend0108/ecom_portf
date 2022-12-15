@@ -4,7 +4,6 @@ export default{
     category: [],// this is our json array
     catalogItems: [],// this is our json array
     advantages: [],
-    menu: [], // this is oue json menu array
     filteredCart: [],//this is our filtered array
   },
   getters: {
@@ -16,9 +15,6 @@ export default{
     },
     ADVANTAGES(state) {
       return state.advantages
-    },
-    MENU(state){
-      return state.menu;
     },
     FILTERED_CART(state){
       return state.filteredCart;
@@ -64,18 +60,6 @@ export default{
           console.log(err)
         })
     },
-    GET_MENU({commit}){
-      return axios('http://localhost:3000/menu',{
-        method: "GET"
-      })
-      .then((menu) => {
-        commit('SET_MENU', menu.data)
-        return menu;
-      })
-      .catch((err)=>{
-        console.log(err)
-      })
-    },
 
   },
   mutations: {
@@ -88,9 +72,6 @@ export default{
     },
     SET_ADVANTAGES: (state, advantages) => {
       state.advantages = advantages
-    },
-    SET_MENU(state, menu) {
-      state.menu = menu;
     },
   }
 }

@@ -2,6 +2,7 @@
 import auth from '@/store/auth'
 import info from "@/store/info"
 import fetchData from '@/store/fetchData';
+import menu from '@/store/menu';
 import axios from 'axios';
 import { createStore } from 'vuex'
 
@@ -11,8 +12,6 @@ export default createStore({
     totalCartPrice: 0,
     totalItems: 0,
     isMobile: true, // to show icons in navbar
-    showMenu: false, // to show menu on click
-    slideMenu: "", // this change classes for menu animation
     slideCart: "", // this change classes for cart animation
     showCart: false,
     searchInput: '',
@@ -24,12 +23,6 @@ export default createStore({
     
     IS_MOBILE(state){
       return state.isMobile;
-    },
-    IS_SHOW_MENU(state){
-      return state.showMenu;
-    },
-    SLIDE_MENU(state){
-       return state.slideMenu;
     },
     SHOW_CART(state){
       return state.showCart;
@@ -75,9 +68,7 @@ export default createStore({
     SWITCH_TABLET({commit}){
       commit("SET_TABLET")
     },
-    SWITCH_SHOW_MENU({commit}){
-      commit("SET_SHOW_MENU")
-    },
+
     SWITCH_SHOW_CART({commit}){
       commit('SET_SHOW_CART')
     },
@@ -221,17 +212,6 @@ export default createStore({
     SET_TABLET: (state) => {
       state.isMobile = true;
     },
-    SET_SHOW_MENU(state) {
-      state.showMenu = !state.showMenu;
-      if (state.showMenu === true) {
-        document.querySelector(".cart-box").style.display = "none";
-        state.showCart = false;
-        document.querySelector(".menu").style.display = "block";
-        state.slideMenu = "slide-left"
-      } else {
-        state.slideMenu = "slide-out-top"
-      }
-    },
     SET_SHOW_CART(state){
       if(state.pagePath === '/cart'){
         return
@@ -342,6 +322,6 @@ export default createStore({
   },
 
   modules: {
-    auth, info,fetchData
+    auth, info, fetchData, menu
   }
 })
