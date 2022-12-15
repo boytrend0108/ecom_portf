@@ -119,5 +119,13 @@
     }
   ],
   "userCart": [],
-  "form": []
+  "form": [],
+  "users": {
+    "MJB3YjSC3OgQs7qr7eIUzbOqQ2A2": {
+      "info": {
+        "email": "eur-usd@bk.ru",
+        "username": "Vetal"
+      }
+    }
+  }
 }

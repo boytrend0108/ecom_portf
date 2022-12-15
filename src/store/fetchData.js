@@ -1,4 +1,8 @@
 import axios from "axios";
+import { getDatabase, ref, onValue } from "firebase/database";
+import { getAuth } from "firebase/auth";
+const db = getDatabase();
+const auth = getAuth();
 export default{
   state: {
     category: [],// this is our json array
@@ -21,20 +25,21 @@ export default{
     },
   },
   actions: {
-    GET_CATEGORY({ commit }) {
-      return axios('http://localhost:3000/category', {
-        method: "GET"
-      })
-        .then((category) => {
-          commit('SET_CATEGORY', category.data)
-          return category;
-        })
-        .catch((err) => {
-          commit('ISIMG')
-          console.log(err)
-          return err;
-        })
-    },
+    async GET_CATEGORY({ commit }) {
+      try {
+         return onValue(ref(db, '/category/'), (snapshot) => {
+          const category = snapshot.val()
+          console.log(category)
+          commit('SET_CATEGORY', category)
+        }, {
+          onlyOnce: true
+        });
+      } catch (err){
+        commit('ISIMG')
+        console.log(err)
+        return err;
+      }},
+     
     GET_CATALOG({ commit }) {
       return axios('http://localhost:3000/catalogItems', {
         method: "GET"
