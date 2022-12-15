@@ -1,12 +1,13 @@
 
 import auth from '@/store/auth'
 import info from "@/store/info"
+import fetchData from '@/store/fetchData';
 import axios from 'axios';
 import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    category: [],// this is our json array
+    // category: [],// this is our json array
     catalogItems: [],// this is our json array
     advantages: [],
     menu: [], // this is oue json menu array
@@ -25,9 +26,9 @@ export default createStore({
     error: null //errors for login and registration
   },
   getters: {// this is a commands for getting our json arrays
-    CATEGORY(state) {
-      return state.category;
-    },
+    // CATEGORY(state) {
+    //   return state.category;
+    // },
     CATALOGITEMS(state) {
       return state.catalogItems
     },
@@ -75,25 +76,24 @@ export default createStore({
     },
     ERROR(state){
      return state.error
-    }
-    
+    } 
   },
 
   actions: {// actions are asinc(methods in Component)
-    GET_CATEGORY({ commit }) {
-      return axios('http://localhost:3000/category', {
-        method: "GET"
-      })
-        .then((category) => {
-          commit('SET_CATEGORY', category.data)
-          return category;
-        })
-        .catch((err) => {
-          commit('ISIMG')
-          console.log(err)
-          return err;
-        })
-    },
+    // GET_CATEGORY({ commit }) {
+    //   return axios('http://localhost:3000/category', {
+    //     method: "GET"
+    //   })
+    //     .then((category) => {
+    //       commit('SET_CATEGORY', category.data)
+    //       return category;
+    //     })
+    //     .catch((err) => {
+    //       commit('ISIMG')
+    //       console.log(err)
+    //       return err;
+    //     })
+    // },
     GET_CATALOG({ commit }) {
       return axios('http://localhost:3000/catalogItems', {
         method: "GET"
@@ -261,9 +261,9 @@ export default createStore({
   },
 
   mutations: {// to change data in state
-    SET_CATEGORY: (state, category) => {
-      state.category = category;
-    },
+    // SET_CATEGORY: (state, category) => {
+    //   state.category = category;
+    // },
     SET_CATALOG: (state, catalogItems) => {
       state.catalogItems = catalogItems;
       state.filteredCart = catalogItems;
@@ -424,6 +424,6 @@ export default createStore({
   },
 
   modules: {
-    auth, info
+    auth, info,fetchData
   }
 })
