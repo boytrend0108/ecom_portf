@@ -20,7 +20,7 @@ export default {
 
  async mounted() {
         try{
-          Object.keys(this.$store.getters.info).length // ecли объекс пустой будет ошибка.
+          Object.keys(this.$store.getters.info).length // ecли объект пустой будет ошибка.
         }catch(e){
           await this.$store.dispatch('fetchInfo')
         }
