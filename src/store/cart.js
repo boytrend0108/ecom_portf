@@ -48,6 +48,7 @@ export default {
         try {
           item.quantity += 1;
           item.totalPrice = item.itemPrice * item.quantity;
+          console.log(item.quantity)
           // await set(ref(database, `users/${uid}/userCart/${item.id}/quantity`), quantity )
           await set(ref(database, `users/${uid}/userCart/${item.id}`), item )
           commit('CHANGE_QUANTITY_OF_ITEMS', item)
@@ -96,15 +97,16 @@ export default {
         commit('SET_DELETE_ITEM',id)
       }) 
     },
-    CLEAR_CART({ commit }) {
-      return axios.get(`http://localhost:3000/userCart`)
-        .then((cart) => {
-          for (let el of cart.data) {
-            axios.delete(`http://localhost:3000/userCart/`+ el.id)
-          }})
-        .then(() => {   
-          commit('SET_CLEAR_CART')
-        })
+    async CLEAR_CART({ commit }) {
+      try {
+        await set(ref(database, `users/${uid}/userCart`), {})
+        commit('SET_CLEAR_CART')
+      } catch (e) {
+        console.log(e)
+      }
+
+          
+      
     },
     A_POST_USER_CART_TO_LOCALSTORAGE({commit}){
       commit('M_POST_USER_CART_TO_LOCALSTORAGE') 
