@@ -46,9 +46,10 @@ export default {
       const find = state.userCart.find((el) => el.id === item.id)
       if (find) {
         try {
-          const quantity = item.quantity += 1;
-          // const id = toString(item.id)
-          await set(ref(database, `users/${uid}/userCart/${item.id}/quantity`), quantity )
+          item.quantity += 1;
+          item.totalPrice = item.itemPrice * item.quantity;
+          // await set(ref(database, `users/${uid}/userCart/${item.id}/quantity`), quantity )
+          await set(ref(database, `users/${uid}/userCart/${item.id}`), item )
           commit('CHANGE_QUANTITY_OF_ITEMS', item)
           commit('ADD_TO_CART_M')
         } catch (err) {
