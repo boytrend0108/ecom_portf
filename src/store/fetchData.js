@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import { getDatabase, ref, onValue } from "firebase/database";
 import { getAuth } from "firebase/auth";
 const db = getDatabase();
@@ -6,9 +6,10 @@ const auth = getAuth();
 export default{
   state: {
     category: [],// this is our json array
-    catalogItems: [],// this is our json array
     advantages: [],
     filteredCart: [],//this is our filtered array
+    catalogItems: [],// this is our json array
+    searchInput: ''
   },
   getters: {
     CATEGORY(state) {
@@ -36,8 +37,7 @@ export default{
       } catch (err){
         console.log(err)
         return err;
-      }},
-     
+      }},  
     GET_CATALOG({ commit }) {
       try {
         return onValue(ref(db, '/catalogItems/'), (snapshot) => {
@@ -64,7 +64,9 @@ export default{
         return err;
       }
     },
-
+    GET_SEARCH_INPUT({commit},searchInput){
+      commit('SET_SEARCH_INPUT',searchInput)
+    },
   },
   mutations: {
     SET_CATEGORY: (state, category) => {
@@ -76,6 +78,12 @@ export default{
     },
     SET_ADVANTAGES: (state, advantages) => {
       state.advantages = advantages
+    },
+    SET_SEARCH_INPUT(state, searchInput) {
+      console.log()
+      const filtered = state.catalogItems.filter((el) =>
+        el.itemTitle.toLowerCase().includes(searchInput.toLowerCase()))
+      state.filteredCart = filtered;
     },
   }
 }

@@ -3,6 +3,7 @@ import auth from '@/store/auth'
 import info from "@/store/info"
 import fetchData from '@/store/fetchData';
 import menu from '@/store/menu';
+import filter from "@/store/filter"
 import axios from 'axios';
 import { createStore } from 'vuex'
 
@@ -14,7 +15,6 @@ export default createStore({
     isMobile: true, // to show icons in navbar
     slideCart: "", // this change classes for cart animation
     showCart: false,
-    searchInput: '',
     pagePath:'/',
     localStorage:[],
     error: null //errors for login and registration
@@ -68,7 +68,6 @@ export default createStore({
     SWITCH_TABLET({commit}){
       commit("SET_TABLET")
     },
-
     SWITCH_SHOW_CART({commit}){
       commit('SET_SHOW_CART')
     },
@@ -144,9 +143,6 @@ export default createStore({
         .then(() => {   
           commit('SET_CLEAR_CART')
         })
-    },
-    GET_SEARCH_INPUT({commit},searchInput){
-      commit('SET_SEARCH_INPUT',searchInput)
     },
     GET_BTN_DISABLED({commit}){  
        commit('SET_BTN_DISABLED')
@@ -252,11 +248,6 @@ export default createStore({
       const b = JSON.stringify(state.userCart, null, 4)
       localStorage.setItem('cart', b)
     },
-    SET_SEARCH_INPUT(state, searchInput) {
-      const filtered = state.catalogItems.filter((el) =>
-        el.itemTitle.toLowerCase().includes(searchInput.toLowerCase()))
-      state.filteredCart = filtered;
-    },
     SET_BTN_DISABLED(state) {
       if(state.pagePath !== '/cart'){
         return
@@ -322,6 +313,6 @@ export default createStore({
   },
 
   modules: {
-    auth, info, fetchData, menu
+    auth, info, fetchData, menu, filter
   }
 })
