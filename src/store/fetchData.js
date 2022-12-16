@@ -30,9 +30,9 @@ export default{
 
   },
   actions: {
-    async GET_CATEGORY({ commit }) {
+   async GET_CATEGORY({ commit }) {
       try {
-         return onValue(ref(db, '/category/'), (snapshot) => {
+        return  onValue(ref(db, '/category/'), (snapshot) => {
           const category = snapshot.val()
           commit('SET_CATEGORY', category)
         }, {
@@ -42,7 +42,7 @@ export default{
         console.log(err)
         return err;
       }},  
-    GET_CATALOG({ commit }) {
+    async GET_CATALOG({ commit }) {
       try {
         return onValue(ref(db, '/catalogItems/'), (snapshot) => {
           const catalog = snapshot.val()
@@ -55,7 +55,7 @@ export default{
         return err;
       }
     },
-    GET_ADVANTAGES({ commit }) {
+    async GET_ADVANTAGES({ commit }) {
       try {
         return onValue(ref(db, '/advantages/'), (snapshot) => {
           const advantages = snapshot.val()
@@ -68,7 +68,7 @@ export default{
         return err;
       }
     },
-    GET_SEARCH_INPUT({commit},searchInput){
+    async GET_SEARCH_INPUT({commit},searchInput){
       commit('SET_SEARCH_INPUT',searchInput)
     },
   },

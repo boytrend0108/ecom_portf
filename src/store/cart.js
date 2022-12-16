@@ -1,8 +1,8 @@
 import axios from "axios";
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref, set, onValue  } from "firebase/database";
 const database = getDatabase();
-const uid = JSON.parse(localStorage.getItem("cart"))
-
+const uid = JSON.parse(localStorage.getItem("firebase"));
+console.log(uid)
 export default {
   state:{
     userCart: [],// this is our cart
@@ -29,12 +29,19 @@ export default {
     },
   },
   actions:{
-    GET_USER_CART({ commit }) {
-      return axios.get('http://localhost:3000/userCart')
-        .then((cart) => {
-          commit("SET_USER_CART", cart.data)
-        })
-        .catch((err) => { console.log(err) })
+    async GET_USER_CART({ commit }) {
+      try{
+        onValue(ref(database, `/users/${uid}/userCart`), (snapshot) => {
+          const cart = (snapshot.val());
+          console.log(cart)
+          commit("SET_USER_CART", cart);
+        }, {
+          onlyOnce: true
+        });
+       
+      }catch(err){ 
+        console.log(err) 
+      }
     },
     SWITCH_SHOW_CART({commit}){
       commit('SET_SHOW_CART')
@@ -48,8 +55,8 @@ export default {
         try {
           item.quantity += 1;
           item.totalPrice = item.itemPrice * item.quantity;
-          console.log(item.quantity)
-          // await set(ref(database, `users/${uid}/userCart/${item.id}/quantity`), quantity )
+          console.log(item)
+          
           await set(ref(database, `users/${uid}/userCart/${item.id}`), item )
           commit('CHANGE_QUANTITY_OF_ITEMS', item)
           commit('ADD_TO_CART_M')
@@ -114,11 +121,14 @@ export default {
   },
   mutations:{
     SET_USER_CART(state, cart) {
-      state.userCart = cart;
-      state.totalCartPrice = state.userCart.reduce((acc, { totalPrice }) =>
-        acc + totalPrice, 0);
-      state.totalItems = state.userCart.reduce((acc, { quantity }) =>
-        acc + quantity, 0);
+      if(cart){
+        state.userCart = Object.values(cart); 
+        state.totalCartPrice = state.userCart.reduce((acc, { totalPrice }) =>
+          acc + totalPrice, 0);
+        state.totalItems = state.userCart.reduce((acc, { quantity }) =>
+          acc + quantity, 0);
+      } return
+    
     },
     ADD_NEW_ITEM_TO_CART(state, item) {
       state.userCart.push(item);
