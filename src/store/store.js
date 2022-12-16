@@ -34,8 +34,6 @@ export default createStore({
   },
 
   actions: {// actions are asinc(methods in Component)
-   
-   
     SWITCH_MOBILE({ commit }) {
       commit("SET_MOBILE")
     },
@@ -74,8 +72,6 @@ export default createStore({
   },
 
   mutations: {// to change data in state
-   
- 
     SET_MOBILE: (state) => {
       state.isMobile = false;
     },
