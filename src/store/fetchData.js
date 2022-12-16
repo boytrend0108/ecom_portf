@@ -24,6 +24,10 @@ export default{
     FILTERED_CART(state){
       return state.filteredCart;
     },
+    SEARCH_INPUT(state){
+      return state.searchInput
+    }
+
   },
   actions: {
     async GET_CATEGORY({ commit }) {
