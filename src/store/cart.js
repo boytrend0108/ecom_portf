@@ -1,5 +1,7 @@
 import axios from "axios";
 import { getDatabase, ref, set } from "firebase/database";
+const database = getDatabase();
+const uid = JSON.parse(localStorage.getItem("cart"))
 
 export default {
   state:{
@@ -40,32 +42,23 @@ export default {
     GET_HIDE_CART({commit}){
       commit('SET_HIDE_CART')
     },
-  async  ADD_TO_CART({commit,state},item){
-      const find = state.userCart.find((el)=> el.id === item.id)
-      if(find){
-        axios.get(`http://localhost:3000/userCart/`+item.id)
-        .then((res)=> {
-          res.data.quantity +=1;
-          return res
-        })
-        .then((item)=>{
-           return axios.put(`http://localhost:3000/userCart/`+item.data.id, item.data)
-        })
-        .then((item)=>{
-          commit('CHANGE_QUANTITY_OF_ITEMS',item.data)
+    async ADD_TO_CART({ commit, state }, item) {
+      const find = state.userCart.find((el) => el.id === item.id)
+      if (find) {
+        try {
+          const quantity = item.quantity += 1;
+          // const id = toString(item.id)
+          await set(ref(database, `users/${uid}/userCart/${item.id}/quantity`), quantity )
+          commit('CHANGE_QUANTITY_OF_ITEMS', item.data)
           commit('ADD_TO_CART_M')
-        })
-        .catch((err) => {
+        } catch (err) {
           console.log(err)
         }
-        )
-      }else{
+      } else {
         try {
           item.quantity = 1;
           item.totalPrice = item.itemPrice * item.quantity
-          const database = getDatabase();
-          const uid = JSON.parse(localStorage.getItem("cart"))
-          await set(ref(database, `users/${uid}/userCart`), item)
+          await set(ref(database, `users/${uid}/userCart/${item.id}`), item)
           commit("ADD_NEW_ITEM_TO_CART", item)
           commit('ADD_TO_CART_M')
         }
