@@ -49,7 +49,7 @@ export default {
           const quantity = item.quantity += 1;
           // const id = toString(item.id)
           await set(ref(database, `users/${uid}/userCart/${item.id}/quantity`), quantity )
-          commit('CHANGE_QUANTITY_OF_ITEMS', item.data)
+          commit('CHANGE_QUANTITY_OF_ITEMS', item)
           commit('ADD_TO_CART_M')
         } catch (err) {
           console.log(err)
