@@ -29,41 +29,40 @@ export default{
       try {
          return onValue(ref(db, '/category/'), (snapshot) => {
           const category = snapshot.val()
-          console.log(category)
           commit('SET_CATEGORY', category)
         }, {
           onlyOnce: true
         });
       } catch (err){
-        commit('ISIMG')
         console.log(err)
         return err;
       }},
      
     GET_CATALOG({ commit }) {
-      return axios('http://localhost:3000/catalogItems', {
-        method: "GET"
-      })
-        .then((catalog) => {
-          commit('SET_CATALOG', catalog.data)
-          return catalog;
+      try {
+        return onValue(ref(db, '/catalogItems/'), (snapshot) => {
+          const catalog = snapshot.val()
+          commit('SET_CATALOG', catalog)
+        }, {
+          onlyOnce: true
         })
-        .catch((err) => {
-          console.log(err)
-          return err;
-        })
+      } catch (err) {
+        console.log(err)
+        return err;
+      }
     },
     GET_ADVANTAGES({ commit }) {
-      return axios('http://localhost:3000/advantages', {
-        method: 'GET'
-      })
-        .then((advantages) => {
-          commit('SET_ADVANTAGES', advantages.data)
-          return advantages;
+      try {
+        return onValue(ref(db, '/advantages/'), (snapshot) => {
+          const advantages = snapshot.val()
+          commit('SET_ADVANTAGES', advantages)
+        }, {
+          onlyOnce: true
         })
-        .catch((err) => {
-          console.log(err)
-        })
+      } catch (err) {
+        console.log(err)
+        return err;
+      }
     },
 
   },
