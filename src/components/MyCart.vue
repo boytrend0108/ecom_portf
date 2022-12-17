@@ -45,7 +45,6 @@ export default {
       
     },
     mounted(){
-        console.log("mount")
         this.GET_USER_CART();
     }
 }

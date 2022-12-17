@@ -2,7 +2,6 @@ import axios from "axios";
 import { getDatabase, ref, set, onValue  } from "firebase/database";
 const database = getDatabase();
 const uid = JSON.parse(localStorage.getItem("firebase"));
-console.log(uid)
 export default {
   state:{
     userCart: [],// this is our cart
@@ -30,17 +29,15 @@ export default {
   },
   actions:{
     async GET_USER_CART({ commit }) {
-      try{
+      try {
         onValue(ref(database, `/users/${uid}/userCart`), (snapshot) => {
           const cart = (snapshot.val());
-          console.log(cart)
           commit("SET_USER_CART", cart);
         }, {
           onlyOnce: true
-        });
-       
-      }catch(err){ 
-        console.log(err) 
+        })
+      } catch (err) {
+        console.log(err)
       }
     },
     SWITCH_SHOW_CART({commit}){
@@ -54,9 +51,7 @@ export default {
       if (find) {
         try {
           item.quantity += 1;
-          item.totalPrice = item.itemPrice * item.quantity;
-          console.log(item)
-          
+          item.totalPrice = item.itemPrice * item.quantity; 
           await set(ref(database, `users/${uid}/userCart/${item.id}`), item )
           commit('CHANGE_QUANTITY_OF_ITEMS', item)
           commit('ADD_TO_CART_M')
@@ -77,15 +72,18 @@ export default {
       }
      
     },
-    DELETE_ITEM({commit,state},id){
-      axios.get(`http://localhost:3000/userCart/`+ id)
-      .then((item)=>{
-        if (item.data.quantity === 1 ){
-          axios.delete(`http://localhost:3000/userCart/`+ id)
-        }else{
-          item.data.quantity -= 1;
-          axios.put(`http://localhost:3000/userCart/`+ id, item.data)
+    async DELETE_ITEM({ commit, state }, id) {
+      const find = state.userCart.find((el) => el.id === id)
+      try {
+        if (find.quantity === 1) {
+          set(ref(database, `/users/${uid}/userCart/${id}`), {})
+        } else {
+          find.quantity -= 1;
+          set(ref(database, `/users/${uid}/userCart/${id}/quantity`), find.quantity)
         }
+      } catch (e) {
+        console.log(e)
+      }       
         const findEl = state.userCart.find(el => el.id === id)
         if (findEl.quantity === 1) {
           const index = state.userCart.findIndex(el => el.id === id)
@@ -102,8 +100,8 @@ export default {
           localStorage.setItem('cart', b)
         }
         commit('SET_DELETE_ITEM',id)
-      }) 
-    },
+      },
+    
     async CLEAR_CART({ commit }) {
       try {
         await set(ref(database, `users/${uid}/userCart`), {})
@@ -119,6 +117,7 @@ export default {
       commit('M_POST_USER_CART_TO_LOCALSTORAGE') 
      },
   },
+  
   mutations:{
     SET_USER_CART(state, cart) {
       if(cart){
@@ -138,9 +137,8 @@ export default {
     },
     CHANGE_QUANTITY_OF_ITEMS(state, item) {
       const index = state.userCart.findIndex(el => el.id === item.id)
-      state.userCart[index].quantity += 1;
-      state.userCart[index].totalPrice =
-        state.userCart[index].quantity * state.userCart[index].itemPrice
+      console.log(item)
+      state.userCart[index].totalPrice = item.totalPrice
       const b = JSON.stringify(state.userCart, null, 4)
       localStorage.setItem('cart', b)
       if (state.userCart.length > 0) { state.showBtn = true }

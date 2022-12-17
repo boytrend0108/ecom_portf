@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 export default {
     props:{
         item:{
@@ -30,7 +30,8 @@ export default {
     },
     methods: {
         ...mapActions([
-            "ADD_TO_CART", "ADD_USER_CART_TO_JSON"
+            "ADD_TO_CART",
+            //  "ADD_USER_CART_TO_JSON"
         ]),
 
         addToCart() {
