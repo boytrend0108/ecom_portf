@@ -1,7 +1,6 @@
 
 import { getDatabase, ref, set, onValue  } from "firebase/database";
 const database = getDatabase();
-const uid = JSON.parse(localStorage.getItem("firebase"));
 export default {
   state:{
     userCart: [],// this is our cart
@@ -100,6 +99,7 @@ export default {
     },
 
     async CLEAR_CART({ commit }) {
+      const uid = JSON.parse(localStorage.getItem('firebase'))
       try {
         await set(ref(database, `users/${uid}/userCart`), {})
         commit('SET_CLEAR_CART')

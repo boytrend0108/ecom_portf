@@ -12,7 +12,7 @@ export default {
   },
 
   actions:{
-    async fetchInfo({commit, getters}) {
+    async fetchInfo({commit}) {
       try {
         const uid = JSON.parse(localStorage.getItem('firebase'))
         const data = ref(database, `users/${uid}/info`)       

@@ -29,13 +29,14 @@ export default {
 
   actions: {
     // login via FareBase
-    async login({ dispatch, commit }, { loginEmail, loginPassword }) {
+    async login({ commit, dispatch }, { loginEmail, loginPassword }) {
       try {
         await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
             const user = auth.currentUser;
             const uid = user.uid;
-            commit('SET_UID', uid)
+            commit('SET_UID', uid);
             localStorage.setItem("firebase", JSON.stringify(uid))// write uid to localStorage)
+            dispatch('GET_USER_CART');
       } catch (error) {
         commit('SET_ERROR', error)// we can get error.code and error.message
         console.log(error.code)
