@@ -8,7 +8,7 @@
 <script>
 import HeaderMini from "@/components/HeaderMini.vue"
 import CartSection from "@/components/CartSection.vue"
-import { mapActions } from "vuex"
+import { mapActions, mapGetters } from "vuex"
 // -----------------------------------------------------------------------------
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 const auth = getAuth();
@@ -27,6 +27,11 @@ export default {
   components: {
     HeaderMini, CartSection
   },
+  computed:{
+    ...mapGetters([
+      "USER_CART"
+    ])
+  },
   
   methods:{
     ...mapActions([
@@ -37,7 +42,7 @@ export default {
   mounted(){
     this.GET_PAGE_PATH('/cart');
     this.GET_NAVCART_BTN_DISABLED();
-    if(JSON.parse(localStorage.getItem('cart')).length === 0){
+    if(this.USER_CART.length === 0){
       this.GET_BTN_DISABLED();
     }  
   }
