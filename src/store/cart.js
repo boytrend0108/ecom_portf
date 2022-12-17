@@ -53,7 +53,7 @@ export default {
           item.quantity += 1;
           item.totalPrice = item.itemPrice * item.quantity; 
           await set(ref(database, `users/${uid}/userCart/${item.id}`), item )
-          commit('ADD_TO_CART_M')
+          commit('CALCULATE_TOTAL_IN_CART')
         } catch (err) {
           console.log(err)
         }
@@ -63,7 +63,7 @@ export default {
           item.totalPrice = item.itemPrice * item.quantity
           await set(ref(database, `users/${uid}/userCart/${item.id}`), item)
           commit("ADD_NEW_ITEM_TO_CART", item)
-          commit('ADD_TO_CART_M')
+          commit('CALCULATE_TOTAL_IN_CART')
         }
         catch (err) {
           console.log(err)
@@ -73,12 +73,15 @@ export default {
     },
     async DELETE_ITEM({ commit, state }, id) {
       const find = state.userCart.find((el) => el.id === id)
-      const index = state.userCart.findIndex(el=> el.id === id )
-      
+      const index = state.userCart.findIndex(el => el.id === id)
       try {
         if (find.quantity === 1) {
           set(ref(database, `/users/${uid}/userCart/${id}`), {})
           state.userCart.splice(index, 1)
+          console.log(state.userCart.length)
+          if(state.userCart.length === 0){
+            commit('SET_BTN_DISABLED')
+          }
         } else {
           find.quantity -= 1;
           find.totalPrice = find.itemPrice * find.quantity;
@@ -91,7 +94,7 @@ export default {
         commit('SET_BTN_DISABLED')
       } commit('SET_DELETE_ITEM')
     },
-    
+
     async CLEAR_CART({ commit }) {
       try {
         await set(ref(database, `users/${uid}/userCart`), {})
@@ -100,16 +103,12 @@ export default {
         console.log(e)
       }  
     },
-    A_POST_USER_CART_TO_LOCALSTORAGE({commit}){
-      commit('M_POST_USER_CART_TO_LOCALSTORAGE') 
-     },
   },
   
   mutations:{
     SET_USER_CART(state, cart) {
       if(cart){
         state.userCart = Object.values(cart); 
-        console.log(state.userCart)
         state.totalCartPrice = state.userCart.reduce((acc, { totalPrice }) =>
           acc + totalPrice, 0);
         state.totalItems = state.userCart.reduce((acc, { quantity }) =>
@@ -119,9 +118,9 @@ export default {
     },
     ADD_NEW_ITEM_TO_CART(state, item) {
       state.userCart.push(item);
-      const b = JSON.stringify(state.userCart, null, 4)
-      localStorage.setItem('cart', b)
-      if (state.userCart.length > 0) { state.showBtn = true }
+      if (state.userCart.length > 0) { 
+        state.showBtn = true
+       } return
     },
     SET_SHOW_CART(state){
       if(state.pagePath === '/cart'){
@@ -143,7 +142,7 @@ export default {
       state.slideCart = "slide-out-top"
       // document.querySelector(".cart-box").style.display = "none";
     },
-    ADD_TO_CART_M(state) {
+    CALCULATE_TOTAL_IN_CART(state) {
       state.totalCartPrice = state.userCart.reduce((acc, { totalPrice }) =>
         acc + totalPrice, 0);
       state.totalItems = state.userCart.reduce((acc, { quantity }) =>
@@ -159,12 +158,6 @@ export default {
       state.userCart = [];
       state.totalCartPrice = 0;
       state.totalItems = 0;
-      const b = JSON.stringify(state.userCart, null, 4)
-      localStorage.setItem('cart', b)
-    },
-    M_POST_USER_CART_TO_LOCALSTORAGE(state) {
-      const b = JSON.stringify(state.userCart, null, 4)
-      localStorage.setItem('cart', b);
     },
   }
 }
