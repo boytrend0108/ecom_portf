@@ -69,37 +69,13 @@ export default {
 			this.$router.push(`/`);
 			this.GET_PAGE_PATH('/');
 		},
-
 	},
 
-	// watch: {
-	// 	localStorage() {
-	// 		if (this.localStorage.length > 0) {
-	// 			this.showBnt = true
-	// 		} else {
-	// 			this.showBnt = false;
-	// 		}
-	// 	}
-	// },
-
-	// updated() {
-	// 	this.getLocalStorage();
-	// 	if (this.localStorage.length === 0) {
-	// 		this.GET_BTN_DISABLED();
-	// 	} else {
-	// 		this.A_SET_BTN_ABLED()
-	// 	}
-
-	// },
-
 	mounted() {
-		console.log(this.USER_CART)
 		if (this.USER_CART.length === 0) {
 			this.GET_BTN_DISABLED();
 		} 
-		// else {
-		// 	this.A_SET_BTN_ABLED()
-		// }
+
 	},
 
 }

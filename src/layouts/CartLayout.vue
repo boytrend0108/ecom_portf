@@ -13,6 +13,12 @@ export default {
   name: 'cartlayout',
   components: {
     FooterComp, SubscribeComp
+  },
+  
+  async mounted(){
+    if(this.GET_UID){
+          await this.$store.dispatch('fetchInfo')
+        } return
   }
 }
 </script>

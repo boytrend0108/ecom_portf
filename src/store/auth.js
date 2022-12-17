@@ -18,6 +18,15 @@ const auth = getAuth(appFB);
 const database = getDatabase(appFB);
 
 export default {
+  state:{
+    uid:''
+  },
+  getters:{
+     GET_UID(state){
+      return state.uid;
+     }
+  },
+
   actions: {
     // login via FareBase
     async login({ dispatch, commit }, { loginEmail, loginPassword }) {
@@ -25,6 +34,7 @@ export default {
         await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
             const user = auth.currentUser;
             const uid = user.uid;
+            commit('SET_UID', uid)
             localStorage.setItem("firebase", JSON.stringify(uid))// write uid to localStorage)
       } catch (error) {
         commit('SET_ERROR', error)// we can get error.code and error.message
@@ -47,7 +57,8 @@ export default {
           .then(() => {
             const user = auth.currentUser;
             const uid = user.uid;
-            localStorage.setItem("firebase", JSON.stringify(uid)) // write uid to localStorage
+            commit('SET_UID', uid)
+            // localStorage.setItem("firebase", JSON.stringify(uid)) // write uid to localStorage
             set(ref(database, `users/${uid}/info`), {// post ro FB store
               username: loginName,
               email: loginEmail
@@ -59,6 +70,12 @@ export default {
         throw error
       }
     },
+  },
+
+  mutations:{
+    SET_UID(state, uid){
+      state.uid = uid;
+    }
   }
 }
 // don't forget to import this module in store.js!!!!!

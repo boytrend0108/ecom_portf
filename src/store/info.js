@@ -1,7 +1,5 @@
 import { getDatabase, ref, onValue } from "firebase/database";
-
 const database = getDatabase();
-
 export default {
   state:{ 
     info:{}
@@ -14,9 +12,9 @@ export default {
   },
 
   actions:{
-    async fetchInfo({ dispatch, commit }) {
+    async fetchInfo({commit, getters}) {
       try {
-        const uid = JSON.parse(localStorage.getItem("firebase"))
+        const uid = JSON.parse(localStorage.getItem('firebase'))
         const data = ref(database, `users/${uid}/info`)       
         try { // не получалось достать переменную info без дополнительного try cathc????
           let info

@@ -4,7 +4,6 @@ import info from "@/store/info"
 import fetchData from '@/store/fetchData';
 import menu from '@/store/menu';
 import cart from "@/store/cart"
-import axios from 'axios';
 import { createStore } from 'vuex'
 
 export default createStore({
@@ -68,7 +67,8 @@ export default createStore({
     },
     GET_NAVCART_BTN_DISABLED({commit}){
       commit('SET_NAVCART_BTN_DISABLED')
-    }
+    },
+    
   },
 
   mutations: {// to change data in state

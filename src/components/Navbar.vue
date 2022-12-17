@@ -69,7 +69,6 @@ export default {
 		return {
 			searchInput: '',
 			isDisabled: "",
-			// name: "",
 			items: [
 				{
 					label: 'Cart',
@@ -117,14 +116,14 @@ export default {
 
 		goToHomePage(){
 			this.$router.push(`/`);
-			this.GET_PAGE_PATH('/');
+			this.$store.commit('SET_PAGE_PATH','/')
 			this.isDisable = ''
 		
 		},
 
 		goToCartPage(){
 			this.$router.push(`/cart`);
-			this.GET_PAGE_PATH('/cart');
+			this.$store.commit('SET_PAGE_PATH','/cart');
 			this.GET_HIDE_CART();
 			this.GET_NAVCART_BTN_DISABLED();
 		},
@@ -136,7 +135,7 @@ export default {
 		async logout(){
 		  await	this.$store.dispatch('logout')
 			this.$router.push(`/login?message=logout`)
-			this.CLEAR_CART();
+			this.$store.commit('SET_CLEAR_CART')
 		}
 
 	},
