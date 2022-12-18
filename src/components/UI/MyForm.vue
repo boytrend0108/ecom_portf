@@ -1,7 +1,12 @@
 <template>
-<form id="formId" action="#" class="cart-form">SHIPPING ADRESS
+<form 
+  id="formId" 
+  action="@/post_send/mail.php"
+  method="POST"
+  class="cart-form">SHIPPING ADRESS
     <input 
     id="name"
+    name="user_name"
     type="text" 
     class="form-input" 
     placeholder="Your name"  
@@ -11,6 +16,7 @@
     <p class="lable">Only letters</p>
     <input 
     id="phone"
+    name="user_phone"
     type="text" 
     class="form-input" 
     placeholder="Your phone"  
@@ -21,6 +27,7 @@
     <p class="lable">+7(000)000-0000</p>
     <input 
     id="email"
+    name="user_email"
     type="email" 
     class="form-input" 
     placeholder="Your email"  
