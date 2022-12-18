@@ -1,4 +1,6 @@
-import axios from "axios";
+
+import { getDatabase, onValue,ref } from "firebase/database";
+const db = getDatabase();
 export default {
   state:{
     menu: [], // this is oue json menu array
@@ -17,18 +19,17 @@ export default {
     },
   },
   actions:{
-   async GET_MENU({commit}){
-      return axios('http://localhost:3000/menu',{
-        method: "GET"
-      })
-      .then((menu) => {
-        commit('SET_MENU', menu.data)
-        return menu;
-      })
-      .catch((err)=>{
+    async GET_MENU({ commit }) {
+      try {
+        return onValue(ref(db, `/menu/`), (snapshot) => {
+          const menu = snapshot.val();
+          commit('SET_MENU', menu)
+        })
+      } catch (err) {
         console.log(err)
-      })
+      }
     },
+
     SWITCH_SHOW_MENU({commit}){
       commit("SET_SHOW_MENU")
     },
