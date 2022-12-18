@@ -31,7 +31,7 @@ export default {
 
   },
   actions: {
-   async GET_CATEGORY({ commit }) {
+    GET_CATEGORY({ commit }) {
       try {
         return  onValue(ref(db, '/category/'), (snapshot) => {
           const category = snapshot.val()
@@ -43,7 +43,8 @@ export default {
         console.log(err)
         return err;
       }},  
-    async GET_CATALOG({ commit }) {
+
+     GET_CATALOG({ commit }) {
       try {
         return onValue(ref(db, '/catalogItems/'), (snapshot) => {
           const catalog = snapshot.val()
@@ -56,7 +57,8 @@ export default {
         return err;
       }
     },
-    async GET_ADVANTAGES({ commit }) {
+
+     GET_ADVANTAGES({ commit }) {
       try {
         return onValue(ref(db, '/advantages/'), (snapshot) => {
           const advantages = snapshot.val()
@@ -69,10 +71,12 @@ export default {
         return err;
       }
     },
-    async GET_SEARCH_INPUT({commit},searchInput){
+    
+    GET_SEARCH_INPUT({commit},searchInput){
       commit('SET_SEARCH_INPUT',searchInput)
     },
   },
+  
   mutations: {
     SET_CATEGORY: (state, category) => {
       state.category = category;

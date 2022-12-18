@@ -17,7 +17,7 @@ export default {
     },
   },
   actions:{
-    GET_MENU({commit}){
+   async GET_MENU({commit}){
       return axios('http://localhost:3000/menu',{
         method: "GET"
       })
