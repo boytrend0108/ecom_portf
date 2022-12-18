@@ -1,7 +1,7 @@
 
 import auth from '@/store/auth.js'
 import info from "@/store/info.js"
-import fetchData from '@/store/fetchData.js';
+import fetchData from './fetchData.js';
 import menu from '@/store/menu.js';
 import cart from "@/store/cart.js"
 import { createStore } from 'vuex'
