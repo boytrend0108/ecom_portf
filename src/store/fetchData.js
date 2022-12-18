@@ -3,6 +3,7 @@ import { getDatabase, ref, onValue } from "firebase/database";
 import { getAuth } from "firebase/auth";
 const db = getDatabase();
 const auth = getAuth();
+
 export default {
   state: {
     category: [],// this is our json array
