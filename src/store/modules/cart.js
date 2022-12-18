@@ -1,7 +1,7 @@
 
 import { getDatabase, ref, set, onValue  } from "firebase/database";
 const database = getDatabase();
-
+const uid = JSON.parse(localStorage.getItem('firebase'))
 export default {
   state:{
     userCart: [],// this is our cart
@@ -82,7 +82,6 @@ export default {
         if (find.quantity === 1) {
           set(ref(database, `/users/${uid}/userCart/${id}`), {})
           state.userCart.splice(index, 1)
-          console.log(state.userCart.length)
           if(state.userCart.length === 0){
             commit('SET_BTN_DISABLED')
           }

@@ -29,7 +29,6 @@ export default {
         console.log(err)
       }
     },
-
     SWITCH_SHOW_MENU({commit}){
       commit("SET_SHOW_MENU")
     },
