@@ -8,7 +8,8 @@ import { createStore } from 'vuex'
 
 export default createStore({
   modules: {
-    auth, info, fetchData, menu, cart
+    auth, info, 
+    fetchData, menu, cart
   },
   
   state: {
