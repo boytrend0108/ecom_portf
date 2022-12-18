@@ -7,6 +7,10 @@ import cart from "@/store/cart.js"
 import { createStore } from 'vuex'
 
 export default createStore({
+  modules: {
+    auth, info, fetchData, menu, cart
+  },
+  
   state: {
     isMobile: true, // to show icons in navbar
     pagePath:'/',
@@ -136,8 +140,4 @@ export default createStore({
       state.error = null
     }
   },
-
-  modules: {
-    auth, info, fetchData, menu, cart
-  }
 })
