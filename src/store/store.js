@@ -1,9 +1,9 @@
 
-import auth from '@/store/auth'
-import info from "@/store/info"
-import fetchData from '@/store/fetchData';
-import menu from '@/store/menu';
-import cart from "@/store/cart"
+import auth from '@/store/modules/auth'
+import info from "@/store/modules/info"
+import fetchData from '@/store/modules/fetchData';
+import menu from '@/store/modules/menu';
+import cart from "@/store/modules/cart"
 import { createStore } from 'vuex'
 
 export default createStore({
