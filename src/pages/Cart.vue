@@ -8,24 +8,22 @@
 <script>
 import HeaderMini from "@/components/HeaderMini.vue"
 import CartSection from "@/components/CartSection.vue"
-import { mapActions } from "vuex"
-// -----------------------------------------------------------------------------
+import { mapActions, mapGetters } from "vuex"
+// ------------------------ДЛЯ ПОДДЕРЖАНИЯ АВТОРИЗАЦИИ--------------------------
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 const auth = getAuth();
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    const uid = user.uid;
-    console.log("user is sign in")
-  } else {
-    console.log("user is sign out")
-  }
-});
+
 // -----------------------------------------------------------------------------
 
 export default {
   name:"cart",
   components: {
     HeaderMini, CartSection
+  },
+  computed:{
+    ...mapGetters([
+      "USER_CART"
+    ])
   },
   
   methods:{
@@ -34,12 +32,21 @@ export default {
     ])
   },
 
-  mounted(){
+  mounted() {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        this.$store.commit('SET_UID', uid)
+        console.log("user is sign in")
+      } else {
+        console.log("user is sign out")
+      }
+    });
     this.GET_PAGE_PATH('/cart');
     this.GET_NAVCART_BTN_DISABLED();
-    if(JSON.parse(localStorage.getItem('cart')).length === 0){
+    if (this.USER_CART.length === 0) {
       this.GET_BTN_DISABLED();
-    }  
+    }
   }
 }
 </script>

@@ -35,7 +35,6 @@ import { mapGetters, mapActions } from "vuex";
 export default {
 	data() {
 		return {
-			localStorage: [],
 			showBnt: false,
 			pagePath: this.PAGE_PATH
 		}
@@ -62,10 +61,6 @@ export default {
 			this.GET_BTN_DISABLED()
 		},
 
-		getLocalStorage() {
-		this.localStorage = JSON.parse(localStorage.getItem('cart'))
-		},
-
 		makeCartBntDisable() {
 			document.querySelector('.icon-cart-wr').setAttribute("disabled", "disabled")
 		},
@@ -73,39 +68,14 @@ export default {
 		goToHomePage(){
 			this.$router.push(`/`);
 			this.GET_PAGE_PATH('/');
-			// this.isDisable = ''
 		},
-
-	},
-
-	watch: {
-		localStorage() {
-			if (this.localStorage.length > 0) {
-				this.showBnt = true
-			} else {
-				this.showBnt = false;
-			}
-		}
-	},
-
-	updated() {
-		this.getLocalStorage();
-		if (this.localStorage.length === 0) {
-			this.GET_BTN_DISABLED();
-		} else {
-			this.A_SET_BTN_ABLED()
-		}
-
 	},
 
 	mounted() {
-		this.makeCartBntDisable();
-		this.getLocalStorage();
-		if (this.localStorage.length === 0) {
+		if (this.USER_CART.length === 0) {
 			this.GET_BTN_DISABLED();
-		} else {
-			this.A_SET_BTN_ABLED()
-		}
+		} 
+
 	},
 
 }

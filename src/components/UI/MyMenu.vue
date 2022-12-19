@@ -5,10 +5,11 @@
             <li 
             class="li" 
             v-for="li in MENU"
+            :key="li.id"
              @click="$router.push(`/catalog`)"
-             >{{ li.category }}
-                <div class="ul">
-            <li class="li_sub" v-for="item in li.items">{{ item }}</li>
+             > {{li.category}}
+                <div class="ul" >
+            <li class="li_sub" v-for="item in li.items" :key="item.id"> {{ item }} </li>
         </div>
         </li>
         </div>
