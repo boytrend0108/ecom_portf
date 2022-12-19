@@ -1,9 +1,14 @@
 <template>
 <form 
-  id="formId" 
-  action="@/php/mail.php"
+  id="form" 
   method="POST"
   class="cart-form">SHIPPING ADRESS
+
+         <!-- Hidden Required Fields -->
+        <input type="hidden" name="project_name" value="digital-boys.com">
+		<input type="hidden" name="admin_email" value="eur-usd@bk.ru">
+		<input type="hidden" name="form_subject" value="Заявка c сайта digital-boys.com">
+
     <input 
     id="name"
     name="name"
@@ -38,15 +43,13 @@
     <p class="lable">mymail@mail.ru</p>
     <my-button 
     class="btn form-btn2" 
-    type="submit" 
+    @click="sendForm"
     >Send an order</my-button>
 </form>
 
 </template>
 
 <script>
-
-
 import { mapActions, mapGetters } from 'vuex';
 export default {
     name: 'my-form',
@@ -114,6 +117,25 @@ export default {
             document.querySelector(".form-btn2").textContent = "Invalide input";
             return false
         },
+
+        sendForm(){
+            console.log('5555')
+            $("form").submit(function() { //Change
+		var th = $(this);
+		$.ajax({
+			type: "POST",
+			url: "mail.php", //Change
+			data: th.serialize()
+		}).done(function() {
+			alert("Thank you!");
+			setTimeout(function() {
+				// Done Functions
+				th.trigger("reset");
+			}, 1000);
+		});
+		return false;
+	});
+        }
 
         // async sendForm(event) {
         //     if (this.validator()) {
