@@ -1,12 +1,12 @@
 <template>
 <form 
   id="formId" 
-  action="@/post_send/mail.php"
+  action="@/php/mail.php"
   method="POST"
   class="cart-form">SHIPPING ADRESS
     <input 
     id="name"
-    name="user_name"
+    name="name"
     type="text" 
     class="form-input" 
     placeholder="Your name"  
@@ -16,7 +16,7 @@
     <p class="lable">Only letters</p>
     <input 
     id="phone"
-    name="user_phone"
+    name="phone"
     type="text" 
     class="form-input" 
     placeholder="Your phone"  
@@ -27,7 +27,7 @@
     <p class="lable">+7(000)000-0000</p>
     <input 
     id="email"
-    name="user_email"
+    name="email"
     type="email" 
     class="form-input" 
     placeholder="Your email"  
@@ -36,14 +36,17 @@
     @input="validator"
     >
     <p class="lable">mymail@mail.ru</p>
-    <my-button class="btn form-btn2" type="submit" @click="sendForm ">Send an order</my-button>
+    <my-button 
+    class="btn form-btn2" 
+    type="submit" 
+    >Send an order</my-button>
 </form>
 
 </template>
 
 <script>
 
-import axios from 'axios';
+
 import { mapActions, mapGetters } from 'vuex';
 export default {
     name: 'my-form',
@@ -112,21 +115,21 @@ export default {
             return false
         },
 
-        async sendForm(event) {
-            if (this.validator()) {
-                event.preventDefault();
-                this.formData.cartItem = this.USER_CART;
-                await axios.post(`http://localhost:3000/form`, this.formData)
-                    .catch((err) => { alert("Data don't send") })
-                await this.CLEAR_CART();
-                this.GET_SHOW_NOTIF();
-                this.GET_BTN_DISABLED();
-                this.A_RESET_INPUT_COLOR();
-                this.formData.name = '';
-                this.formData.phone = '';
-                this.formData.email = '';
-            } return
-        }
+        // async sendForm(event) {
+        //     if (this.validator()) {
+        //         event.preventDefault();
+        //         this.formData.cartItem = this.USER_CART;
+        //         await axios.post(`http://localhost:3000/form`, this.formData)
+        //             .catch((err) => { alert("Data don't send") })
+        //         await this.CLEAR_CART();
+        //         this.GET_SHOW_NOTIF();
+        //         this.GET_BTN_DISABLED();
+        //         this.A_RESET_INPUT_COLOR();
+        //         this.formData.name = '';
+        //         this.formData.phone = '';
+        //         this.formData.email = '';
+        //     } return
+        // }
     },
 
     mounted(){

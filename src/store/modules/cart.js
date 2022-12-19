@@ -1,7 +1,7 @@
 
 import { getDatabase, ref, set, onValue  } from "firebase/database";
 const database = getDatabase();
-const uid = JSON.parse(localStorage.getItem('firebase'))
+// const uid = JSON.parse(localStorage.getItem('firebase'))
 export default {
   state:{
     userCart: [],// this is our cart
@@ -51,35 +51,41 @@ export default {
       commit('SET_HIDE_CART')
     },
     async ADD_TO_CART({ commit, state }, item) {
-      const find = state.userCart.find((el) => el.id === item.id)
-      if (find) {
-        try {
-          item.quantity += 1;
-          item.totalPrice = item.itemPrice * item.quantity; 
-          await set(ref(database, `users/${uid}/userCart/${item.id}`), item )
-          commit('CALCULATE_TOTAL_IN_CART')
-        } catch (err) {
-          console.log(err)
-        }
-      } else {
-        try {
-          item.quantity = 1;
-          item.totalPrice = item.itemPrice * item.quantity
-          await set(ref(database, `users/${uid}/userCart/${item.id}`), item)
-          commit("ADD_NEW_ITEM_TO_CART", item)
-          commit('CALCULATE_TOTAL_IN_CART')
-        }
-        catch (err) {
-          console.log(err)
-        }
+      if(localStorage.getItem('firebase').length !== 0){
+        const find = state.userCart.find((el) => el.id === item.id);
+        const uid = JSON.parse(localStorage.getItem('firebase'));
+        if (find) {
+          try {
+            item.quantity += 1;
+            item.totalPrice = item.itemPrice * item.quantity;
+            await set(ref(database, `users/${uid}/userCart/${item.id}`), item )
+            commit('CALCULATE_TOTAL_IN_CART')
+          } catch (err) {
+            console.log(err)
+          }
+        } else {
+          try {
+            item.quantity = 1;
+            item.totalPrice = item.itemPrice * item.quantity
+            await set(ref(database, `users/${uid}/userCart/${item.id}`), item)
+            commit("ADD_NEW_ITEM_TO_CART", item)
+            commit('CALCULATE_TOTAL_IN_CART')
+          }
+          catch (err) {
+            console.log(err)
+          }  
+      }
+      } else{
+        console.log('6666666')
       }
      
     },
     async DELETE_ITEM({ commit, state }, id) {
       const find = state.userCart.find((el) => el.id === id)
       const index = state.userCart.findIndex(el => el.id === id)
+      const uid = JSON.parse(localStorage.getItem('firebase'))
       try {
-        if (find.quantity === 1) {
+        if (find.quantity === 1) {   
           set(ref(database, `/users/${uid}/userCart/${id}`), {})
           state.userCart.splice(index, 1)
           if(state.userCart.length === 0){
