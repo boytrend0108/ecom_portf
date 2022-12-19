@@ -105,6 +105,7 @@ export default {
     },
 
     async CLEAR_CART({ commit }) {
+      console.log("clear cart")
       const uid = JSON.parse(localStorage.getItem('firebase'))
       try {
         await set(ref(database, `users/${uid}/userCart`), {})

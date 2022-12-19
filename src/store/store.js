@@ -44,13 +44,15 @@ export default createStore({
     SWITCH_TABLET({commit}){
       commit("SET_TABLET")
     },
-    GET_BTN_DISABLED({commit}){  
+    GET_BTN_DISABLED({commit}){ 
+      console.log("btn disabled") 
        commit('SET_BTN_DISABLED')
     },
     A_SET_BTN_ABLED({commit}){  
       commit('M_SET_BTN_ABLED')
     },
     GET_SHOW_NOTIF({commit}){
+      console.log("show notif")
      commit('SET_SHOW_NOTIF')
     },
     HIDE_SHOW_NOTIF({ commit }) { 
@@ -60,6 +62,7 @@ export default createStore({
       commit('M_GET_LOCAL_STORAGE')
     },
     A_RESET_INPUT_COLOR(){
+      console.log("reset input color")
     document.querySelector("#name").style.border = '1px solid gray';
     document.querySelector("#phone").style.border = '1px solid gray';
     document.querySelector("#email").style.border = '1px solid gray';

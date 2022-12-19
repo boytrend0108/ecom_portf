@@ -118,23 +118,28 @@ export default {
             return false
         },
 
-        sendForm(){
-            console.log('5555')
-            $("form").submit(function() { //Change
-		var th = $(this);
-		$.ajax({
-			type: "POST",
-			url: "mail.php", //Change
-			data: th.serialize()
-		}).done(function() {
-			alert("Thank you!");
-			setTimeout(function() {
-				// Done Functions
-				th.trigger("reset");
-			}, 1000);
-		});
-		return false;
-	});
+        async sendForm() {
+            const thisComp = this;
+                await $("form").submit(function () { //Change
+                    var th = $(this);
+                    $.ajax({
+                        type: "POST",
+                        url: "mail.php", //Change
+                        data: th.serialize()
+                    }).done(function () {
+                        // alert("Thank you!");
+                        setTimeout(function () {
+                            // Done Functions
+                            thisComp.CLEAR_CART();
+                            thisComp.GET_SHOW_NOTIF();
+                            thisComp.GET_BTN_DISABLED();
+                            thisComp.A_RESET_INPUT_COLOR();
+                            th.trigger("reset");
+                        }, 1000);
+                    });
+                    return false;
+                });
+            // }
         }
 
         // async sendForm(event) {
@@ -155,7 +160,7 @@ export default {
     },
 
     mounted(){
-   
+   console.log(this)
     }
 }
 </script>
