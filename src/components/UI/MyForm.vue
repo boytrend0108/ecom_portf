@@ -76,8 +76,8 @@ export default {
 
     methods: {
         ...mapActions([
-            "CLEAR_CART","GET_SHOW_NOTIF",'GET_BTN_DISABLED',
-            'A_CHANGE_NOTIF_MDG','A_RESET_INPUT_COLOR'
+            "CLEAR_CART", "GET_SHOW_NOTIF", 'GET_BTN_DISABLED',
+            'A_CHANGE_NOTIF_MDG', 'A_RESET_INPUT_COLOR'
         ]),
 
         validator() {
@@ -107,7 +107,7 @@ export default {
                     document.querySelector(".form-btn2").removeAttribute("disabled", "disabled")
                     document.querySelector(".form-btn2").classList.remove("disabled");
                     document.querySelector(".form-btn2").textContent = "Send an order";
-                }else{
+                } else {
                     document.querySelector(".form-btn2").textContent = "Cart is empty"
                 }
                 return true
@@ -120,47 +120,30 @@ export default {
 
         async sendForm() {
             const thisComp = this;
-                await $("form").submit(function () { //Change
-                    var th = $(this);
-                    $.ajax({
-                        type: "POST",
-                        url: "mail.php", //Change
-                        data: th.serialize()
-                    }).done(function () {
-                        // alert("Thank you!");
-                        setTimeout(function () {
-                            // Done Functions
-                            thisComp.CLEAR_CART();
-                            thisComp.GET_SHOW_NOTIF();
-                            thisComp.GET_BTN_DISABLED();
-                            thisComp.A_RESET_INPUT_COLOR();
-                            th.trigger("reset");
-                        }, 1000);
-                    });
-                    return false;
+            await $("form").submit(function () { //Change
+                var th = $(this);
+                $.ajax({
+                    type: "POST",
+                    url: "mailer/mail.php", //Change
+                    data: th.serialize()
+                }).done(function () {
+                    // alert("Thank you!");
+                    setTimeout(function () {
+                        // Done Functions
+                        thisComp.CLEAR_CART();
+                        thisComp.GET_SHOW_NOTIF();
+                        thisComp.GET_BTN_DISABLED();
+                        thisComp.A_RESET_INPUT_COLOR();
+                        th.trigger("reset");
+                    }, 1000);
                 });
-            // }
+                return false;
+            });
         }
-
-        // async sendForm(event) {
-        //     if (this.validator()) {
-        //         event.preventDefault();
-        //         this.formData.cartItem = this.USER_CART;
-        //         await axios.post(`http://localhost:3000/form`, this.formData)
-        //             .catch((err) => { alert("Data don't send") })
-        //         await this.CLEAR_CART();
-        //         this.GET_SHOW_NOTIF();
-        //         this.GET_BTN_DISABLED();
-        //         this.A_RESET_INPUT_COLOR();
-        //         this.formData.name = '';
-        //         this.formData.phone = '';
-        //         this.formData.email = '';
-        //     } return
-        // }
     },
 
     mounted(){
-   console.log(this)
+ 
     }
 }
 </script>
