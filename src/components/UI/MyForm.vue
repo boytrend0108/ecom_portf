@@ -119,9 +119,11 @@ export default {
         },
 
         async sendForm() {
-            const thisComp = this;
+            const thisComp = this;// add this to have access to CLEAR_CATR and other fn..
+            // to define form we can use classes, for exp-l await$('.my-form')
             await $("form").submit(function () { //Change
-                var th = $(this);
+                var th = $(this); // this - it is form
+                console.log(this)
                 $.ajax({
                     type: "POST",
                     url: "mailer/mail.php", //Change
