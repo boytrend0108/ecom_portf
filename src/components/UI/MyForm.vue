@@ -65,6 +65,7 @@ export default {
                 phone: /^\+7\(\d{3}\)\d{3}-\d{4}$/,
                 email: /^[\w._-]+@\w+\.[a-z]{2,4}$/i 
             },
+            orderNum: 0,
         }
     },
    
@@ -118,6 +119,21 @@ export default {
             return false
         },
 
+        getData() {
+            this.orderNum = + 1;
+            const data = {
+                orderNum: `Заказ номер ${this.orderNum}`,
+                name: this.formData.name,
+                phone: this.formData.phone,
+                email: this.formData.email,
+                project_name: 'digital-boys.com',
+                admin_email: 'eur-usd@bk.ru',
+                form_subject: 'Заявка c сайта digital-boys.com'
+            }
+            return data
+        },
+
+
         async sendForm() {
             const thisComp = this;// add this to have access to CLEAR_CATR and other fn..
             // to define form we can use classes, for exp-l await$('.my-form')
@@ -127,7 +143,7 @@ export default {
                 $.ajax({
                     type: "POST",
                     url: "mailer/mail.php", //Change
-                    data: th.serialize()
+                    data: thisComp.getData()
                 }).done(function () {
                     // alert("Thank you!");
                     setTimeout(function () {
@@ -145,7 +161,7 @@ export default {
     },
 
     mounted(){
- 
+       this.getData();
     }
 }
 </script>
