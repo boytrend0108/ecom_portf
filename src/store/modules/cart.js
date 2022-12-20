@@ -9,6 +9,7 @@ export default {
     totalItems: 0,
     slideCart: "", // this change classes for cart animation
     showCart: false,
+    orderNum: null,
   },
   getters:{
     SHOW_CART(state){
@@ -26,6 +27,9 @@ export default {
     TOTAL_CART_ITEMS(state){
       return state.totalItems
     },
+    ORDER_NUM(state){
+      return state.orderNum
+    }
   },
   actions:{
      GET_USER_CART({ commit}) {
@@ -113,6 +117,21 @@ export default {
         console.log(e)
       }  
     },
+
+    async CHANGE_ORDER_NUM({commit}){
+      try {
+        onValue(ref(database, "/orderNum/"), (snapshot) => {
+          let orderNum = (snapshot.val());
+          orderNum = orderNum + 1;
+          set(ref(database, '/orderNum/'), orderNum)
+          commit("SET_ORDER_NUM", orderNum);
+        }, {
+          onlyOnce: true
+        })
+      } catch (err) {
+        console.log(err)
+      }
+   }
   },
   
   mutations:{
@@ -169,5 +188,10 @@ export default {
       state.totalCartPrice = 0;
       state.totalItems = 0;
     },
+    SET_ORDER_NUM(state, orderNum){
+      state.orderNum = orderNum;
+      console.log(state.orderNum)
+    }
+    
   }
 }
