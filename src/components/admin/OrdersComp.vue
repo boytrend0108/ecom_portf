@@ -1,7 +1,7 @@
 <template>
   <article class="orders">
     <orders-item
-      v-for="item in RECIEVED_ORSERS[1671632350432].userOrder"
+      v-for="item in RECIEVED_ORSERS[item.Id].userOrder"
       :key="item.id"
       :item="item"
     ></orders-item>   
@@ -24,6 +24,9 @@ export default {
      ...mapGetters([
       'RECIEVED_ORSERS'
      ])
+   },
+   mounted(){
+    console.log(this.item.Id)
    }
 }
 </script>
