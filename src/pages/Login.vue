@@ -95,6 +95,7 @@ export default {
           this.$router.push('/admin')
           this.$store.commit('SET_IS_ADMIN')
         } else {
+          await this.$store.dispatch('login', formData)
           this.$router.push('/')
         }
       } catch (err) {

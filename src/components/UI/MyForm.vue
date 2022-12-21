@@ -81,105 +81,107 @@ export default {
         }
     },
 
-    methods: {
-        ...mapActions([
-            "CLEAR_CART", "GET_SHOW_NOTIF", 'GET_BTN_DISABLED',
-            'A_CHANGE_NOTIF_MDG', 'A_RESET_INPUT_COLOR', 'CHANGE_ORDER_NUM'
-        ]),
+  methods: {
+    ...mapActions([
+      "CLEAR_CART", "GET_SHOW_NOTIF", 'GET_BTN_DISABLED',
+      'A_CHANGE_NOTIF_MDG', 'A_RESET_INPUT_COLOR', 'CHANGE_ORDER_NUM',
+      'SEND_ORDER_TO_FIREBASE'
+    ]),
 
-        validator() {
-            if (this.reg.name.test(this.formData.name)) {
-                document.querySelector("#name").style.border = '3px solid green'
-            } else {
-                document.querySelector("#name").style.border = '3px solid #FF6A6A'
-            };
+    validator() {
+      if (this.reg.name.test(this.formData.name)) {
+        document.querySelector("#name").style.border = '3px solid green'
+      } else {
+        document.querySelector("#name").style.border = '3px solid #FF6A6A'
+      };
 
-            if (this.reg.phone.test(this.formData.phone)) {
-                document.querySelector("#phone").style.border = '3px solid green'
-            } else {
-                document.querySelector("#phone").style.border = '3px solid #FF6A6A'
-            };
+      if (this.reg.phone.test(this.formData.phone)) {
+        document.querySelector("#phone").style.border = '3px solid green'
+      } else {
+        document.querySelector("#phone").style.border = '3px solid #FF6A6A'
+      };
 
-            if (this.reg.email.test(this.formData.email)) {
-                document.querySelector("#email").style.border = '3px solid green'
-            } else {
-                document.querySelector("#email").style.border = '3px solid #FF6A6A'
-            }
-            if (this.reg.name.test(this.formData.name) &&
-                this.reg.phone.test(this.formData.phone) &&
-                this.reg.email.test(this.formData.email) === true) {
-               
-                if (this.USER_CART.length > 0) {
-                    document.querySelector(".form-btn2").removeAttribute("disabled", "disabled")
-                    document.querySelector(".form-btn2").classList.remove("disabled");
-                    document.querySelector(".form-btn2").textContent = "Send an order";
-                } else {
-                    document.querySelector(".form-btn2").textContent = "Cart is empty"
-                }
-                return true
-            } 
-            document.querySelector('.form-btn2').setAttribute("disabled", "disabled")
-            document.querySelector(".form-btn2").classList.add("disabled");
-            document.querySelector(".form-btn2").textContent = "Invalide input";
-            return false
-        },
+      if (this.reg.email.test(this.formData.email)) {
+        document.querySelector("#email").style.border = '3px solid green'
+      } else {
+        document.querySelector("#email").style.border = '3px solid #FF6A6A'
+      }
+      if (this.reg.name.test(this.formData.name) &&
+        this.reg.phone.test(this.formData.phone) &&
+        this.reg.email.test(this.formData.email) === true) {
 
-        async getData() {
-            try {
-                onValue(ref(database, '/orderNum/'), (snapshot) => {
-                   const orderNum = snapshot.val();
-                   this.order = orderNum; 
-                }, {
-                    onlyOnce: true
-                })
-            } catch (e) {
-                console.log(e)
-            }
-        },
-
-      createData() {
-        return {
-          order: `Заказ номер ${this.order}`,
-          name: this.formData.name,
-          phone: this.formData.phone,
-          email: this.formData.email,
-          project_name: 'digital-boys.com',
-          admin_email: 'eur-usd@bk.ru',
-          form_subject: 'Заявка c сайта digital-boys.com'
+        if (this.USER_CART.length > 0) {
+          document.querySelector(".form-btn2").removeAttribute("disabled", "disabled")
+          document.querySelector(".form-btn2").classList.remove("disabled");
+          document.querySelector(".form-btn2").textContent = "Send an order";
+        } else {
+          document.querySelector(".form-btn2").textContent = "Cart is empty"
         }
-      },
-
-
-        async sendForm() {
-            const thisComp = this;// add this to have access to CLEAR_CATR and other fn..
-            // to define form we can use classes, for exp-l await$('.my-form')
-             const data = this.createData();
-             console.log(data)
-            await $("form").submit(function () { //Change
-                var th = $(this); // this - it is form
-                $.ajax({
-                    type: "POST",
-                    url: "mailer/mail.php", //Change
-                    data: data
-                }).done(function () {
-                    // alert("Thank you!");
-                    setTimeout(function () {
-                        // Done Functions
-                        thisComp.CHANGE_ORDER_NUM();    
-                        thisComp.CLEAR_CART();
-                        thisComp.GET_SHOW_NOTIF();
-                        thisComp.GET_BTN_DISABLED();
-                        thisComp.A_RESET_INPUT_COLOR();
-                        th.trigger("reset");
-                    }, 1000);
-                });
-                return false;
-            });
-        }
+        return true
+      }
+      document.querySelector('.form-btn2').setAttribute("disabled", "disabled")
+      document.querySelector(".form-btn2").classList.add("disabled");
+      document.querySelector(".form-btn2").textContent = "Invalide input";
+      return false
     },
 
+    async getOrderNum() {
+      try {
+        onValue(ref(database, '/orderNum/'), (snapshot) => {
+          const orderNum = snapshot.val();
+          this.order = orderNum;
+        }, {
+          onlyOnce: true
+        })
+      } catch (e) {
+        console.log(e)
+      }
+    },
+
+    createData() {
+      return {
+        order: `Заказ номер ${this.order}`,
+        name: this.formData.name,
+        phone: this.formData.phone,
+        email: this.formData.email,
+        project_name: 'digital-boys.com',
+        admin_email: 'eur-usd@bk.ru',
+        form_subject: 'Заявка c сайта digital-boys.com'
+      }
+    },
+
+    async sendForm() {
+      const thisComp = this;// add this to have access to CLEAR_CATR and other fn..
+      // to define form we can use classes, for exp-l await$('.my-form')
+      const data = this.createData();
+      console.log(data)
+      await $("form").submit(function () { //Change
+        var th = $(this); // this - it is form
+        $.ajax({
+          type: "POST",
+          url: "mailer/mail.php", //Change
+          data: data
+        }).done(function () {
+          // alert("Thank you!");
+          setTimeout(function () {
+            // Done Functions
+            thisComp.SEND_ORDER_TO_FIREBASE()
+            thisComp.CHANGE_ORDER_NUM();
+            thisComp.CLEAR_CART();
+            thisComp.GET_SHOW_NOTIF();
+            thisComp.GET_BTN_DISABLED();
+            thisComp.A_RESET_INPUT_COLOR();
+            th.trigger("reset");
+          }, 1000);
+        });
+        return false;
+      });
+    }
+  },
+
    async mounted(){
-       this.getData()
+       this.getOrderNum()
+       this.SEND_ORDER_TO_FIREBASE()
     }
 }
 </script>

@@ -5,7 +5,6 @@
 <script>
 export default {
    name:'recieved-orders',
-   recivedOrders:[]
 }
 </script>
 

@@ -50,7 +50,7 @@
 						<span 
 						  :class="isDisabled"
 						  class="item-num" 
-							> {{TOTAL_CART_ITEMS}} </span>
+							> {{TOTAL_CART_ITEMS }} </span>
 					 </button>
 				</div>
 			</div>
@@ -152,8 +152,7 @@ export default {
 		// get rid of parent click-event 
 		document.querySelector('.p-splitbutton-menubutton').addEventListener('click', (event) => {
 			event.stopPropagation()
-		}),
-		console.log(this.IS_ADMIN)
+		})
 	}
 }
 </script >

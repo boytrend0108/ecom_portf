@@ -1,6 +1,7 @@
 
 import auth from '@/store/modules/auth.js'
 import info from "@/store/modules/info.js"
+import admin from '@/store/modules/admin'
 import fetchData from '@/store/modules/fetchData.js';
 import menu from '@/store/modules/menu.js';
 import cart from "@/store/modules/cart.js"
@@ -8,8 +9,7 @@ import { createStore } from 'vuex'
 
 export default createStore({
   modules: {
-    auth, info, 
-    fetchData, menu, cart
+    auth, info, fetchData, menu, cart, admin
   },
   
   state: {
