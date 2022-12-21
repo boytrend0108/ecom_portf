@@ -80,8 +80,8 @@ export default {
             const user = auth.currentUser;
             const uid = user.uid;
             commit('SET_UID', uid)
-            // localStorage.setItem("firebase", JSON.stringify(uid)) // write uid to localStorage
-            set(ref(database, `users/${uid}/info`), {// post ro FB store
+            localStorage.setItem("firebase", JSON.stringify(uid)) // write uid to localStorage
+            set(ref(database, `users/${uid}/info`), {// post to FB store
               username: loginName,
               email: loginEmail
             });

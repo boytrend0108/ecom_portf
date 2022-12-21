@@ -181,7 +181,10 @@ export default {
 
    async mounted(){
        this.getOrderNum()
-       this.SEND_ORDER_TO_FIREBASE()
+       setTimeout(()=>{
+        this.SEND_ORDER_TO_FIREBASE()
+       }, 2000)
+      
     }
 }
 </script>
