@@ -29,7 +29,7 @@ export default {
 <style lang="scss" scoped>
 .empty {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background: $pink-color;
 }
 </style>

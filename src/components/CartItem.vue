@@ -56,8 +56,7 @@ export default {
   },
 
   mounted() {
-    // const b = JSON.stringify(this.USER_CART,null, 4)
-    // localStorage.setItem('cart', b)
+    
   }
 }
 </script>

@@ -4,16 +4,17 @@
     <div class="cart-item__descr">
       <h2 class="title">{{ item.itemTitle }} </h2>
       <p class="text">Price {{ item.itemPrice }} $</p>
-      <!-- <div class="quantity">
+      <div class="quantity">
         <p class="text">Quantity: {{ item.quantity }} </p>
       </div>
       <p class="text">Quantity: {{ item.quantity }} </p>
-      <p class="price">Total: {{ culcTotalPrice }} $ </p> -->
+      <p class="price">Total: {{  item.quantity  * item.itemPrice  }} $ </p>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
    name:'orders-item',
    props:{
@@ -21,6 +22,15 @@ export default {
       type: Object,
       require: true
     }
+   },
+   computed:{
+    ...mapGetters([
+      "RECIEVED_ORSERS"
+    ]),
+   
+   },
+   mounted(){
+   
    }
 }
 </script>

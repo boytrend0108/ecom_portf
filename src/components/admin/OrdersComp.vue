@@ -1,5 +1,11 @@
 <template>
   <article class="orders">
+    <div class="client-info">
+         <h3>Name: Vetal</h3>
+         <h3>Email: eur-usd@bk.ru</h3>
+         <h3>Phone: +7(000)000-0000</h3>
+         <h3>Total Price: {{getTotalPrice}} $</h3> 
+      </div>
     <orders-item
       v-for="item in RECIEVED_ORSERS[item.Id].userOrder"
       :key="item.id"
@@ -23,10 +29,27 @@ export default {
    computed:{
      ...mapGetters([
       'RECIEVED_ORSERS'
-     ])
+     ]),
+     getTotalPrice() {
+       const order = this.RECIEVED_ORSERS[this.item.Id].userOrder
+       console.log(order.length)
+       let sum = 0;
+       for (let i = 0; i < order.length; i++) {
+         const totalPrice = this.RECIEVED_ORSERS[this.item.Id].userOrder[i].totalPrice
+         sum = sum + totalPrice;
+       }
+       return sum
+     }
    },
+   methods:{
+    
+    
+   },
+
    mounted(){
-    console.log(this.item.Id)
+    this.getTotalPrice;
+    // console.log(this.RECIEVED_ORSERS[this.item.Id].userOrder[0].totalPrice)
+    // console.log(this.RECIEVED_ORSERS[this.item.Id].userOrder)
    }
 }
 </script>
@@ -39,7 +62,7 @@ export default {
     min-height: 50px;
     margin: 20px 0 ;
     padding: 20px;
-    background-color: orange;
+    background-color: wheat;
    }
 
    .img{
@@ -47,6 +70,11 @@ export default {
     height: 6rem;
     background-color: aqua;
    }
+   .client-info{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
 
 
 </style>
