@@ -88,10 +88,18 @@ export default {
         loginPassword: this.loginPassword
       }
       
-      try{
-        await this.$store.dispatch('login', formData)
-        this.$router.push('/')
-         } catch(err){}
+      try {
+        if (formData.loginEmail === "boytrend@gmail.com" 
+            && formData.loginPassword === "Admin_2023") {
+          await this.$store.dispatch('login', formData)
+          this.$router.push('/admin')
+          this.$store.commit('SET_IS_ADMIN')
+        } else {
+          this.$router.push('/')
+        }
+      } catch (err) {
+        console.log(err)
+       }
       
     },
     goToRegistrationPage(event){

@@ -19,18 +19,35 @@ const database = getDatabase(appFB);
 
 export default {
   state:{
-    uid:''
+    uid:'',
+    isAdmin: false
   },
   
   getters:{
      GET_UID(state){
       return state.uid;
-     }
+     },
+     IS_ADMIN(state){
+      return state.isAdmin
+    },
   },
 
   actions: {
     // login via FareBase
     async login({ commit, dispatch }, { loginEmail, loginPassword }) {
+        try {
+          await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+              const user = auth.currentUser;
+              const uid = user.uid;
+              commit('SET_UID', uid);
+              localStorage.setItem("firebase", JSON.stringify(uid))// write uid to localStorage)
+              dispatch('GET_USER_CART');
+        } catch (error) {
+          commit('SET_ERROR', error)// we can get error.code and error.message
+          console.log(error.code)
+          throw error
+        }
+      
       try {
         await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
             const user = auth.currentUser;
@@ -50,10 +67,13 @@ export default {
       await signOut(auth)
       localStorage.setItem('firebase', "")// clear localStorage
       commit('clearInfo')
+      if (this.IS_ADMIN = true){
+        commit("SET_IN_ADMIN")
+      }else return
     },
 
     // registration via FireBase
-    async registration({ dispatch, commit }, { loginEmail, loginPassword, loginName }) {
+    async registration({ commit }, { loginEmail, loginPassword, loginName }) {
       try {
         await createUserWithEmailAndPassword(auth, loginEmail, loginPassword)
           .then(() => {
@@ -77,6 +97,9 @@ export default {
   mutations:{
     SET_UID(state, uid){
       state.uid = uid;
+    },
+    SET_IS_ADMIN(state){
+      state.isAdmin = !state.isAdmin
     }
   }
 }

@@ -32,7 +32,7 @@ export default {
     }
   },
   actions:{
-     GET_USER_CART({ commit}) {
+    GET_USER_CART({ commit}) {
       if (localStorage.getItem('firebase').length !== 0){
         const uid = JSON.parse(localStorage.getItem('firebase'))
         try {

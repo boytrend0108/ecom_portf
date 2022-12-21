@@ -21,8 +21,15 @@
 						@click="goToLoginPage"
 				  ></SplitButton>
 					<font-awesome-icon 
+					icon="fa-solid fa-gears" 
+					class="font-aw "
+					v-show="IS_ADMIN"
+					@click="this.$router.push(`/admin?message=admin`)"
+					/>
+					<font-awesome-icon 
 					  class="font-aw " 
-					  icon="fa-solid fa-bars" 
+					  icon="fa-solid fa-bars"
+						v-show="isMobile"
 					  @click="SWITCH_SHOW_MENU" />
 					<font-awesome-icon 
 					  v-show="isMobile" 
@@ -96,7 +103,8 @@ export default {
 			"SLIDE_CART",
 			"TOTAL_CART_ITEMS",
 			"SEARCH_INPUT",
-			"INFO"
+			"INFO",
+			"IS_ADMIN"
 		]),
 
 		name(){ 
@@ -144,7 +152,8 @@ export default {
 		// get rid of parent click-event 
 		document.querySelector('.p-splitbutton-menubutton').addEventListener('click', (event) => {
 			event.stopPropagation()
-		})
+		}),
+		console.log(this.IS_ADMIN)
 	}
 }
 </script >
