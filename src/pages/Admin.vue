@@ -20,8 +20,7 @@ export default {
    mounted(){
     this.$store.dispatch("GET_ORDER_FROM_FIREBASE")
     setTimeout(()=>{
-      console.log(this.RECIEVED_ORSERS[1671632350432].userOrder)
-      console.log(this.USER_CART)
+      console.log(this.RECIEVED_ORSERS)
     }, 2000)
   }
 }   

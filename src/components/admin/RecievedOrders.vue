@@ -4,8 +4,7 @@
         v-for="item in RECIEVED_ORSERS"
         :key="item.id"
         :item="item"
-      >
-      </orders-comp>
+      />
    </div>
 </template>
 
