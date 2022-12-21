@@ -38,7 +38,13 @@ const routes = [
     meta: {layout:'empty-layout'},
     component: () => import ('@/pages/Registration.vue')
   },
- 
+  {
+    path: '/admin',
+    name: 'admin',
+    meta: {layout:'empty-layout'},
+    component: () => import ('@/pages/Admin.vue')
+  },
+
 ]
 
 const router = createRouter({
