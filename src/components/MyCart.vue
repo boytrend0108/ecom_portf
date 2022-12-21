@@ -46,6 +46,7 @@ export default {
     },
     mounted(){
         this.GET_USER_CART();
+        console.log(this.USER_CART)
     }
 }
 </script>

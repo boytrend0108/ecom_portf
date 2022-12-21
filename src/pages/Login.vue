@@ -92,7 +92,7 @@ export default {
         if (formData.loginEmail === "boytrend@gmail.com" 
             && formData.loginPassword === "Admin_2023") {
           await this.$store.dispatch('login', formData)
-          this.$router.push('/admin')
+          this.$router.push('/admin$message=admin')
           this.$store.commit('SET_IS_ADMIN')
         } else {
           await this.$store.dispatch('login', formData)

@@ -4,61 +4,24 @@
     <div class="cart-item__descr">
       <h2 class="title">{{ item.itemTitle }} </h2>
       <p class="text">Price {{ item.itemPrice }} $</p>
-      <div class="quantity">
+      <!-- <div class="quantity">
         <p class="text">Quantity: {{ item.quantity }} </p>
-        <button class="quantity-bnt" @click="addToCart">&plus;</button>
-        <button class="quantity-bnt" @click="deleteItem">&times;</button>
       </div>
       <p class="text">Quantity: {{ item.quantity }} </p>
-      <p class="price">Total: {{ culcTotalPrice }} $ </p>
+      <p class="price">Total: {{ culcTotalPrice }} $ </p> -->
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
 export default {
-  data() {
-    return {
-
-    }
-  },
-  props: {
-    item: {
+   name:'orders-item',
+   props:{
+    item:{
       type: Object,
-      required: true
+      require: true
     }
-  },
-  computed: {
-    ...mapGetters([
-      "USER_CART"
-    ]),
-    culcTotalPrice() {
-      const index = this.USER_CART.indexOf(this.item);
-      const totalPrice = this.USER_CART[index].itemPrice * this.item.quantity;
-      this.USER_CART[index].totalPrice = totalPrice;
-      return totalPrice;
-    }
-  },
-  methods: {
-    ...mapActions([
-      'GET_TOTAL_CART_PRICE', 'ADD_TO_CART', 'DELETE_ITEM'
-    ]),
-    async addToCart() {
-      await this.ADD_TO_CART(this.item)
-      const b = JSON.stringify(this.USER_CART, null, 4)
-      localStorage.setItem('cart', b)
-    },
-    deleteItem() {
-      this.DELETE_ITEM(this.item.id)
-
-    }
-  },
-
-  mounted() {
-    // const b = JSON.stringify(this.USER_CART,null, 4)
-    // localStorage.setItem('cart', b)
-  }
+   }
 }
 </script>
 

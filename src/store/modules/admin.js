@@ -10,19 +10,38 @@ export default {
     }
   },
   actions: {
-    async SEND_ORDER_TO_FIREBASE(store){
-      const userCart = store.getters.USER_CART
-      const userData = store.getters.INFO
-      const orderId = Date.now();
-      const orderData = {
-        Id: orderId,
-        userName : userData.username,
-        userEmail: userData.email,
-        userOrder: userCart
+    async SEND_ORDER_TO_FIREBASE(store) {
+      try {
+        const userCart = store.getters.USER_CART
+        const userData = store.getters.INFO
+        const orderId = Date.now();
+        const orderData = {
+          id: orderId,
+          userName: userData.username,
+          userEmail: userData.email,
+          userOrder: userCart
+        }
+        await set(ref(db, `recievedOrders/${orderId}`), orderData)
+      } catch (e) {
+        console.log(e)
       }
-      set(ref(db, `recievedOrders/${orderId}`), orderData)
+
     },
-    GET_ORDER_FROM_FIREBASE(){}
+   async GET_ORDER_FROM_FIREBASE({commit}) {
+      try{
+        onValue(ref(db,'recievedOrders/'), (snapshot)=>{
+          const recievedOrders = snapshot.val()
+          commit('SET_RESIEVED_ORDERS',recievedOrders)
+        })
+      }catch(e){
+        console.log(e)
+      }
+
+    }
   },
-  mutatiions: {}
+  mutations: {
+    SET_RESIEVED_ORDERS(state, recievedOrders){
+      state.recievedOrders = recievedOrders
+    }
+  }
 }
