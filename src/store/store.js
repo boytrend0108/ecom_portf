@@ -44,7 +44,7 @@ export default createStore({
     SWITCH_TABLET({commit}){
       commit("SET_TABLET")
     },
-    GET_BTN_DISABLED({commit}){  
+    GET_BTN_DISABLED({commit}){ 
        commit('SET_BTN_DISABLED')
     },
     A_SET_BTN_ABLED({commit}){  

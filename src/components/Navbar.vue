@@ -99,7 +99,7 @@ export default {
 			"INFO"
 		]),
 
-		name(){ // this name in computed rpoperty on 'name' in data
+		name(){ 
        return this.$store.getters.INFO.username	? this.$store.getters.INFO.username : "Sign in"
 			}	
 		},
