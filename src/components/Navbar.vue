@@ -9,7 +9,13 @@
 					  src="@/assets/img/logo.png" 
 					  alt="logo">
 					<font-awesome-icon class="font-aw" icon="fa-solid fa-magnifying-glass" />
-					<input type="text" class="search-input" name="search" v-model="searchInput" @input="sendSearchInput">
+					<input 
+					  type="text" 
+					  class="search-input" 
+					  name="search" 
+					  v-model="searchInput" 
+					  @input="sendSearchInput"
+					  >
 				</div>
 
 				<div class="nav-block">

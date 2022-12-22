@@ -1,17 +1,23 @@
 <template>
-  <article class="orders">
+  <div class="orders">
     <div class="client-info">
-         <h3>Name: {{userName}}</h3>
-         <h3>Email: {{email}}</h3>
-         <h3>Phone: {{userPhone}}</h3>
-         <h3>Total Price: {{getTotalPrice}} $</h3> 
-      </div>
-    <orders-item
+      <h3>Name: {{userName}}</h3>
+      <h3>Email: {{email}}</h3>
+      <h3>Phone: {{userPhone}}</h3>
+      <h3>Total Price: {{getTotalPrice}} $</h3>
+      <font-awesome-icon 
+      icon="fa-solid fa-list" 
+      @click="showOrders = !showOrders"
+      />
+    </div>
+    <div class="item-box" v-show="showOrders">
+      <orders-item
       v-for="item in RECIEVED_ORSERS[item.id].userOrder"
       :key="item.id"
       :item="item"
-    ></orders-item>   
-  </article>
+      />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -22,7 +28,8 @@ export default {
     return{
       email: '',
       userName: '',
-      userPhone: ''
+      userPhone: '',
+      showOrders: true
     }
     
   },
@@ -86,7 +93,19 @@ export default {
    display: flex;
    align-items: center;
    justify-content: space-between;
+   background-color: gray;
+   color:aliceblue;
+   height: 4rem;
+   padding: 0 1rem;
 }
+.fa-list{
+  font-size: 2rem;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.fa-list:hover{
+    transform: scale(1.2);
+  } 
 
 
 </style>
