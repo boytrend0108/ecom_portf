@@ -33,7 +33,7 @@ export default {
 .wrapper{
   border: 1px solid #000;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
 }
 
 </style>

@@ -1,10 +1,10 @@
 <template>
-  <div class="orders">
+  <div class="orders swing-in-top-fwd ">
     <div class="client-info">
-      <h3>Name: {{userName}}</h3>
-      <h3>Email: {{email}}</h3>
-      <h3>Phone: {{userPhone}}</h3>
-      <h3>Total Price: {{getTotalPrice}} $</h3>
+      <h3 class="client-data">Name:<span class="client-data_span">{{userName}}</span></h3>
+      <h3 class="client-data">Email:<span class="client-data_span">{{email}}</span></h3>
+      <h3 class="client-data">Phone:<span class="client-data_span">{{userPhone}}</span></h3>
+      <h3 class="client-data">Total Price:<span class="client-data_span">{{getTotalPrice}}</span> $</h3>
       <font-awesome-icon 
       icon="fa-solid fa-list" 
       @click="showOrders = !showOrders"
@@ -99,9 +99,16 @@ html{
    justify-content: space-between;
    background-color: gray;
    color:aliceblue;
-   height: 4rem;
-   padding: 0 1rem;
+   height: 6rem;
+   padding: 0 2rem;
    border-radius: 4px;
+}
+
+.client-data{
+  font-size: 1.5rem;
+  .client-data_span{
+    margin-left: 1rem;
+  }
 }
 .fa-list{
   font-size: 2rem;

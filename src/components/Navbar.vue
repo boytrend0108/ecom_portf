@@ -247,7 +247,6 @@ export default {
 	transform: scale(1.3);
 }
 }
-
 .search-input {
 	background-color: transparent;
 	border: none;
@@ -337,6 +336,12 @@ export default {
 	.p-splitbutton-menubutton{
 		background-color: $pink-color;
 		border: $pink-color;
+		width: 3rem;
+    padding: 1rem 0;
+	}
+
+	.p-button-label{
+		font-size: 1.5rem;
 	}
 	.p-button:enabled:hover {
     background: gray;

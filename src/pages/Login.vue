@@ -119,6 +119,7 @@ export default {
 </script>
 
 <style lang="scss" >
+
 .wrapper{
   display: flex;
   align-items: center;

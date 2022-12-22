@@ -2,14 +2,13 @@
   <div class="cart-item__box slide-bottom ">
     <img :src="require('@/assets/img/catalog/' + item.itemImg)" alt="img" class="cart-img">
     <div class="cart-item__descr">
-      <h2 class="title">{{ item.itemTitle }} </h2>
-      <p class="text">Price {{ item.itemPrice }} $</p>
-      <div class="quantity">
+      <div class="div">
+        <h2 class="title">{{ item.itemTitle }} </h2>
+        <p class="text">Price {{ item.itemPrice }} $</p>
         <p class="text">Quantity: {{ item.quantity }} </p>
       </div>
-      <p class="text">Quantity: {{ item.quantity }} </p>
-      <p class="price">Total: {{  item.quantity  * item.itemPrice  }} $ </p>
     </div>
+    <p class="price">Total: {{ item.quantity * item.itemPrice }} $ </p>
   </div>
 </template>
 
@@ -36,42 +35,41 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+html{
+  font-size: 20px;
+}
 .cart-item__box {
   width: 100%;
-  height: 120px;
-  // border: 1px solid $pink-color;
   @include box-shadow-pink;
-  padding: 20px 0;
-  margin: 20px 0;
+  padding: 1rem 2rem;
+  margin: 1rem 0;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
 .cart-img {
-  height: 90px;
+  height: 6rem;
+}
+.price{
+  @include text($main-color, 1.5rem)
 }
 
 .cart-item__descr {
   display: flex;
-  flex-direction: column;
-  padding-right: 20px;
+  // flex-direction: column;
+  padding-right: 1rem;
 
   .title {
-    @include item-title(13px);
-    margin: 0 0 10px 0;
+    @include item-title(1.5rem);
+    margin: 0 0 1rem 0;
   }
 
-  .price {
-    @include text($main-color, 16px);
-    margin-top: 10px;
-  }
+
 
   .text {
-    @include text(#5D5D5D, 10px);
-    font-weight: 300;
-    font-size: 14px;
-    line-height: 17px;
+    @include text(#5D5D5D, 1.5rem);
+  
   }
 }
 
@@ -92,29 +90,32 @@ export default {
 }
 
 .slide-bottom {
-	-webkit-animation: slide-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: slide-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  -webkit-animation: slide-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: slide-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 
-@-webkit-keyframes slide-bottom {
-  0% {
-    -webkit-transform: translateY(-500px);
-            transform: translateY(-500px);
+  @-webkit-keyframes slide-bottom {
+    0% {
+      -webkit-transform: translateY(-500px);
+      transform: translateY(-500px);
+    }
+
+    100% {
+      -webkit-transform: translateY(0px);
+      transform: translateY(0px);
+    }
   }
-  100% {
-    -webkit-transform: translateY(0px);
-            transform: translateY(0px);
+
+  @keyframes slide-bottom {
+    0% {
+      -webkit-transform: translateY(-500px);
+      transform: translateY(-500px);
+    }
+
+    100% {
+      -webkit-transform: translateY(0px);
+      transform: translateY(0px);
+    }
   }
-}
-@keyframes slide-bottom {
-  0% {
-    -webkit-transform: translateY(-500px);
-            transform: translateY(-500px);
-  }
-  100% {
-    -webkit-transform: translateY(0px);
-            transform: translateY(0px);
-  }
-}
 
 }
 </style>
