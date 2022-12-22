@@ -7,7 +7,7 @@
          <h3>Total Price: {{getTotalPrice}} $</h3> 
       </div>
     <orders-item
-      v-for="item in RECIEVED_ORSERS[item.Id].userOrder"
+      v-for="item in RECIEVED_ORSERS[item.id].userOrder"
       :key="item.id"
       :item="item"
     ></orders-item>   
@@ -39,18 +39,18 @@ export default {
       'RECIEVED_ORSERS'
      ]),
      getTotalPrice() {
-       const order = this.RECIEVED_ORSERS[this.item.Id].userOrder
+       const order = this.RECIEVED_ORSERS[this.item.id].userOrder
        let sum = 0;
        for (let i = 0; i < order.length; i++) {
-         const totalPrice = this.RECIEVED_ORSERS[this.item.Id].userOrder[i].totalPrice
+         const totalPrice = this.RECIEVED_ORSERS[this.item.id].userOrder[i].totalPrice
          sum = sum + totalPrice;
        }
        return sum
      },
      getUserData(){
-      this.email = this.RECIEVED_ORSERS[this.item.Id].userEmail
-      this.userName = this.RECIEVED_ORSERS[this.item.Id].userName
-      this.userPhone = this.RECIEVED_ORSERS[this.item.Id].userPhone
+      this.email = this.RECIEVED_ORSERS[this.item.id].userEmail
+      this.userName = this.RECIEVED_ORSERS[this.item.id].userName
+      this.userPhone = this.RECIEVED_ORSERS[this.item.id].userPhone
      }
      
    },

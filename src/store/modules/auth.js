@@ -47,19 +47,6 @@ export default {
           console.log(error.code)
           throw error
         }
-      
-      try {
-        await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
-            const user = auth.currentUser;
-            const uid = user.uid;
-            commit('SET_UID', uid);
-            localStorage.setItem("firebase", JSON.stringify(uid))// write uid to localStorage)
-            dispatch('GET_USER_CART');
-      } catch (error) {
-        commit('SET_ERROR', error)// we can get error.code and error.message
-        console.log(error.code)
-        throw error
-      }
     },
 
     // logout via FireBase

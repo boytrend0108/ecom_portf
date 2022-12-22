@@ -19,6 +19,7 @@ export default {
 
    mounted(){
     this.$store.dispatch("GET_ORDER_FROM_FIREBASE")
+    this.$store.commit("setInfo", {name: "Admin"})
   }
 }   
 

@@ -56,7 +56,7 @@ export default {
 
   methods: {
     validator(){
-      const btn = document.querySelector('.disabled');
+      const btn = document.querySelector('.p-button-secondary');
       if(this.reg_email.test(this.loginEmail)){
         document.getElementById("email").style.border = '3px solid green'
       }else{
@@ -92,7 +92,7 @@ export default {
         if (formData.loginEmail === "boytrend@gmail.com" 
             && formData.loginPassword === "Admin_2023") {
           await this.$store.dispatch('login', formData)
-          this.$router.push('/admin$message=admin')
+          this.$router.push('/admin?message=admin')
           localStorage.setItem("isAdmin", "true")
           this.$store.commit('SET_IS_ADMIN')
         } else {
