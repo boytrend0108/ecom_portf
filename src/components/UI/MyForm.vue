@@ -154,7 +154,6 @@ export default {
       const thisComp = this;// add this to have access to CLEAR_CATR and other fn..
       // to define form we can use classes, for exp-l await$('.my-form')
       const data = this.createData();
-      console.log(data)
       await $("form").submit(function () { //Change
         var th = $(this); // this - it is form
         $.ajax({
@@ -165,7 +164,7 @@ export default {
           // alert("Thank you!");
           setTimeout(function () {
             // Done Functions
-            thisComp.SEND_ORDER_TO_FIREBASE(thisComp.formData.phone,thisComp.formData.email )
+            thisComp.SEND_ORDER_TO_FIREBASE( [thisComp.formData.email, thisComp.formData.phone] )
             thisComp.CHANGE_ORDER_NUM();
             thisComp.CLEAR_CART();
             thisComp.GET_SHOW_NOTIF();

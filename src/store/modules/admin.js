@@ -10,7 +10,7 @@ export default {
     }
   },
   actions: {
-    async SEND_ORDER_TO_FIREBASE(store, phone,email) {
+    async SEND_ORDER_TO_FIREBASE(store, data) {
       try {
         const userCart = store.getters.USER_CART
         const userData = store.getters.INFO
@@ -18,10 +18,11 @@ export default {
         const orderData = {
           id: orderId,
           userName: userData.username,
-          userEmail: email,
-          userPhone: phone,
+          userEmail: data[0],
+          userPhone: data[1],
           userOrder: userCart
         }
+        console.log(orderData)
         await set(ref(db, `recievedOrders/${orderId}`), orderData)
       } catch (e) {
         console.log(e)
