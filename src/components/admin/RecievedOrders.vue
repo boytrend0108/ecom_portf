@@ -19,6 +19,12 @@ export default {
       ...mapGetters([
          "RECIEVED_ORSERS"
       ])
+   },
+   mounted(){
+      setTimeout(() => {
+         console.log(this.RECIEVED_ORSERS)
+      }, 2000);
+      
    }
 }
 </script>

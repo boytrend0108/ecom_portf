@@ -20,7 +20,7 @@ const database = getDatabase(appFB);
 export default {
   state:{
     uid:'',
-    isAdmin: false
+    isAdmin: false,
   },
   
   getters:{
@@ -63,13 +63,12 @@ export default {
     },
 
     // logout via FireBase
-    async logout({commit}) {
+    async logout({ commit }) {
       await signOut(auth)
       localStorage.setItem('firebase', "")// clear localStorage
       commit('clearInfo')
-      if (this.IS_ADMIN = true){
-        commit("SET_IN_ADMIN")
-      }else return
+      localStorage.setItem("isAdmin", "false")
+      commit("SET_IS_ADMIN")
     },
 
     // registration via FireBase
@@ -99,7 +98,9 @@ export default {
       state.uid = uid;
     },
     SET_IS_ADMIN(state){
-      state.isAdmin = !state.isAdmin
+      const isAdmin = JSON.parse(localStorage.getItem('isAdmin'))
+      console.log(isAdmin)
+      state.isAdmin = isAdmin
     }
   }
 }

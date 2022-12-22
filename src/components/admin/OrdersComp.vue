@@ -62,8 +62,6 @@ export default {
    mounted(){
     this.getTotalPrice;
     this.getUserData;
-    // console.log(this.RECIEVED_ORSERS[this.item.Id].userOrder[0].totalPrice)
-    console.log(this.RECIEVED_ORSERS[this.item.Id])
    }
 }
 </script>

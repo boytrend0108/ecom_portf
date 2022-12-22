@@ -93,6 +93,7 @@ export default {
             && formData.loginPassword === "Admin_2023") {
           await this.$store.dispatch('login', formData)
           this.$router.push('/admin$message=admin')
+          localStorage.setItem("isAdmin", "true")
           this.$store.commit('SET_IS_ADMIN')
         } else {
           await this.$store.dispatch('login', formData)
