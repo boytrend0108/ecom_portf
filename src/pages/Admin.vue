@@ -19,7 +19,9 @@ export default {
 
    mounted(){
     this.$store.dispatch("GET_ORDER_FROM_FIREBASE")
-    this.$store.commit("setInfo", {name: "Admin"})
+    setTimeout(() => {
+      this.$store.commit("setInfo")
+    }, 2000);
   }
 }   
 

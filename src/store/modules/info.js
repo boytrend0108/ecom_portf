@@ -33,7 +33,11 @@ export default {
 
   mutations:{
     setInfo(state, info){
-      state.info = info
+      if(!JSON.parse(localStorage.getItem("isAdmin"))){
+        state.info = info
+      }else{
+        state.info = {username:"Admin"}
+      }
     },
 
     clearInfo(state){

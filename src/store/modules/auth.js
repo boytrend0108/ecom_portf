@@ -86,7 +86,6 @@ export default {
     },
     SET_IS_ADMIN(state){
       const isAdmin = JSON.parse(localStorage.getItem('isAdmin'))
-      console.log(isAdmin)
       state.isAdmin = isAdmin
     }
   }

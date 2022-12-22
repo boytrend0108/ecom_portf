@@ -153,6 +153,7 @@ export default {
 		document.querySelector('.p-splitbutton-menubutton').addEventListener('click', (event) => {
 			event.stopPropagation()
 		})
+		this.$store.commit('SET_IS_ADMIN')
 	}
 }
 </script >
