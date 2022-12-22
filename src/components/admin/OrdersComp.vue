@@ -11,17 +11,18 @@
       />
     </div>
     <div class="item-box" v-show="showOrders">
-      <orders-item
-      v-for="item in RECIEVED_ORSERS[item.id].userOrder"
-      :key="item.id"
-      :item="item"
-      />
+        <orders-item 
+          v-for="item in RECIEVED_ORSERS[item.id].userOrder" 
+          :key="item.id" 
+          :item="item" 
+        />
     </div>
   </div>
 </template>
 
 <script>
 import OrdersItem from "@/components/admin/OrdersItem.vue"
+import { TransitionGroup } from "vue";
 import { mapGetters } from "vuex";
 export default {
   data(){
@@ -29,12 +30,12 @@ export default {
       email: '',
       userName: '',
       userPhone: '',
-      showOrders: true
+      showOrders: false
     }
     
   },
    name:'orders-comp',
-   components:{OrdersItem},
+   components:{ OrdersItem, TransitionGroup },
    props:{
      item:{
       type: Object,
@@ -63,7 +64,6 @@ export default {
    },
    methods:{
     
-    
    },
 
    mounted(){
@@ -74,7 +74,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    html{
+html{
       font-size: 40px;
     }
    .orders{
@@ -83,7 +83,11 @@ export default {
     padding: 20px;
     background-color: wheat;
    }
-
+.item-box{
+  padding: 20px;
+  overflow-y: scroll;
+  max-height: 400px;
+}
    .img{
     width: 4rem;
     height: 6rem;
@@ -97,6 +101,7 @@ export default {
    color:aliceblue;
    height: 4rem;
    padding: 0 1rem;
+   border-radius: 4px;
 }
 .fa-list{
   font-size: 2rem;
@@ -107,5 +112,41 @@ export default {
     transform: scale(1.2);
   } 
 
+  .swing-in-top-fwd {
+	-webkit-animation: swing-in-top-fwd 3s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
+	        animation: swing-in-top-fwd 3s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
+}
 
+ @-webkit-keyframes swing-in-top-fwd {
+  0% {
+    -webkit-transform: rotateX(-100deg);
+            transform: rotateX(-100deg);
+    -webkit-transform-origin: top;
+            transform-origin: top;
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+    -webkit-transform-origin: top;
+            transform-origin: top;
+    opacity: 1;
+  }
+}
+@keyframes swing-in-top-fwd {
+  0% {
+    -webkit-transform: rotateX(-100deg);
+            transform: rotateX(-100deg);
+    -webkit-transform-origin: top;
+            transform-origin: top;
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+    -webkit-transform-origin: top;
+            transform-origin: top;
+    opacity: 1;
+  }
+}
 </style>

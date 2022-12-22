@@ -33,7 +33,6 @@ export default {
 .order-box{
    width: 100%;
    padding: 20px;
-   border: 1px solid blue;
 }
 
 

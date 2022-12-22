@@ -1,5 +1,5 @@
 <template>
-  <div class="cart-item__box slide-in-blurred-right">
+  <div class="cart-item__box slide-bottom ">
     <img :src="require('@/assets/img/catalog/' + item.itemImg)" alt="img" class="cart-img">
     <div class="cart-item__descr">
       <h2 class="title">{{ item.itemTitle }} </h2>
@@ -91,7 +91,30 @@ export default {
   }
 }
 
-.slide-in-blurred-right {
-  @include slide-in-blurred-right
+.slide-bottom {
+	-webkit-animation: slide-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+
+@-webkit-keyframes slide-bottom {
+  0% {
+    -webkit-transform: translateY(-500px);
+            transform: translateY(-500px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+@keyframes slide-bottom {
+  0% {
+    -webkit-transform: translateY(-500px);
+            transform: translateY(-500px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
 }
 </style>
