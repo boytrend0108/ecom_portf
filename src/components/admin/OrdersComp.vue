@@ -10,6 +10,22 @@
       @click="showOrders = !showOrders"
       />
     </div>
+    <div class="status">
+      <my-button 
+        class="status-btn" 
+        @click="changeStatus"
+        :style="{backgroundColor:statusColor}"
+        >Звонок клиенту</my-button>
+      <my-button 
+        class="status-btn"
+        >Заказ оплачен</my-button>
+      <my-button 
+        class="status-btn"
+        >Заказ сформирован</my-button>
+      <my-button 
+        class="status-btn"
+        >Заказ отправлен</my-button>
+    </div>
     <div class="item-box" v-show="showOrders">
         <orders-item 
           v-for="item in RECIEVED_ORSERS[item.id].userOrder" 
@@ -30,7 +46,8 @@ export default {
       email: '',
       userName: '',
       userPhone: '',
-      showOrders: false
+      showOrders: false,
+      statusColor:''
     }
     
   },
@@ -63,7 +80,9 @@ export default {
      
    },
    methods:{
-    
+    changeStatus(){
+
+    }
    },
 
    mounted(){
@@ -155,5 +174,17 @@ html{
             transform-origin: top;
     opacity: 1;
   }
+}
+
+.status{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.status-btn {
+  height: 3rem;
+  width: 14rem;
+  font-size: 1rem;
+  margin: 1rem;
 }
 </style>
