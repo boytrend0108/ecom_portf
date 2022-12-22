@@ -165,7 +165,7 @@ export default {
           // alert("Thank you!");
           setTimeout(function () {
             // Done Functions
-            thisComp.SEND_ORDER_TO_FIREBASE()
+            thisComp.SEND_ORDER_TO_FIREBASE(thisComp.formData.phone,thisComp.formData.email )
             thisComp.CHANGE_ORDER_NUM();
             thisComp.CLEAR_CART();
             thisComp.GET_SHOW_NOTIF();

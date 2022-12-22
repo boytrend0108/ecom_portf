@@ -1,9 +1,9 @@
 <template>
   <article class="orders">
     <div class="client-info">
-         <h3>Name: Vetal</h3>
-         <h3>Email: eur-usd@bk.ru</h3>
-         <h3>Phone: +7(000)000-0000</h3>
+         <h3>Name: {{userName}}</h3>
+         <h3>Email: {{email}}</h3>
+         <h3>Phone: {{userPhone}}</h3>
          <h3>Total Price: {{getTotalPrice}} $</h3> 
       </div>
     <orders-item
@@ -18,6 +18,14 @@
 import OrdersItem from "@/components/admin/OrdersItem.vue"
 import { mapGetters } from "vuex";
 export default {
+  data(){
+    return{
+      email: '',
+      userName: '',
+      userPhone: ''
+    }
+    
+  },
    name:'orders-comp',
    components:{OrdersItem},
    props:{
@@ -32,14 +40,19 @@ export default {
      ]),
      getTotalPrice() {
        const order = this.RECIEVED_ORSERS[this.item.Id].userOrder
-       console.log(order.length)
        let sum = 0;
        for (let i = 0; i < order.length; i++) {
          const totalPrice = this.RECIEVED_ORSERS[this.item.Id].userOrder[i].totalPrice
          sum = sum + totalPrice;
        }
        return sum
+     },
+     getUserData(){
+      this.email = this.RECIEVED_ORSERS[this.item.Id].userEmail
+      this.userName = this.RECIEVED_ORSERS[this.item.Id].userName
+      this.userPhone = this.RECIEVED_ORSERS[this.item.Id].userPhone
      }
+     
    },
    methods:{
     
@@ -48,8 +61,9 @@ export default {
 
    mounted(){
     this.getTotalPrice;
+    this.getUserData;
     // console.log(this.RECIEVED_ORSERS[this.item.Id].userOrder[0].totalPrice)
-    // console.log(this.RECIEVED_ORSERS[this.item.Id].userOrder)
+    console.log(this.RECIEVED_ORSERS[this.item.Id])
    }
 }
 </script>
