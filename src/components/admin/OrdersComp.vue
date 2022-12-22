@@ -13,8 +13,6 @@
     <div class="status">
       <my-button 
         class="status-btn" 
-        @click="changeStatus"
-        :style="{backgroundColor:statusColor}"
         >Звонок клиенту</my-button>
       <my-button 
         class="status-btn"
@@ -24,6 +22,7 @@
         >Заказ сформирован</my-button>
       <my-button 
         class="status-btn"
+        @click="sendToArchive"
         >Заказ отправлен</my-button>
     </div>
     <div class="item-box" v-show="showOrders">
@@ -38,7 +37,8 @@
 
 <script>
 import OrdersItem from "@/components/admin/OrdersItem.vue"
-import { TransitionGroup } from "vue";
+import { getDatabase, remove, ref } from "@firebase/database";
+const db = getDatabase();
 import { mapGetters } from "vuex";
 export default {
   data(){
@@ -52,7 +52,7 @@ export default {
     
   },
    name:'orders-comp',
-   components:{ OrdersItem, TransitionGroup },
+   components:{ OrdersItem},
    props:{
      item:{
       type: Object,
@@ -80,8 +80,12 @@ export default {
      
    },
    methods:{
-    changeStatus(){
-
+   async sendToArchive(){
+      try{
+        await remove(ref(db, `recievedOrders/${this.item.id}`))
+      } catch (e){
+        console.log(e)
+      }
     }
    },
 

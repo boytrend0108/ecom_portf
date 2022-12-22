@@ -22,7 +22,7 @@ export default {
    },
    mounted(){
       setTimeout(() => {
-         console.log(this.RECIEVED_ORSERS)
+       
       }, 2000);
       
    }
