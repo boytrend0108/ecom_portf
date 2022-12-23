@@ -198,7 +198,7 @@ export default {
     height: 4rem;
     width: 36rem;
     outline: none;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .btn{
