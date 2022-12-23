@@ -32,21 +32,22 @@ export default {
     }
   },
   actions:{
-    GET_USER_CART({ commit}) {
-      if (localStorage.getItem('firebase').length !== 0){
-        const uid = JSON.parse(localStorage.getItem('firebase'))
-        try {
-          onValue(ref(database, `/users/${uid}/userCart`), (snapshot) => {
-            const cart = (snapshot.val());
-            commit("SET_USER_CART", cart);
-          }, {
-            onlyOnce: true
-          })
-        } catch (err) {
-          console.log(err)
+    GET_USER_CART({ commit }) {
+      if (localStorage.getItem('firebase')) {
+        if (localStorage.getItem('firebase').length !== 0 ) {
+          const uid = JSON.parse(localStorage.getItem('firebase'))
+          try {
+            onValue(ref(database, `/users/${uid}/userCart`), (snapshot) => {
+              const cart = (snapshot.val());
+              commit("SET_USER_CART", cart);
+            }, {
+              onlyOnce: true
+            })
+          } catch (err) {
+            console.log(err)
+          }
         }
       }
-     
     },
     SWITCH_SHOW_CART({commit}){
       commit('SET_SHOW_CART')
