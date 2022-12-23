@@ -125,17 +125,18 @@ export default {
 </script>
 
 <style lang="scss" >
-p{
+p {
   font-size: 1.1rem;
   color: white;
 }
-.wrapper{
+
+.wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-button{
+button {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -143,34 +144,40 @@ button{
   color: white;
   margin: 0 11px;
 }
-.p-button-secondary{
-  background-color:aliceblue;
+
+.p-button-secondary {
+  background-color: aliceblue;
   color: gray;
-  width:30rem;
-  margin:10px 0;
+  width: 30rem;
+  margin: 10px 0;
   height: 4rem;
 
   .p-button-label {
     flex: 1 1 auto;
+    font-size: 1.5rem;
+
+    .p-button-icon-right::before {
+    margin-left: 0.5rem;
     font-size: 2rem;
+  }    
   }
 
 }
 
-.form{
+.form {
   top: 218px;
   right: 235px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-sizing:border-box;
+  box-sizing: border-box;
   width: auto;
   height: auto;
   padding: 20px;
   @include box-shadow;
 }
 
-.input{
+.input {
   width: 300px;
   height: 40px;
   outline: none;
@@ -179,48 +186,45 @@ button{
   font-size: 2rem;
 }
 
-.btnSignup{
-  margin:16px; 
-  text-transform: uppercase; 
+.btnSignup {
+  margin: 16px;
+  text-transform: uppercase;
 }
 
-.disabled{
-   @include disabled(grey);
-    color: aliceblue ;
+.disabled {
+  @include disabled(grey);
+  color: aliceblue;
 }
 
-.lable{
+.lable {
   padding: 0 10px;
   font-size: 2rem;
 }
+
 .p-float-label label {
-    position: absolute;
-    pointer-events: none;
-    top: 42%;
-    margin-top: -0.5rem;
-    transition-property: all;
-    transition-timing-function: ease;
-    line-height: 1;
-  }
+  position: absolute;
+  pointer-events: none;
+  top: 42%;
+  margin-top: -0.5rem;
+  transition-property: all;
+  transition-timing-function: ease;
+  line-height: 1;
+}
 
-  .bnt-reg{
-    font-size: 1.5rem;
-  }
+.bnt-reg {
+  font-size: 1.5rem;
+}
 
-  .reg-bnt_wr{
-    width: 30rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 3rem;
-  }
-  .reg-bnt_wr:hover{
-    
-  }
-  
-  .reg-span:hover{
+.reg-bnt_wr {
+  width: 30rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3rem;
+
+  .reg-span:hover {
     text-shadow: red 2px 0 10px;
     color: rgba(14, 12, 12, 0.808)
   }
-
+}
 </style>
