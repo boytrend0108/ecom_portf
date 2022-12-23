@@ -13,7 +13,8 @@
        />
 	      <label class="lable" for="email">email</label>
       </span>
-      <p>eur-usd@bk.ru</p>
+      <p>eur-usd@bk.ru </p>
+      <p>Admin: boytrend@gmail.com</p>
       <span class="p-float-label">
 	      <InputText 
           id="password" 
@@ -23,7 +24,8 @@
         />
 	      <label class="lable" for="password">Password</label>
       </span>
-      <p>ssfsH5_f </p>
+      <p>ssfsH5_f</p>
+      <p>Admin Admin_2023 </p>
       <Button 
           label="SIGN IN" 
           icon="pi pi-user" 
@@ -32,8 +34,12 @@
           disabled
           @click="subminHandler" 
       />
-      <p>No Account? <button @click="goToRegistrationPage">REGISTRATION</button></p>
-     
+      <div class="reg-bnt_wr">
+        <p :style="{'fontSize':'1.5rem'}">No Account ?</p>
+        <button @click="goToRegistrationPage" class="bnt-reg">
+          <span class="reg-span">REGISTRATION</span>
+        </button>
+      </div>
     </form>
   </div>
    
@@ -119,7 +125,10 @@ export default {
 </script>
 
 <style lang="scss" >
-
+p{
+  font-size: 1.1rem;
+  color: white;
+}
 .wrapper{
   display: flex;
   align-items: center;
@@ -137,8 +146,17 @@ button{
 .p-button-secondary{
   background-color:aliceblue;
   color: gray;
-  width:300px;
-  margin:10px 0;}
+  width:30rem;
+  margin:10px 0;
+  height: 4rem;
+
+  .p-button-label {
+    flex: 1 1 auto;
+    font-size: 2rem;
+  }
+
+}
+
 .form{
   top: 218px;
   right: 235px;
@@ -158,7 +176,7 @@ button{
   outline: none;
   margin: 10px;
   padding: 0 10px;
-  font-size: 16px;
+  font-size: 2rem;
 }
 
 .btnSignup{
@@ -173,6 +191,36 @@ button{
 
 .lable{
   padding: 0 10px;
+  font-size: 2rem;
 }
+.p-float-label label {
+    position: absolute;
+    pointer-events: none;
+    top: 42%;
+    margin-top: -0.5rem;
+    transition-property: all;
+    transition-timing-function: ease;
+    line-height: 1;
+  }
+
+  .bnt-reg{
+    font-size: 1.5rem;
+  }
+
+  .reg-bnt_wr{
+    width: 30rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3rem;
+  }
+  .reg-bnt_wr:hover{
+    
+  }
+  
+  .reg-span:hover{
+    text-shadow: red 2px 0 10px;
+    color: rgba(14, 12, 12, 0.808)
+  }
 
 </style>

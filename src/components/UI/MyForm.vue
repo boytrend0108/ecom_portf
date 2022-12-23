@@ -54,32 +54,32 @@ import { mapActions, mapGetters } from 'vuex';
 import { getDatabase, ref, onValue } from "firebase/database";
 const database = getDatabase();
 export default {
-    name: 'my-form',
-    data(){
-        return {
-            formData: {
-                name: "",
-                phone: "",
-                email: ""
-            },
-            reg:{
-                name: /^[a-zа-яё]+$/i,
-                phone: /^\+7\(\d{3}\)\d{3}-\d{4}$/,
-                email: /^[\w._-]+@\w+\.[a-z]{2,4}$/i 
-            },
-            order: ''     
-        }
-    },
-   
-    computed:{
-        ...mapGetters([
-            'USER_CART','NOTIF_MDG', 'ORDER_NUM'
-        ]),
+  name: 'my-form',
+  data() {
+    return {
+      formData: {
+        name: "",
+        phone: "",
+        email: ""
+      },
+      reg: {
+        name: /^[a-zа-яё]+$/i,
+        phone: /^\+7\(\d{3}\)\d{3}-\d{4}$/,
+        email: /^[\w._-]+@\w+\.[a-z]{2,4}$/i
+      },
+      order: ''
+    }
+  },
 
-        orderNum(){
-            return this.$store.getters.ORDER_NUM
-        }
-    },
+  computed: {
+    ...mapGetters([
+      'USER_CART', 'NOTIF_MDG', 'ORDER_NUM'
+    ]),
+
+    orderNum() {
+      return this.$store.getters.ORDER_NUM
+    }
+  },
 
   methods: {
     ...mapActions([
@@ -164,7 +164,7 @@ export default {
           // alert("Thank you!");
           setTimeout(function () {
             // Done Functions
-            thisComp.SEND_ORDER_TO_FIREBASE( [thisComp.formData.email, thisComp.formData.phone] )
+            thisComp.SEND_ORDER_TO_FIREBASE([thisComp.formData.email, thisComp.formData.phone])
             thisComp.CHANGE_ORDER_NUM();
             thisComp.CLEAR_CART();
             thisComp.GET_SHOW_NOTIF();
@@ -178,13 +178,9 @@ export default {
     }
   },
 
-   async mounted(){
-       this.getOrderNum()
-      //  setTimeout(()=>{
-      //   this.SEND_ORDER_TO_FIREBASE()
-      //  }, 2000)
-      
-    }
+  async mounted() {
+    this.getOrderNum()
+  }
 }
 </script>
 
@@ -193,16 +189,16 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: left;
-   
-
+    font-size: 2.2rem;
 }
 
 .form-input {
-    margin: 10px 0px ;
-    padding: 0 10px;
-    height: 45px;
-    width: 360px;
-    outline:none;
+   margin: 1rem 0px;
+    padding: 0 1rem;
+    height: 4rem;
+    width: 36rem;
+    outline: none;
+    font-size: 2rem;
 }
 
 .btn{
@@ -217,6 +213,7 @@ export default {
     color: aliceblue !important;
 }
 .lable{
-    color: gray;
+    color: $pink-color;
+    font-size: 1.5rem;
 }
 </style>
