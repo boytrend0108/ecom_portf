@@ -78,4 +78,20 @@ html{
     max-width: $wrapper-tablet;
   }
 }
+
+.p-toast {
+    position: fixed;
+    width: 32rem;
+}
+.p-toast-top-right {
+    top: 77px;
+    right: 20px;
+    
+}
+.p-toast-summary{
+  font-size: 2rem;
+}
+.p-toast-message{
+  font-size: 1.5rem;
+}
 </style>

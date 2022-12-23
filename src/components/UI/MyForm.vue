@@ -1,4 +1,5 @@
 <template>
+  <Toast />
 <form 
   id="form" 
   method="POST"
