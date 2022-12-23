@@ -55,7 +55,7 @@ export default {
     GET_HIDE_CART({commit}){
       commit('SET_HIDE_CART')
     },
-    async ADD_TO_CART({ commit, state }, item) {
+    async ADD_TO_CART({ commit, state,},item) {
       if(localStorage.getItem('firebase').length !== 0){
         const find = state.userCart.find((el) => el.id === item.id);
         const uid = JSON.parse(localStorage.getItem('firebase'));
@@ -81,8 +81,7 @@ export default {
           }  
       }
       } else {
-        // this.$message("Sorry!", "To add to Cart you shoild be registered. Pleace sing in")
-        this.$message("15151","516516")
+        console.log();
       }
      
     },
@@ -193,7 +192,6 @@ export default {
     SET_ORDER_NUM(state, orderNum){
       state.orderNum = orderNum;
       console.log(state.orderNum)
-    }
-    
+    }, 
   }
 }
