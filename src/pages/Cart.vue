@@ -1,6 +1,8 @@
 <template>
   <main>
-    <header-mini class="cart-header"></header-mini>
+    <header-mini class="cart-header">
+    
+    </header-mini>
     <cart-section />
   </main>
 </template>

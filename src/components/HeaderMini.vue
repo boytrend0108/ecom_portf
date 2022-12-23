@@ -1,15 +1,9 @@
 <template>
-    <div class="header">
-        <div class="wrapper">
-            <div class="title">
-                <my-title>
-                    NEW ARRIVALS 
-                </my-title>
-            </div>
-            <div class="nav"></div>   
-        </div>
+  <div class="header">
+    <div class="wrapper">
+      <my-title>User account </my-title>
     </div>
-
+  </div>
 </template>
 
 <script>
