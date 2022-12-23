@@ -113,9 +113,14 @@ export default {
 			"IS_ADMIN"
 		]),
 
-		name(){ 
-       return this.$store.getters.INFO.username	? this.$store.getters.INFO.username : "Sign in"
-			}	
+		name() {
+			const isAuth = Object.keys(this.$store.getters.INFO).length
+			if (Object.keys(this.$store.getters.INFO).length === 0) {
+				return "Sign in"
+			} else {
+				return this.$store.getters.INFO.username
+			}
+		}	
 		},
 
 	methods: {

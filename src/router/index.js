@@ -1,3 +1,4 @@
+
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
@@ -18,7 +19,8 @@ const routes = [
     path: '/cart',
     name: 'cart',
     meta: {layout:'cart-layout'},
-    component: () => import ('@/pages/Cart.vue')
+    component: () => import ('@/pages/Cart.vue'),
+    beforeEnter: auhtGuardCart 
   },
   {
     path: '/product',
@@ -42,21 +44,35 @@ const routes = [
     path: '/admin',
     name: 'admin',
     meta: {layout:'empty-layout'},
-    component: () => import ('@/pages/Admin.vue')
+    component: () => import ('@/pages/Admin.vue'),
+    beforeEnter: auhtGuardAdmin 
   },
 
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes,
-  scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition
-    } else {
-      return { x: 0, y: 0 }
-    }
-  }
+  routes
 })
+
+//-----------------Защита роутов------------------------------------------------
+
+function auhtGuardCart (to, from, next){// перед каждым роутом проверяем следующее
+  const isAdmin = JSON.parse(localStorage.getItem("isAdmin"))
+   if(isAdmin === false){  
+    next('/login?message=login') // eсли  админ
+   } else{
+    next() // если админ- проходим на страницу
+   }
+}
+
+function auhtGuardAdmin (to, from, next){// перед каждым роутом проверяем следующее
+  const isAdmin = JSON.parse(localStorage.getItem("isAdmin"))
+   if(isAdmin === false){  
+    next('/login?message=loginAdmin') // eсли  админ
+   } else{
+    next() // если админ- проходим на страницу
+   }
+}
 
 export default router
