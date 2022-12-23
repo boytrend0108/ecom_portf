@@ -1,4 +1,5 @@
 
+import { getAuth } from 'firebase/auth'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
@@ -58,21 +59,19 @@ const router = createRouter({
 //-----------------Защита роутов------------------------------------------------
 
 function auhtGuardCart (to, from, next){// перед каждым роутом проверяем следующее
-  const isAdmin = JSON.parse(localStorage.getItem("isAdmin"))
-   if(isAdmin === false){  
+   if(!getAuth().currentUser){  
     next('/login?message=login') // eсли  админ
    } else{
     next() // если админ- проходим на страницу
    }
 }
 
-function auhtGuardAdmin (to, from, next){// перед каждым роутом проверяем следующее
-  const isAdmin = JSON.parse(localStorage.getItem("isAdmin"))
-   if(isAdmin === false){  
-    next('/login?message=loginAdmin') // eсли  админ
-   } else{
+function auhtGuardAdmin(to, from, next) {// перед каждым роутом проверяем следующее
+  if (getAuth().currentUser === null || getAuth().currentUser.uid !== "NkZarklbJnPi7952bNfGaDusc6S2") {
+    next('/login?message=loginAdmin') // eсли нет
+  } else {
     next() // если админ- проходим на страницу
-   }
+  }
 }
 
 export default router
