@@ -1,5 +1,5 @@
 <template>
-   <Toast />
+   <Toast></Toast>
   <navbar :isMobile="IS_MOBILE"></navbar>
   <div class="app">
     <component :is="layout">
@@ -79,15 +79,6 @@ html{
   }
 }
 
-.p-toast {
-    position: fixed;
-    width: 32rem;
-}
-.p-toast-top-right {
-    top: 77px;
-    right: 20px;
-    
-}
 .p-toast-summary{
   font-size: 2rem;
 }

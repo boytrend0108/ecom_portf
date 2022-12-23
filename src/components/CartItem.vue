@@ -51,7 +51,6 @@ export default {
     },
     deleteItem() {
       this.DELETE_ITEM(this.item.id)
-
     }
   },
 

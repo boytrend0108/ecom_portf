@@ -204,7 +204,7 @@ button {
 .p-float-label label {
   position: absolute;
   pointer-events: none;
-  top: 42%;
+  top: 38%;
   margin-top: -0.5rem;
   transition-property: all;
   transition-timing-function: ease;

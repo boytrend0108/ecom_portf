@@ -80,8 +80,9 @@ export default {
             console.log(err)
           }  
       }
-      } else{
-        console.log('6666666')
+      } else {
+        // this.$message("Sorry!", "To add to Cart you shoild be registered. Pleace sing in")
+        this.$message("15151","516516")
       }
      
     },
