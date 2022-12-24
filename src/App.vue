@@ -85,4 +85,8 @@ html{
 .p-toast-message{
   font-size: 1.5rem;
 }
+
+.p-toast{
+  width: 500px;
+}
 </style>

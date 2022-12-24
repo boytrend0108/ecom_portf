@@ -228,4 +228,11 @@ button {
     color: rgba(14, 12, 12, 0.808)
   }
 }
+.p-toast{
+  width: 40rem;
+}
+.p-toast-top-right {
+    top: 90px;
+    right: 20px;}
+    
 </style>
