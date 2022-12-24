@@ -22,6 +22,7 @@ export default {
     setTimeout(() => {
       this.$store.commit("setInfo")
     }, 2000);
+    this.$store.commit('SET_MOBILE')
   }
 }   
 
