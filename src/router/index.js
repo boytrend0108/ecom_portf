@@ -60,7 +60,7 @@ const router = createRouter({
 
 function auhtGuardCart (to, from, next){// перед каждым роутом проверяем следующее
    if(!getAuth().currentUser){  
-    next('/login?message=login') // eсли  админ
+    next('/login?message=getlogin') // eсли  админ
    } else{
     next() // если админ- проходим на страницу
    }
@@ -73,5 +73,5 @@ function auhtGuardAdmin(to, from, next) {// перед каждым роутом
     next() // если админ- проходим на страницу
   }
 }
-
+//------------------------------------------------------------------------------
 export default router

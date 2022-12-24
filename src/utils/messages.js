@@ -4,6 +4,10 @@ export default {
     summary: "You",
     details: 'You are logged out'
   },
+  "getlogin": {
+    summary: "Atention",
+    details: 'To use cart you need to login'
+  },
   "loginAdmin": {
     summary: "Sorry",
     details: 'Thise page for Admin only'

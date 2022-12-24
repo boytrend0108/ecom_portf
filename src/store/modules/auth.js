@@ -44,8 +44,7 @@ export default {
               dispatch('GET_USER_CART');
         } catch (error) {
           commit('SET_ERROR', error)// we can get error.code and error.message
-          console.log(error.code)
-          throw error
+          // throw error
         }
     },
 

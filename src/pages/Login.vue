@@ -117,8 +117,9 @@ export default {
   },
 
   mounted(){
+    const queryMessage = messages[this.$route.query.message]
       if (messages[this.$route.query.message]){ // if route contain message 'logout'
-        this.$message(messages.logout.summary, messages.logout.details)// show message
+        this.$message(queryMessage.summary, queryMessage.details)// show message
       }
   }
 }
