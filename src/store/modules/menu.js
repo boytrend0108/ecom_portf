@@ -1,4 +1,3 @@
-
 import { getDatabase, onValue,ref } from "firebase/database";
 const db = getDatabase();
 export default {

@@ -1,13 +1,39 @@
 <template>
-<h1>Thise is Admin Page</h1>
+  <div class="wrapper">
+    <recieved-orders/>
+  </div>
 </template>
 
 <script>
+import RecievedOrders from '@/components/admin/RecievedOrders.vue';
+import { mapGetters } from 'vuex';
 export default {
-   name:'admin'
-}
+  components: { RecievedOrders },
+   name:'admin',
+   computed:{
+    ...mapGetters([
+      "RECIEVED_ORSERS","USER_CART"
+    ])
+   },
+  
+
+   mounted(){
+    this.$store.dispatch("GET_ORDER_FROM_FIREBASE")
+    setTimeout(() => {
+      this.$store.commit("setInfo")
+    }, 2000);
+  }
+}   
+
+
 </script>
 
 <style lang="scss" scoped>
+
+.wrapper{
+  border: 1px solid #000;
+  flex-direction: column;
+  height: 100vh;
+}
 
 </style>

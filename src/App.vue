@@ -1,5 +1,5 @@
 <template>
-   <Toast />
+   <Toast></Toast>
   <navbar :isMobile="IS_MOBILE"></navbar>
   <div class="app">
     <component :is="layout">
@@ -48,6 +48,9 @@ export default {
 </script>
 
 <style lang="scss">
+html{
+  font-size: 10px;
+}
 * {
   margin: 0;
   padding: 0;
@@ -74,5 +77,12 @@ export default {
   @media(max-width: $media-tablet) {
     max-width: $wrapper-tablet;
   }
+}
+
+.p-toast-summary{
+  font-size: 2rem;
+}
+.p-toast-message{
+  font-size: 1.5rem;
 }
 </style>

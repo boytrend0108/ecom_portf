@@ -6,7 +6,7 @@ export default {
         severity:'warn', 
         summary: summary, 
         detail:detail, 
-        life: 3000
+        life: 5000
     });
     }
 
@@ -15,7 +15,7 @@ export default {
         severity:'error', 
         summary: summaryErr, 
         detail:detailErr, 
-        life: 3000
+        life: 5000
       }); 
     }
   }

@@ -22,12 +22,16 @@ export default {
     ...mapGetters(['GET_UID'])
   },
 
-  async mounted() { 
-    if (localStorage.getItem('firebase').length !== 0) {
-      await this.$store.dispatch('fetchInfo')
+  async mounted() {
+    if (localStorage.getItem('firebase')) {
+      if (localStorage.getItem('firebase').length !== 0) {
+        await this.$store.dispatch('fetchInfo')
+      }
     }
-  }
+    
 }
+  }
+  
 </script>
 
 <style lang="scss" scoped>

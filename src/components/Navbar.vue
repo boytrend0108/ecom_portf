@@ -9,7 +9,13 @@
 					  src="@/assets/img/logo.png" 
 					  alt="logo">
 					<font-awesome-icon class="font-aw" icon="fa-solid fa-magnifying-glass" />
-					<input type="text" class="search-input" name="search" v-model="searchInput" @input="sendSearchInput">
+					<input 
+					  type="text" 
+					  class="search-input" 
+					  name="search" 
+					  v-model="searchInput" 
+					  @input="sendSearchInput"
+					  >
 				</div>
 
 				<div class="nav-block">
@@ -21,8 +27,15 @@
 						@click="goToLoginPage"
 				  ></SplitButton>
 					<font-awesome-icon 
+					icon="fa-solid fa-gears" 
+					class="font-aw "
+					v-show="IS_ADMIN"
+					@click="this.$router.push(`/admin?message=admin`)"
+					/>
+					<font-awesome-icon 
 					  class="font-aw " 
-					  icon="fa-solid fa-bars" 
+					  icon="fa-solid fa-bars"
+						v-show="isMobile"
 					  @click="SWITCH_SHOW_MENU" />
 					<font-awesome-icon 
 					  v-show="isMobile" 
@@ -43,7 +56,7 @@
 						<span 
 						  :class="isDisabled"
 						  class="item-num" 
-							> {{TOTAL_CART_ITEMS}} </span>
+							> {{TOTAL_CART_ITEMS }} </span>
 					 </button>
 				</div>
 			</div>
@@ -96,12 +109,18 @@ export default {
 			"SLIDE_CART",
 			"TOTAL_CART_ITEMS",
 			"SEARCH_INPUT",
-			"INFO"
+			"INFO",
+			"IS_ADMIN"
 		]),
 
-		name(){ 
-       return this.$store.getters.INFO.username	? this.$store.getters.INFO.username : "Sign in"
-			}	
+		name() {
+			const isAuth = Object.keys(this.$store.getters.INFO).length
+			if (Object.keys(this.$store.getters.INFO).length === 0) {
+				return "Sign in"
+			} else {
+				return this.$store.getters.INFO.username
+			}
+		}	
 		},
 
 	methods: {
@@ -145,6 +164,7 @@ export default {
 		document.querySelector('.p-splitbutton-menubutton').addEventListener('click', (event) => {
 			event.stopPropagation()
 		})
+		this.$store.commit('SET_IS_ADMIN')
 	}
 }
 </script >
@@ -232,7 +252,6 @@ export default {
 	transform: scale(1.3);
 }
 }
-
 .search-input {
 	background-color: transparent;
 	border: none;
@@ -322,6 +341,12 @@ export default {
 	.p-splitbutton-menubutton{
 		background-color: $pink-color;
 		border: $pink-color;
+		width: 3rem;
+    padding: 1rem 0;
+	}
+
+	.p-button-label{
+		font-size: 1.5rem;
 	}
 	.p-button:enabled:hover {
     background: gray;

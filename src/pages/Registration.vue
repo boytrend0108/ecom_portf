@@ -34,7 +34,9 @@
       </span>
 
       <div class="reg-checkbox" >
-        <label for="regId">Agree with terms</label>
+        <label for="regId" 
+        :style="{'fontSize':'1.5rem','color':'white'}"
+        >Agree with terms</label>
         <Checkbox 
           v-model="checked" 
           :binary="true" 
@@ -50,7 +52,13 @@
           class="p-button-secondary disabled"
           disabled
           @click="subminHandler" />
-        <p>Already have an account? <button @click="goToLoginPage" >SIGN IN</button></p>
+        <!-- <p>Already have an account? <button @click="goToLoginPage" >SIGN IN</button></p> -->
+        <div class="reg-bnt_wr">
+          <p :style="{'fontSize':'1.5rem'}">No Account ?</p>
+          <button @click="goToLoginPage" class="bnt-reg">
+            <span class="reg-span">SIGN IN</span>
+          </button>
+        </div>
     </form> 
   </div>
     
@@ -158,12 +166,23 @@ button{
   color: white;
   margin: 0 11px;
 }
-.p-button-secondary{
-  background-color:aliceblue;
+.p-button-secondary {
+  background-color: aliceblue;
   color: gray;
-  width:300px;
-  margin:10px 0;
+  width: 30rem;
+  margin: 10px 0;
+  height: 4rem;
 }
+.p-button-label {
+    flex: 1 1 auto;
+    font-size: 1.5rem;
+  }
+
+  .p-button-icon-right::before {
+    margin-left: 0.5rem;
+    font-size: 2rem;
+  }
+
 .form{
   top: 218px;
   right: 235px;
@@ -182,11 +201,22 @@ button{
   outline: none;
   margin: 10px;
   padding: 0 10px;
-  font-size: 16px;
+  font-size: 2rem;
 }
 .lable{
   padding: 0 10px;
+  font-size: 2rem;
 }
+.p-float-label label {
+    position: absolute;
+    pointer-events: none;
+    top: 42%;
+    margin-top: -0.5rem;
+    transition-property: all;
+    transition-timing-function: ease;
+    line-height: 1;
+  }
+
 .disabled{
    @include disabled(grey);
     color: aliceblue ;
@@ -195,13 +225,30 @@ button{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 10px 0;
+  margin: 10px 0px 10px 150px;
   .p-checkbox{
   margin-left: 10px;
   border-color:gray;
   background: gray;
 }
 }
+.bnt-reg{
+    font-size: 1.5rem;
+  }
+
+  .reg-bnt_wr {
+  width: 30rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3rem;
+
+  .reg-span:hover {
+    text-shadow: red 2px 0 10px;
+    color: rgba(14, 12, 12, 0.808)
+  }
+}
+
 
 
 </style>

@@ -32,21 +32,22 @@ export default {
     }
   },
   actions:{
-     GET_USER_CART({ commit}) {
-      if (localStorage.getItem('firebase').length !== 0){
-        const uid = JSON.parse(localStorage.getItem('firebase'))
-        try {
-          onValue(ref(database, `/users/${uid}/userCart`), (snapshot) => {
-            const cart = (snapshot.val());
-            commit("SET_USER_CART", cart);
-          }, {
-            onlyOnce: true
-          })
-        } catch (err) {
-          console.log(err)
+    GET_USER_CART({ commit }) {
+      if (localStorage.getItem('firebase')) {
+        if (localStorage.getItem('firebase').length !== 0 ) {
+          const uid = JSON.parse(localStorage.getItem('firebase'))
+          try {
+            onValue(ref(database, `/users/${uid}/userCart`), (snapshot) => {
+              const cart = (snapshot.val());
+              commit("SET_USER_CART", cart);
+            }, {
+              onlyOnce: true
+            })
+          } catch (err) {
+            console.log(err)
+          }
         }
       }
-     
     },
     SWITCH_SHOW_CART({commit}){
       commit('SET_SHOW_CART')
@@ -54,7 +55,7 @@ export default {
     GET_HIDE_CART({commit}){
       commit('SET_HIDE_CART')
     },
-    async ADD_TO_CART({ commit, state }, item) {
+    async ADD_TO_CART({ commit, state,},item) {
       if(localStorage.getItem('firebase').length !== 0){
         const find = state.userCart.find((el) => el.id === item.id);
         const uid = JSON.parse(localStorage.getItem('firebase'));
@@ -79,8 +80,8 @@ export default {
             console.log(err)
           }  
       }
-      } else{
-        console.log('6666666')
+      } else {
+        console.log();
       }
      
     },
@@ -191,7 +192,6 @@ export default {
     SET_ORDER_NUM(state, orderNum){
       state.orderNum = orderNum;
       console.log(state.orderNum)
-    }
-    
+    }, 
   }
 }

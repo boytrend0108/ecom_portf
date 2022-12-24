@@ -33,7 +33,7 @@ export default {
   actions: {
     GET_CATEGORY({ commit }) {
       try {
-        return  onValue(ref(db, '/category/'), (snapshot) => {
+        return  onValue(ref(db, 'category'), (snapshot) => {
           const category = snapshot.val()
           commit('SET_CATEGORY', category)
         }, {

@@ -1,6 +1,8 @@
 <template>
   <main>
-    <header-mini class="cart-header"></header-mini>
+    <header-mini class="cart-header">
+    
+    </header-mini>
     <cart-section />
   </main>
 </template>
@@ -44,9 +46,11 @@ export default {
     });
     this.GET_PAGE_PATH('/cart');
     this.GET_NAVCART_BTN_DISABLED();
-    if (this.USER_CART.length === 0) {
+    setTimeout(()=>{
+      if (this.USER_CART.length === 0) {
       this.GET_BTN_DISABLED();
     }
+    }, 2000)
   }
 }
 </script>

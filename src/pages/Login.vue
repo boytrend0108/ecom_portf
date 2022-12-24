@@ -13,7 +13,8 @@
        />
 	      <label class="lable" for="email">email</label>
       </span>
-      <p>eur-usd@bk.ru</p>
+      <p>eur-usd@bk.ru </p>
+      <p>Admin: boytrend@gmail.com</p>
       <span class="p-float-label">
 	      <InputText 
           id="password" 
@@ -23,7 +24,8 @@
         />
 	      <label class="lable" for="password">Password</label>
       </span>
-      <p>ssfsH5_f </p>
+      <p>ssfsH5_f</p>
+      <p>Admin Admin_2023 </p>
       <Button 
           label="SIGN IN" 
           icon="pi pi-user" 
@@ -32,8 +34,12 @@
           disabled
           @click="subminHandler" 
       />
-      <p>No Account? <button @click="goToRegistrationPage">REGISTRATION</button></p>
-     
+      <div class="reg-bnt_wr">
+        <p :style="{'fontSize':'1.5rem'}">No Account ?</p>
+        <button @click="goToRegistrationPage" class="bnt-reg">
+          <span class="reg-span">REGISTRATION</span>
+        </button>
+      </div>
     </form>
   </div>
    
@@ -56,7 +62,7 @@ export default {
 
   methods: {
     validator(){
-      const btn = document.querySelector('.disabled');
+      const btn = document.querySelector('.p-button-secondary');
       if(this.reg_email.test(this.loginEmail)){
         document.getElementById("email").style.border = '3px solid green'
       }else{
@@ -88,10 +94,20 @@ export default {
         loginPassword: this.loginPassword
       }
       
-      try{
-        await this.$store.dispatch('login', formData)
-        this.$router.push('/')
-         } catch(err){}
+      try {
+        if (formData.loginEmail === "boytrend@gmail.com" 
+            && formData.loginPassword === "Admin_2023") {
+          await this.$store.dispatch('login', formData)
+          this.$router.push('/admin?message=admin')
+          localStorage.setItem("isAdmin", "true")
+          this.$store.commit('SET_IS_ADMIN')
+        } else {
+          await this.$store.dispatch('login', formData)
+          this.$router.push('/')
+        }
+      } catch (err) {
+        console.log(err)
+       }
       
     },
     goToRegistrationPage(event){
@@ -101,21 +117,27 @@ export default {
   },
 
   mounted(){
+    const queryMessage = messages[this.$route.query.message]
       if (messages[this.$route.query.message]){ // if route contain message 'logout'
-        this.$message(messages.logout.summary, messages.logout.details)// show message
+        this.$message(queryMessage.summary, queryMessage.details)// show message
       }
   }
 }
 </script>
 
 <style lang="scss" >
-.wrapper{
+p {
+  font-size: 1.1rem;
+  color: white;
+}
+
+.wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-button{
+button {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -123,45 +145,87 @@ button{
   color: white;
   margin: 0 11px;
 }
-.p-button-secondary{
-  background-color:aliceblue;
+
+.p-button-secondary {
+  background-color: aliceblue;
   color: gray;
-  width:300px;
-  margin:10px 0;}
-.form{
+  width: 30rem;
+  margin: 10px 0;
+  height: 4rem;
+
+  .p-button-label {
+    flex: 1 1 auto;
+    font-size: 1.5rem;
+
+    .p-button-icon-right::before {
+    margin-left: 0.5rem;
+    font-size: 2rem;
+  }    
+  }
+
+}
+
+.form {
   top: 218px;
   right: 235px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-sizing:border-box;
+  box-sizing: border-box;
   width: auto;
   height: auto;
   padding: 20px;
   @include box-shadow;
 }
 
-.input{
+.input {
   width: 300px;
   height: 40px;
   outline: none;
   margin: 10px;
   padding: 0 10px;
-  font-size: 16px;
+  font-size: 2rem;
 }
 
-.btnSignup{
-  margin:16px; 
-  text-transform: uppercase; 
+.btnSignup {
+  margin: 16px;
+  text-transform: uppercase;
 }
 
-.disabled{
-   @include disabled(grey);
-    color: aliceblue ;
+.disabled {
+  @include disabled(grey);
+  color: aliceblue;
 }
 
-.lable{
+.lable {
   padding: 0 10px;
+  font-size: 2rem;
 }
 
+.p-float-label label {
+  position: absolute;
+  pointer-events: none;
+  top: 38%;
+  margin-top: -0.5rem;
+  transition-property: all;
+  transition-timing-function: ease;
+  line-height: 1;
+}
+
+.bnt-reg {
+  font-size: 1.5rem;
+}
+
+.reg-bnt_wr {
+  width: 30rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3rem;
+
+  .reg-span:hover {
+    text-shadow: red 2px 0 10px;
+    color: rgba(14, 12, 12, 0.808)
+  }
+}
 </style>

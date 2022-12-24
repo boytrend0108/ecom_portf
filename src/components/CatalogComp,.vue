@@ -73,12 +73,14 @@ export default {
     line-height: 17px;
     color: #9F9F9F;
     margin-top: 15px;
-}.item-box {
+}
+.item-box {
     display: flex;
     justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
     margin: 50px 0;
- 
+    
 }
+
 </style>

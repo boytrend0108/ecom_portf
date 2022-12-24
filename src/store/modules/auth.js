@@ -19,49 +19,54 @@ const database = getDatabase(appFB);
 
 export default {
   state:{
-    uid:''
+    uid:'',
+    isAdmin: false,
   },
   
   getters:{
      GET_UID(state){
       return state.uid;
-     }
+     },
+     IS_ADMIN(state){
+      return state.isAdmin
+    },
   },
 
   actions: {
     // login via FareBase
     async login({ commit, dispatch }, { loginEmail, loginPassword }) {
-      try {
-        await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
-            const user = auth.currentUser;
-            const uid = user.uid;
-            commit('SET_UID', uid);
-            localStorage.setItem("firebase", JSON.stringify(uid))// write uid to localStorage)
-            dispatch('GET_USER_CART');
-      } catch (error) {
-        commit('SET_ERROR', error)// we can get error.code and error.message
-        console.log(error.code)
-        throw error
-      }
+        try {
+          await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+              const user = auth.currentUser;
+              const uid = user.uid;
+              commit('SET_UID', uid);
+              localStorage.setItem("firebase", JSON.stringify(uid))// write uid to localStorage)
+              dispatch('GET_USER_CART');
+        } catch (error) {
+          commit('SET_ERROR', error)// we can get error.code and error.message
+          // throw error
+        }
     },
 
     // logout via FireBase
-    async logout({commit}) {
+    async logout({ commit }) {
       await signOut(auth)
       localStorage.setItem('firebase', "")// clear localStorage
       commit('clearInfo')
+      localStorage.setItem("isAdmin", "false")
+      commit("SET_IS_ADMIN")
     },
 
     // registration via FireBase
-    async registration({ dispatch, commit }, { loginEmail, loginPassword, loginName }) {
+    async registration({ commit }, { loginEmail, loginPassword, loginName }) {
       try {
         await createUserWithEmailAndPassword(auth, loginEmail, loginPassword)
           .then(() => {
             const user = auth.currentUser;
             const uid = user.uid;
             commit('SET_UID', uid)
-            // localStorage.setItem("firebase", JSON.stringify(uid)) // write uid to localStorage
-            set(ref(database, `users/${uid}/info`), {// post ro FB store
+            localStorage.setItem("firebase", JSON.stringify(uid)) // write uid to localStorage
+            set(ref(database, `users/${uid}/info`), {// post to FB store
               username: loginName,
               email: loginEmail
             });
@@ -77,6 +82,10 @@ export default {
   mutations:{
     SET_UID(state, uid){
       state.uid = uid;
+    },
+    SET_IS_ADMIN(state){
+      const isAdmin = JSON.parse(localStorage.getItem('isAdmin'))
+      state.isAdmin = isAdmin
     }
   }
 }

@@ -10,7 +10,7 @@
 				/>
 				<h3 
 				  v-show="!USER_CART.length" 
-				  class="text">Cart is empty
+				  class="text_message">Cart is empty
 				</h3>
 				<div class="btn-box">
 					<my-button class="btn clear-btn2" @click="clearCart">Clear Cart</my-button>
@@ -120,19 +120,15 @@ export default {
 	justify-content: space-between;
 	align-items: center;
 	margin-top: 20px;
-
 	.btn {
 		max-width: 160px;
 		margin: 0 10px;
 	}
-
-	.text {
-		color: $pink-color;
-		font-size: 30px;
-
-	}
-
 }
+.text_message {
+		color: $pink-color;
+		font-size: 2rem;
+	}
 
 .disabled {
 	cursor: not-allowed !important;
