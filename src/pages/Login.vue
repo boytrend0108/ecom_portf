@@ -154,9 +154,13 @@ button {
   height: 4rem;
   font-size: 1.5rem;
 }
-.pi-user {
-    font-size: 1.5rem !important;
-  }
+
+::v-deep(.p-button-secondary){
+ .p-button-icon-right {
+    font-size: 2rem;
+}
+}
+
 
 .form {
   top: 218px;
