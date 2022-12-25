@@ -1,5 +1,4 @@
 <template>
-  <Toast />
 <form 
   id="form-subs" 
   method="POST"

@@ -60,7 +60,7 @@ export default {
     gap: 30px;
     cursor: pointer;
 
-    @media(max-width: $media-phone){
+    @media(max-width: 550px){
         justify-content: center;
         flex-wrap: wrap;
         gap: 0px;
@@ -85,6 +85,10 @@ export default {
 
     @media(max-width: $media-phone){
         width: 94%;
+    }
+
+     @media(max-width: 550px){
+        max-width: 320px;
     }
 
     @media(max-width: 370px){

@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper">
+
     <form 
     class="form"
     @submit="subminHandler"
@@ -131,7 +132,7 @@ p {
   color: white;
 }
 .wrapper {
-  display: flex;
+  display: flex ; 
   align-items: center;
   justify-content: center;
 }
@@ -227,18 +228,6 @@ button {
     color: rgba(14, 12, 12, 0.808)
   }
 }
-.p-toast{
-  width: 40rem;
-}
-.p-toast-top-right {
-    top: 90px;
-    right: 20px;}
 
-.p-toast-summary{
-  font-size: 2rem;
-}
-.p-toast-message{
-  font-size: 1.5rem;
-}
     
 </style>
