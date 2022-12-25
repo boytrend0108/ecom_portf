@@ -12,22 +12,34 @@
        <!-- Hidden Required Fields -->
       <input type="hidden" name="project_name" value="digital-boys.com">
 		  <input type="hidden" name="admin_email" value="eur-usd@bk.ru">
-		  <input type="hidden" name="form_subject" value="Subs-form">
+		  <input type="hidden" name="form_subject" value="Подписка на рассылку с формы на главной странице Subs-form">
 		   <!-- END Hidden Required Fields -->
       <input 
         id="email" 
         name="email" 
-        type="email" 
+        type="email"
+        v-model="email" 
         class="form-sub__inp" 
-        placeholder="Enter Your Email">
-      <my-button class="form-btn"  @click="sendForm">Subscribe</my-button>
+        @input="validator"
+        placeholder="Enter Your Email"
+        ref="input">
+      <my-button 
+      class="form-btn"  
+      @click="sendForm"
+      >Subscribe</my-button>
     </div>
   </form>
 </template>
 <script>
 export default {
   name: 'my-subscrform',
-
+  data(){
+    return {
+      email:'',
+      emailRegExp: /^[\w._-]+@\w+\.[a-z]{2,4}$/i
+    }
+  },
+  
   methods: {
     async sendForm() {
       await $("form").submit(function () { //Change
@@ -48,10 +60,26 @@ export default {
         });
         // return false;
       });
+    },
+
+    validator() {
+      if (this.emailRegExp.test(this.email)) {
+        document.querySelector("#email").style.border = '3px solid green'
+        document.querySelector(".form-btn").removeAttribute('disabled')
+        document.querySelector(".form-btn").classList.remove("disabled");
+      } else {
+        document.querySelector(".form-btn").style.border = '3px solid #FF6A6A'
+        document.querySelector(".form-btn").setAttribute('disabled',"disabled")
+        document.querySelector(".form-btn").classList.add("disabled");
+      }
+    },
+  },
+
+  mounted(){
+     
     }
-  }
 }
-</script>
+</script>_
 
 <style lang="scss" scoped>
 .form-subscr {
@@ -119,5 +147,12 @@ export default {
   border-bottom-right-radius: 21px;
   border-top-right-radius: 21px;
   border: none;
+}
+
+.disabled{
+    cursor: not-allowed !important;
+    background-color: gray !important;
+    border: none !important;
+    color: aliceblue !important;
 }
 </style>

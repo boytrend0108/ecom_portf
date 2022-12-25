@@ -1,8 +1,7 @@
 <template>
-    <button class="my_bnt btn-transf">
+    <button class="my_bnt btn-transf"  ref="subs">
         <slot></slot>
     </button>
-
 </template>
 
 <script>
