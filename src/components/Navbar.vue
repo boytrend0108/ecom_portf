@@ -8,13 +8,18 @@
 					  @click="goToHomePage" 
 					  src="@/assets/img/logo.png" 
 					  alt="logo">
-					<font-awesome-icon class="font-aw" icon="fa-solid fa-magnifying-glass" />
+					<font-awesome-icon 
+					class="font-aw" 
+					icon="fa-solid fa-magnifying-glass"
+					v-show="isMobile"
+					 />
 					<input 
 					  type="text" 
 					  class="search-input" 
 					  name="search" 
 					  v-model="searchInput" 
 					  @input="sendSearchInput"
+						v-show="isMobile"
 					  >
 				</div>
 

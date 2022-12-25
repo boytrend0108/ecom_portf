@@ -82,6 +82,14 @@ export default {
     @media(max-width: $media-tablet){
        height: 116px;
     }
+
+    @media(max-width: $media-phone){
+        width: 94%;
+    }
+
+    @media(max-width: 370px){
+        width: 100%
+    }
 }
 .categ-bottom:hover{
     transform: scale(1.05);
