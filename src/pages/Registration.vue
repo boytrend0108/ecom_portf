@@ -172,6 +172,13 @@ button{
   width: 30rem;
   margin: 10px 0;
   height: 4rem;
+  font-size: 1.5rem;
+}
+
+::v-deep(.p-button-secondary){
+ .p-button-icon-right {
+    font-size: 2rem;
+}
 }
 .p-button-label {
     flex: 1 1 auto;
