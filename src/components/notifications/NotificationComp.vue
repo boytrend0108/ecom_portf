@@ -50,7 +50,7 @@ export default {
         .fa-circle-xmark {
             position: relative;
             top: -80px;
-            right: -260px;
+            right: -220px;
             font-size: 30px;
             cursor: pointer;
             color: white;

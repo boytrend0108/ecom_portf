@@ -44,7 +44,7 @@ export default {
               dispatch('GET_USER_CART');
         } catch (error) {
           commit('SET_ERROR', error)// we can get error.code and error.message
-          // throw error
+          throw error // если убрать throw - при ошибке всё равно будет переход на главную
         }
     },
 
