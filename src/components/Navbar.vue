@@ -30,7 +30,7 @@
 				    :model="items"
 				    class="splitBtn"
 						@click="goToLoginPage"
-				  ></SplitButton>
+				  />
 					<font-awesome-icon 
 					icon="fa-solid fa-gears" 
 					class="font-aw "
@@ -388,6 +388,10 @@ export default {
 		background: gray;
 		color: #ffffff;
 		border-color: gray;
+	}
+
+	.p-button-icon{
+		font-size: 1.7rem;
 	}
 
 }
