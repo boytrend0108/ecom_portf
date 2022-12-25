@@ -81,6 +81,9 @@ html{
 }
 .p-toast{
   width: 40rem !important;
+  @media(max-width: $media-phone){
+    width: 24rem !important;
+  }
 }
 .p-toast-summary{
   font-size: 2rem !important;

@@ -153,6 +153,9 @@ button {
   margin: 10px 0;
   height: 4rem;
   font-size: 1.5rem;
+  @media(max-width:$media-phoneS){
+    width: 27rem;
+  }
 }
 
 ::v-deep(.p-button-secondary){
@@ -161,7 +164,6 @@ button {
 }
 }
 
-
 .form {
   top: 218px;
   right: 235px;
@@ -169,7 +171,7 @@ button {
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  width: auto;
+  max-width: 300px;
   height: auto;
   padding: 20px;
   @include box-shadow;
@@ -225,6 +227,8 @@ button {
     color: rgba(14, 12, 12, 0.808)
   }
 }
-
+.p-inputtext{
+  max-width: 270px !important;
+}
     
 </style>
