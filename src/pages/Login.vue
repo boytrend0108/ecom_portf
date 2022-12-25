@@ -152,18 +152,11 @@ button {
   width: 30rem;
   margin: 10px 0;
   height: 4rem;
-
-  .p-button-label {
-    flex: 1 1 auto;
-    font-size: 1.5rem;
-
-    .p-button-icon-right::before {
-    margin-left: 0.5rem;
-    font-size: 2rem;
-  }    
-  }
-
+  font-size: 1.5rem;
 }
+.pi-user {
+    font-size: 1.5rem !important;
+  }
 
 .form {
   top: 218px;

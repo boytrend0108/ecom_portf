@@ -83,10 +83,10 @@ html{
   width: 40rem !important;
 }
 .p-toast-summary{
-  font-size: 2rem;
+  font-size: 2rem !important;
 }
 .p-toast-message{
-  font-size: 1.5rem;
+  font-size: 1.5rem !important;
 }
 .p-toast-top-right {
     top: 90px !important;
