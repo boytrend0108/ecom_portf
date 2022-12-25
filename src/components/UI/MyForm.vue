@@ -1,12 +1,12 @@
 <template>
   <Toast />
 <form 
-  id="form" 
+  id="form-subs" 
   method="POST"
   class="cart-form">SHIPPING ADRESS
 
          <!-- Hidden Required Fields -->
-        <input type="hidden" name="project_name" value="digital-boys.com">
+    <input type="hidden" name="project_name" value="digital-boys.com">
 		<input type="hidden" name="admin_email" value="eur-usd@bk.ru">
 		<input type="hidden" name="form_subject" value="Заявка c сайта digital-boys.com">
 
@@ -155,7 +155,7 @@ export default {
       const thisComp = this;// add this to have access to CLEAR_CATR and other fn..
       // to define form we can use classes, for exp-l await$('.my-form')
       const data = this.createData();
-      await $("form").submit(function () { //Change
+      await $("#form-subs").submit(function () { //Change
         var th = $(this); // this - it is form
         $.ajax({
           type: "POST",
