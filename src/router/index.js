@@ -60,9 +60,9 @@ const router = createRouter({
 
 function auhtGuardCart (to, from, next){// перед каждым роутом проверяем следующее
    if(!getAuth().currentUser){  
-    next('/login?message=getlogin') // eсли  админ
+    next('/login?message=getlogin') // if not register
    } else{
-    next() // если админ- проходим на страницу
+    next() // if ok
    }
 }
 

@@ -125,12 +125,11 @@ export default {
 }
 </script>
 
-<style lang="scss" >
+<style lang="scss" scoped >
 p {
   font-size: 1.1rem;
   color: white;
 }
-
 .wrapper {
   display: flex;
   align-items: center;
@@ -228,4 +227,18 @@ button {
     color: rgba(14, 12, 12, 0.808)
   }
 }
+.p-toast{
+  width: 40rem;
+}
+.p-toast-top-right {
+    top: 90px;
+    right: 20px;}
+
+.p-toast-summary{
+  font-size: 2rem;
+}
+.p-toast-message{
+  font-size: 1.5rem;
+}
+    
 </style>

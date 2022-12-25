@@ -79,10 +79,5 @@ html{
   }
 }
 
-.p-toast-summary{
-  font-size: 2rem;
-}
-.p-toast-message{
-  font-size: 1.5rem;
-}
+
 </style>

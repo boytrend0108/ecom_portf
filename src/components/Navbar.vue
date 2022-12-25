@@ -55,6 +55,7 @@
 							:class="isDisabled" />
 						<span 
 						  :class="isDisabled"
+							v-show="isMobile"
 						  class="item-num" 
 							> {{TOTAL_CART_ITEMS }} </span>
 					 </button>
