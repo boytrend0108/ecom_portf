@@ -9,7 +9,7 @@
 					  src="@/assets/img/logo.png" 
 					  alt="logo">
 					<font-awesome-icon 
-					class="font-aw" 
+					class="font-aw " 
 					icon="fa-solid fa-magnifying-glass"
 					v-show="isMobile"
 					 />
@@ -203,7 +203,22 @@ export default {
 	cursor: pointer;
 	transition: 0.5s;
 	background: transparent;
+}
 
+@media(max-width: 620px) {
+	.fa-magnifying-glass {
+		margin-left: 10px;
+	}
+}
+
+@media(max-width: 590px) {
+	.fa-magnifying-glass {
+		display: none;
+	}
+
+	.search-input {
+		display: none;
+	}
 }
 
 .font-aw:hover {
@@ -214,23 +229,25 @@ export default {
 .icon-cart-wr {
 	position: relative;
 	background-color: transparent;
-  border: none;
+	border: none;
 }
 
-	.item-num:hover {
-		color: #F16D7F;
-		background-color: white;
-		transform: scale(1.3);
-	}
-		.fa-cart-shopping:hover {
-			color: #F16D7F;
-			transform: scale(1.3);
-			color:aliceblue;
-		}
+.item-num:hover {
+	color: #F16D7F;
+	background-color: white;
+	transform: scale(1.3);
+}
 
-.disabled{
+.fa-cart-shopping:hover {
+	color: #F16D7F;
+	transform: scale(1.3);
+	color: aliceblue;
+}
+
+.disabled {
 	@include disabled("transparent");
-	.disabled:hover{
+
+	.disabled:hover {
 		transform: none;
 	}
 }
@@ -254,10 +271,12 @@ export default {
 .logo {
 	cursor: pointer;
 	transition: 0.5s;
+
 	.logo:hover {
-	transform: scale(1.3);
+		transform: scale(1.3);
+	}
 }
-}
+
 .search-input {
 	background-color: transparent;
 	border: none;
@@ -269,6 +288,14 @@ export default {
 	font-size: 19.96px;
 	line-height: 24px;
 	margin-left: 10px;
+
+	@media(max-width: $media-tablet) {
+		width: 20rem;
+	}
+
+	@media(max-width: 670px) {
+		width: 15rem;
+	}
 }
 
 .menu {
@@ -291,16 +318,16 @@ export default {
 	animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 
 	@keyframes slide-left {
-	0% {
-		-webkit-transform: translateX(1000px);
-		transform: translateX(1000px);
-	}
+		0% {
+			-webkit-transform: translateX(1000px);
+			transform: translateX(1000px);
+		}
 
-	100% {
-		-webkit-transform: translateX(0px);
-		transform: translateX(0px);
+		100% {
+			-webkit-transform: translateX(0px);
+			transform: translateX(0px);
+		}
 	}
-}
 }
 
 .slide-out-top {
@@ -308,33 +335,34 @@ export default {
 	animation: slide-out-top 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 
 	@-webkit-keyframes slide-out-top {
-	0% {
-		-webkit-transform: translateY(0);
-		transform: translateY(0);
+		0% {
+			-webkit-transform: translateY(0);
+			transform: translateY(0);
 
+		}
+
+		100% {
+			-webkit-transform: translateY(-1000px);
+			transform: translateY(-1000px);
+
+		}
 	}
 
-	100% {
-		-webkit-transform: translateY(-1000px);
-		transform: translateY(-1000px);
+	@keyframes slide-out-top {
+		0% {
+			-webkit-transform: translateY(0);
+			transform: translateY(0);
+			;
+		}
 
+		100% {
+			-webkit-transform: translateY(-1000px);
+			transform: translateY(-1000px);
+
+		}
 	}
 }
 
-@keyframes slide-out-top {
-	0% {
-		-webkit-transform: translateY(0);
-		transform: translateY(0);
-		;
-	}
-
-	100% {
-		-webkit-transform: translateY(-1000px);
-		transform: translateY(-1000px);
-
-	}
-}
-}
 .cart-box {
 	display: none;
 }
@@ -344,20 +372,22 @@ export default {
 		background-color: $pink-color;
 		border: $pink-color;
 	}
-	.p-splitbutton-menubutton{
+
+	.p-splitbutton-menubutton {
 		background-color: $pink-color;
 		border: $pink-color;
 		width: 3rem;
-    padding: 1rem 0;
+		padding: 1rem 0;
 	}
 
-	.p-button-label{
+	.p-button-label {
 		font-size: 1.5rem;
 	}
+
 	.p-button:enabled:hover {
-    background: gray;
-    color: #ffffff;
-    border-color: gray;
+		background: gray;
+		color: #ffffff;
+		border-color: gray;
 	}
 
 }
