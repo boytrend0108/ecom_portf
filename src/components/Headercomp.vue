@@ -25,6 +25,9 @@ export default {
     @media(max-width: $media-tablet){
         height: 370px;
     }
+    @media(max-width: 520px){
+        height: 270px;
+    }
 }
 .wh {
     max-width: $wrapper-laptop;
@@ -44,6 +47,10 @@ export default {
         align-items: center;
         justify-content: center;
     }
+
+    @media(max-width: 660px){
+        background-position-x: 20px;
+    }
 }
 .header__title-box {
     margin-left: 59%;
@@ -55,10 +62,19 @@ export default {
         margin-left: 55%;
         margin-bottom: 0%;
     }
+    @media(max-width: 660px) {
+        margin-left: 40%;
+    }
+    @media(max-width: 560px) {
+        margin-left: 45%;
+    }
+    
     @media(max-width: $media-phone) {
         margin-left: 0;
         margin-bottom: 0;
     }
+
+  
 }
 .header__title {
     font-family: 'Lato';
@@ -79,6 +95,11 @@ export default {
         font-size: 38px;
         line-height: 46px;
     }
+
+    @media(max-width: 560px) {
+        font-size: 30px;
+        line-height: 46px;
+    }
 }
 .header__sub{
     font-family: 'Lato';
@@ -91,12 +112,18 @@ export default {
 
     @media(max-width: $media-tablet) {
         font-size: 24px;
-        line-height: 29px;
+    }
+    @media(max-width: 560px) {
+        font-size: 20px;
+    }
+    @media(max-width: 520px) {
+        line-height: 24px;
     }
     @media(max-width: $media-phone) {
         font-size: 20px;
         line-height: 24px;
     }
+   
 }
 .header__sub_pink{
     color: #F16D7F;

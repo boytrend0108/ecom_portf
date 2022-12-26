@@ -6,7 +6,7 @@ export default {
         severity:'warn', 
         summary: summary, 
         detail:detail, 
-        life: 5000
+        // life: 5000
     });
     }
 

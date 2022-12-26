@@ -1,15 +1,21 @@
 <template>
   <div class="orders swing-in-top-fwd ">
-    <div class="client-info">
-      <h3 class="client-data">Name:<span class="client-data_span">{{userName}}</span></h3>
-      <h3 class="client-data">Email:<span class="client-data_span">{{email}}</span></h3>
-      <h3 class="client-data">Phone:<span class="client-data_span">{{userPhone}}</span></h3>
-      <h3 class="client-data">Total Price:<span class="client-data_span">{{getTotalPrice}}</span> $</h3>
+    
+      <div class="client-info">
+        <div class="info-box">
+          <h3 class="client-data">Name:<span class="client-data_span">{{userName}}</span></h3>
+          <h3 class="client-data">Email:<span class="client-data_span">{{email}}</span></h3>
+          <h3 class="client-data">Phone:<span class="client-data_span">{{userPhone}}</span></h3>
+          <h3 class="client-data">Total Price:<span class="client-data_span">{{getTotalPrice}}</span> $</h3>
+        </div>
       <font-awesome-icon 
       icon="fa-solid fa-list" 
       @click="showOrders = !showOrders"
       />
     </div>
+  
+   
+   
     <div class="status">
       <my-button 
         class="status-btn" 
@@ -111,6 +117,11 @@ html{
   overflow-y: scroll;
   max-height: 400px;
 }
+.infa-box{
+  display:flex;
+  flex-direction: column;
+}
+
    .img{
     width: 4rem;
     height: 6rem;
@@ -122,8 +133,7 @@ html{
    justify-content: space-between;
    background-color: gray;
    color:aliceblue;
-   height: 6rem;
-   padding: 0 2rem;
+   padding: 1rem 2rem;
    border-radius: 4px;
 }
 
@@ -184,11 +194,13 @@ html{
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 }
 .status-btn {
   height: 3rem;
   width: 14rem;
   font-size: 1rem;
   margin: 1rem;
+  text-transform: uppercase;
 }
 </style>

@@ -1,11 +1,12 @@
 <template>
-   <Toast></Toast>
+   <Toast position="top-right"></Toast>
   <navbar :isMobile="IS_MOBILE"></navbar>
   <div class="app">
     <component :is="layout">
       <router-view />
     </component>
   </div>
+
 </template>
 
 <script>
@@ -77,7 +78,33 @@ html{
   @media(max-width: $media-tablet) {
     max-width: $wrapper-tablet;
   }
+  @media(max-width: $media-phone) {
+    max-width: $wrapper-phone;
+    justify-content: center;
+  }
+  @media(max-width: $media-phoneM) {
+    max-width: $wrapper-phoneM;
+  }
+  @media(max-width: $media-phoneS) {
+    max-width: $wrapper-phoneS;  
+  }
 }
+.p-toast{
+  width: 40rem !important;
+  @media(max-width: $media-phone){
+    width: 24rem !important;
+  }
+}
+.p-toast-summary{
+  font-size: 2rem !important;
+}
+.p-toast-message{
+  font-size: 1.5rem !important;
+}
+.p-toast-top-right {
+    top: 90px !important;
+    right: 20px !important;
+  }
 
 
 </style>

@@ -1,10 +1,13 @@
 $main-color:#222224;
 $pink-color: #F16D7F;
-$wrapper-laptop:1065px; // 1024 +20 + 20 
-$wrapper-tablet:780px; // 740 + 20 + 20
-$wrapper-phone:400px; // 340 + 20 + 20
+$wrapper-laptop:984px; // 1024 - 20 - 20 
+$wrapper-tablet:728px; // 768 - 20 - 20
+$wrapper-phone:395px; // 425 -15 -15
+$wrapper-phoneM:340px; // 475 -15 -15
+$wrapper-phoneS:300px; // 425 -10 -10
 // media
 $media-laptop:1200px;
-$media-tablet: 800px; // $wrapper-tablet + 20px
+$media-tablet:800px; // $wrapper-tablet + 20px
 $media-phone:425px;
+$media-phoneM:375px;
 $media-phoneS:320px;

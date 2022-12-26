@@ -1,7 +1,12 @@
 <template>
   <div class="input-wrap">
-    <input type="text" class="form-sub__inp" placeholder="Enter Your Email">
-    <my-button class="form-btn">Subscribe</my-button>
+    <input  
+    class="form-sub__inp" 
+    placeholder="Enter Your Email">
+    <my-button 
+    class="form-btn"
+    @click.prevent.stop="this.$emit('subscribeForm')"
+    >Subscribe</my-button>
   </div>
 </template>
 

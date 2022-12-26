@@ -1,16 +1,15 @@
 <template>
-  <Toast />
 <form 
-  id="form" 
+  id="form-subs" 
   method="POST"
   class="cart-form">SHIPPING ADRESS
 
          <!-- Hidden Required Fields -->
-        <input type="hidden" name="project_name" value="digital-boys.com">
+    <input type="hidden" name="project_name" value="digital-boys.com">
 		<input type="hidden" name="admin_email" value="eur-usd@bk.ru">
 		<input type="hidden" name="form_subject" value="Заявка c сайта digital-boys.com">
-
-    <input 
+     <div class="input-wrapper">
+      <input 
     id="name"
     name="name"
     type="text" 
@@ -42,6 +41,9 @@
     @input="validator"
     >
     <p class="lable">mymail@mail.ru</p>
+     </div>
+    
+    
     <my-button 
     class="btn form-btn2" 
     @click="sendForm"
@@ -155,7 +157,7 @@ export default {
       const thisComp = this;// add this to have access to CLEAR_CATR and other fn..
       // to define form we can use classes, for exp-l await$('.my-form')
       const data = this.createData();
-      await $("form").submit(function () { //Change
+      await $("#form-subs").submit(function () { //Change
         var th = $(this); // this - it is form
         $.ajax({
           type: "POST",
@@ -191,15 +193,35 @@ export default {
     flex-direction: column;
     align-items: left;
     font-size: 2.2rem;
+    width: 100%;
+
+    @media(max-width: $media-tablet){
+    margin-top: 5rem;
+    align-items: center;
+    width: 65%;
+  }
+  @media(max-width: $media-phone){
+    width: 118%;
+  }
 }
 
+.input-wrapper{
+  padding:  2rem 0;
+  margin-top: 1.5rem;
+  @media(max-width: $media-tablet){
+    width: 90%;
+  }
+
+}
 .form-input {
-   margin: 1rem 0px;
-    padding: 0 1rem;
-    height: 4rem;
-    width: 36rem;
-    outline: none;
-    font-size: 1.5rem;
+  margin: 1rem 0px;
+  padding: 0 1rem;
+  height: 5.2rem;
+  width: 100%; 
+  outline: none;
+  font-size: 2rem;
+  border: 1px solid $main-color;
+  border-radius: 4px;
 }
 
 .btn{

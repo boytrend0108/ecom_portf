@@ -131,9 +131,10 @@ p {
   color: white;
 }
 .wrapper {
-  display: flex;
+  display: flex ; 
   align-items: center;
   justify-content: center;
+  min-height: 100vh;
 }
 
 button {
@@ -148,30 +149,30 @@ button {
 .p-button-secondary {
   background-color: aliceblue;
   color: gray;
-  width: 30rem;
+  width: 27rem;
   margin: 10px 0;
   height: 4rem;
-
-  .p-button-label {
-    flex: 1 1 auto;
-    font-size: 1.5rem;
-
-    .p-button-icon-right::before {
-    margin-left: 0.5rem;
-    font-size: 2rem;
-  }    
+  font-size: 1.5rem;
+  @media(max-width:$media-phoneS){
+    width: 27rem;
   }
+}
 
+::v-deep(.p-button-secondary){
+ .p-button-icon-right {
+    font-size: 2rem;
+}
 }
 
 .form {
-  top: 218px;
-  right: 235px;
+  // position: fixed;
+  // top: 218px;
+  // right: 235px;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  width: auto;
+  max-width: 300px;
   height: auto;
   padding: 20px;
   @include box-shadow;
@@ -227,18 +228,8 @@ button {
     color: rgba(14, 12, 12, 0.808)
   }
 }
-.p-toast{
-  width: 40rem;
-}
-.p-toast-top-right {
-    top: 90px;
-    right: 20px;}
-
-.p-toast-summary{
-  font-size: 2rem;
-}
-.p-toast-message{
-  font-size: 1.5rem;
+.p-inputtext{
+  max-width: 270px !important;
 }
     
 </style>

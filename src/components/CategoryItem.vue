@@ -47,6 +47,10 @@ export default {
     max-width: 360px;
     max-height: 260px;
     position: relative;
+
+    @media(max-width: 550px){
+        max-width: 320px;
+    }
 }
 .category:hover{
     transform: scale(1.05);

@@ -18,7 +18,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .icon{
     width: 30px;
     height: 30px;
@@ -29,6 +29,7 @@ export default {
     transition: 0.5s;
     cursor: pointer;
     border-radius: 5px;
+    font-size: 2rem;
 }
 .icon:hover{
     background-color: #F16D7F;

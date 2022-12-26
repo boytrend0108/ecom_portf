@@ -19,7 +19,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 .categ__title{
     width: fit-content;
@@ -33,6 +33,11 @@ export default {
     line-height: 19px;
     text-align: center;
     color: #FFFFFF;
+
+    @media(max-width:660px){
+      font-size: 2.5rem;
+      
+    }
 }
 .cat__title {
     text-transform: uppercase;
@@ -41,6 +46,15 @@ export default {
     line-height: 29px;
     text-align: center;
     color: #F16D7F;
+
+    @media(max-width:660px){
+      font-size: 4rem;
+      margin-top: 2rem;
+    }
+    @media(max-width:$media-phoneS){
+      font-size: 3rem;
+      margin-top: 1rem;
+    }
 }
 
 </style>

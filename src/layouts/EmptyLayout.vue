@@ -30,8 +30,22 @@ export default {
 <style lang="scss" scoped>
 .empty {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background: $pink-color;
 }
+
+// .p-toast{
+//   width: 40rem;
+// }
+// .p-toast-top-right {
+//     top: 90px;
+//     right: 20px;}
+
+// .p-toast-summary{
+//   font-size: 2rem;
+// }
+// .p-toast-message{
+//   font-size: 1.5rem;
+// }
 </style>
 

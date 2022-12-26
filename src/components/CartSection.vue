@@ -89,6 +89,7 @@ export default {
 .wrapper {
 	margin-top: 30px;
 	margin-bottom: 30px;
+	flex-wrap: wrap;
 }
 
 .cart-box {
@@ -99,17 +100,26 @@ export default {
 
 	.item-box,
 	.form-box {
+		font-size: 10px;
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
-		;
+		justify-content: center;
 		align-items: center;
 		min-height: 310px;
-		min-width: 400px;
+		flex-grow: 1;
 		padding: 20px;
 		position: relative;
-	}
 
+		@media(max-width:$media-phone){
+			font-size: 7px;
+		}
+
+	}
+	@media(max-width:$media-phone){
+			.item-box{
+				padding: 20px 0;
+			}
+		}
 	.cart-item {
 		margin-bottom: 0px;
 	}
@@ -119,15 +129,30 @@ export default {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-top: 20px;
+	margin-top: 2em;
+	flex-wrap: wrap;
+
+	@media(max-width: $media-tablet){
+		margin-top: 6em;
+	}
+
+	@media(max-width: $media-phone){
+		justify-content: center;
+		gap: 10px;
+	}
 	.btn {
 		max-width: 160px;
 		margin: 0 10px;
+		text-transform: uppercase;
+		@media(max-width: $media-phone){
+			max-width: 224px;
 	}
+	}
+
 }
 .text_message {
 		color: $pink-color;
-		font-size: 2rem;
+		font-size: 2em;
 	}
 
 .disabled {
@@ -138,8 +163,8 @@ export default {
 }
 
 .summary {
-	width: 360px;
-	min-height: 200px;
+	width: 36em;
+	min-height: 20em;
 	background-color: #F5F3F3;
 }
 </style>
