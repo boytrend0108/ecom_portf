@@ -100,6 +100,7 @@ export default {
 
 	.item-box,
 	.form-box {
+		font-size: 10px;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
@@ -119,7 +120,7 @@ export default {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-top: 20px;
+	margin-top: 2em;
 	.btn {
 		max-width: 160px;
 		margin: 0 10px;
@@ -127,7 +128,7 @@ export default {
 }
 .text_message {
 		color: $pink-color;
-		font-size: 2rem;
+		font-size: 2em;
 	}
 
 .disabled {
@@ -138,8 +139,8 @@ export default {
 }
 
 .summary {
-	width: 360px;
-	min-height: 200px;
+	width: 36em;
+	min-height: 20em;
 	background-color: #F5F3F3;
 }
 </style>
