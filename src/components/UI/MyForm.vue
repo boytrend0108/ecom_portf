@@ -8,8 +8,8 @@
     <input type="hidden" name="project_name" value="digital-boys.com">
 		<input type="hidden" name="admin_email" value="eur-usd@bk.ru">
 		<input type="hidden" name="form_subject" value="Заявка c сайта digital-boys.com">
-
-    <input 
+     <div class="input-wrapper">
+      <input 
     id="name"
     name="name"
     type="text" 
@@ -41,6 +41,9 @@
     @input="validator"
     >
     <p class="lable">mymail@mail.ru</p>
+     </div>
+    
+    
     <my-button 
     class="btn form-btn2" 
     @click="sendForm"
@@ -190,15 +193,29 @@ export default {
     flex-direction: column;
     align-items: left;
     font-size: 2.2rem;
+    width: 60%;
+
+    @media(max-width: $media-tablet){
+    margin-top: 5rem;
+    align-items: center;
+  }
 }
 
+.input-wrapper{
+  padding:  2rem 0;
+  margin-top: 7px;
+  @media(max-width: $media-tablet){
+    width: 90%;
+  }
+
+}
 .form-input {
-   margin: 1rem 0px;
-    padding: 0 1rem;
-    height: 4rem;
-    width: 36rem;
-    outline: none;
-    font-size: 1.5rem;
+  margin: 1rem 0px;
+  padding: 0 1rem;
+  height: 4rem;
+  width: 100%; // !!!!
+  outline: none;
+  font-size: 1.5rem;
 }
 
 .btn{

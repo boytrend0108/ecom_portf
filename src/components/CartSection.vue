@@ -89,6 +89,7 @@ export default {
 .wrapper {
 	margin-top: 30px;
 	margin-bottom: 30px;
+	flex-wrap: wrap;
 }
 
 .cart-box {
@@ -102,10 +103,9 @@ export default {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
-		;
 		align-items: center;
 		min-height: 310px;
-		min-width: 400px;
+		flex-grow: 1;
 		padding: 20px;
 		position: relative;
 	}

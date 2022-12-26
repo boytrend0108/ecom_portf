@@ -1,17 +1,19 @@
 <template>
   <div class="cart-item__box slide-in-blurred-right">
     <img :src="require('@/assets/img/catalog/' + item.itemImg)" alt="img" class="cart-img">
+    <h2 class="title">{{ item.itemTitle }} </h2>
     <div class="cart-item__descr">
-      <h2 class="title">{{ item.itemTitle }} </h2>
       <p class="text">Price {{ item.itemPrice }} $</p>
       <div class="quantity">
         <p class="text">Quantity: {{ item.quantity }} </p>
-        <button class="quantity-bnt" @click="addToCart">&plus;</button>
-        <button class="quantity-bnt" @click="deleteItem">&times;</button>
       </div>
-      <p class="text">Quantity: {{ item.quantity }} </p>
-      <p class="price">Total: {{ culcTotalPrice }} $ </p>
+      <div class="btn-wrapper">
+          <button class="quantity-bnt" @click="addToCart">&plus;</button>
+          <button class="quantity-bnt" @click="deleteItem">&times;</button>
+        </div>
     </div>
+    <p class="price">Total: {{ culcTotalPrice }} $ </p>
+
   </div>
 </template>
 
@@ -66,45 +68,38 @@ export default {
   height: 120px;
   // border: 1px solid $pink-color;
   @include box-shadow-pink;
-  padding: 20px 0;
+  padding: 20px ;
   margin: 20px 0;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
 .cart-img {
-  height: 90px;
+  height: 8rem;
+}
+.title {
+    @include item-title(2rem);
+    margin: 0 ;
+    max-width: 20rem;
+    line-height: normal;
 }
 
 .cart-item__descr {
   display: flex;
   flex-direction: column;
-  padding-right: 20px;
-
-  .title {
-    @include item-title(13px);
-    margin: 0 0 10px 0;
-  }
-
-  .price {
-    @include text($main-color, 16px);
-    margin-top: 10px;
-  }
-
-  .text {
-    @include text(#5D5D5D, 10px);
-    font-weight: 300;
-    font-size: 14px;
-    line-height: 17px;
-  }
 }
-
+.price {
+    @include text($pink-color, 2rem);
+  }
 .quantity {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
 
+.btn-wrapper{
+  margin-top: 10px;
   .quantity-bnt {
     width: 30px;
     height: 20px;
@@ -113,8 +108,16 @@ export default {
     cursor: pointer;
     border: 1px solid $pink-color;
     background-color: transparent;
+    margin-left: 1rem;
   }
 }
+
+.text {
+    @include text(#5D5D5D, 2rem);
+    font-weight: 300;
+    line-height: 17px;
+    margin: 0.5rem;
+  }
 
 .slide-in-blurred-right {
   @include slide-in-blurred-right
