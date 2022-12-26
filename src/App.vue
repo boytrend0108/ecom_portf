@@ -78,6 +78,11 @@ html{
   @media(max-width: $media-tablet) {
     max-width: $wrapper-tablet;
   }
+  @media(max-width: $media-phone) {
+    max-width: $wrapper-phone;
+    justify-content: center;
+
+  }
 }
 .p-toast{
   width: 40rem !important;

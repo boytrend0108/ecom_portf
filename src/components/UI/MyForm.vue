@@ -198,12 +198,13 @@ export default {
     @media(max-width: $media-tablet){
     margin-top: 5rem;
     align-items: center;
+    width: 65%;
   }
 }
 
 .input-wrapper{
   padding:  2rem 0;
-  margin-top: 7px;
+  margin-top: 1.5rem;
   @media(max-width: $media-tablet){
     width: 90%;
   }
@@ -212,10 +213,10 @@ export default {
 .form-input {
   margin: 1rem 0px;
   padding: 0 1rem;
-  height: 4rem;
-  width: 100%; // !!!!
+  height: 5rem;
+  width: 100%; 
   outline: none;
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 .btn{

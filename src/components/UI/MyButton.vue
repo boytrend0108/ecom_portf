@@ -11,12 +11,13 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .my_bnt {
     width: 210px;
     height: 50px;
     border: 1px solid #FF6A6A;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
     cursor: pointer;
     transition: 0.5s;
     font-weight: 400;
@@ -26,10 +27,8 @@ export default {
     background-color: white ;
 }
 .my_bnt:hover{
-    background-color: #FF6A6A;
+    background: linear-gradient(90deg, $main-color, $pink-color);
     color: white;
-}
-.btn-transf{
     transform: scale(1.05);
 }
 </style>

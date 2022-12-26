@@ -103,12 +103,16 @@ export default {
 		font-size: 10px;
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
+		justify-content: center;
 		align-items: center;
 		min-height: 310px;
 		flex-grow: 1;
 		padding: 20px;
 		position: relative;
+
+		@media(max-width:$media-phone){
+			font-size: 7px;
+		}
 	}
 
 	.cart-item {
@@ -121,6 +125,10 @@ export default {
 	justify-content: space-between;
 	align-items: center;
 	margin-top: 2em;
+
+	@media(max-width: $media-tablet){
+		margin-top: 6em;
+	}
 	.btn {
 		max-width: 160px;
 		margin: 0 10px;

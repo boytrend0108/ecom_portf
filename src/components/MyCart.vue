@@ -52,7 +52,7 @@ export default {
 
 <style lang="scss" scoped>
 .cart-box{
-    font-size: 5px;
+    font-size: 7px;
     position: absolute;
     width: 400px;
     max-height: 500px;
@@ -84,8 +84,8 @@ export default {
     align-items: center;
 
     .btn {
-            max-width: 195px;
-            height: 40px;
+            max-width: 11em;
+            height: 2em;
         }
 }
 </style>

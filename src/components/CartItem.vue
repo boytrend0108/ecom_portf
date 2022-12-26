@@ -81,12 +81,21 @@ export default {
 
 .cart-img {
   height: 8em;
+
+  @media(max-width:425px){
+      display: none;
+    }
 }
 .title {
     @include item-title(2em);
     margin: 0 ;
-    max-width: 20em;
+    max-width: 10em;
     line-height: normal;
+
+    @media(max-width:$media-phone){
+      margin: 0 0.5em;
+      max-width: 8em;
+    }
 }
 
 .cart-item__descr {
