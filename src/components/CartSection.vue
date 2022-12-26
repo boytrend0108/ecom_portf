@@ -113,8 +113,13 @@ export default {
 		@media(max-width:$media-phone){
 			font-size: 7px;
 		}
-	}
 
+	}
+	@media(max-width:$media-phone){
+			.item-box{
+				padding: 20px 0;
+			}
+		}
 	.cart-item {
 		margin-bottom: 0px;
 	}

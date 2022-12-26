@@ -194,11 +194,13 @@ html{
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 }
 .status-btn {
   height: 3rem;
   width: 14rem;
   font-size: 1rem;
   margin: 1rem;
+  text-transform: uppercase;
 }
 </style>

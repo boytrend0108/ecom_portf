@@ -193,7 +193,7 @@ export default {
     flex-direction: column;
     align-items: left;
     font-size: 2.2rem;
-    width: 60%;
+    width: 100%;
 
     @media(max-width: $media-tablet){
     margin-top: 5rem;
