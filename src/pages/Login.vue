@@ -165,6 +165,7 @@ button {
 }
 
 .form {
+  position: fixed;
   top: 218px;
   right: 235px;
   display: flex;
