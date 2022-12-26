@@ -65,6 +65,10 @@ export default {
     top: 71px;
     padding: 20px;
    @include box-shadow;
+@media(max-width: $media-phoneM){
+    width: 300px;
+}
+
 }
 
 .price{
