@@ -200,6 +200,9 @@ export default {
     align-items: center;
     width: 65%;
   }
+  @media(max-width: $media-phone){
+    width: 118%;
+  }
 }
 
 .input-wrapper{
@@ -213,10 +216,12 @@ export default {
 .form-input {
   margin: 1rem 0px;
   padding: 0 1rem;
-  height: 5rem;
+  height: 5.2rem;
   width: 100%; 
   outline: none;
   font-size: 2rem;
+  border: 1px solid $main-color;
+  border-radius: 4px;
 }
 
 .btn{

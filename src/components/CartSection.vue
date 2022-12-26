@@ -125,14 +125,25 @@ export default {
 	justify-content: space-between;
 	align-items: center;
 	margin-top: 2em;
+	flex-wrap: wrap;
 
 	@media(max-width: $media-tablet){
 		margin-top: 6em;
 	}
+
+	@media(max-width: $media-phone){
+		justify-content: center;
+		gap: 10px;
+	}
 	.btn {
 		max-width: 160px;
 		margin: 0 10px;
+		text-transform: uppercase;
+		@media(max-width: $media-phone){
+			max-width: 224px;
 	}
+	}
+
 }
 .text_message {
 		color: $pink-color;

@@ -81,7 +81,12 @@ html{
   @media(max-width: $media-phone) {
     max-width: $wrapper-phone;
     justify-content: center;
-
+  }
+  @media(max-width: $media-phoneM) {
+    max-width: $wrapper-phoneM;
+  }
+  @media(max-width: $media-phoneS) {
+    max-width: $wrapper-phoneS;  
   }
 }
 .p-toast{

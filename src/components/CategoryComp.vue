@@ -84,7 +84,7 @@ export default {
     }
 
     @media(max-width: $media-phone){
-        width: 94%;
+       display: none;
     }
 
      @media(max-width: 550px){

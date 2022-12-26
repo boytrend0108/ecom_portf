@@ -176,6 +176,10 @@ export default {
 </script >
 
 <style lang="scss" scoped>
+
+.wrapper{
+	justify-content: space-between;
+}
 .position {
 	position: relative;
 }

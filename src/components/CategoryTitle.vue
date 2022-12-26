@@ -35,7 +35,8 @@ export default {
     color: #FFFFFF;
 
     @media(max-width:660px){
-      font-size: 13px;
+      font-size: 2.5rem;
+      
     }
 }
 .cat__title {
@@ -47,7 +48,12 @@ export default {
     color: #F16D7F;
 
     @media(max-width:660px){
-      font-size: 16px;
+      font-size: 4rem;
+      margin-top: 2rem;
+    }
+    @media(max-width:$media-phoneS){
+      font-size: 3rem;
+      margin-top: 1rem;
     }
 }
 
