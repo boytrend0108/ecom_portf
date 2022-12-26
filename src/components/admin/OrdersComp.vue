@@ -118,12 +118,12 @@ html{
    }
    .client-info{
    display: flex;
-   align-items: center;
+   flex-direction: column;
+   align-items: flex-start;
    justify-content: space-between;
    background-color: gray;
    color:aliceblue;
-   height: 6rem;
-   padding: 0 2rem;
+   padding: 1rem 2rem;
    border-radius: 4px;
 }
 
