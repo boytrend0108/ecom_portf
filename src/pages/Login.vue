@@ -1,6 +1,5 @@
 <template>
   <div class="wrapper">
-
     <form 
     class="form"
     @submit="subminHandler"
@@ -135,6 +134,7 @@ p {
   display: flex ; 
   align-items: center;
   justify-content: center;
+  min-height: 100vh;
 }
 
 button {
@@ -165,9 +165,9 @@ button {
 }
 
 .form {
-  position: fixed;
-  top: 218px;
-  right: 235px;
+  // position: fixed;
+  // top: 218px;
+  // right: 235px;
   display: flex;
   flex-direction: column;
   align-items: center;

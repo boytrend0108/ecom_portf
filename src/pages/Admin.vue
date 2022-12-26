@@ -32,9 +32,7 @@ export default {
 <style lang="scss" scoped>
 
 .wrapper{
-  border: 1px solid #000;
   flex-direction: column;
-  height: 100vh;
 }
 
 </style>
