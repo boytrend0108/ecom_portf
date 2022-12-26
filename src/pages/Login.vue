@@ -149,7 +149,7 @@ button {
 .p-button-secondary {
   background-color: aliceblue;
   color: gray;
-  width: 30rem;
+  width: 27rem;
   margin: 10px 0;
   height: 4rem;
   font-size: 1.5rem;
