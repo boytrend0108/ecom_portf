@@ -43,9 +43,11 @@ export default {
       } else {
         vm.SWITCH_MOBILE()
       }
-    })
+    }),
+    localStorage.setItem('firebase', '');
   }
 }
+
 </script>
 
 <style lang="scss">

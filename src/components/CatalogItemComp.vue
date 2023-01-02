@@ -68,7 +68,7 @@ export default {
 <style lang="scss" scoped>
 // @import '@/assets/styles/mixin.scss';
 .item {
-  max-width: 328px;
+  max-width: 300px;
   max-height: 580px;
   background: #F8F8F8;
   border-radius: 15px;
