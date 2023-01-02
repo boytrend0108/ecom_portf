@@ -1,27 +1,21 @@
 <template>
-  <div class="about">
-    <h1>This is an CATALOG page</h1>
-  </div>
+  <header-mini class="header_catalog"></header-mini>
+  <my-title class="title">Catalog</my-title>
+  <catalog-comp></catalog-comp>
 </template>
 
-
 <script>
+import HeaderMini from "@/components/HeaderMini.vue";
+import CatalogComp from "@/components/CatalogComp,.vue";
 // ------------------------ДЛЯ ПОДДЕРЖАНИЯ АВТОРИЗАЦИИ--------------------------
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { onMounted } from '@vue/runtime-core';
 const auth = getAuth();
-// onAuthStateChanged(auth, (user) => {
-//   if (user) {
-//     const uid = user.uid;
-//     this.$store.commit('SET_UID',uid)
-//     console.log("user is sign in")
-//   } else {
-//     console.log("user is sign out")
-//   }
-// });
-// -----------------------------------------------------------------------------
+
 export default {
   name:'catalog',
+  components:{
+   HeaderMini, CatalogComp
+  },
 
   mounted(){
 // ------------------------ДЛЯ ПОДДЕРЖАНИЯ АВТОРИЗАЦИИ--------------------------
@@ -40,5 +34,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .header_catalog{
+    position: relative;
+  }
 
+  .title{
+    position: absolute;
+    top: 59px;
+    left: 100px;
+  }
 </style>
