@@ -5,9 +5,14 @@
         <h3 class="catalog__sub">Shop for items based on what we featured in this week</h3>
     </div>
     <div class="item-box">
-        <catalog-item v-for="item in FILTERED_CART" :key="item.id" :item="item" />
+        <!--v-show="item.id <= 6 показывать только первые 6 карточек-->
+        <catalog-item v-for="item in FILTERED_CART" :key="item.id" :item="item" v-show="item.id <= itemQuantity"/>
     </div>
-    <my-button>Browse All Product</my-button>
+    <my-button 
+      @click="this.$router.push('/catalog')"
+      v-show="this.$route.path === '/'"
+      >Browse All Product
+    </my-button>
 </div>
    
 
@@ -29,7 +34,15 @@ export default {
         ...mapGetters([
             'CATALOGITEMS',
             'FILTERED_CART'
-        ])
+        ]),
+        itemQuantity(){
+            if (this.$route.path === '/'){
+                return 6
+            } else{
+                return 100
+            }
+        }
+
     },
     methods:{
         ...mapActions([
@@ -38,6 +51,7 @@ export default {
     },
     mounted(){
         this.GET_CATALOG();
+        console.log(this.$route.path)
     }
 }
 </script>
