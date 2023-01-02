@@ -1,6 +1,7 @@
 <template>
-  <header-mini class="header_catalog"></header-mini>
+  <header-mini class="header_catalog"/>
   <my-title class="title">Catalog</my-title>
+  <my-path class="header_path"/>
   <catalog-comp></catalog-comp>
 </template>
 
@@ -37,10 +38,15 @@ export default {
   .header_catalog{
     position: relative;
   }
-
   .title{
     position: absolute;
-    top: 59px;
-    left: 100px;
+    top: 6rem;
+    left: 10rem;
+  }
+
+  .header_path{
+    position: absolute;
+    top: 6.6rem;
+    right: 10rem;
   }
 </style>

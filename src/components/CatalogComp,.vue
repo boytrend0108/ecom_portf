@@ -35,14 +35,13 @@ export default {
             'CATALOGITEMS',
             'FILTERED_CART'
         ]),
-        itemQuantity(){
-            if (this.$route.path === '/'){
+        itemQuantity() {
+            if (this.$route.path === '/') {
                 return 6
-            } else{
+            } else {
                 return 100
             }
         }
-
     },
     methods:{
         ...mapActions([
