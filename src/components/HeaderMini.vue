@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="wrapper">
-      <my-title>User account </my-title>
+      <!-- <my-title>User account </my-title> -->
     </div>
   </div>
 </template>

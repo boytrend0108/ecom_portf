@@ -1,8 +1,7 @@
 <template>
   <main>
-    <header-mini class="cart-header">
-    
-    </header-mini>
+    <header-mini class="cart-header"></header-mini>
+     <my-title class="title">User account </my-title>
     <cart-section />
   </main>
 </template>
@@ -56,5 +55,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+  .title{
+    position: absolute;
+    top: 59px;
+    left: 100px;
+  }
+
 
 </style>
