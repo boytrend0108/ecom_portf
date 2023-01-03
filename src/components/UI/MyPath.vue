@@ -1,13 +1,23 @@
 <template>
   <nav class="path">
     <p class="path_item" @click="this.$router.push('/')">Home</p>
-    <p class="path_item active">Catalog</p>
+    <p class="path_item active">{{pageName}}</p>
   </nav>
 </template>
 
 <script>
 export default {
-   name:'my-path'
+   name:'my-path',
+
+   computed:{ 
+    pageName(){
+      switch(this.$route.path){
+          case "/cart": return "User Cart"
+          case "/catalog": return "Catalog"
+          default: return ''
+      }
+    }
+   }
 }
 </script>
 
@@ -17,8 +27,8 @@ export default {
 }
 .path_item {
   font-weight: 300;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: 2rem;
+  line-height: 3rem;
   color: #636363;
   text-transform: uppercase;
   cursor: pointer;
@@ -31,8 +41,8 @@ export default {
 }
 .active {
   font-weight: 700;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: 2rem;
+  line-height: 3rem;
   color: $pink-color;
   text-transform: uppercase;
   cursor: default;
