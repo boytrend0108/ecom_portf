@@ -14,7 +14,7 @@
 				</h3>
 				<div class="btn-box">
 					<my-button class="btn clear-btn2" @click="clearCart">Clear Cart</my-button>
-					<my-button class="btn" @click="goToHomePage">Continue Shopping</my-button>
+					<my-button class="btn" @click="goToCatalog">Continue Shopping</my-button>
 				</div>
 			</div>
 			<div class="form-box">
@@ -65,9 +65,9 @@ export default {
 			document.querySelector('.icon-cart-wr').setAttribute("disabled", "disabled")
 		},
 
-		goToHomePage(){
-			this.$router.push(`/`);
-			this.GET_PAGE_PATH('/');
+		goToCatalog(){
+			this.$router.push(`/catalog`);
+			this.GET_PAGE_PATH('/catalog');
 		},
 	},
 

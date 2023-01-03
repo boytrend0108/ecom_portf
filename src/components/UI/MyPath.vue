@@ -1,13 +1,23 @@
 <template>
   <nav class="path">
     <p class="path_item" @click="this.$router.push('/')">Home</p>
-    <p class="path_item active">Catalog</p>
+    <p class="path_item active">{{pageName}}</p>
   </nav>
 </template>
 
 <script>
 export default {
-   name:'my-path'
+   name:'my-path',
+
+   computed:{ 
+    pageName(){
+      switch(this.$route.path){
+          case "/cart": return "User Cart"
+          case "/catalog": return "Catalog"
+          default: return ''
+      }
+    }
+   }
 }
 </script>
 
