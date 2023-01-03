@@ -27,8 +27,8 @@ export default {
 }
 .path_item {
   font-weight: 300;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: 2rem;
+  line-height: 3rem;
   color: #636363;
   text-transform: uppercase;
   cursor: pointer;
@@ -41,8 +41,8 @@ export default {
 }
 .active {
   font-weight: 700;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: 2rem;
+  line-height: 3rem;
   color: $pink-color;
   text-transform: uppercase;
   cursor: default;

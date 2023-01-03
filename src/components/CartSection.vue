@@ -153,6 +153,8 @@ export default {
 .text_message {
 		color: $pink-color;
 		font-size: 2em;
+		position: relative;
+    bottom: 13rem;
 	}
 
 .disabled {
