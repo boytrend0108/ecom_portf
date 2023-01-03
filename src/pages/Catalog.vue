@@ -1,6 +1,7 @@
 <template>
-  <header-mini class="header_catalog"/>
-  <my-title class="title">Catalog</my-title>
+  <header-mini class="header_catalog">
+    <my-title class="title">Catalog</my-title>
+  </header-mini>
   <my-path class="header_path"/>
   <catalog-comp></catalog-comp>
 </template>
@@ -35,14 +36,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .header_catalog{
-    position: relative;
-  }
-  .title{
-    position: absolute;
-    top: 6rem;
-    left: 10rem;
-  }
 
   .header_path{
     position: absolute;

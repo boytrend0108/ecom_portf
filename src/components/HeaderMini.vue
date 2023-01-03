@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="wrapper">
-      <!-- <my-title>User account </my-title> -->
+      <my-title><slot></slot> </my-title>
     </div>
   </div>
 </template>
@@ -21,6 +21,7 @@ export default {
 }
 
 .wrapper{
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
