@@ -29,7 +29,6 @@ export default {
         case 2 : 
           state.idStart = (this.getters.CATALOGITEMS.length / state.paginationPage) + 1;
           state.idEnd =  state.idStart + 5 
-          console.log(state.idStart, state.idEnd)
           break  
         default:
           state.idStart = 1;

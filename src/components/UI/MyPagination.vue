@@ -26,7 +26,6 @@ export default {
   methods: {
 
     onPage(event) {
-      console.log(event)
       let paginationPage = event.page + 1
       this.$store.commit('SET_PAGINATION_PAGE', paginationPage)
     }
@@ -35,6 +34,10 @@ export default {
 </script>
 
 <style lang="scss" >
+
+.p-paginator {
+    margin-bottom: 8rem;
+}
 .pi-angle-double-left,
 .pi-angle-double-right{
    font-size: 3rem !important;

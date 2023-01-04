@@ -43,16 +43,6 @@ export default {
             'ID_START',
             'ID_END'
         ]),
-        itemQuantity() {
-            if (this.$route.path === '/catalog') {
-               switch(this.PAGINATION_PAGE){
-                case 2 : 
-                  this.idStart = this.CATALOGITEMS / this.PAGINATION_PAGE + 1;
-                  this.idEnd =  this.idStart + 5 
-                  break       
-               }    
-            }
-        }
     },
     methods:{
         ...mapActions([
@@ -71,7 +61,7 @@ export default {
 <style lang="scss" scoped>
 .wr-cat {
     margin-top: 96px;
-    margin-bottom: 96px;
+    margin-bottom: 40px;
     display: flex;
     flex-direction: column;
 
