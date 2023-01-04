@@ -6,7 +6,12 @@
     </div>
     <div class="item-box">
         <!--v-show="item.id <= 6 показывать только первые 6 карточек-->
-        <catalog-item v-for="item in FILTERED_CART" :key="item.id" :item="item" v-show="item.id <= itemQuantity"/>
+        <catalog-item 
+          v-for="item in FILTERED_CART" 
+          :key="item.id" 
+          :item="item" 
+          v-show=" item.id >= ID_START && item.id <= ID_END "
+          />
     </div>
     <my-button 
       @click="this.$router.push('/catalog')"
@@ -27,30 +32,38 @@ export default {
     },
     data() {
         return {
-
+        
         }
     },
     computed: {
         ...mapGetters([
             'CATALOGITEMS',
-            'FILTERED_CART'
+            'FILTERED_CART',
+            'PAGINATION_PAGE',
+            'ID_START',
+            'ID_END'
         ]),
         itemQuantity() {
-            if (this.$route.path === '/') {
-                return 6
-            } else {
-                return 100
+            if (this.$route.path === '/catalog') {
+               switch(this.PAGINATION_PAGE){
+                case 2 : 
+                  this.idStart = this.CATALOGITEMS / this.PAGINATION_PAGE + 1;
+                  this.idEnd =  this.idStart + 5 
+                  break       
+               }    
             }
         }
     },
     methods:{
         ...mapActions([
             'GET_CATALOG'
-        ])
+        ]),
+        
     },
     mounted(){
         this.GET_CATALOG();
-        console.log(this.$route.path)
+        console.log(this.item)
+      
     }
 }
 </script>

@@ -1,8 +1,9 @@
 <template>
    <Paginator 
      class="paginationItem"
-    :rows="10" 
-    :totalRecords="FILTERED_CART.length"
+     @page="onPage($event)"
+    :rows="6" 
+    :totalRecords="CATALOGITEMS.length"
     :template="{
         '640px': 'PrevPageLink CurrentPageReport NextPageLink',
         '960px': 'FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
@@ -18,9 +19,18 @@ export default {
    name:'my-pagination',
    computed:{
     ...mapGetters([
-            'FILTERED_CART'
+            'CATALOGITEMS'
         ]),
   },
+
+  methods: {
+
+    onPage(event) {
+      console.log(event)
+      let paginationPage = event.page + 1
+      this.$store.commit('SET_PAGINATION_PAGE', paginationPage)
+    }
+  }
 }
 </script>
 
