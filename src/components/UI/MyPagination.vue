@@ -52,4 +52,27 @@ export default {
   color: $pink-color !important;
 }
 
+.p-dropdown-trigger-icon{
+  font-size: 3rem !important;
+}
+
+.p-dropdown-item{
+  font-size: 3rem !important;
+}
+
+.p-dropdown .p-dropdown-trigger {
+    background: transparent;
+    color: #6c757d;
+    width: 6rem;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.p-inputtext {
+    font-size: 3rem !important;
+}
+.p-paginator .p-dropdown {
+    height: 6rem !important;
+    width: 7rem !important;
+}
 </style>  
