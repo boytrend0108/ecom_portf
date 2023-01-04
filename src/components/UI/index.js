@@ -6,6 +6,7 @@ import MyMenu from "@/components/UI/MyMenu"
 import MyTitle from "@/components/UI/MyTitle"
 import MyForm from '@/components/UI/MyForm'
 import MyPath from "@/components/UI/MyPath"
+import MyPagination from "@/components/UI/MyPagination"
 
 export default [
     MyButton,
@@ -15,5 +16,6 @@ export default [
     MyMenu,
     MyTitle,
     MyForm,
-    MyPath
+    MyPath,
+    MyPagination
 ]

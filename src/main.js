@@ -14,6 +14,7 @@ import ToastService from 'primevue/toastservice';
 import Checkbox from 'primevue/checkbox';
 import Dialog from 'primevue/dialog';
 import SplitButton from 'primevue/splitbutton';
+import Paginator from 'primevue/paginator';
 
 import 'primevue/resources/themes/lara-light-purple/theme.css';
 import 'primevue/resources/primevue.min.css';
@@ -52,6 +53,7 @@ app
   .component('Checkbox', Checkbox)
   .component('Dialog',Dialog)
   .component('SplitButton', SplitButton)
+  .component('Paginator', Paginator)
   .mount('#app')
 // -----------------------------------------------------------------------------
 
