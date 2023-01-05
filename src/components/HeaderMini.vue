@@ -1,14 +1,16 @@
 <template>
-  <div class="header">
+ <div class="header">
     <div class="wrapper">
       <my-title><slot></slot></my-title>
       <my-path class="header_path"><slot></slot></my-path>
     </div>
   </div>
+   
 </template>
 
 <script>
 import MyPath from './UI/MyPath.vue'
+
 export default {
   components: { MyPath },
 

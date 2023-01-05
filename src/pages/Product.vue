@@ -1,13 +1,18 @@
 <template>
-  <div class="about">
-    <h1>This is an Product page</h1>
-  </div>
+  <header-mini>
+    <my-title class="title">Product</my-title>
+  </header-mini>
+  <slider-comp></slider-comp>
+
 </template>
 
 
 <script>
 // ------------------------ДЛЯ ПОДДЕРЖАНИЯ АВТОРИЗАЦИИ--------------------------
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import HeaderMini from "@/components/HeaderMini"
+import SliderComp from '../components/SliderComp.vue';
+
 const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -20,6 +25,10 @@ onAuthStateChanged(auth, (user) => {
 });
 // -----------------------------------------------------------------------------
 export default {
+  components:{
+    HeaderMini,
+    SliderComp
+  },
   name:"product",
 }
 </script>

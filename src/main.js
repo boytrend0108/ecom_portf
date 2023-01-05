@@ -15,6 +15,7 @@ import Checkbox from 'primevue/checkbox';
 import Dialog from 'primevue/dialog';
 import SplitButton from 'primevue/splitbutton';
 import Paginator from 'primevue/paginator';
+import Galleria from 'primevue/galleria';
 
 import 'primevue/resources/themes/lara-light-purple/theme.css';
 import 'primevue/resources/primevue.min.css';
@@ -54,6 +55,7 @@ app
   .component('Dialog',Dialog)
   .component('SplitButton', SplitButton)
   .component('Paginator', Paginator)
+  .component('Galleria', Galleria)
   .mount('#app')
 // -----------------------------------------------------------------------------
 

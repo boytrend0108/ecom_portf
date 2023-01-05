@@ -1,7 +1,7 @@
 <template>
   <nav class="path">
     <p class="path_item" @click="this.$router.push('/')">Home</p>
-    <p class="path_item active">{{pageName}}</p>
+    <p class="path_item active"> {{pageName}} </p>
   </nav>
 </template>
 
@@ -14,6 +14,7 @@ export default {
       switch(this.$route.path){
           case "/cart": return "User Cart"
           case "/catalog": return "Catalog"
+          case "/product": return "Product"
           default: return ''
       }
     }
