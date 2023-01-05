@@ -48,14 +48,14 @@
 					  @click="goToCartPage"
 						icon="fa-regular fa-user" />
 					<button
-					  disabled 					
+					  disabled 	
+						@click="SWITCH_SHOW_CART" 				
 					  :class="isDisabled"
 					  class="icon-cart-wr"
 						>
 						<font-awesome-icon
 						  v-show="isMobile" 
-						  @click="SWITCH_SHOW_CART" 
-						  class="font-aw"
+						  class="font-aw fa-cart-shopping"
 							icon="fa-solid fa-cart-shopping "
 							:class="isDisabled" />
 						<span 
@@ -97,12 +97,20 @@ export default {
 					}
 				},
 				{
+					label: 'Catalog',
+					icon: 'pi pi-external-link',
+					command: () => {
+						this.$router.push(`/catalog`)
+					}
+				},
+				{
 					label: 'Exit',
 					icon: 'pi pi-external-link',
 					command: () => {
 					 	this.logout()
 					}
 				},
+				
 			]
 		}
 	},
@@ -116,7 +124,8 @@ export default {
 			"TOTAL_CART_ITEMS",
 			"SEARCH_INPUT",
 			"INFO",
-			"IS_ADMIN"
+			"IS_ADMIN",
+      "PAGE_PATH"
 		]),
 
 		name() {
@@ -126,7 +135,7 @@ export default {
 			} else {
 				return this.$store.getters.INFO.username
 			}
-		}	
+		}
 		},
 
 	methods: {
@@ -143,7 +152,6 @@ export default {
 			this.$router.push(`/`);
 			this.$store.commit('SET_PAGE_PATH','/')
 			this.isDisable = ''
-		
 		},
 
 		goToCartPage(){

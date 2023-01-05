@@ -1,12 +1,15 @@
 <template>
-  <header-mini class="header_catalog"></header-mini>
-  <my-title class="title">Catalog</my-title>
+  <header-mini class="header_catalog">
+    <my-title class="title">Catalog</my-title>
+  </header-mini>
   <catalog-comp></catalog-comp>
+  <my-pagination/>
 </template>
 
 <script>
 import HeaderMini from "@/components/HeaderMini.vue";
 import CatalogComp from "@/components/CatalogComp,.vue";
+
 // ------------------------ДЛЯ ПОДДЕРЖАНИЯ АВТОРИЗАЦИИ--------------------------
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 const auth = getAuth();
@@ -34,13 +37,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .header_catalog{
-    position: relative;
-  }
 
-  .title{
-    position: absolute;
-    top: 59px;
-    left: 100px;
-  }
+
+ 
+
+
+ 
 </style>

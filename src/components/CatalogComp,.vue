@@ -5,9 +5,19 @@
         <h3 class="catalog__sub">Shop for items based on what we featured in this week</h3>
     </div>
     <div class="item-box">
-        <catalog-item v-for="item in FILTERED_CART" :key="item.id" :item="item" />
+        <!--v-show="item.id <= 6 показывать только первые 6 карточек-->
+        <catalog-item 
+          v-for="item in FILTERED_CART" 
+          :key="item.id" 
+          :item="item" 
+          v-show=" item.id >= ID_START && item.id <= ID_END "
+          />
     </div>
-    <my-button>Browse All Product</my-button>
+    <my-button 
+      @click="this.$router.push('/catalog')"
+      v-show="this.$route.path === '/'"
+      >Browse All Product
+    </my-button>
 </div>
    
 
@@ -22,22 +32,26 @@ export default {
     },
     data() {
         return {
-
+        
         }
     },
     computed: {
         ...mapGetters([
             'CATALOGITEMS',
-            'FILTERED_CART'
-        ])
+            'FILTERED_CART',
+            'PAGINATION_PAGE',
+            'ID_START',
+            'ID_END'
+        ]),
     },
     methods:{
         ...mapActions([
             'GET_CATALOG'
-        ])
+        ]),
+        
     },
     mounted(){
-        this.GET_CATALOG();
+        this.GET_CATALOG();    
     }
 }
 </script>
@@ -45,7 +59,7 @@ export default {
 <style lang="scss" scoped>
 .wr-cat {
     margin-top: 96px;
-    margin-bottom: 96px;
+    margin-bottom: 40px;
     display: flex;
     flex-direction: column;
 

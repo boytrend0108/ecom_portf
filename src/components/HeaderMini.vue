@@ -1,13 +1,16 @@
 <template>
   <div class="header">
     <div class="wrapper">
-      <!-- <my-title>User account </my-title> -->
+      <my-title><slot></slot></my-title>
+      <my-path class="header_path"><slot></slot></my-path>
     </div>
   </div>
 </template>
 
 <script>
+import MyPath from './UI/MyPath.vue'
 export default {
+  components: { MyPath },
 
 }
 </script>
@@ -24,6 +27,13 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media(max-width: $media-phoneS){
+      flex-direction: column;
+      justify-content: center;
+    }
 }
+
+
 
 </style>

@@ -4,19 +4,20 @@ import info from "@/store/modules/info.js"
 import admin from '@/store/modules/admin'
 import fetchData from '@/store/modules/fetchData.js';
 import menu from '@/store/modules/menu.js';
-import cart from "@/store/modules/cart.js"
+import cart from "@/store/modules/cart.js";
+import pagination from '@/store/modules/pagination.js';
 import { createStore } from 'vuex'
 
 export default createStore({
   modules: {
-    auth, info, fetchData, menu, cart, admin
+    auth, info, fetchData, menu, cart, admin, pagination
   },
   
   state: {
     isMobile: true, // to show icons in navbar
     pagePath:'/',
     localStorage:[],
-    error: null //errors for login and registration
+    error: null, //errors for login and registration
   },
   getters: {// this is a commands for getting our json arrays
     
@@ -34,7 +35,8 @@ export default createStore({
     },
     ERROR(state){
      return state.error
-    } 
+    },
+    
   },
 
   actions: {// actions are asinc(methods in Component)
@@ -124,6 +126,7 @@ export default createStore({
     SET_NAVCART_BTN_ABLED(state){
         if(state.pagePath !== '/cart'){
           document.querySelector('.icon-cart-wr').removeAttribute("disabled");
+          document.querySelector('.fa-cart-shopping').removeAttribute("disabled");
           document.querySelector('.fa-cart-shopping').classList.remove('disabled')
           document.querySelector('.icon-cart-wr').classList.remove('disabled')
           document.querySelector('.item-num').classList.remove('disabled')
@@ -131,6 +134,7 @@ export default createStore({
     },
     SET_NAVCART_BTN_DISABLED(){
         document.querySelector('.icon-cart-wr').setAttribute("disabled","disabled");
+        document.querySelector('.fa-cart-shopping').setAttribute("disabled","disabled");
         document.querySelector('.fa-cart-shopping').classList.add('disabled')
         document.querySelector('.item-num').classList.add('disabled')          
     },
@@ -139,6 +143,7 @@ export default createStore({
     },
     CLEAR_ERROR(state){
       state.error = null
-    }
+    },
+  
   },
 })

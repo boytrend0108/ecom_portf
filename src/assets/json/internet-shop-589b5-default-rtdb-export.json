@@ -1,0 +1,271 @@
+{
+  "advantages": [
+    {
+      "adv__descr": "'Worldwide delivery on all. Authorit tively morph next-generation innov tion with extensive models.'",
+      "adv__img": "adv_car.png",
+      "adv__title": "'Free Delivery'",
+      "id": 0
+    },
+    {
+      "adv__descr": "'Worldwide delivery on all. Authorit tively morph next-generation innov tion with extensive models.'",
+      "adv__img": "adv_perc.png",
+      "adv__title": "'Sales & discounts'",
+      "id": 0
+    },
+    {
+      "adv__descr": "'Worldwide delivery on all. Authorit tively morph next-generation innov tion with extensive models.'",
+      "adv__img": "adv_crown.png",
+      "adv__title": "'Quality assurance'",
+      "id": 0
+    }
+  ],
+  "catalogItems": [
+    {
+      "id": 1,
+      "itemImg": "catalog-img-1.png",
+      "itemPrice": 50,
+      "itemSubtitle": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
+      "itemTitle": "JACKET FOR MAN BLUE"
+    },
+    {
+      "id": 2,
+      "itemImg": "catalog-img-2.png",
+      "itemPrice": 150,
+      "itemSubtitle": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
+      "itemTitle": "WOMEN SUIT BLACK"
+    },
+    {
+      "id": 3,
+      "itemImg": "catalog-img-3.png",
+      "itemPrice": 250,
+      "itemSubtitle": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
+      "itemTitle": "MEN SWEATER BLUE"
+    },
+    {
+      "id": 4,
+      "itemImg": "catalog-img-4.png",
+      "itemPrice": 350,
+      "itemSubtitle": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
+      "itemTitle": "PANTS YELLOW FOR MEN"
+    },
+    {
+      "id": 5,
+      "itemImg": "catalog-img-5.png",
+      "itemPrice": 450,
+      "itemSubtitle": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
+      "itemTitle": "BLAZER FOR WOMEN BLUE COLOR"
+    },
+    {
+      "id": 6,
+      "itemImg": "catalog-img-6.png",
+      "itemPrice": 550,
+      "itemSubtitle": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
+      "itemTitle": "BLAZER FOR WOMEN GRAY COLOR"
+    },
+    {
+      "id": 7,
+      "itemImg": "catalog-img-7.png",
+      "itemTitle": "BLAZER FOR WOMEN GRAY COLOR",
+      "itemSubtitle": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
+      "itemPrice": 550
+    },
+    {
+      "id": 8,
+      "itemImg": "catalog-img-8.png",
+      "itemTitle": "BLAZER FOR WOMEN GRAY COLOR",
+      "itemSubtitle": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
+      "itemPrice": 550
+    },
+    {
+      "id": 9,
+      "itemImg": "catalog-img-9.png",
+      "itemTitle": "BLAZER FOR WOMEN GRAY COLOR",
+      "itemSubtitle": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
+      "itemPrice": 550
+    },
+    {
+      "id": 10,
+      "itemImg": "catalog-img-10.png",
+      "itemTitle": "BLAZER FOR WOMEN GRAY COLOR",
+      "itemSubtitle": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
+      "itemPrice": 550
+    },
+    {
+      "id": 11,
+      "itemImg": "catalog-img-11.png",
+      "itemTitle": "BLAZER FOR WOMEN GRAY COLOR",
+      "itemSubtitle": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
+      "itemPrice": 550
+    },
+    {
+      "id": 12,
+      "itemImg": "catalog-img-12.png",
+      "itemTitle": "BLAZER FOR WOMEN GRAY COLOR",
+      "itemSubtitle": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
+      "itemPrice": 550
+    }
+  ],
+  "category": [
+    {
+      "category_desc": "30% off",
+      "category_img": "for_men.png",
+      "category_title": "For men",
+      "id": 1
+    },
+    {
+      "category_desc": "Hot deal",
+      "category_img": "for_women.png",
+      "category_title": "For women",
+      "id": 2
+    },
+    {
+      "category_desc": "New arrivals",
+      "category_img": "for_kids.png",
+      "category_title": "For kids",
+      "id": 3
+    }
+  ],
+  "menu": [
+    {
+      "category": "man",
+      "id": 1,
+      "items": [
+        "Accessories",
+        "Bags",
+        "Denim",
+        "T-Shots"
+      ]
+    },
+    {
+      "category": "woman",
+      "id": 2,
+      "items": [
+        "Accessories",
+        "Jackets & Coats",
+        "Polos",
+        "T-Shots",
+        "Shots"
+      ]
+    },
+    {
+      "category": "kids",
+      "id": 3,
+      "items": [
+        "Accessories",
+        "Jackets & Coats",
+        "Polos",
+        "T-Shots",
+        "Shots",
+        "Bags"
+      ]
+    }
+  ],
+  "orderNum": 59,
+  "recievedOrders": {
+    "1671895832621": {
+      "id": 1671895832621,
+      "userEmail": "mymail@mail.ru",
+      "userName": "Vetal",
+      "userOrder": [
+        {
+          "id": 1,
+          "itemImg": "catalog-img-1.png",
+          "itemPrice": 50,
+          "itemSubtitle": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
+          "itemTitle": "JACKET FOR MAN BLUE",
+          "quantity": 1,
+          "totalPrice": 50
+        },
+        {
+          "id": 2,
+          "itemImg": "catalog-img-2.png",
+          "itemPrice": 150,
+          "itemSubtitle": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
+          "itemTitle": "WOMEN SUIT BLACK",
+          "quantity": 1,
+          "totalPrice": 150
+        }
+      ],
+      "userPhone": "+7(000)000-0000"
+    },
+    "1672313488634": {
+      "id": 1672313488634,
+      "userEmail": "mymail@mail.ru",
+      "userName": "Vetal",
+      "userOrder": [
+        {
+          "id": 2,
+          "itemImg": "catalog-img-2.png",
+          "itemPrice": 150,
+          "itemSubtitle": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
+          "itemTitle": "WOMEN SUIT BLACK",
+          "quantity": 1,
+          "totalPrice": 150
+        },
+        {
+          "id": 1,
+          "itemImg": "catalog-img-1.png",
+          "itemPrice": 50,
+          "itemSubtitle": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
+          "itemTitle": "JACKET FOR MAN BLUE",
+          "quantity": 1,
+          "totalPrice": 50
+        }
+      ],
+      "userPhone": "+7(000)000-0000"
+    }
+  },
+  "users": {
+    "8IfF1JXx4yWee26U9FNZcFl3LPo1": {
+      "info": {
+        "email": "mymail@mail.ru",
+        "username": "Ann"
+      },
+      "userCart": [
+        null,
+        {
+          "id": 1,
+          "itemImg": "catalog-img-1.png",
+          "itemPrice": 50,
+          "itemSubtitle": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
+          "itemTitle": "JACKET FOR MAN BLUE",
+          "quantity": 1,
+          "totalPrice": 50
+        }
+      ]
+    },
+    "MJB3YjSC3OgQs7qr7eIUzbOqQ2A2": {
+      "info": {
+        "email": "eur-usd@bk.ru",
+        "username": "Vetal"
+      },
+      "userCart": [
+        null,
+        {
+          "id": 1,
+          "itemImg": "catalog-img-1.png",
+          "itemPrice": 50,
+          "itemSubtitle": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
+          "itemTitle": "JACKET FOR MAN BLUE",
+          "quantity": 1,
+          "totalPrice": 50
+        },
+        {
+          "id": 2,
+          "itemImg": "catalog-img-2.png",
+          "itemPrice": 150,
+          "itemSubtitle": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
+          "itemTitle": "WOMEN SUIT BLACK",
+          "quantity": 1,
+          "totalPrice": 150
+        }
+      ]
+    },
+    "NkZarklbJnPi7952bNfGaDusc6S2": {
+      "info": {
+        "email": "boytrend@gmail.com",
+        "username": "Admin"
+      }
+    }
+  }
+}

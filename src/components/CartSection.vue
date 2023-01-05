@@ -14,7 +14,7 @@
 				</h3>
 				<div class="btn-box">
 					<my-button class="btn clear-btn2" @click="clearCart">Clear Cart</my-button>
-					<my-button class="btn" @click="goToHomePage">Continue Shopping</my-button>
+					<my-button class="btn" @click="goToCatalog">Continue Shopping</my-button>
 				</div>
 			</div>
 			<div class="form-box">
@@ -53,7 +53,7 @@ export default {
 	methods: {
 		...mapActions([
 			'CLEAR_CART', 'GET_USER_CART', 'GET_BTN_DISABLED', 'A_SET_BTN_ABLED',
-			'GET_PAGE_PATH'
+			'GET_PAGE_PATH',"GET_NAVCART_BTN_ABLED"
 		]),
 		
 		clearCart() {
@@ -65,9 +65,10 @@ export default {
 			document.querySelector('.icon-cart-wr').setAttribute("disabled", "disabled")
 		},
 
-		goToHomePage(){
-			this.$router.push(`/`);
-			this.GET_PAGE_PATH('/');
+		goToCatalog(){
+			this.$router.push(`/catalog`);
+			this.GET_PAGE_PATH('/catalog');
+			this.GET_NAVCART_BTN_ABLED()
 		},
 	},
 
@@ -153,6 +154,8 @@ export default {
 .text_message {
 		color: $pink-color;
 		font-size: 2em;
+		position: relative;
+    bottom: 13rem;
 	}
 
 .disabled {
