@@ -53,7 +53,7 @@ export default {
 	methods: {
 		...mapActions([
 			'CLEAR_CART', 'GET_USER_CART', 'GET_BTN_DISABLED', 'A_SET_BTN_ABLED',
-			'GET_PAGE_PATH'
+			'GET_PAGE_PATH',"GET_NAVCART_BTN_ABLED"
 		]),
 		
 		clearCart() {
@@ -68,6 +68,7 @@ export default {
 		goToCatalog(){
 			this.$router.push(`/catalog`);
 			this.GET_PAGE_PATH('/catalog');
+			this.GET_NAVCART_BTN_ABLED()
 		},
 	},
 

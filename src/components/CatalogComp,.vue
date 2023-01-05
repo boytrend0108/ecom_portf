@@ -51,9 +51,7 @@ export default {
         
     },
     mounted(){
-        this.GET_CATALOG();
-        console.log(this.item)
-      
+        this.GET_CATALOG();    
     }
 }
 </script>
