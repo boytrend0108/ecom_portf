@@ -85,7 +85,7 @@ export default {
     font-size: 3rem !important;
 }
 .p-paginator .p-dropdown {
-    height: 6rem !important;
+    height: 5rem !important;
     width: 7rem !important;
 }
 </style>  

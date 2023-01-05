@@ -27,6 +27,13 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media(max-width: $media-phoneS){
+      flex-direction: column;
+      justify-content: center;
+    }
 }
+
+
 
 </style>

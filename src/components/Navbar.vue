@@ -97,12 +97,20 @@ export default {
 					}
 				},
 				{
+					label: 'Catalog',
+					icon: 'pi pi-external-link',
+					command: () => {
+						this.$router.push(`/catalog`)
+					}
+				},
+				{
 					label: 'Exit',
 					icon: 'pi pi-external-link',
 					command: () => {
 					 	this.logout()
 					}
 				},
+				
 			]
 		}
 	},
