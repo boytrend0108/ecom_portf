@@ -35,7 +35,7 @@
           @click="subminHandler" 
       />
       <div class="reg-bnt_wr">
-        <p :style="{'fontSize':'1.5rem'}">No Account ?</p>
+        <p :style="{'fontSize':'1.5rem'}"> No Account ?</p>
         <button @click="goToRegistrationPage" class="bnt-reg">
           <span class="reg-span">REGISTRATION</span>
         </button>

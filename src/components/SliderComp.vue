@@ -58,7 +58,6 @@ export default {
     const dots = document.getElementsByClassName('dot')
     
     if(slideIndex > slides.length){
-      console.log('555')
       this.slideIndex = 1;
     } else if (slideIndex < 1){
       this.slideIndex = slides.length  

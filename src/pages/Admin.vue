@@ -4,7 +4,8 @@
   </div>
 </template>
 
-<script>
+<script>  
+
 import RecievedOrders from '@/components/admin/RecievedOrders.vue';
 import { mapGetters } from 'vuex';
 export default {

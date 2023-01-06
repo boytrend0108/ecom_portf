@@ -63,7 +63,7 @@ export default {
             return el = "_"
           }
           return el
-        }).join('')
+        }).join('') // вставляю вместо пробелов "_"
       this.$router.push(`/product/${title}`)
       this.$store.commit('SET_PRODUCT', item)
     }
