@@ -24,11 +24,12 @@ const routes = [
     beforeEnter: auhtGuardCart 
   },
   {
-    path: '/product',
+    path: '/product/:id',
     name: 'product',
     meta: {layout:'cart-layout'},
     component: () => import ('@/pages/Product.vue')
   },
+ 
   {
     path: '/login',
     name: 'login',

@@ -40,7 +40,8 @@ export default {
  name:'slider-comp',
  data(){
   return{
-      slideIndex: 1
+      slideIndex: 1,
+      productItem:{}
   }
  },
  methods:{

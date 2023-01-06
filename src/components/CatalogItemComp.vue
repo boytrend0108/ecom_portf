@@ -18,6 +18,7 @@
     <h2 class="item-title">{{ item.itemTitle }}</h2>
     <p class="item-sub">{{ item.itemSubtitle }}</p>
     <p class="item-price"> $ {{ item.itemPrice }}</p>
+     <button @click="goToProductPage(item)">show more</button>
   </div>
 
 </template>
@@ -54,7 +55,16 @@ export default {
           this.isVisible = 'none'
          }, 3000)
       }
-     
+    },
+    goToProductPage(item){
+      let title = item.itemTitle.split('')
+         .map(el => {
+          if(el === " "){
+             return el = "_"
+            } 
+            return el
+        }).join('')
+      this.$router.push(`/product/${title}`)
     }
   },
 
