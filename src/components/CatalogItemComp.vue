@@ -56,16 +56,18 @@ export default {
          }, 3000)
       }
     },
-    goToProductPage(item){
+    goToProductPage(item) {
       let title = item.itemTitle.split('')
-         .map(el => {
-          if(el === " "){
-             return el = "_"
-            } 
-            return el
+        .map(el => {
+          if (el === " ") {
+            return el = "_"
+          }
+          return el
         }).join('')
       this.$router.push(`/product/${title}`)
+      this.$store.commit('SET_PRODUCT', item)
     }
+   
   },
 
   mounted() {

@@ -6,11 +6,12 @@ import fetchData from '@/store/modules/fetchData.js';
 import menu from '@/store/modules/menu.js';
 import cart from "@/store/modules/cart.js";
 import pagination from '@/store/modules/pagination.js';
+import product from '@/store/modules/product.js';
 import { createStore } from 'vuex'
 
 export default createStore({
   modules: {
-    auth, info, fetchData, menu, cart, admin, pagination
+    auth, info, fetchData, menu, cart, admin, pagination, product
   },
   
   state: {

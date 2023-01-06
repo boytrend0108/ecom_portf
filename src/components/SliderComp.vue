@@ -5,13 +5,13 @@
       <div class="slider-conteiner__img">
         <div class="prev" @click="showSlide(slideIndex - 1)">prev</div>
         <div class="mySlides fade">
-          <img src="@/assets/img/catalog/catalog-img-1.png" class="mySlides__img" alt="img">
+          <img :src="require('@/assets/img/catalog/' + this.PRODUCT.itemImg)"  class="mySlides__img" alt="img">
         </div>
         <div class="mySlides fade">
-          <img src="@/assets/img/catalog/catalog-img-2.png" class="mySlides__img" alt="img">
+          <img :src="require('@/assets/img/catalog/' + this.PRODUCT.itemImg)" class="mySlides__img" alt="img">
         </div>
         <div class="mySlides fade">
-          <img src="@/assets/img/catalog/catalog-img-3.png" class="mySlides__img" alt="img">
+          <img :src="require('@/assets/img/catalog/' + this.PRODUCT.itemImg)" class="mySlides__img" alt="img">
         </div>
         <div class="next" @click="showSlide(slideIndex + 1)">next</div>
       </div>
@@ -24,11 +24,9 @@
     </div>
       <div class="wrapper">
       <div class="slider-info">
-        <div class="slider-info__title">MOSCHINO CHEAP AND CHIC</div>
-        <div class="slider-info__descr">Compellingly actualize fully researched processes before proactive outsourcing.
-          Progressively syndicate collaborative architectures before cutting-edge services. Completely visualize
-          parallel core competencies rather than exceptional portals. </div>
-        <div class="slider-info__price">$561</div>
+        <div class="slider-info__title">{{ this.PRODUCT.itemTitle}}</div>
+        <div class="slider-info__descr">{{ this.PRODUCT.itemSubtitle }} </div>
+        <div class="slider-info__price">$ {{ this.PRODUCT.itemPrice }}</div>
         <my-button class="slider-info__btn">Add to Cart</my-button>
       </div>
     </div>
@@ -36,13 +34,18 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
  name:'slider-comp',
  data(){
   return{
       slideIndex: 1,
-      productItem:{}
+      product: this.PRODUCT
   }
+ },
+
+ computed:{
+    ...mapGetters(['PRODUCT'])
  },
  methods:{
   currentSlide(n){
@@ -76,6 +79,7 @@ export default {
 
  mounted(){
   this.showSlide(this.slideIndex)
+  console.log(this.PRODUCT)
  }
 
 }
