@@ -4,8 +4,10 @@
 
       <div class="slider-conteiner__img">
         <div class="prev" @click="showSlide(slideIndex - 1)">prev</div>
-        <div class="mySlides fade">
-          <img :src="require('@/assets/img/catalog/' + this.PRODUCT.itemImg)"  class="mySlides__img" alt="img">
+        <div class="slider-wrapper">
+          <div class="mySlides fade">
+          <img :src="require('@/assets/img/catalog/' + this.PRODUCT.itemImg)"  class="mySlides__img  slide-in-right" alt="img">
+        </div>
         </div>
         <div class="next" @click="showSlide(slideIndex + 1)">next</div>
       </div>
@@ -46,11 +48,14 @@ export default {
     this.showSlide(n)
   },
 
-  showSlide(slideIndex){   
+  showSlide(slideIndex){  
+ 
     let i;
-    const slide = document.querySelector('mySlides')
+    const prev = document.querySelector('.prev')
+    console.log(prev.nextSibling)
+    const slide = document.querySelector('.mySlides')
     const dots = document.getElementsByClassName('dot')
-    
+   
     if(slideIndex > 3){
       this.slideIndex = 1;
     } else if (slideIndex < 1){
@@ -61,25 +66,21 @@ export default {
     
     if(this.slideIndex !== 1 ){
       this.PRODUCT.itemImg = `catalog-img-1-${this.slideIndex}.png`
-      console.log(this.PRODUCT.itemImg) 
     } else {
       this.PRODUCT.itemImg = `catalog-img-1.png`
     }
-   
-      
-   
-
+    slide.remove()
     for(i=0;i < 3; i++){
       dots[i].className =  dots[i].className.replace('active', '')
     }
-    // slide[this.slideIndex - 1 ].style.display = 'block'
+    
+    prev.insertAdjacentElement('afterend', slide )
     dots[this.slideIndex - 1 ].className += ' active'
   }
  },
 
  mounted(){
   this.showSlide(this.slideIndex)
-  console.log(this.PRODUCT)
  }
 
 }
@@ -111,6 +112,8 @@ export default {
   align-items: center;
   justify-content: center;
   max-width:100% ;
+  height: 583px;
+  overflow: hidden;
 
   .mySlides__img{
   width: 500px;
@@ -175,22 +178,53 @@ export default {
   background-color: $pink-color;
 }
 
-.fade{
-  -webkit-animation-name:fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s;
+.slide-in-right {
+	-webkit-animation: slide-in-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-in-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
-@-webkit-keyframes fade{
-  from{opacity: 0.4;}
-  to{opacity:1;}
+ @-webkit-keyframes slide-in-right {
+  0% {
+    -webkit-transform: translateX(1000px);
+            transform: translateX(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-right {
+  0% {
+    -webkit-transform: translateX(1000px);
+            transform: translateX(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
 }
 
-@keyframes fade{
-  from{opacity: 0.4;}
-  to{opacity:1;}
-}
+
+// .fade{
+//   -webkit-animation-name:fade;
+//   -webkit-animation-duration: 1.5s;
+//   animation-name: fade;
+//   animation-duration: 1.5s;
+// }
+
+// @-webkit-keyframes fade{
+//   from{opacity: 0.4;}
+//   to{opacity:1;}
+// }
+
+// @keyframes fade{
+//   from{opacity: 0.4;}
+//   to{opacity:1;}
+// }
 
 .slider-info{
   max-width: 50rem;
