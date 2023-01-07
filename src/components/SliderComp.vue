@@ -7,12 +7,6 @@
         <div class="mySlides fade">
           <img :src="require('@/assets/img/catalog/' + this.PRODUCT.itemImg)"  class="mySlides__img" alt="img">
         </div>
-        <div class="mySlides fade">
-          <img :src="require('@/assets/img/catalog/' + this.PRODUCT.itemImg)" class="mySlides__img" alt="img">
-        </div>
-        <div class="mySlides fade">
-          <img :src="require('@/assets/img/catalog/' + this.PRODUCT.itemImg)" class="mySlides__img" alt="img">
-        </div>
         <div class="next" @click="showSlide(slideIndex + 1)">next</div>
       </div>
      
@@ -54,24 +48,31 @@ export default {
 
   showSlide(slideIndex){   
     let i;
-    const slides = document.getElementsByClassName('mySlides')
+    const slide = document.querySelector('mySlides')
     const dots = document.getElementsByClassName('dot')
     
-    if(slideIndex > slides.length){
+    if(slideIndex > 3){
       this.slideIndex = 1;
     } else if (slideIndex < 1){
-      this.slideIndex = slides.length  
+      this.slideIndex = 3  
     }else{
       this.slideIndex = slideIndex;
     }
     
-    for(i=0;i < slides.length; i++){
-      slides[i].style.display = 'none'
+    if(this.slideIndex !== 1 ){
+      this.PRODUCT.itemImg = `catalog-img-1-${this.slideIndex}.png`
+      console.log(this.PRODUCT.itemImg) 
+    } else {
+      this.PRODUCT.itemImg = `catalog-img-1.png`
     }
-    for(i=0;i < dots.length; i++){
+   
+      
+   
+
+    for(i=0;i < 3; i++){
       dots[i].className =  dots[i].className.replace('active', '')
     }
-    slides[this.slideIndex - 1 ].style.display = 'block'
+    // slide[this.slideIndex - 1 ].style.display = 'block'
     dots[this.slideIndex - 1 ].className += ' active'
   }
  },
