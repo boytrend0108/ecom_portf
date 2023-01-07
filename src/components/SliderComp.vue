@@ -5,17 +5,21 @@
       <div class="slider-conteiner__img">
         <div class="prev" @click="showSlide(slideIndex - 1)">prev</div>
         <div class="slider-wrapper">
-          <div class="mySlides fade">
-          <img :src="require('@/assets/img/catalog/' + this.PRODUCT.itemImg)"  class="mySlides__img  slide-in-right" alt="img">
+          <div class="mySlides fade" >
+          <img 
+            :src="require('@/assets/img/catalog/' + this.PRODUCT.itemImg)"  
+            class="mySlides__img"
+            :class="imgAnimClass"
+            alt="img">
         </div>
         </div>
         <div class="next" @click="showSlide(slideIndex + 1)">next</div>
       </div>
      
       <nav class="slider-pagin">
-          <span class="dot" @click="showSlide(1)"></span>
-          <span class="dot" @click="showSlide(2)"></span>
-          <span class="dot" @click="showSlide(3)"></span>
+          <span class="dot" id = "1" data-active = "active" @click="showSlide(1)"></span>
+          <span class="dot" id = "2" @click="showSlide(2)"></span>
+          <span class="dot" id = "3" @click="showSlide(3)"></span>
       </nav>
     </div>
       <div class="wrapper">
@@ -36,7 +40,8 @@ export default {
  data(){
   return{
       slideIndex: 1,
-      product: this.PRODUCT
+      product: this.PRODUCT,
+      imgAnimClass: "slide-in-right"
   }
  },
 
@@ -49,13 +54,31 @@ export default {
   },
 
   showSlide(slideIndex){  
- 
     let i;
     const prev = document.querySelector('.prev')
-    console.log(prev.nextSibling)
     const slide = document.querySelector('.mySlides')
     const dots = document.getElementsByClassName('dot')
-   
+    // const img = document.querySelector(".mySlides__img")
+    const dotActiveId = document.querySelector('[data-active = "active"]').id;
+    console.log(dotActiveId)
+
+    if(event && event.target.className === 'prev' || event && event.target.id > dotActiveId){
+      this.imgAnimClass = "slide-out-left"
+      setTimeout(()=>{
+        slide.remove()
+        this.imgAnimClass = "slide-in-right"
+        prev.insertAdjacentElement('afterend', slide )
+      }, 300)
+    }else if(event && event.target.className === 'next' || event && event.target.id > dotActiveId){
+      this.imgAnimClass = "slide-out-right"
+      setTimeout(()=>{
+        slide.remove()
+        this.imgAnimClass = "slide-in-left"
+        prev.insertAdjacentElement('afterend', slide )
+      }, 300)
+    } 
+    
+
     if(slideIndex > 3){
       this.slideIndex = 1;
     } else if (slideIndex < 1){
@@ -69,13 +92,15 @@ export default {
     } else {
       this.PRODUCT.itemImg = `catalog-img-1.png`
     }
-    slide.remove()
+   
     for(i=0;i < 3; i++){
       dots[i].className =  dots[i].className.replace('active', '')
+      dots[i].removeAttribute('data-active')
     }
     
-    prev.insertAdjacentElement('afterend', slide )
+   
     dots[this.slideIndex - 1 ].className += ' active'
+    dots[this.slideIndex - 1 ].dataset.active = 'active'
   }
  },
 
@@ -179,11 +204,10 @@ export default {
 }
 
 .slide-in-right {
-	-webkit-animation: slide-in-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: slide-in-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-}
+	-webkit-animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 
- @-webkit-keyframes slide-in-right {
+          @-webkit-keyframes slide-in-right {
   0% {
     -webkit-transform: translateX(1000px);
             transform: translateX(1000px);
@@ -207,25 +231,102 @@ export default {
     opacity: 1;
   }
 }
+}
+
+.slide-in-left {
+	-webkit-animation: slide-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 
 
-// .fade{
-//   -webkit-animation-name:fade;
-//   -webkit-animation-duration: 1.5s;
-//   animation-name: fade;
-//   animation-duration: 1.5s;
-// }
+@-webkit-keyframes slide-in-left {
+  0% {
+    -webkit-transform: translateX(-1000px);
+            transform: translateX(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-left {
+  0% {
+    -webkit-transform: translateX(-1000px);
+            transform: translateX(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
 
-// @-webkit-keyframes fade{
-//   from{opacity: 0.4;}
-//   to{opacity:1;}
-// }
+}
 
-// @keyframes fade{
-//   from{opacity: 0.4;}
-//   to{opacity:1;}
-// }
+.slide-out-right {
+	-webkit-animation: slide-out-right 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	        animation: slide-out-right 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+ 
+@-webkit-keyframes slide-out-right {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(1000px);
+            transform: translateX(1000px);
+    opacity: 0;
+  }
+}
+@keyframes slide-out-right {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(1000px);
+            transform: translateX(1000px);
+    opacity: 0;
+  }
+}
 
+}
+
+.slide-out-left {
+	-webkit-animation: slide-out-left 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	        animation: slide-out-left 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+
+@-webkit-keyframes slide-out-left {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(-1000px);
+            transform: translateX(-1000px);
+    opacity: 0;
+  }
+}
+@keyframes slide-out-left {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(-1000px);
+            transform: translateX(-1000px);
+    opacity: 0;
+  }
+}
+
+}
+ 
 .slider-info{
   max-width: 50rem;
   display: flex;
