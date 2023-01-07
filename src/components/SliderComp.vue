@@ -58,27 +58,32 @@ export default {
     const prev = document.querySelector('.prev')
     const slide = document.querySelector('.mySlides')
     const dots = document.getElementsByClassName('dot')
-    // const img = document.querySelector(".mySlides__img")
     const dotActiveId = document.querySelector('[data-active = "active"]').id;
     console.log(dotActiveId)
 
-    if(event && event.target.className === 'prev' || event && event.target.id > dotActiveId){
+    if(event && event.target.className === 'prev'){
       this.imgAnimClass = "slide-out-left"
       setTimeout(()=>{
         slide.remove()
         this.imgAnimClass = "slide-in-right"
         prev.insertAdjacentElement('afterend', slide )
       }, 300)
-    }else if(event && event.target.className === 'next' || event && event.target.id > dotActiveId){
+    }else if(event && event.target.className === 'next'){
       this.imgAnimClass = "slide-out-right"
       setTimeout(()=>{
         slide.remove()
         this.imgAnimClass = "slide-in-left"
         prev.insertAdjacentElement('afterend', slide )
       }, 300)
-    } 
+    } else{
+      this.imgAnimClass = "slide-out-left"
+      setTimeout(()=>{
+        slide.remove()
+        this.imgAnimClass = "slide-in-right"
+        prev.insertAdjacentElement('afterend', slide )
+      }, 300)
+    }
     
-
     if(slideIndex > 3){
       this.slideIndex = 1;
     } else if (slideIndex < 1){
