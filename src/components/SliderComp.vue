@@ -27,7 +27,10 @@
         <div class="slider-info__title">{{ this.PRODUCT.itemTitle}}</div>
         <div class="slider-info__descr">{{ this.PRODUCT.itemSubtitle }} </div>
         <div class="slider-info__price">$ {{ this.PRODUCT.itemPrice }}</div>
-        <my-button class="slider-info__btn">Add to Cart</my-button>
+        <my-button 
+        class="slider-info__btn" 
+        @click="this.$store.dispatch('ADD_TO_CART', this.PRODUCT)"
+        >Add to Cart</my-button>
       </div>
     </div>
  
