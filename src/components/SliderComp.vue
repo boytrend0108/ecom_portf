@@ -17,7 +17,7 @@
       </div>
      
       <nav class="slider-pagin">
-          <span class="dot" id = "1" data-active = "active" @click="showSlide(1)"></span>
+          <span class="dot active" id = "1" data-active = "active" @click="showSlide(1)"></span>
           <span class="dot" id = "2" @click="showSlide(2)"></span>
           <span class="dot" id = "3" @click="showSlide(3)"></span>
       </nav>
@@ -90,7 +90,6 @@ export default {
         deleteImg.then(() => {
         this.imgAnimClass = "slide-in-right"
         handler()
-        // prev.insertAdjacentElement('afterend', slide )
       }
       )
     }
@@ -105,9 +104,9 @@ export default {
     }
     
     if(this.slideIndex !== 1 ){
-      this.PRODUCT.itemImg = `catalog-img-1-${this.slideIndex}.png`
+      this.PRODUCT.itemImg = `catalog-img-${this.PRODUCT.id}-${this.slideIndex}.png`
     } else {
-      this.PRODUCT.itemImg = `catalog-img-1.png`
+      this.PRODUCT.itemImg = `catalog-img-${this.PRODUCT.id}.png`
     }
   
     prev.insertAdjacentElement('afterend', slide)
