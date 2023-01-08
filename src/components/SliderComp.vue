@@ -61,30 +61,42 @@ export default {
     const dotActiveId = document.querySelector('[data-active = "active"]').id;
     console.log(dotActiveId)
 
-    if(event && event.target.className === 'prev'){
-      this.imgAnimClass = "slide-out-left"
-      setTimeout(()=>{
-        slide.remove()
-        this.imgAnimClass = "slide-in-right"
-        prev.insertAdjacentElement('afterend', slide )
+    const deleteImg = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(slide.remove())
       }, 300)
+    })
+
+    if (event && event.target.className === 'prev') {
+      this.imgAnimClass = "slide-out-left"
+      deleteImg.then(() => {
+        this.imgAnimClass = "slide-in-right"
+        handler()
+        // prev.insertAdjacentElement('afterend', slide)
+      
+      }
+      )
     }else if(event && event.target.className === 'next'){
       this.imgAnimClass = "slide-out-right"
-      setTimeout(()=>{
-        slide.remove()
+      deleteImg.then(() => {
         this.imgAnimClass = "slide-in-left"
-        prev.insertAdjacentElement('afterend', slide )
-      }, 300)
+        handler()
+        // prev.insertAdjacentElement('afterend', slide )
+       
+      }
+      )
     } else{
       this.imgAnimClass = "slide-out-left"
-      setTimeout(()=>{
-        slide.remove()
+        deleteImg.then(() => {
         this.imgAnimClass = "slide-in-right"
-        prev.insertAdjacentElement('afterend', slide )
-      }, 300)
+        handler()
+        // prev.insertAdjacentElement('afterend', slide )
+      }
+      )
     }
     
-    if(slideIndex > 3){
+    const handler = ()=>{
+      if(slideIndex > 3){
       this.slideIndex = 1;
     } else if (slideIndex < 1){
       this.slideIndex = 3  
@@ -97,20 +109,23 @@ export default {
     } else {
       this.PRODUCT.itemImg = `catalog-img-1.png`
     }
-   
+  
+    prev.insertAdjacentElement('afterend', slide)
+
     for(i=0;i < 3; i++){
       dots[i].className =  dots[i].className.replace('active', '')
       dots[i].removeAttribute('data-active')
     }
     
-   
     dots[this.slideIndex - 1 ].className += ' active'
     dots[this.slideIndex - 1 ].dataset.active = 'active'
+    }
+   
   }
  },
 
  mounted(){
-  this.showSlide(this.slideIndex)
+  // this.showSlide(1)
  }
 
 }
